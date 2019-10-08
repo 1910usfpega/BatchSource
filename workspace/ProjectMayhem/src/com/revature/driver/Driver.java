@@ -1,6 +1,8 @@
 package com.revature.driver;
 
-import com.revature.bean.*;
+import java.sql.Date;
+
+import com.revature.bean.Person;
 
 // Single comment
 /*
@@ -38,6 +40,11 @@ public class Driver {
 		System.out.println(a.toString());
 		a.setWeight(200);
 		System.out.println(a.toString());
+		Date d= new Date(1);
+		java.util.Date f = new Date(2);
+		
+		System.out.println(d.toString());
+		System.out.println(f.toString());
 	}
 	/*
 	 * Members of a class - class can have diff forms
