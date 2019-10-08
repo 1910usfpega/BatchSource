@@ -9,6 +9,10 @@ public class Person {
 	private String name;
 	private int age;
 	private int weight;
+	static String homePlanet = "Earth";
+	
+	
+	
 
 	//No-arg Constructor (default constructor)
 	public Person() {
@@ -47,7 +51,15 @@ public class Person {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
+	
+	public static String getHomePlanet() {
+		return homePlanet;
+	}
 
+	public static void setHomePlanet(String homePlanet) {
+		Person.homePlanet = homePlanet;
+	}
+	
 	@Override
 	public String toString() {
 		return "Person [name=" + name + ", age=" + age + ", weight=" + weight + "]";
