@@ -1,4 +1,7 @@
 package com.revature.driver;
+
+import com.revature.bean.*;
+
 // Single comment
 /*
  * Multiline comment
@@ -30,11 +33,14 @@ public class Driver {
 		 * 
 		 * The main method os the entry point for the program
 		 */
-		System.out.println("Drool Tide!");
-
+		System.out.println("Droll Tide!");
+		Person a= new Person("Bryan", 35, 185);
+		System.out.println(a.toString());
+		a.setWeight(200);
+		System.out.println(a.toString());
 	}
 	/*
-	 * Membeers of a class - class can have diff forms
+	 * Members of a class - class can have diff forms
 	 * Constructors, Variables, and Methods
 	 * Instance Variables - property that belongs to a specific object
 	 * Static Variables - property that belongs to the class/all instances
