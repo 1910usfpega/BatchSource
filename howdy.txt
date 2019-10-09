@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 Roll Tide
 Never that
+=======
+Git is not boring at all
+>>>>>>> 9a54a4b3e7f0b275437f2ff7f259152b11e8f815
