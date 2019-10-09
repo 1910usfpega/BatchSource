@@ -3,6 +3,7 @@ package com.revature.driver;
 //import java.sql.Date;
 
 import com.revature.bean.Person;
+import com.revature.staticfun.FunWithStatic;
 
 // Single comments
 /*
@@ -22,6 +23,8 @@ public class Driver {
   * constants:ALL_CAPS_LOLZ
   * 
   */
+	
+	
 	public static void main(String[] args) {
 		/*public- anything can "see" it
 		 * void- doesn't return anything
@@ -31,13 +34,19 @@ public class Driver {
 		 */
 		System.out.println("Roll Tide");
 		Person a= new Person("Matt",33,270);
+		Person b= new Person("Sam", 22, 9000);
+		Person c= new Person("Stephen", 7,27);
 		System.out.println(a.toString());
 		a.setWeight(250);
 		System.out.println(a.toString());
 		System.out.println(Person.getHomePlanet());
 //		  Date d= new Date(1); 
 //		  java.util.Date f= new Date(2);
-		 
+		
+		FunWithStatic.staticMethod();
+		FunWithStatic fws= new FunWithStatic();
+		fws.nonStaticMethod();
+		
 	}
 	/*
 	 * Members of a class- can have diff forms
