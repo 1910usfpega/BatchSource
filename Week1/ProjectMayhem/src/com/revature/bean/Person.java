@@ -7,7 +7,7 @@ public class Person {
 	private String name;
 	private int age;
 	private int weight;
-	static String homePlanet="Earth";
+	public static String homePlanet="Earth";
 	public static String getHomePlanet() {
 		return homePlanet;
 	}
@@ -31,6 +31,7 @@ public class Person {
 		}
 	public void setName(String name) {
 		this.name=name;
+		int i;
 	}
 	public String getName() {
 		return name;
@@ -59,4 +60,7 @@ public class Person {
 	{System.out.println("I'm in an instance code block!");}
 	//Static code block
 	static {System.out.println("Im in a static code block!");}
+	public static void staticMethod() {
+		System.out.println("Static Method!!!");
+	}
 }
