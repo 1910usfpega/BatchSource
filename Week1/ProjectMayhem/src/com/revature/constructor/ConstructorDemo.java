@@ -2,21 +2,22 @@ package com.revature.constructor;
 
 public class ConstructorDemo {
 	public static void main(String[] args) {
-		C c=new C();
+		C c = new C();
 	}
+
 }
-class A{
-	A(){
+class A {
+	A() {
 		System.out.println("Inside A's constructor");
 	}
 }
 class B extends A{
-	B(){
+	B() {
 		System.out.println("Inside B's constructor");
 	}
 }
-class C extends B{
-	C(){
-		System.out.println("Inside C's constructor");
+class C extends B {
+	C() {
+		System.out.println("Inside of C's constructor");
 	}
 }

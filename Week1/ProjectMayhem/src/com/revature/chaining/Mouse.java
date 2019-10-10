@@ -1,20 +1,9 @@
 package com.revature.chaining;
-//Constructor Chaining
+//constructor  Chaining 
 public class Mouse {
 	private int numTeeth;
 	private int numWhiskers;
 	private int weight;
-	
-	
-	@Override
-	public String toString() {
-		return "Mouse [numTeeth=" + numTeeth + ", numWhiskers=" + numWhiskers + ", weight=" + weight + "]";
-	}
-
-
-	public Mouse() {
-		super();
-	}
 
 
 	public Mouse(int numTeeth, int numWhiskers, int weight) {
@@ -25,14 +14,31 @@ public class Mouse {
 	}
 	
 	public Mouse(int numTeeth, int numWhiskers) {
-		this(numTeeth,numWhiskers,16);
-		
+		this(numTeeth, numWhiskers, 2);
 	}
+	
+	public Mouse() {
+		super();
+	}
+	
 	public Mouse(int numTeeth) {
-		this(numTeeth,8);
+		this(numTeeth, 8);
 	}
+
+	@Override
+	public String toString() {
+		return "Mouse [numTeeth=" + numTeeth + ", numWhiskers=" + numWhiskers + ", weight=" + weight + "]";
+	}
+	
 	public static void main(String[] args) {
-		Mouse m= new Mouse();
+		Mouse m = new Mouse(73);
 		System.out.println(m.toString());
 	}
+	
+	
+
 }
+
+
+
+
