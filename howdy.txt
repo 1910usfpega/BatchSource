@@ -1,6 +1,0 @@
-<<<<<<< HEAD
-Roll Tide
-Jah Rastafari
-=======
-Git is not boring at all
->>>>>>> 04a8e623065d20acc24366e895edce508bef3309
