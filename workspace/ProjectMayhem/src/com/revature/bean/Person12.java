@@ -1,6 +1,7 @@
+package com.revature.bean;
 
 
-public class Person {
+public class Person12 {
 	
 	
 	//private fields
@@ -12,10 +13,10 @@ public class Person {
 		return homePlanet;
 	}
 	public static void setHomePlanet(String homePlanet) {
-		Person.homePlanet = homePlanet;
+		Person12.homePlanet = homePlanet;
 	}
 		//Constructors
-		public Person(String name, int age, int weight) {
+		public Person12(String name, int age, int weight) {
 			//this. is referring to the object
 			//=name is referring to the parameter
 			System.out.println("inside Person constructor");
@@ -24,7 +25,7 @@ public class Person {
 			this.weight=weight;
 		}
 		//No-arg Constructor
-		public Person() {
+		public Person12() {
 			//super(); implicitly there
 		}
 	public void setName(String name) {

@@ -65,4 +65,7 @@ public class Person {
 		return "Person [name=" + name + ", age=" + age + ", weight=" + weight + "]";
 	}
 
+	public static void staticMethod() {
+		System.out.println("Static Method!!!");
+	}
 }
