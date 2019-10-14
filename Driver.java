@@ -19,6 +19,9 @@ public class Driver {
 			System.out.println("RocketShip " + (i+1) + ": [" + rocket[i].toString());
 		}
 		
+		//Checking to see if rocket 3 is equal to rocket 4
+		System.out.println("Rocket 3 is equal to Rocket 4: " + rocket[2].equals(rocket[3]));
+		
 		//Changing the fields of rocketship 3 to match rocketship 4
 		System.out.println("Changing Rocketship 3 to match Rocketship 4...");
 		rocket[2].setNumOfRockets(rocket[3].getNumOfRockets());
@@ -27,7 +30,7 @@ public class Driver {
 		rocket[2].setHasMiniFridge(rocket[3].getHasMiniFridge());
 		System.out.println("RocketShip 3" + ": [" + rocket[2].toString());
 		
-		//Checking to see if they're equal
+		//Checking to see if rocket 3 is equal to rocket 4 now
 		System.out.println("Rocket 3 is equal to Rocket 4: " + rocket[2].equals(rocket[3]));
 	}
 }
