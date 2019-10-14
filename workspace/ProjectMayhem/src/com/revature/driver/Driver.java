@@ -41,7 +41,9 @@ public class Driver {
 		a.setWeight(200);
 		System.out.println(Person.getHomePlanet());
 		
+		Person b = new Person("Bryan", 25, 185);
 		
+		System.out.println();
 		
 //		Date d= new Date(1);
 //		java.util.Date f = new Date(2);
