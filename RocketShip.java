@@ -63,7 +63,7 @@ public class RocketShip {
 	
 	//Prints out the Rocketship fields
 	public String toString() {
-		return numOfRockets + ", Color: " + color + ", Model: " + model + ", Mini Fridge: " + hasMiniFridge + "]";
+		return "Number of Rocket(s): " + numOfRockets + ", Color: " + color + ", Model: " + model + ", Mini Fridge: " + hasMiniFridge + "]";
 	}
 	
 	
