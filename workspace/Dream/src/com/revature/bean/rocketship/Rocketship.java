@@ -54,9 +54,9 @@ public class Rocketship {
 		this.model=model;
 		this.hasMiniFridge=hasMiniFridge;
 		if (numOfRockets > 5) {
-			System.out.println("That's a lot of rockets.");
+			System.out.println(numOfRockets+" rockets aboard... That's a lot of rockets.");
 		} else if(numOfRockets == 0) {
-			System.out.println("Uhhhh Houston we have a problem.");
+			System.out.println(numOfRockets+" rockets aboard... Uhhhh Houston we have a problem.");
 		} else {
 			System.out.println("Blasting off with "+numOfRockets+" rockets!");
 		}
