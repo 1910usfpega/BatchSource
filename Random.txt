@@ -1,0 +1,43 @@
+package com.revature.bean
+
+public class Math {
+    private int num1, num2;
+    private String add = "Plus"
+    private String subtract = "Minus";
+
+    public Math(num1, num2, add, subtract) {
+        this.num1 = num1;
+        this.num2 = num2;
+        this.add = add;
+        this.subtract = subtract;
+    }
+
+    public int getNum1(){
+        return num1;
+    }
+    public void setNum1(int num1){
+        this.num1 = num1;
+    }
+    public int getNum2(){
+        return num2;
+    }
+    public void setNum2(int num2){
+        this.num2 = num2;
+    }
+    public String getAdd(){
+        return add;
+    }
+    public void setAdd(String add){
+        this.add = add;
+    }
+    public String getSubtract(){
+        return subtract;
+    }
+    public void setSubtract(String subtract){
+        this.subtract = subtract;
+    }
+
+    public String toString(){
+        return num1 + add + num2 + " = " + (num1 + num2);
+    }
+}
