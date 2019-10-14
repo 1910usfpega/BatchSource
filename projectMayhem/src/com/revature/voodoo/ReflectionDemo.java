@@ -1,5 +1,5 @@
 package com.revature.voodoo;
-
+ 
 import java.lang.reflect.Constructor;
 
 public class ReflectionDemo {
@@ -11,7 +11,7 @@ public class ReflectionDemo {
 		 * breaks encapsulation!
 		 * Contains methods for runtime inspection of objects
 		 * i.e class of object, fields methods constructors
-		 * this includes private members!
+		 * this includes private members!  
 		 * can also instantiate things and invoke methods
 		 * java.lang.reflect
 		 */

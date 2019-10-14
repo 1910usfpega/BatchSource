@@ -15,7 +15,7 @@ public class Driver {
 		/*
 		 * public : anything can see it 
 		 * void- doesn't return anything 
-		 * String[] arg- parameter to be untilized in a method
+		 * String[] arg- parameter to be utilized in a method
 		 * 
 		 * The main method is the entry point for the project
 		 */

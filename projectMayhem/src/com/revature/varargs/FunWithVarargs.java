@@ -1,6 +1,6 @@
 package com.revature.varargs;
 
-public class FunWithVarargs {
+public class FunWithVarargs {//varargs allow to vary the amount of arguments that a method can put in
 	/* Variable length arguments-varargs
 	 * Method that will take a variable number of arguments
 	 * Automates and hides the process of creating and saving 
