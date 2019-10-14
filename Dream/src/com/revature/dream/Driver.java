@@ -1,42 +1,104 @@
 package com.revature.dream;
 
+
+
+
 public class Driver {
-public static void main(String[] args) {
-//	RocketShip a = new RocketShip(2,"red","modelA",false);
-//	RocketShip b = new RocketShip(3,"green","modelB",true);
-//	RocketShip c = new RocketShip(4,"orange","modelC",false);
-//	RocketShip d = new RocketShip(2,"red","modelA",false);
-//	RocketShip e = new RocketShip(6,"yellow","modeE",false);
-//	System.out.println(a.toString());
-//	System.out.println(b.toString());
-//	System.out.println(c.toString());
-//	System.out.println(d.toString());
-//	System.out.println(e.toString());
-//	System.out.println(a.equals(c));
-//	System.out.println(a.equals(d));
+
+	public static void main(String[] agrs) {
+
+		RocketShip q= new RocketShip(6, "red", "1212-C", true);
+
+		RocketShip w= new RocketShip(6, "green", "1212-C", true);
+
+		RocketShip e= new RocketShip(6, "blue", "1212-C", true);
+
+		RocketShip r= new RocketShip(6, "gren", "1212-C", true);
+
+		RocketShip t= new RocketShip(6, "purple", "1612-A", true);	
+
+		boolean	match = check(q,w,e,r,t);
+
+		print(match);
+
+		if (!match) {
+
+		focusMatch(q,w);	
+
+		match = check(q,w,e,r,t);
+
+		print(match);
+
+		}
+
 	
-	RocketShip[] rockets = new RocketShip [5]; //declare array of size 2
-	RocketShip r1 = new RocketShip(2,"red","modelA",false); // first player object
-	RocketShip r2 = new RocketShip(2,"red","modelA",false); // second player object
-	RocketShip r3 = new RocketShip(3,"green","modelB",true);
-	RocketShip r4 = new RocketShip(4,"orange","modelC",false);
-	RocketShip r5 = new RocketShip(6,"yellow","modeE",false);
-	rockets[0] = r1; 
-	rockets[1] = r2;
-	rockets[2] = r3; 
-	rockets[3] = r4; 
-	rockets[4] = r5; 
+
+		
+
+	}
+
 	
-	for (int i = 0; i < rockets.length; i++) {
-        if (i > 0) {
-           System.out.println(", ");
-        }
-        System.out.print(rockets
-        		[i]);
-        System.out.println(r1.equals(rockets[i]));
-     }
-	
-	
-	
+
+public static boolean check(RocketShip ... a) {
+
+	for(int i = 0; i < a.length;i++) {
+
+		for(int j = 0; j < a.length;j++) {
+
+			if(i==j) {}
+
+			else
+
+				if (a[i].equals(a[j])==true)return true;
+
 }
+
+		}
+
+	
+
+	
+
+	return false;
+
+	
+
+}
+
+public static void  focusMatch(RocketShip a, RocketShip b) {
+
+	int numOfRockets = a.getNumOfRockets();
+
+	String color = a.getColor();
+
+	String model = a.getModel();
+
+	boolean hasMiniFridge = a.isHasMiniFridge();
+
+	
+
+	b.setColor(color);
+
+	b.setHasMiniFridge(hasMiniFridge);
+
+	b.setModel(model);
+
+	b.setNumOfRockets(numOfRockets);
+
+}
+
+public static void print(boolean match) {
+
+	if(match)
+
+		System.out.println("there is a match");
+
+	else {
+
+		System.out.println("there is no matching rocketships good sir");
+
+	}
+
+}
+
 }
