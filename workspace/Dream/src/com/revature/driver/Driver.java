@@ -8,7 +8,7 @@ public class Driver {
 	
 	public static void main(String[] args) {
 
-		Rocketship a = new Rocketship(0, "","",false);
+		Rocketship a = new Rocketship(0,null,null,false);
 		listing[0] = a;
 		Rocketship b = new Rocketship(3,"Grey","Saturn 5", true);
 		listing[1] = b;
