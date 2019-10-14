@@ -17,13 +17,13 @@ public class Driver {
 		System.out.println("now will use setters to make the rocket2 and rocket3 equals");
 		
 		rocket2.setNumOfRockets(1);
-		rocket3.setNumOfRockets(1);
+		rocket3.setNumOfRockets(rocket2.getNumOfRockets());
 		
 		rocket2.setColor("blue");
-		rocket3.setColor("blue");
+		rocket3.setColor(rocket2.getColor());
 		
 		rocket2.setModel("rubicon");
-		rocket3.setModel("rubicon");
+		rocket3.setModel(rocket2.getModel());
 		
 		rocket2.setHasMiniFridge(true);
 		rocket3.setHasMiniFridge(true);
