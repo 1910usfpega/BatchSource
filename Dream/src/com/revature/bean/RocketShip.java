@@ -5,8 +5,8 @@ public class RocketShip {
 	String color;
 	String model;
 	boolean hasMiniFridge;
-	static {}
-	{}
+	static {System.out.println("Static is running");}
+	{System.out.println("instance is running");}
 	public RocketShip(int numOfRockets, String color, String model, boolean hasMiniFridge) {
 		super();
 		this.numOfRockets = numOfRockets;

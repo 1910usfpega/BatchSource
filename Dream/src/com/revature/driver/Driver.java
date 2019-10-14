@@ -10,9 +10,9 @@ public class Driver {
 		RocketShip t= new RocketShip(6, "purple", "1612-A", true);	
 		boolean	match = check(q,w,e,r,t);
 		if(match)
-			System.out.print("there is a match");
+			System.out.println("there is a match");
 		else
-			System.out.print("there is no matching rocketships good sir");
+			System.out.println("there is no matching rocketships good sir");
 	
 		
 	}
