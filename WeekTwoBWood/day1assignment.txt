@@ -1,0 +1,6 @@
+Create a new java project called: Dream
+Establish a bean class called RocketShip with the fields, numOfRockets, color, model, and hasMiniFridge.
+Also include 1 static and 1 instance code block.
+In a Driver class, which should be in a different class, instantiate 5 RocketShips and then see if any of those objects match.
+If none match, use the appropiate steps to change the fields for 1 object to match another.
+Push this project to your branch on the batch repository.
