@@ -1,5 +1,5 @@
 package com.revature.scopes;
-import com.revature.Person.Person;
+import com.revature.bean.Person;
 
 public class FunWithScopes {
 	{

@@ -1,5 +1,5 @@
 package com.revature.driver;
-import com.revature.Person.Person;
+import com.revature.bean.Person;
 import com.revature.staticfun.FunWithStatic;
 
 public class Driver {
