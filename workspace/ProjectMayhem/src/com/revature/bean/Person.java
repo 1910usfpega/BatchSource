@@ -1,10 +1,12 @@
 package com.revature.bean;
 
+import com.revature.classtypes.HuntW;
+
 /**
  * @author Bryan Wood
  *
  */
-public class Person {
+public class Person implements HuntW {
 	//private fields
 	private String name;
 	private int age;
@@ -67,5 +69,10 @@ public class Person {
 
 	public static void staticMethod() {
 		System.out.println("Static Method!!!");
+	}
+
+	@Override
+	public void findPrey() {
+		System.out.println("I go to Whole Foods...");		
 	}
 }

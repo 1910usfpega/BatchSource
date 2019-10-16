@@ -6,10 +6,10 @@ public class Rocketship {
 	private String color;
 	private String model;
 	private boolean hasMiniFridge;
-	
-	
+
+
 	static {System.out.println("Fun with rockets.");}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -46,21 +46,24 @@ public class Rocketship {
 		return true;
 	}
 	public Rocketship() {
-		
+
 	}
-	public Rocketship(int numOfRockets, String color, String model, boolean hasMiniFridge) {
+	public Rocketship(int numOfRockets, String color, String model, 
+			boolean hasMiniFridge) {
 		this.numOfRockets=numOfRockets;
 		this.color=color;
 		this.model=model;
 		this.hasMiniFridge=hasMiniFridge;
 		if (numOfRockets > 5) {
-			System.out.println(numOfRockets+" rockets aboard... That's a lot of rockets.");
+			System.out.println(numOfRockets+" rockets aboard... "
+					+ "That's a lot of rockets.");
 		} else if(numOfRockets == 0) {
-			System.out.println(numOfRockets+" rockets aboard... Uhhhh Houston we have a problem.");
+			System.out.println(numOfRockets+" rockets aboard... "
+					+ "Uhhhh Houston we have a problem.");
 		} else {
 			System.out.println("Blasting off with "+numOfRockets+" rockets!");
 		}
-		
+
 	}
 	public int getNumOfRockets() {
 		return numOfRockets;
@@ -88,8 +91,9 @@ public class Rocketship {
 	}
 	@Override
 	public String toString() {
-		return "Rocketship [numOfRockets=" + numOfRockets + ", color=" + color + ", model=" + model + ", hasMiniFridge="
-				+ hasMiniFridge + "]";
+		return "Rocketship [numOfRockets=" + numOfRockets + ", color=" 
+				+ color + ", model=" + model + ", hasMiniFridge="+ hasMiniFridge
+				+ "]";
 	}
-	
+
 }
