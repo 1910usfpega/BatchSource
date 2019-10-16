@@ -23,6 +23,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+<<<<<<< HEAD
+>>>>>>> f4e80f637ba0b062c4e36fbdcdd8ee96867bb2f1
+=======
 >>>>>>> f4e80f637ba0b062c4e36fbdcdd8ee96867bb2f1
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
