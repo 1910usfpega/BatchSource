@@ -1,6 +1,0 @@
-<<<<<<< HEAD
-Roll Tide
-Kristhian De Oliveira
-=======
-Git is not boring at all
->>>>>>> 7adecb34166262889328c5b89f38098fec82d717
