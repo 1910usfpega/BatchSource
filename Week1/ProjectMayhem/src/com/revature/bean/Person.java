@@ -1,6 +1,8 @@
 package com.revature.bean;
 
-public class Person {
+import com.revature.classtypes.Hunt;
+
+public class Person implements Hunt {
 	
 	
 	//private fields
@@ -61,4 +63,40 @@ public class Person {
 	public static void staticMethod() {
 		System.out.println("Static Method!!!");
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + age;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + weight;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		if (age != other.age)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (weight != other.weight)
+			return false;
+		return true;
+	}
+	@Override
+	public void findPrey() {
+		System.out.println("I go to Whole Foods");
+		
+	}
+	
+	
 }
