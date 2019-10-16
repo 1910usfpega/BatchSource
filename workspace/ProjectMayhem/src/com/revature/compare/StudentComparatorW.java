@@ -2,7 +2,7 @@ package com.revature.compare;
 
 import java.util.Comparator;
 
-public class StudentComparator implements Comparator<StudentW>{
+public class StudentComparatorW implements Comparator<StudentW>{
 //Second method of comparing - implement Comparator and implement compare
 	@Override
 	public int compare(StudentW o1, StudentW o2) {

@@ -29,8 +29,20 @@ public class CompareMain {
 			System.out.println(s);
 		}
 		System.out.println("=============================");
-		Collections.sort(studentList, new StudentComparator());
+		Collections.sort(studentList, new StudentComparatorW());
 		System.out.println("Sorted by GPA");
+		for(StudentW s: studentList) {
+			System.out.println(s);
+		}
+		System.out.println("=============================");
+		System.out.println("Sorted by Label w/ Lambda");
+//		Functional interfaces have 1 (not default) method
+//		we can use lambda w/these
+		Collections.sort(studentList, (arg0,arg1)
+		->{
+			return arg0.getLabel().compareTo(arg1.getLabel());
+		}
+				);
 		for(StudentW s: studentList) {
 			System.out.println(s);
 		}
