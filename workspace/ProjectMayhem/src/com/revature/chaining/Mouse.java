@@ -1,4 +1,4 @@
-package com.revature.bean.src.com.revature.chaining;
+package com.revature.chaining;
 //Constructor Chaining
 public class Mouse {
 	private int numTeeth;

@@ -1,4 +1,4 @@
-package com.revature.bean.src.com.revature.brain;
+package com.revature.brain;
 
 public class BreakStuff extends A{
 static 	{System.out.println("A");}

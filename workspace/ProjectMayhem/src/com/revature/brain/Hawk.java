@@ -1,4 +1,4 @@
-package com.revature.bean.src.com.revature.brain;
+package com.revature.brain;
 
 class Raptor extends Bird {
     static { System.out.println("r1"); 

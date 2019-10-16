@@ -1,4 +1,4 @@
-package com.revature.bean.src.com.revature.staticfun;
+package com.revature.staticfun;
 
 public class FunWithStatic {
 	public void nonStaticMethod() {
