@@ -2,8 +2,6 @@ package com.revature.io;
 
 import java.util.Scanner;
 
-import com.revature.bean.Person;
-
 public class SerialDemo {
 	public static Scanner sc= new Scanner(System.in);
 	public static void main(String[] args) {
