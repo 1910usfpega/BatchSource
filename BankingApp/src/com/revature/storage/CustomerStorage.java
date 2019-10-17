@@ -6,7 +6,11 @@ import java.util.Map;
 import com.revature.user.Customer;
 
 public class CustomerStorage {
-	Map<Integer,Customer> allCustomers = new HashMap<>();
+	private Map<Integer,Customer> allCustomers = new HashMap<>();
+	
+	public void remove(int cust) {
+		allCustomers.remove(cust);
+	}
 
 	public Customer getThisCustomer(int user) {
 		return allCustomers.get(user);

@@ -1,5 +1,7 @@
 package com.revature.user;
 
+import com.revature.mainscreen.MainScreen;
+
 public class Admin {
 	
 	public double withdraw(Customer cust, double amount) {
@@ -24,7 +26,7 @@ public class Admin {
 	}
 	
 	public void cancelAccount(Customer cust) {
-		
+		MainScreen.getMainscreen().getCustomers().remove(cust.getAccountNumber());
 	}
 
 }

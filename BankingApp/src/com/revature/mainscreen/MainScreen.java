@@ -8,11 +8,27 @@ public class MainScreen {
 	private Bank bank = new Bank();
 	private CustomerStorage customers=new CustomerStorage();
 	private OpenApplications openApps = new OpenApplications();
+	private static MainScreen mainscreen=new MainScreen();
 	
 	public static void main(String[] args) {
 		
 		
+		
 
+	}
+	
+	public MainScreen() {
+		super();
+	}
+	
+	
+
+	public static MainScreen getMainscreen() {
+		return mainscreen;
+	}
+
+	public void setMainscreen(MainScreen mainscreen) {
+		MainScreen.mainscreen = mainscreen;
 	}
 
 	public Bank getBank() {
