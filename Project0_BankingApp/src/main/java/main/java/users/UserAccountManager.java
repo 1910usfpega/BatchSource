@@ -7,6 +7,7 @@ import java.io.IOException;
 /*  
  * NOTE: File is saved at root of project directory
  */
+import java.util.Scanner;
 
 public class UserAccountManager {
 	//Write users to file
@@ -25,16 +26,16 @@ public class UserAccountManager {
 		try {
 			java.util.Scanner scanner = new java.util.Scanner(new FileReader("Users.txt"));
 			//This loop check each line of the file for the corresponding user.
-			do {
-				String line = scanner.nextLine();
-				if (line.contains(username) && line.contains(Password)) {
+			while (scanner.hasNextLine()) {
+				System.out.println(scanner.nextLine());
+				if (scanner.nextLine().contains(username) && scanner.nextLine().contains(Password)) {
 					foundUser = true;
 					return true;
 				}else {
 					foundUser = false;
 					return false;
 				}
-			} while (scanner.hasNextLine());
+			} 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,7 +48,7 @@ public class UserAccountManager {
 		try {
 			java.util.Scanner scanner = new java.util.Scanner(new FileReader("Users.txt"));
 			//This loop check each line of the file for the corresponding user.
-			do {
+			while(scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				if (line.contains(username)) {
 					foundUser = true;
@@ -56,7 +57,7 @@ public class UserAccountManager {
 					foundUser = false;
 					return false;
 				}
-			} while (scanner.hasNextLine());
+			} 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,7 +67,7 @@ public class UserAccountManager {
 	public static String getAccountType(String username) {
 		try {
 			java.util.Scanner scanner = new java.util.Scanner(new FileReader("Users.txt"));
-			do {
+			while(scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				if (line.contains("$1")) {
 					//Administrators
@@ -82,7 +83,7 @@ public class UserAccountManager {
 				}else {
 					return "Error, invalid account type.";
 				}
-			} while (scanner.hasNextLine());
+			} 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

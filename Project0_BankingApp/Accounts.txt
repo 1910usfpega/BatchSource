@@ -1,2 +1,1 @@
-Username: Fred %Checking: $0.00 
-Username: JointBob/Fred %Savings: $0.00 
+Username: Fred %Checking: $0.00
