@@ -1,7 +1,15 @@
 package com.revature.bean;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5830431000806793699L;
+
+
 //	Code blocks- {things between}
 	//Instance 
 	{System.out.println("I'm in an instance code block!");}
