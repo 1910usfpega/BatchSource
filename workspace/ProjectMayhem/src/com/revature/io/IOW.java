@@ -15,11 +15,10 @@ public class IOW {
 	public void writeOutputStreamContents(String contents) {
 		File file = new File(outFile);
 
-//		 os = null;
-		
+		//		 os = null;
+
 		try (OutputStream os = new FileOutputStream(file, true);) {
 			// false overwrites true appends
-
 			os.write(contents.getBytes());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -30,18 +29,19 @@ public class IOW {
 		}
 
 	}
+
 	public String readInputStreamContents() {
 		File file = new File(inFile);
 		StringBuilder sb = new StringBuilder();
-		try (InputStream is = new FileInputStream(file)){
-//			InputStream is = new FileInputStream(file);
+		try (InputStream is = new FileInputStream(file)) {
+			//			InputStream is = new FileInputStream(file);
 			int b = 0;
-			while ((b=is.read())!= -1) {
-				char c= (char)b;
+			while ((b = is.read()) != -1) {
+				char c = (char) b;
 				sb.append(c);
-				
+
 			}
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
