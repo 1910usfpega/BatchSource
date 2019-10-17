@@ -1,10 +1,16 @@
 package com.revature.bean;
 
+import java.io.Serializable;
+
 import com.revature.classtypes.Hunt;
 
-public class Person implements Hunt {
+public class Person implements Hunt,Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8959522904786262687L;
 	//private fields
 	private String name;
 	private int age;
