@@ -1,11 +1,11 @@
 package com.revature.driver;
 
-import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
+import com.revature.programstart.ProgramStart;
 
 public class Driver {
 	
 	public static void main(String[] args) {
-		
+		ProgramStart.startProgram();
 	}
 	
 }
