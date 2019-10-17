@@ -105,4 +105,14 @@ package com.revature.driver;
 
 public class Driver {
 
+	public static void main(String[] args) {
+		int[] startingPoint = new int[] { 1, 0, 5, 6, 3, 2, 7, 3, 9, 8, 4 };
+		
+		for(int i: startingPoint) {
+			Question6Test.test(startingPoint[i]);
+		}
+		
+		
+		
+	}
 }
