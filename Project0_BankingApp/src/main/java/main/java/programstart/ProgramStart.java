@@ -1,6 +1,8 @@
 package main.java.programstart;
 
 import java.util.Scanner;
+
+import main.java.accounts.AccountManagement;
 import main.java.users.UserAccountManager;
 
 public class ProgramStart {
@@ -51,6 +53,16 @@ public class ProgramStart {
 			System.out.println();
 			if(UserAccountManager.isAccountValid(user, pw) == true) {
 				System.out.println("Login Success!\n");
+				UserAccountManager.getAccountType(user);
+				if (UserAccountManager.getAccountType(user) == "Administrator") {
+					adminMenu();
+				}
+				else if (UserAccountManager.getAccountType(user) == "Customer") {
+					customerMenu(user);
+				}
+				else if (UserAccountManager.getAccountType(user) == "Employee") {
+					employeeMenu();
+				}
 				/* SOME SORT OF MAIN MENU METHOD
 				 * CAN PROBABLY ALSO HAVE A CHECK IF THE ACCOUNT IS A CUSTOMER,
 				*    EMPLOYEE, OR BANK ADMIN AND HAVE THEM GO TO A DIFFERENT
@@ -108,6 +120,56 @@ public class ProgramStart {
 				System.out.println("////////////////////\n");
 				createNewAccount();
 			}
+		}
+		
+		public static void adminMenu() {
+			
+		}
+		
+		public static void customerMenu(String user) {
+			System.out.println("Welcome " + user + "!");
+			System.out.println("What would you like to do?");
+			System.out.println("1. Withdraw\n 2. Deposit\n 3. Transfer Between Accounts\n 4. Open a New Account");
+			System.out.println();
+			String answer = input.nextLine();
+			//1 WILL SEND TO Withdraw() METHOD
+			if (answer.equals("1")) {
+				//withdraw
+			}
+			//N WILL SEND TO NOACCOUNT() METHOD
+			else if (answer.equals("2")) {
+				//deposit	
+			}
+			else if (answer.equals("3")) {
+				//transfer between accounts
+			}
+			else if (answer.equals("4")) {
+				System.out.println("Would you like to create a single or joint account?");
+				String choice = input.nextLine();
+				if (choice.equals("1")) {
+					AccountManagement.CreateSinglePersonAccount(user);
+				}
+				else if (choice.equals("2")) {
+					//AccountManagement.CreateJointAccount(user, username02);
+				}
+				else {
+					System.out.println("Invalid input.\n");
+					System.out.println("////////////////////\n");
+					customerMenu(user);
+				}
+			}
+			//USER INPUTS INVALID RESPONSE, RESTARTS
+			else {
+				System.out.println("Invalid input.\n");
+				System.out.println("////////////////////\n");
+				startProgram();
+			}
+			
+			
+		}
+
+		public static void employeeMenu() {
+	
 		}
 		
 	}

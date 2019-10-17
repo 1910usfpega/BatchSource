@@ -6,7 +6,7 @@ import main.java.users.UserAccountManager;
 
 public class Driver {
 	public static void main(String[] args) {
-		//ProgramStart.startProgram();
-		AccountManagement.CreateJointAccount("Bob", "Fred");
+		ProgramStart.startProgram();
+		//AccountManagement.CreateJointAccount("Bob", "Fred");
 	}
 }

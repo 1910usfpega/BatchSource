@@ -43,7 +43,7 @@ public class UserAccountManager {
 	}
 	//Verify username ONLY
 	public static boolean isAccountValid(String username){
-		boolean foundUser = false;lk;
+		boolean foundUser = false;
 		try {
 			java.util.Scanner scanner = new java.util.Scanner(new FileReader("Users.txt"));
 			//This loop check each line of the file for the corresponding user.
