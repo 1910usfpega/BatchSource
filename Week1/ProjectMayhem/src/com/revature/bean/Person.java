@@ -2,7 +2,7 @@ package com.revature.bean;
 
 import java.io.Serializable;
 
-import src.com.revature.classtypes.Hunt;
+import com.revature.classtypes.Hunt;
 
 public class Person implements Hunt,Serializable {
 	
