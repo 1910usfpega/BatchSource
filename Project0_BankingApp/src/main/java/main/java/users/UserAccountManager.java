@@ -20,19 +20,21 @@ public class UserAccountManager {
 		}
 	}
 	//Read from file to validate users
-	public static boolean isAccountValid(String username, String Password) throws Exception{
+	public static boolean isAccountValid(String username, String Password){
 		boolean foundUser = false;
 		try {
 			java.util.Scanner scanner = new java.util.Scanner(new FileReader("Users.txt"));
 			//This loop check each line of the file for the corresponding user.
 			do {
-				if (scanner.next().contains(username) && scanner.next().contains(Password)) {
+				String line = scanner.nextLine();
+				if (line.contains(username) && line.contains(Password)) {
 					foundUser = true;
 					return true;
 				}else {
-					throw new Exception("User not found");//Throw exception if user not found.
+					foundUser = false;
+					return false;
 				}
-			} while (scanner.hasNext());
+			} while (scanner.hasNextLine());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
