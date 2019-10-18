@@ -103,7 +103,7 @@ import com.revature.homework.*;
  * 		 State: Arizona State
  *****************************************************************************/
 
-public class Driver {
+public class HomeworkDriver {
 
 	public static void main(String[] args) {
 		int[] startingPoint = new int[] { 1, 0, 5, 6, 3, 2, 7, 3, 9, 8, 4 };
