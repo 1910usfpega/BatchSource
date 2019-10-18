@@ -1,8 +1,18 @@
 package com.revature.user;
 
-import com.revature.mainscreen.MainScreen;
+import com.revature.storage.CustomerStorage;
+import com.revature.storage.OpenApplications;
 
-public class Admin {
+public class Admin extends Employee {
+	
+	public Admin(String username,String password) {
+		super(username,password);
+	}
+	
+	public void viewAllCust() {
+		CustomerStorage.getAllCustomers();
+		
+	}
 	
 	public double withdraw(Customer cust, double amount) {
 		// Need a check/validation here
@@ -26,7 +36,18 @@ public class Admin {
 	}
 	
 	public void cancelAccount(Customer cust) {
-		MainScreen.getMainscreen().getCustomers().remove(cust.getAccountNumber());
+		CustomerStorage.remove(cust.getAccountNumber());
+	}
+	
+	@Override
+	public void approveCust(User cust) {
+		System.out.println("customer needs an employee");  // change/remove this?
+	}
+	
+	public void approveCust(User cust, Employee employee) {
+		OpenApplications.removeApplication(cust);
+		Customer newCustomer = new Customer(cust.getUsername(),cust.getPassword(), employee);
+		CustomerStorage.add(newCustomer);
 	}
 
 }

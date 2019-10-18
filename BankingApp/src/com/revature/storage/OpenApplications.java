@@ -5,28 +5,24 @@ import java.util.ArrayList;
 import com.revature.user.User;
 
 public class OpenApplications {
-	ArrayList<User> allApplications = new ArrayList<>();
+	private static ArrayList<User> allApplications = new ArrayList<>();
 
-	public void addApplication(User user) {
+	public static void addApplication(User user) {
 		allApplications.add(user);
 	}
 	
-	public void removeApplication(User user) {
+	public static void removeApplication(User user) {
 		allApplications.remove(user);
 	}
 	
 	
-	
-	public OpenApplications() {
-		super();
-	}
 
-	public ArrayList<User> getAllApplications() {
+	public static ArrayList<User> getAllApplications() {
 		return allApplications;
 	}
 
-	public void setAllApplications(ArrayList<User> allApplications) {
-		this.allApplications = allApplications;
+	public static void setAllApplications(ArrayList<User> allApplications) {
+		OpenApplications.allApplications = allApplications;
 	}
 	
 	
