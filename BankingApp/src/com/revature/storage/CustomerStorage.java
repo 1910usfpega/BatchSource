@@ -13,7 +13,7 @@ public class CustomerStorage {
 	}
 
 	public static void add(Customer cust) {
-		allCustomers.put(cust.getAccountNumber(),cust);
+		allCustomers.put(cust.getUserNumber(),cust);
 	}
 	public static Customer getThisCustomer(int user) {
 		return allCustomers.get(user);
