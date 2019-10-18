@@ -2,35 +2,24 @@ package com.revature.driver;
 
 import java.util.Scanner;
 
+import com.revature.bean.Login;
 import com.revature.bean.LoginException;
 import com.revature.bean.User;
 import com.revature.io.IOWithCollections;
 
 public class Driver {
 	public static Scanner sc = new Scanner(System.in);
-	public static User currentUser;
+	public static User currentUser = null;
 
 	public static void main(String[] args) {
 		
 		IOWithCollections.readUserFile();
 		
+		currentUser = Login.loginProcess(IOWithCollections.usersList);
 		
-		String login = "username1";
-		String pass = "pass1";
-		
-		try {
-			currentUser = User.login(login, pass, IOWithCollections.usersList);
-		} catch (LoginException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+	
 		System.out.println("Successfull login: " + currentUser.getUsername());
-		
-		
-		
-		
-		
+
 		
 //		User u1 = new User("username1", "pass", "customer");
 //		User u2 = new User("username2", "pass", "customer");
