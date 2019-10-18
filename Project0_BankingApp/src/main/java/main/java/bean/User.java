@@ -49,11 +49,11 @@ public class User implements Serializable {
 			this.name = name;
 		}
 
-		public int getType() {
+		public int getAType() {
 			return aType;
 		}
 
-		public void setType(int aType) {
+		public void setAType(int aType) {
 			this.aType = aType;
 		}
 

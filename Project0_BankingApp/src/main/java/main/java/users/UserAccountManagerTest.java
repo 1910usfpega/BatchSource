@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import main.java.bean.User;
+import main.java.programstart.ProgramStart;
 
 public class UserAccountManagerTest {
 	
@@ -21,13 +22,10 @@ public class UserAccountManagerTest {
 		try(ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(userFile));){
 			objectOut.writeObject(userList);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 	
 	//Read users from file
@@ -35,25 +33,21 @@ public class UserAccountManagerTest {
 		try(ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(userFile));){
 			userList = (ArrayList<User>) objectIn.readObject();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 	//Read from file to validate users
 	public static boolean isAccountValid(String user, String pw){
 		readUserFile();
-		//System.out.println(userList.get(0).getUser() + " !!!");
-		//System.out.println("");
-		//System.out.println(userList.get(0).getPw() + " !!!");
 		for(int i = 0; i < userList.size(); i++) {
 			if(userList.get(i).getUser().equals(user)) {
 				if(userList.get(i).getPw().equals(pw)) {
+					ProgramStart.currentUser = userList.get(i).getName();
 					return true;
 				}
 				else {
@@ -64,10 +58,22 @@ public class UserAccountManagerTest {
 		return false;
 	}
 	//Verify username ONLY
-	public static boolean isAccountValid(String username){
-		return username;
+	public static boolean usernameAvailability(String user){
+		readUserFile();
+		for(int i = 0; i < userList.size(); i++) {
+			if(userList.get(i).getUser().equals(user)) {
+				return false;
+			}
+		}
+		return true;
 	}
-	public static String getAccountType(String username) {
-		return username;
+	public static int getAccountType(String user) {
+		readUserFile();
+		for(int i = 0; i < userList.size(); i++) {
+			if(userList.get(i).getUser().equals(user)) {
+				return userList.get(i).getAType();
+			}
+		}
+		return 0;
 	}
 }

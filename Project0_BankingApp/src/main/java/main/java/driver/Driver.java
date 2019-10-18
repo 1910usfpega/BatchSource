@@ -1,6 +1,7 @@
 package main.java.driver;
 
 import main.java.accounts.AccountManagementTest;
+import main.java.bean.User;
 import main.java.programstart.ProgramStart;
 import main.java.users.UserAccountManagerTest;
 
