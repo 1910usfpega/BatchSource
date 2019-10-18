@@ -3,29 +3,38 @@ package com.bankofdoom.bean;
 public class Account {
 	
 	protected String accountID;
-	protected String accountType;
+	protected boolean checkingAccount;
 	protected String firstName;
 	protected String lastName;
 	protected double balance;
-	protected double overdraftFee;
+	protected static double overdraftFee = 30.00;
 	
+	public Account(String accountID, boolean checkingAccount, String firstName, String lastName, double balance) {
+		super();
+		this.accountID = accountID;
+		this.checkingAccount = checkingAccount;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.balance = balance;
+	}
+	
+	
+	 
 	public double getOverdraftFee() {
 		return overdraftFee;
 	}
-	public void setOverdraftFee(double overdraftFee) {
-		this.overdraftFee = overdraftFee;
-	}
+	
 	public String getAccountID() {
 		return accountID;
 	}
 	public void setAccountID(String accountID) {
 		this.accountID = accountID;
 	}
-	public String getAccountType() {
-		return accountType;
+	public boolean isChecking() {
+		return checkingAccount;
 	}
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
+	public void setCheckingAccount(boolean checkingAccount) {
+		this.checkingAccount = checkingAccount;
 	}
 	public String getFirstName() {
 		return firstName;

@@ -1,6 +1,8 @@
 package com.bankofdoom.account;
 
-public class SavingsAccountManager {
+import com.bankofdoom.bean.SavingsAccount;
+
+public class SavingsAccountManager extends AccountManager {
 
 	SavingsAccount account;
 	
@@ -9,26 +11,17 @@ public class SavingsAccountManager {
 		this.account = account;
 	}
 
+//public voids
 
-	public boolean deposit(double amount) {
-		if(amount > 0) {
-			account.setBalance(account.getBalance() + amount);
-			System.out.println("Deposit of $" + amount + " accepted. New balance = $" + account.getBalance() + ".");
-			return true;
-		}
-			else {
-				System.out.println("Error");
-				return false;
-			}
-	}
 			
-	public boolean withdrawal(double amount) {
+	public boolean canMakeWithdrawal(double amount) {
 		if(amount <= account.getBalance()) {
-			account.setBalance(account.getBalance() - amount);
+//			account.setBalance(account.getBalance() - amount);
 			System.out.println("Withdrawal of $" + amount + " accepted. New balance = $" + account.getBalance() + ".");
+			super.withdrawal(account,amount);
 			return true;
 		}
-		else if (account.currentMonthlyWithdrawals >= account.maxMonthlyWithdrawals) {
+		else if (account.getCurrentMonthlyWithdrawals() >= account.getMaxMonthlyWithdrawals()) {
 			System.out.println("Max monthly withdrawal limit reached. Transaction canceled.");
 			return false;
 		}

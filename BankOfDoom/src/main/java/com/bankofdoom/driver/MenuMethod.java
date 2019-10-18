@@ -1,4 +1,4 @@
-package com.bankofdoom.bean;
+package com.bankofdoom.driver;
 
 import java.util.Scanner;
 
