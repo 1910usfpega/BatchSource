@@ -3,7 +3,9 @@ package main.java.programstart;
 import java.util.Scanner;
 
 import main.java.accounts.AccountManagement;
+import main.java.bean.User;
 import main.java.users.UserAccountManager;
+import main.java.users.UserAccountManagerTest;
 
 public class ProgramStart {
 	
@@ -49,26 +51,23 @@ public class ProgramStart {
 			String user = input.nextLine();
 			System.out.println();
 			System.out.print("Enter your Password: ");
+			System.out.println();
 			String pw = input.nextLine();
 			System.out.println();
-			if(UserAccountManager.isAccountValid(user, pw) == true) {
+			if(UserAccountManagerTest.isAccountValid(user, pw) == true) {
 				System.out.println("Login Success!\n");
-				UserAccountManager.getAccountType(user);
-				if (UserAccountManager.getAccountType(user) == "Administrator") {
-					adminMenu();
-				}
-				else if (UserAccountManager.getAccountType(user) == "Customer") {
-					customerMenu(user);
-				}
-				else if (UserAccountManager.getAccountType(user) == "Employee") {
-					employeeMenu();
-				}
-				/* SOME SORT OF MAIN MENU METHOD
-				 * CAN PROBABLY ALSO HAVE A CHECK IF THE ACCOUNT IS A CUSTOMER,
-				*    EMPLOYEE, OR BANK ADMIN AND HAVE THEM GO TO A DIFFERENT
-				*	 MENU BASED ON WHAT ACCOUNT TYPE THEY HAVE */
+//				UserAccountManager.getAccountType(user);
+//				if (UserAccountManager.getAccountType(user) == "Administrator") {
+//					adminMenu();
+//				}
+//				else if (UserAccountManager.getAccountType(user) == "Customer") {
+//					customerMenu(user);
+//				}
+//				else if (UserAccountManager.getAccountType(user) == "Employee") {
+//					employeeMenu();
+//				}
 			}
-			else if(UserAccountManager.isAccountValid(user, pw) == false) {
+			else if(UserAccountManagerTest.isAccountValid(user, pw) == false) {
 				pwAttempts--;
 				if(pwAttempts > 0) {
 					System.out.println("Username and/or Password is incorrect! Please try again\n");
@@ -108,7 +107,66 @@ public class ProgramStart {
 		public static void createNewAccount() {
 			System.out.println("Please enter a Username for your new account: ");
 			String user = input.nextLine();
-			doesUsernameExist();			
+			//doesUsernameExist();
+
+			//VALIDATES PASSWORD IN CASE USER FAT FINGERED
+			int passCheck = 0;
+			String pw = "";
+			String pwc = "";
+			while(passCheck == 0) {
+				System.out.println("Please enter a Password for your new account: ");
+				pw = input.nextLine();
+				System.out.println("Please confirm your Password for your new account: ");
+				pwc = input.nextLine();
+					if (pw.equals(pwc)) {
+						passCheck = 1;
+					}
+					else {
+						System.out.println("Passwords did not match! Please try again!\n");
+						System.out.println("////////////////////\n");
+						pw = "";
+						pwc = "";
+						continue;
+					}
+			}
+			
+			System.out.println("Please enter your full name (First Last) for your new account: ");
+			String name = input.nextLine();
+			
+			//CONFIRMS ALL INFORMATION IS CORRECT
+			int inputCheck = 0;
+			while(inputCheck == 0) {
+				System.out.println("Is the following information correct?\n Username: " + user + "\n Password: " + pw + "\n Full Name: " + name);                               
+				String answer = input.nextLine();
+				//SENDS YOU TO CUSTOMER MENU()
+				if (answer.equals("y") || answer.equals("Y")) {
+					inputCheck = 1;
+				}
+				//INCORRECT INFO, TRY AGAIN
+				else if (answer.equals("n") || answer.equals("N")) {
+					System.out.println();
+					System.out.println("////////////////////\n");
+					user = "";
+					pw = "";
+					pwc = "";
+					name = "";
+					inputCheck = 2;
+				}
+				//USER INPUTS INVALID RESPONSE, ASKS AGAIN
+				else {
+					System.out.println("Invalid input.\n");
+					System.out.println("////////////////////\n");
+					continue;
+				}
+			}
+			if(inputCheck == 1) {
+				UserAccountManagerTest.userList.add(new User(user, pw, name, 2));
+				UserAccountManagerTest.writeUserFile();
+				customerMenu(user);
+			}
+			else if(inputCheck == 2) {
+				createNewAccount();
+			}
 		}
 		
 		public static void doesUsernameExist() {
