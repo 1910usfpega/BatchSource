@@ -1,7 +1,17 @@
 package com.revature.bean;
 
-public class Person {
+import java.io.Serializable;
+
+import com.revature.classtypes.Hunt;
+
+public class Person implements Hunt, Serializable{
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1612434022217780811L;
+
 	//Instance code block
 	{System.out.println("I'm in a instance code block!");}
 	
@@ -96,5 +106,11 @@ public class Person {
 		if (weight != other.weight)
 			return false;
 		return true;
+	}
+
+	@Override
+	public void findPrey() {
+		System.out.println("I go to Whole Foods");
+		
 	}	
 }
