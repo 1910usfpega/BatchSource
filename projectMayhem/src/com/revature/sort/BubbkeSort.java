@@ -1,10 +1,10 @@
 package com.revature.sort;
-
+//Perform a bubble sort on the following integer array:  1,0,5,6,3,2,3,7,9,8,4
 import java.util.Arrays;
 
 public class BubbkeSort {
 	public static void main(String[] args) {
-		int[] ar= {5,6,8,9,3};
+		int[] ar= {1,0,5,6,3,2,3,7,9,8,4};
 		sortMe(ar);
 		
 	}

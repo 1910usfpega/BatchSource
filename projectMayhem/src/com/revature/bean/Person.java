@@ -1,11 +1,14 @@
 package com.revature.bean;
 
-public class Person {
-	
+import java.io.Serializable;
+
+import com.revature.classtypes.Hunt;
+
+public class Person implements Hunt, Serializable{//Serializable means the class Person can be written to a File in byte code
 	
 
-		
-	    //private fields 
+	private static final long serialVersionUID = 1L;
+		//private fields 
 		private String name;
 		private int age;
 		private int weight;
@@ -20,6 +23,9 @@ public class Person {
 			this.name=name;
 			this.age=age;
 			this.weight=weight;
+		}
+		public Person() {
+			// TODO Auto-generated constructor stub
 		}
 		//No-args Constructor - it is a good practice to pass libraries
 		/*public Person() {
@@ -60,5 +66,10 @@ public class Person {
 		static {System.out.println("I'm in a static code block!");}
 		public static void staticMethod() {
 			System.out.println("Static Method!");
+		}
+		@Override
+		public void findPrey() {
+			// TODO Auto-generated method stub
+			System.out.println("I go to Whole Foods");
 		}
 }
