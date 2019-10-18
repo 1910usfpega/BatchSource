@@ -2,13 +2,15 @@ package com.project.driver;
 
 import java.util.Scanner;
 
+import com.project.users.Person;
+
 public class Driver {
 
 	public static Scanner input = new Scanner(System.in);
-	public static String uInput;
+	public static String uInput, uPassword;
 	public static int valid;
 	public static boolean badInput = true;
-
+	public static boolean uCheck = true;
 	public static void main(String[] args) {
 
 		do {
@@ -32,5 +34,46 @@ public class Driver {
 				badInput = true;
 			}
 		} while (badInput);
-	}	
+
+		switch(valid) {
+		case '1': 
+			System.out.print("Existing User");
+			uInput = input.next();
+			uPassword = input.next();
+			Person.login(uInput, uPassword);
+			break;
+		case '2':
+			System.out.println("Creating an Account: ");
+			
+			do {
+			System.out.print("Pick a username: ");
+			uInput = input.next();
+			uCheck = Person.userCheck(uInput);
+			} while(uCheck);
+			
+			//Limit the password length
+			System.out.print("Enter a password: ");
+			uPassword = input.next();
+			
+			//Write username and password to a file
+			//Call another menu
+			uCheck = true;
+			break;
+		case '3':
+			System.out.print("Employee Login");
+			System.out.print("Employee Username: ");
+			uInput = input.next();
+			System.out.print("Password: ");
+			uPassword = input.next();
+			do {
+			uCheck = Person.login(uInput, uPassword);
+			} while(uCheck);
+			
+			uCheck = true;
+			break;
+		default:
+			break;
+		}
+	}
+
 }

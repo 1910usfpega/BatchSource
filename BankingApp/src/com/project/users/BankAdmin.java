@@ -6,6 +6,10 @@ public class BankAdmin extends Employee{
 		return true;
 	}
 	
+	public boolean jointApproval() {
+		return true;
+	}
+	
 	public void removeAccount() {
 		
 	}
