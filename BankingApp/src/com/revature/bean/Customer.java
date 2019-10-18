@@ -1,6 +1,7 @@
 package com.revature.bean;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 
@@ -15,7 +16,7 @@ public class Customer implements  Serializable {
 	private Boolean status;
 	private String username;
 	private String password;
-	private Integer accountNumber;
+	private List<Account> accountList;
 	
 	
 	public Customer(String firstName, String lastName, Date dateOfBirth, Boolean status, String username,
@@ -27,10 +28,7 @@ public class Customer implements  Serializable {
 		this.status = status;
 		this.username = username;
 		this.password = password;
-		this.accountNumber = accountNumber;
-		
-		
-		
+		this.accountList = null;
 	}
 
 
@@ -94,13 +92,13 @@ public class Customer implements  Serializable {
 	}
 
 
-	public Integer getAccountNumber() {
-		return accountNumber;
+	public List<Account> getAccountList() {
+		return accountList;
 	}
 
 
-	public void setAccountNumber(Integer accountNumber) {
-		this.accountNumber = accountNumber;
+	public void setAccountList(List<Account> accountList) {
+		this.accountList = accountList;
 	}
 
 
@@ -113,7 +111,7 @@ public class Customer implements  Serializable {
 	public String toString() {
 		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth
 				+ ", status=" + status + ", username=" + username + ", password=" + password + ", accountNumber="
-				+ accountNumber + "]";
+				+ accountList + "]";
 	}
 		
     
