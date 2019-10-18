@@ -17,6 +17,7 @@ public class Employee extends User {
 	public void approveCust(User cust) {
 		OpenApplications.removeApplication(cust);
 		Customer newCustomer = new Customer(cust.getUsername(),cust.getPassword(), this);
+		this.setUserNumber(cust.getUserNumber());
 		CustomerStorage.add(newCustomer);
 	}
 	
@@ -25,10 +26,9 @@ public class Employee extends User {
 	}
 	
 	public void viewCust(Customer cust) {
-		Customer thisCust = CustomerStorage.getThisCustomer(cust.getAccountNumber());
-		System.out.println(thisCust.getUsername()); //move the sysout methods to the main screen??
-		System.out.println(thisCust.getBalance());
-		System.out.println(thisCust.isJoint());
+		System.out.println("Username: "+cust.getUsername()); //move the sysout methods to the main screen??
+		System.out.println("User number: "+cust.getUserNumber());
+		System.out.println("Number of accounts: "+cust.getMyAccounts().size());
 
 	}
 	public int[] getMyCustomers() {

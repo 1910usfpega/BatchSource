@@ -14,29 +14,30 @@ public class Admin extends Employee {
 		
 	}
 	
-	public double withdraw(Customer cust, double amount) {
+	public double withdraw(Account acct, double amount) {
 		// Need a check/validation here
-		cust.setBalance(cust.getBalance()-amount);
-		return cust.getBalance();
+		return acct.withdraw(amount);
 		// Need a log here
 	}
 	
-	public double deposit(Customer cust, double amount) {
+	public double deposit(Account acct, double amount) {
 		// Need a check/validation here
-		cust.setBalance(cust.getBalance()+amount);
-		return cust.getBalance();
+		return acct.deposit(amount);
 		// Need a log here
 	}
 	
-	public void transfer(Customer fromCust, Customer toCust, double amount) {
+	public void transfer(Account fromAcct, Account toAcct, double amount) {
 		// Need a check/validation here
-		fromCust.setBalance(fromCust.getBalance()-amount);
-		toCust.setBalance(toCust.getBalance()+amount);
+		fromAcct.withdraw(amount);
+		toAcct.deposit(amount);
 		// Need a log here
 	}
 	
-	public void cancelAccount(Customer cust) {
-		CustomerStorage.remove(cust.getAccountNumber());
+	public void cancelAccount(Account acct) {
+		acct.getUser1().removeAccount(acct);
+		if (acct.getUser2()!=null) {
+			acct.getUser2().removeAccount(acct);
+		}
 	}
 	
 	@Override

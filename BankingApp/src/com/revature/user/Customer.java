@@ -1,65 +1,71 @@
 package com.revature.user;
 
+import java.util.ArrayList;
 
 //import com.revature.user.User;
 
 public class Customer extends User {
-	private boolean joint;
-	private double balance;
-	private int accountNumber;
+	private ArrayList<Account> myAccounts;
 	private Employee myEmployee;
 	
 	
 	
 	public Customer(String username, String password, Employee employee) {
 		super(username, password);
-		this.balance = 0;
-		this.accountNumber = (int) Math.random(); //change this
 		this.myEmployee=employee; //get rid of this??
 	}
 	
 	
 
-
-
-
-	public double withdraw(double amount) {
-		balance-=amount;
-		return balance;
+	public void addNewAccount(Account acct) {
+		this.myAccounts.add(acct);
 	}
 	
-	public double deposit(double amount) {
-		balance-=amount;
-		return balance;
+	public void addNewAccount(String accountType, Customer user1, boolean joint) {
+		Account newAccount=new Account(accountType, user1, joint);
+		this.myAccounts.add(newAccount);
+	}
+	public void addNewAccount(String accountType, Customer user1, boolean joint, Customer user2) {
+		Account newAccount=new Account(accountType, user1, joint, user2);
+		this.myAccounts.add(newAccount);
 	}
 	
-	public double transfer(double amount) {
-		balance-=amount;
-		return balance;
+	public void removeAccount(Account acct) {
+		this.myAccounts.remove(acct);
+	}
+	
+//	public void removeAccount(int acct) {
+//		this.myAccounts.remove();
+//	}
+	
+	
+	public ArrayList<Account> getMyAccounts() {
+		return myAccounts;
 	}
 
-	public boolean isJoint() {
-		return joint;
+
+
+
+
+	public void setMyAccounts(ArrayList<Account> myAccounts) {
+		this.myAccounts = myAccounts;
 	}
 
-	public void setJoint(boolean joint) {
-		this.joint = joint;
-	}
 
-	public double getBalance() {
-		return balance;
-	}
 
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
 
-	public int getAccountNumber() {
-		return accountNumber;
-	}
 
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
+	public double withdraw(double amount, Account acct) {
+		return acct.withdraw(amount);
+	}
+	
+	public double deposit(double amount, Account acct) {
+		return acct.deposit(amount);
+	}
+	
+	public void transfer(double amount, Account fromAcct, Account toAcct) {
+		fromAcct.withdraw(amount);
+		toAcct.deposit(amount);
 	}
 	
 
@@ -75,7 +81,7 @@ public class Customer extends User {
 
 	@Override
 	public String toString() {
-		return "Customer [joint=" + joint + ", balance=" + balance + ", accountNumber=" + accountNumber + "]";
+		return super.toString();
 	}
 	
 	
