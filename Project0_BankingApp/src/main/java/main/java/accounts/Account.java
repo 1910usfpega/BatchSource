@@ -24,6 +24,8 @@ public class Account implements Serializable {
 	public Account() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	//GETTERS & SETTERS
 	public String getAccountType() {
 		return accountType;
 	}
@@ -41,6 +43,12 @@ public class Account implements Serializable {
 	}
 	public void setAccountBalance(Double accountBalance) {
 		this.accountBalance = accountBalance;
+	}
+	
+	@Override
+	public String toString() {
+		return "Account [Account Type = " + accountType + ", Username = " + username + ", Account Balance = " + accountBalance
+				+ "]";
 	}
 	
 }

@@ -20,6 +20,7 @@ public class AccountManagement {
 	
 	public static final String accountFile = "Account.txts";
 	public static List<Account> accountList = new ArrayList<Account>();
+	
 	//Write accounts to file
 	public static void writeAccountFile() {
 		try(ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(accountFile));){
@@ -36,7 +37,7 @@ public class AccountManagement {
 	//Read accounts to file
 	public static void readAccountFile() {
 		try(ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(accountFile));){
-			accountList = (ArrayList<User>) objectIn.readObject();
+			accountList = (ArrayList<Account>) objectIn.readObject();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,6 +49,7 @@ public class AccountManagement {
 			e.printStackTrace();
 		}
 	}
+	
 	//Create a checking account for a single person
 	public static void CreateSinglePersonCheckingAccount(String username) {
 		System.out.println("Please enter initial deposit ammount.");

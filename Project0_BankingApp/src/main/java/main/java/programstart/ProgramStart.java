@@ -178,24 +178,28 @@ public class ProgramStart {
 		public static void adminMenu(String currentUser) {
 			System.out.println("Welcome " + currentUser + "!");
 			System.out.println("What would you like to do?");
-			System.out.println(" 1. Withdraw\n 2. Deposit\n 3. Transfer Between Accounts\n 4. Open a New Account");
+			System.out.println(" 1. Check Balance\n 2. Withdraw\n 3. Deposit\n 4. Transfer Between Accounts\n 5. Open a New Account\n 6. View Customer Information");
 			System.out.println("(Please enter numerical answers only i.e. 1 or 2)");
 			System.out.println();
 			String answer = input.nextLine();
-			//1 WILL SEND TO Withdraw() METHOD
+			//1 WILL SEND TO checkBalance() METHOD
 			if (answer.equals("1")) {
-				//withdraw
+				//check balance
 			}
-			//2 WILL SEND TO Deposit() METHOD
+			//2 WILL SEND TO withdraw() METHOD
 			else if (answer.equals("2")) {
-				//deposit	
+				//withdraw	
 			}
-			//3 WILL SEND TO Transfer() METHOD
+			//3 WILL SEND TO deposit() METHOD
 			else if (answer.equals("3")) {
+				//deposit
+			}
+			//4 WILL SEND TO transfer() METHOD
+			else if (answer.equals("4")) {
 				//transfer between accounts
 			}
-			//4 WILL ASK WHICH ACCOUNT TYPE THEY WOULD LIKE TO OPEN
-			else if (answer.equals("4")) {
+			//5 WILL ASK WHICH ACCOUNT TYPE THEY WOULD LIKE TO OPEN
+			else if (answer.equals("5")) {
 				System.out.println("Would you like to create a single or joint account?");
 				System.out.println("(Please enter numerical answers only i.e. 1 or 2)");
 				String choice = input.nextLine();
@@ -212,7 +216,7 @@ public class ProgramStart {
 				}
 			}
 			//5 WILL ASK YOU TO SEARCH FOR WHICH CUSTOMER YOU ARE LOOKING FOR BY USERNAME OR NAME
-			else if (answer.equals("5")) {
+			else if (answer.equals("6")) {
 				System.out.println("Would you like to search by 1)Username or 2)Full Name?");
 				System.out.println("(Please enter numerical answers only i.e. 1 or 2)");
 				String choice = input.nextLine();
@@ -223,6 +227,12 @@ public class ProgramStart {
 					for(int i = 0; i < UserAccountManagerTest.userList.size(); i++) {
 						if(UserAccountManagerTest.userList.get(i).getUser().equals(choice1)) {
 							System.out.println(UserAccountManagerTest.userList.get(i).toString());
+							adminMenu(currentUser);
+						}
+						else {
+							System.out.println("User does not exist.\n");
+							System.out.println("////////////////////\n");
+							adminMenu(currentUser);
 						}
 					}
 				}
@@ -233,6 +243,12 @@ public class ProgramStart {
 					for(int i = 0; i < UserAccountManagerTest.userList.size(); i++) {
 						if(UserAccountManagerTest.userList.get(i).getName().equals(choice1)) {
 							System.out.println(UserAccountManagerTest.userList.get(i).toString());
+							adminMenu(currentUser);
+						}
+						else {
+							System.out.println("User does not exist.\n");
+							System.out.println("////////////////////\n");
+							adminMenu(currentUser);
 						}
 					}
 				}
@@ -248,24 +264,27 @@ public class ProgramStart {
 		public static void customerMenu(String currentUser) {
 			System.out.println("Welcome " + currentUser + "!");
 			System.out.println("What would you like to do?");
-			System.out.println(" 1. Withdraw\n 2. Deposit\n 3. Transfer Between Accounts\n 4. Open a New Account");
+			System.out.println(" 1. Check Balance\n 2. Withdraw\n 3. Deposit\n 4. Transfer Between Accounts\n 5. Open a New Account\n");
 			System.out.println("(Please enter numerical answers only i.e. 1 or 2)");
 			System.out.println();
 			String answer = input.nextLine();
-			//1 WILL SEND TO Withdraw() METHOD
 			if (answer.equals("1")) {
+				//check balance
+			}
+			//2 WILL SEND TO Withdraw() METHOD
+			else if (answer.equals("2")) {
 				//withdraw
 			}
-			//2 WILL SEND TO Deposit() METHOD
-			else if (answer.equals("2")) {
+			//3 WILL SEND TO Deposit() METHOD
+			else if (answer.equals("3")) {
 				//deposit	
 			}
-			//3 WILL SEND TO Transfer() METHOD
-			else if (answer.equals("3")) {
+			//4 WILL SEND TO Transfer() METHOD
+			else if (answer.equals("4")) {
 				//transfer between accounts
 			}
-			//4 WILL ASK WHICH ACCOUNT TYPE THEY WOULD LIKE TO OPEN
-			else if (answer.equals("4")) {
+			//5 WILL ASK WHICH ACCOUNT TYPE THEY WOULD LIKE TO OPEN
+			else if (answer.equals("5")) {
 				System.out.println("Would you like to create a single or joint account?");
 				System.out.println("(Please enter numerical answers only i.e. 1 or 2)");
 				String choice = input.nextLine();
@@ -294,24 +313,27 @@ public class ProgramStart {
 		public static void employeeMenu(String currentUser) {
 			System.out.println("Welcome " + currentUser + "!");
 			System.out.println("What would you like to do?");
-			System.out.println(" 1. Withdraw\n 2. Deposit\n 3. Transfer Between Accounts\n 4. Open a New Account\n 5. View Customer Information");
+			System.out.println(" 1. Check Balance\n 2. Withdraw\n 3. Deposit\n 4. Transfer Between Accounts\n 5. Open a New Account");
 			System.out.println("(Please enter numerical answers only i.e. 1 or 2)");
 			System.out.println();
 			String answer = input.nextLine();
-			//1 WILL SEND TO Withdraw() METHOD
 			if (answer.equals("1")) {
+				//check balance
+			}
+			//2 WILL SEND TO Withdraw() METHOD
+			else if (answer.equals("2")) {
 				//withdraw
 			}
-			//2 WILL SEND TO Deposit() METHOD
-			else if (answer.equals("2")) {
+			//3 WILL SEND TO Deposit() METHOD
+			else if (answer.equals("3")) {
 				//deposit	
 			}
-			//3 WILL SEND TO Transfer() METHOD
-			else if (answer.equals("3")) {
+			//4 WILL SEND TO Transfer() METHOD
+			else if (answer.equals("4")) {
 				//transfer between accounts
 			}
-			//4 WILL ASK WHICH ACCOUNT TYPE THEY WOULD LIKE TO OPEN
-			else if (answer.equals("4")) {
+			//5 WILL ASK WHICH ACCOUNT TYPE THEY WOULD LIKE TO OPEN
+			else if (answer.equals("5")) {
 				System.out.println("Would you like to create a 1)single or 2)joint account?");
 				System.out.println("(Please enter numerical answers only i.e. 1 or 2)");
 				String choice = input.nextLine();
@@ -327,8 +349,8 @@ public class ProgramStart {
 					employeeMenu(currentUser);
 				}
 			}
-			//5 WILL ASK YOU TO SEARCH FOR WHICH CUSTOMER YOU ARE LOOKING FOR BY USERNAME OR NAME
-			else if (answer.equals("5")) {
+			//6 WILL ASK YOU TO SEARCH FOR WHICH CUSTOMER YOU ARE LOOKING FOR BY USERNAME OR NAME
+			else if (answer.equals("6")) {
 				System.out.println("Would you like to search by 1)Username or 2)Full Name?");
 				System.out.println("(Please enter numerical answers only i.e. 1 or 2)");
 				String choice = input.nextLine();
@@ -339,6 +361,13 @@ public class ProgramStart {
 					for(int i = 0; i < UserAccountManagerTest.userList.size(); i++) {
 						if(UserAccountManagerTest.userList.get(i).getUser().equals(choice1)) {
 							System.out.println(UserAccountManagerTest.userList.get(i).toString());
+							//sysout accountlist
+							employeeMenu(currentUser);
+						}
+						else {
+							System.out.println("User does not exist.\n");
+							System.out.println("////////////////////\n");
+							employeeMenu(currentUser);
 						}
 					}
 				}
@@ -349,6 +378,12 @@ public class ProgramStart {
 					for(int i = 0; i < UserAccountManagerTest.userList.size(); i++) {
 						if(UserAccountManagerTest.userList.get(i).getName().equals(choice1)) {
 							System.out.println(UserAccountManagerTest.userList.get(i).toString());
+							employeeMenu(currentUser);
+						}
+						else {
+							System.out.println("User does not exist.\n");
+							System.out.println("////////////////////\n");
+							employeeMenu(currentUser);
 						}
 					}
 				}
