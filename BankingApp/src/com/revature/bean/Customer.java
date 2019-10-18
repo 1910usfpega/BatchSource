@@ -9,91 +9,115 @@ public class Customer implements  Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String FirstName;
-	private String LastName;
-	private Date DOB;
+	private String firstName;
+	private String lastName;
+	private Date dateOfBirth;
 	private Boolean status;
-	private String Username;
-	private String Password;
-	private Integer AccountNumber;
+	private String username;
+	private String password;
+	private Integer accountNumber;
+	
+	
+	public Customer(String firstName, String lastName, Date dateOfBirth, Boolean status, String username,
+			String password, Integer accountNumber) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.status = status;
+		this.username = username;
+		this.password = password;
+		this.accountNumber = accountNumber;
 		
-	public Customer() {
-		FirstName = null;
-		LastName = null;
-		DOB = null;
-		status = null;
-		Username = null;
-		Password = null;
-		AccountNumber = null;
+		
+		
 	}
+
 
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
+
 
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
+
 
 	public String getLastName() {
-		return LastName;
+		return lastName;
 	}
+
 
 	public void setLastName(String lastName) {
-		LastName = lastName;
+		this.lastName = lastName;
 	}
 
-	public Date getDOB() {
-		return DOB;
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setDOB(Date dOB) {
-		DOB = dOB;
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
+
 
 	public Boolean getStatus() {
 		return status;
 	}
 
+
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 
+
 	public String getUsername() {
-		return Username;
+		return username;
 	}
+
 
 	public void setUsername(String username) {
-		Username = username;
+		this.username = username;
 	}
+
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
+
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
+
 
 	public Integer getAccountNumber() {
-		return AccountNumber;
+		return accountNumber;
 	}
 
+
 	public void setAccountNumber(Integer accountNumber) {
-		AccountNumber = accountNumber;
+		this.accountNumber = accountNumber;
 	}
+
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Customer [FirstName=" + FirstName + ", LastName=" + LastName + ", DOB=" + DOB + ", status=" + status
-				+ ", Username=" + Username + ", Password=" + Password + ", AccountNumber=" + AccountNumber + "]";
+		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth
+				+ ", status=" + status + ", username=" + username + ", password=" + password + ", accountNumber="
+				+ accountNumber + "]";
 	}
+		
+    
 
-	
 
 	
 	 
