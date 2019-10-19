@@ -55,7 +55,7 @@ public class Logon {
 		
 		User newUser = null;
 		
-
+//
 			String login =  Logon.getLogonFromSC();
 			String pass = Logon.getLogonPasswordFromSC();
 			String firstname = Logon.getLogonFirstNameFromSC();
