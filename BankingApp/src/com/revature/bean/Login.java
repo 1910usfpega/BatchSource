@@ -38,6 +38,7 @@ public class Login {
 					
 			try {
 				currentUser = User.login(login, pass, usersList);
+//				System.out.flush();
 				return currentUser;
 			} catch (LoginException e) {
 				// TODO Auto-generated catch block

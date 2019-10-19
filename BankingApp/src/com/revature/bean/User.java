@@ -57,6 +57,11 @@ public class User implements Serializable{
 	}
 	
 	
+	public void showMenu() {
+		System.out.println("User blueprint not have menu");
+		System.out.println(this.toString());
+	}
+	
 	
 	
 }

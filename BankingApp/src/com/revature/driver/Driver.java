@@ -1,7 +1,9 @@
 package com.revature.driver;
 
+import java.util.Date;
 import java.util.Scanner;
 
+import com.revature.bean.Customer;
 import com.revature.bean.Login;
 import com.revature.bean.LoginException;
 import com.revature.bean.User;
@@ -14,12 +16,15 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		IOWithCollections.readUserFile();
-		
 		currentUser = Login.loginProcess(IOWithCollections.usersList);
-		
-	
-		System.out.println("Successfull login: " + currentUser.getUsername());
+		currentUser.showMenu();
+//		System.out.println("Successfull login: " + currentUser.getClass().getName());
 
+//		
+//		Date dateOfB = new Date();
+//		Customer c1 = new Customer("Iskandar", "Bakhtizin", dateOfB, true, "iskandar", "pass");
+//		IOWithCollections.usersList.add(c1);
+//		
 		
 //		User u1 = new User("username1", "pass", "customer");
 //		User u2 = new User("username2", "pass", "customer");
