@@ -3,12 +3,12 @@ package com.revature.bean;
 import java.util.List;
 import java.util.Scanner;
 
-import com.revature.io.IOWithCollections;
-
 public class Login {
 
 	
 	public static Scanner sc= new Scanner(System.in);
+	
+
 	
 	public static String getLoginFromSC(){
 		String contents;
@@ -16,7 +16,6 @@ public class Login {
 		contents = sc.nextLine();
 		return contents;
 		
-	
 	}
 	
 	public static String getPasswordFromSC(){
@@ -38,7 +37,7 @@ public class Login {
 					
 			try {
 				currentUser = User.login(login, pass, usersList);
-//				System.out.flush();
+//				System.out.flush(); 
 				return currentUser;
 			} catch (LoginException e) {
 				// TODO Auto-generated catch block
@@ -50,4 +49,7 @@ public class Login {
 		}
 		return currentUser;
 	}
+	
+	
+
 }

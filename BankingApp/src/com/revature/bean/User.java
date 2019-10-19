@@ -43,6 +43,8 @@ public class User implements Serializable{
 	}
 	
 	
+	
+	
 	public static User login(String username, String password, List<User> usersList) throws LoginException {
 		for (User user:usersList) {
 			if (user.getUsername().toString().equals(username)) {
@@ -56,11 +58,28 @@ public class User implements Serializable{
 		throw new LoginException("No such login: " + username);
 	}
 	
+//	
+//	public static User logon(String username, List<User> usersList) throws  LogonException {
+//		for (User user:usersList) {
+//			if (user.getUsername().toString().equals(username)) {
+//				if (user.getPassword().toString().equals(password)) {
+//					return user;
+//				} else {
+//					throw new LogonException("Incorrect pass");
+//				}
+//			}
+//		}
+//		throw new LogonException("Username: " + username + "pasword: " + password + " already exists");
+//	}
+
+
 	
 	public void showMenu() {
 		System.out.println("User blueprint not have menu");
 		System.out.println(this.toString());
 	}
+	
+
 	
 	
 	

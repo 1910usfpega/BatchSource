@@ -1,11 +1,13 @@
 package com.revature.driver;
 
-import java.util.Date;
+//import java.util.Date;
+//import java.util.List;
 import java.util.Scanner;
 
-import com.revature.bean.Customer;
+//import com.revature.bean.Customer;
 import com.revature.bean.Login;
-import com.revature.bean.LoginException;
+//import com.revature.bean.LoginException;
+import com.revature.bean.Logon;
 import com.revature.bean.User;
 import com.revature.io.IOWithCollections;
 
@@ -13,14 +15,44 @@ public class Driver {
 	public static Scanner sc = new Scanner(System.in);
 	public static User currentUser = null;
 
+	
+	
 	public static void main(String[] args) {
-		
 		IOWithCollections.readUserFile();
-		currentUser = Login.loginProcess(IOWithCollections.usersList);
-		currentUser.showMenu();
-//		System.out.println("Successfull login: " + currentUser.getClass().getName());
+		
+		String contents = null;
+		System.out.println("What would you like to do?\nLogin press 1\nLogon press 2");
+		System.out.println(sc.hasNextInt());
+		//(contents = sc.nextInt()) !=0
+		
+		while ((contents = sc.nextLine())!= null) {
+			if (contents.equals("1") || contents.equals("2")) {
+				break;
+			} else {
+				System.out.println("Input 1 or 2");
+			}
+		} 
+		
+		
+		if (contents.equals("1")) {
+			System.out.println("Start Login process");
+			currentUser = Login.loginProcess(IOWithCollections.usersList);
+			currentUser.showMenu();
+			System.out.println("Successfull login: " + currentUser.getClass().getName());
+		} else if (contents.equals("2")) {
+			System.out.println("Start Logon process");
+			currentUser = Logon.logonProcess(IOWithCollections.usersList);
+			IOWithCollections.usersList.add(currentUser);
+			IOWithCollections.writeUserFile();
+		}
+		System.out.println(currentUser.getUsername());
+		
+		
 
-//		
+
+//		IOWithCollections.writeUserFile();
+//		currentUser = Logon.logonProcess();
+		
 //		Date dateOfB = new Date();
 //		Customer c1 = new Customer("Iskandar", "Bakhtizin", dateOfB, true, "iskandar", "pass");
 //		IOWithCollections.usersList.add(c1);
@@ -46,24 +78,7 @@ public class Driver {
 		
 		
 		
-//		String contents = null;
-//		System.out.println("What would you like to do?\nLogin press 1\nLogon press 2");
-//		System.out.println(sc.hasNextInt());
-//		//(contents = sc.nextInt()) !=0
-//		while ((contents = sc.nextLine())!= null) {
-//			if (contents.equals("1") || contents.equals("2")) {
-//				break;
-//			} else {
-//				System.out.println("Input 1 or 2");
-//			}
-//		} 
-//		
-//		
-//		if (contents.equals("1")) {
-//			System.out.println("Start Login process");
-//		} else if (contents.equals("2")) {
-//			System.out.println("Start Logon process");
-//		}
+
 
 		
 	}

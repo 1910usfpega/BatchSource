@@ -14,8 +14,7 @@ public class Account implements Serializable{
 	private String accountStatus;
 	private Integer accountNumber;
 	
-	
-	
+
 	public Account(String accountName, Double balance, String ownerUsername, String accountStatus,
 			Integer accountNumber) {
 		super();
@@ -65,10 +64,6 @@ public class Account implements Serializable{
 	public void setAccountNumber(Integer accountNumber) {
 		this.accountNumber = accountNumber;
 	}
-
-
-
-
 
 	@Override
 	public String toString() {
