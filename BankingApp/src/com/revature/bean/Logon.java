@@ -55,22 +55,32 @@ public class Logon {
 		
 		User newUser = null;
 		
-		while (newUser==null)	{
+
 			String login =  Logon.getLogonFromSC();
 			String pass = Logon.getLogonPasswordFromSC();
 			String firstname = Logon.getLogonFirstNameFromSC();
 			String lastname = Logon.getLogonLastNameFromSC();
 //			String dateOfBirth = (Date) Logon.getLogonDobFromSC();
+			Boolean flag = true;
 			
-			
+			for (User user:usersList) {
+				if (user.getUsername().toString().equals(login)) {
+					flag = false;
+					break;
+				}else{
+									
+				}
+			}
+			if(flag) {
+				
+				newUser = new  Customer( firstname,  lastname, null ,  true,  login, pass);
+
+			}else {
+				System.out.println("This " + login + "already exists, please type another username");
+			}
 			
 					
-			newUser = new  Customer( firstname,  lastname, null ,  true,  login, pass);
-
-			return newUser; 
 			
-			
-		}
 		return newUser;
 	}
 

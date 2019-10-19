@@ -111,12 +111,11 @@ public class Customer extends User implements  Serializable {
     }
 
 
-	public static User logon( String firstName, String lastName, String username, String password, Date dateOfBirth, List<User> usersList) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
+//	public static User logon( String firstName, String lastName, String username, String password, Date dateOfBirth, List<User> usersList) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
-	 
+
+
 }
