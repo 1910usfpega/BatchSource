@@ -8,7 +8,9 @@ public class Account {
 	private double accountBalance;
 	private ArrayList<Customer> users;
 	
-	
+	public Account() {
+		
+	}
 	
 	public Account(String accountType, Customer ... user) {
 		super();

@@ -1,12 +1,6 @@
 package com.revature.mainscreen;
 
 import java.util.Scanner;
-import java.util.Set;
-
-import com.revature.user.Customer;
-import com.revature.storage.CustomerStorage;
-import com.revature.storage.LoginInfo;
-import com.revature.user.Account;
 
 public class MainScreen {
 	private static String input = "";

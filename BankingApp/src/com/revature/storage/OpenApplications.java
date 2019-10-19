@@ -2,26 +2,26 @@ package com.revature.storage;
 
 import java.util.ArrayList;
 
-import com.revature.user.User;
+import com.revature.user.Account;
 
 public class OpenApplications {
-	private static ArrayList<User> allApplications = new ArrayList<>();
+	private static ArrayList<Account> allApplications = new ArrayList<>();
 
-	public static void addApplication(User user) {
-		allApplications.add(user);
+	public static void addApplication(Account acct) {
+		allApplications.add(acct);
 	}
 	
-	public static void removeApplication(User user) {
-		allApplications.remove(user);
+	public static void removeApplication(Account acct) {
+		allApplications.remove(acct);
 	}
 	
 	
 
-	public static ArrayList<User> getAllApplications() {
+	public static ArrayList<Account> getAllApplications() {
 		return allApplications;
 	}
 
-	public static void setAllApplications(ArrayList<User> allApplications) {
+	public static void setAllApplications(ArrayList<Account> allApplications) {
 		OpenApplications.allApplications = allApplications;
 	}
 	

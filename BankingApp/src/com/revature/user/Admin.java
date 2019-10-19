@@ -1,7 +1,10 @@
 package com.revature.user;
 
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.revature.storage.AccountStorage;
 import com.revature.storage.CustomerStorage;
-import com.revature.storage.OpenApplications;
 
 public class Admin extends Employee {
 	
@@ -9,9 +12,13 @@ public class Admin extends Employee {
 		super(username,password);
 	}
 	
-	public void viewAllCust() {
-		CustomerStorage.getAllCustomers();
+	public Map<String, Customer> viewAllCustomers() {
+		return CustomerStorage.getAllCustomers();
 		
+	}
+	
+	public ArrayList<Account> viewAllAccounts() {
+		return AccountStorage.getAllAccounts();
 	}
 	
 	public double withdraw(Account acct, double amount) {
@@ -39,15 +46,6 @@ public class Admin extends Employee {
 		}
 	}
 	
-	@Override
-	public void approveCust(User cust) {
-		System.out.println("customer needs an employee");  // change/remove this?
-	}
 	
-	public void approveCust(User cust, Employee employee) {
-		OpenApplications.removeApplication(cust);
-		Customer newCustomer = new Customer(cust.getUsername(),cust.getPassword(), employee);
-		CustomerStorage.add(newCustomer);
-	}
 
 }
