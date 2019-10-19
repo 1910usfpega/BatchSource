@@ -34,9 +34,8 @@ public class Admin extends Employee {
 	}
 	
 	public void cancelAccount(Account acct) {
-		acct.getUser1().removeAccount(acct);
-		if (acct.getUser2()!=null) {
-			acct.getUser2().removeAccount(acct);
+		for(Customer x:acct.getUsers()) {
+			x.removeAccount(acct);
 		}
 	}
 	

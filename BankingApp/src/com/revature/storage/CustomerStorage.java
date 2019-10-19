@@ -6,28 +6,33 @@ import java.util.Map;
 import com.revature.user.Customer;
 
 public class CustomerStorage {
-	private static Map<Integer,Customer> allCustomers = new HashMap<>();
+	private static Map<String,Customer> allCustomers = new HashMap<>();
 	
-	public static void remove(int cust) {
+	
+	public static void remove(String cust) {
 		allCustomers.remove(cust);
 	}
 
 	public static void add(Customer cust) {
-		allCustomers.put(cust.getUserNumber(),cust);
+		allCustomers.put(cust.getUsername(),cust);
 	}
-	public static Customer getThisCustomer(int user) {
+	public static Customer getThisCustomer(String user) {
 		return allCustomers.get(user);
 	}
 	
 	
-	public static Map<Integer,Customer>  getAllCustomers() {
+	public static Map<String,Customer>  getAllCustomers() {
 		return allCustomers;
 	}
 
-	public static void setAllCustomers(Map<Integer,Customer> allCustomers) {
+	public static void setAllCustomers(Map<String,Customer> allCustomers) {
 		CustomerStorage.allCustomers = allCustomers;
 	}
 
+
+
+	
+	
 	
 	
 

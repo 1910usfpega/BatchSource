@@ -1,45 +1,61 @@
 package com.revature.user;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 //import com.revature.user.User;
 
 public class Customer extends User {
-	private ArrayList<Account> myAccounts;
-	private Employee myEmployee;
+	//private ArrayList<Account> myAccounts;
+	private HashMap<Integer, Account> myAccounts;
+	//private Employee myEmployee;
 	
 	
+	public Customer(String username, String password) {
+		super(username, password);
+	}
 	
 	public Customer(String username, String password, Employee employee) {
 		super(username, password);
-		this.myEmployee=employee; //get rid of this??
+		//this.myEmployee=employee; //get rid of this??
 	}
 	
-	
+	public Account getThisAccount(int acct) {
+		return myAccounts.get(acct);
+	}
 
 	public void addNewAccount(Account acct) {
-		this.myAccounts.add(acct);
+		this.myAccounts.put(acct.getAccountNumber(),acct);
 	}
 	
-	public void addNewAccount(String accountType, Customer user1, boolean joint) {
-		Account newAccount=new Account(accountType, user1, joint);
-		this.myAccounts.add(newAccount);
+	public void addNewAccount(String accountType, Customer ... users) {
+		Account newAccount=new Account(accountType, users);
+		this.myAccounts.put(newAccount.getAccountNumber(),newAccount);
 	}
-	public void addNewAccount(String accountType, Customer user1, boolean joint, Customer user2) {
-		Account newAccount=new Account(accountType, user1, joint, user2);
-		this.myAccounts.add(newAccount);
+	public void addNewAccount(String accountType, ArrayList<Customer> users) {
+		Account newAccount=new Account(accountType, users);
+		this.myAccounts.put(newAccount.getAccountNumber(),newAccount);
 	}
 	
 	public void removeAccount(Account acct) {
+		this.myAccounts.remove(acct.getAccountNumber());
+	}
+	
+	public void removeAccount(int acct) {
 		this.myAccounts.remove(acct);
 	}
+	
 	
 //	public void removeAccount(int acct) {
 //		this.myAccounts.remove();
 //	}
 	
+	public Set<Integer> getAccountNumbers(){
+		return myAccounts.keySet();
+	}
 	
-	public ArrayList<Account> getMyAccounts() {
+	public HashMap<Integer, Account> getMyAccounts() {
 		return myAccounts;
 	}
 
@@ -47,7 +63,7 @@ public class Customer extends User {
 
 
 
-	public void setMyAccounts(ArrayList<Account> myAccounts) {
+	public void setMyAccounts(HashMap<Integer, Account> myAccounts) {
 		this.myAccounts = myAccounts;
 	}
 
@@ -69,15 +85,18 @@ public class Customer extends User {
 	}
 	
 
-	public Employee getMyEmployee() {
-		return myEmployee;
+	public Customer() {
+		
 	}
-
-
-
-	public void setMyEmployee(Employee myEmployee) {
-		this.myEmployee = myEmployee;
-	}
+//	public Employee getMyEmployee() {
+//		return myEmployee;
+//	}
+//
+//
+//
+//	public void setMyEmployee(Employee myEmployee) {
+//		this.myEmployee = myEmployee;
+//	}
 
 	@Override
 	public String toString() {

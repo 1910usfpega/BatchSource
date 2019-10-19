@@ -1,54 +1,42 @@
 package com.revature.user;
 
+import java.util.ArrayList;
+
 public class Account {
 	private int accountNumber;
 	private String accountType;
 	private double accountBalance;
-	private Customer user1;
-	private boolean joint;
-	private Customer user2;
+	private ArrayList<Customer> users;
 	
 	
 	
-	public Account(String accountType, Customer user1, boolean joint, Customer user2) {
+	public Account(String accountType, Customer ... user) {
+		super();
+		this.accountNumber=(int)(Math.random()*1000000000);
+		this.accountType = accountType;
+		this.accountBalance = 0;
+		for (Customer x:user) {
+			this.users.add(x);
+		}
+	}
+	public Account(String accountType, ArrayList<Customer> users) {
 		super();
 		this.accountNumber=(int) Math.random();
 		this.accountType = accountType;
 		this.accountBalance = 0;
-		this.user1 = user1;
-		this.joint = joint;
-		this.user2 = user2;
-	}
-	
-	public Account(String accountType, Customer user1, boolean joint) {
-		super();
-		this.accountNumber=(int) Math.random();
-		this.accountType = accountType;
-		this.accountBalance = 0;
-		this.user1 = user1;
-		this.joint = joint;
-		this.user2 = null;
+		this.users=users;
 	}
 	
 	
-	public Customer getUser1() {
-		return user1;
+	
+	public ArrayList<Customer> getUsers() {
+		return this.users;
 	}
-	public void setUser1(Customer user1) {
-		this.user1 = user1;
+	public void setUsers(ArrayList<Customer> users) {
+		this.users = users;
 	}
-	public boolean isJoint() {
-		return joint;
-	}
-	public void setJoint(boolean joint) {
-		this.joint = joint;
-	}
-	public Customer getUser2() {
-		return user2;
-	}
-	public void setUser2(Customer user2) {
-		this.user2 = user2;
-	}
+
+
 	public String getAccountType() {
 		return accountType;
 	}
@@ -75,11 +63,15 @@ public class Account {
 	
 
 
+
+
 	@Override
 	public String toString() {
-		return "Account [accountType=" + accountType + ", accountBalance=" + accountBalance + ", user1=" + user1
-				+ ", joint=" + joint + ", user2=" + user2 + "]";
+		return "Account [accountNumber=" + accountNumber + ", accountType=" + accountType + ", accountBalance="
+				+ accountBalance + ", users=" + users + "]";
 	}
+
+
 
 	public int getAccountNumber() {
 		return accountNumber;

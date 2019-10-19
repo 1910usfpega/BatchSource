@@ -17,7 +17,6 @@ public class Employee extends User {
 	public void approveCust(User cust) {
 		OpenApplications.removeApplication(cust);
 		Customer newCustomer = new Customer(cust.getUsername(),cust.getPassword(), this);
-		this.setUserNumber(cust.getUserNumber());
 		CustomerStorage.add(newCustomer);
 	}
 	
@@ -27,7 +26,6 @@ public class Employee extends User {
 	
 	public void viewCust(Customer cust) {
 		System.out.println("Username: "+cust.getUsername()); //move the sysout methods to the main screen??
-		System.out.println("User number: "+cust.getUserNumber());
 		System.out.println("Number of accounts: "+cust.getMyAccounts().size());
 
 	}

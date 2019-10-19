@@ -3,26 +3,28 @@ package com.revature.user;
 public class User {
 	private String username;
 	private String password;
-	private int userNumber;
+	//private int userNumber;
 	
-	
+	public User(){
+		
+	}
 	
 	public User(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.userNumber = (int)Math.random();
+		//this.userNumber = (int)Math.random();
 	}
 	
 	
-	public int getUserNumber() {
-		return userNumber;
-	}
-
-
-	public void setUserNumber(int userNumber) {
-		this.userNumber = userNumber;
-	}
+//	public int getUserNumber() {
+//		return userNumber;
+//	}
+//
+//
+//	public void setUserNumber(int userNumber) {
+//		this.userNumber = userNumber;
+//	}
 
 
 	public String getUsername() {
@@ -39,7 +41,7 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", userNumber="+userNumber+ "]";
+		return "User [username=" + username + ", password=" + password + "]";
 	}
 	
 	
