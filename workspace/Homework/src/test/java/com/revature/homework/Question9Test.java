@@ -15,7 +15,10 @@ class Question9Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+
+		Question9 q = new Question9();
+		q.countingPrimes();
+
 	}
 
 }
