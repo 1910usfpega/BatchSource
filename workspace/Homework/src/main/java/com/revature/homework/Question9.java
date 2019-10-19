@@ -15,18 +15,20 @@ public class Question9 {
 	ArrayList<Integer> a = new ArrayList<Integer>();
 
 	public void countingPrimes() {
-		boolean isPrime = false;
-		for (int i = 0; i < 100; i++) {
+		
+		for (int i = 1; i < 100; i++) {
+			int isPrime=0;
 			a.add(i + 1);
-			for (int j = 0; j < i + 1; j++) {
-				if (j != 0) {
-					if ((i + 1) % j != 0) {
-						isPrime = !isPrime;
-					}
+			for (int j = 1; j < i ; j++) {
+			
+//					if(i==2)
+//						System.out.println(i+ ": is a Prime Number.");
+					if (i % j == 0) {
+						isPrime++;
 				}
 			}
-			if (isPrime) {
-				System.out.println(i );
+			if(isPrime==2) {
+			System.out.println(i*2+ ": is a Prime Number.");
 			}
 		}
 
