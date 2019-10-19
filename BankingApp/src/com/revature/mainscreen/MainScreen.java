@@ -46,7 +46,7 @@ public class MainScreen {
 				EmployeeLoop.employeeLoop(sc);
 				break;
 			case "4":
-				adminLoop(sc);
+				AdminLoop.adminLoop(sc);
 				break;
 			case "5":
 				// write to file
@@ -55,25 +55,8 @@ public class MainScreen {
 			default:
 				System.out.println("That is not a 1, 2, 3, 4 or 5. Try again");
 			}
-			
 		}
 		sc.close();
 		//write to file
 	}
-
-
-
-	
-
-
-	public static void adminLoop(Scanner sc) {
-		while (input != "EXIT") {
-			input = sc.nextLine();
-			switch (input) {
-
-			}
-
-		}
-	}
-
 }

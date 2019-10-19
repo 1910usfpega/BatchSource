@@ -14,7 +14,7 @@ import com.revature.user.Customer;
 import com.revature.user.Employee;
 
 public class AdminLoop {
-	public static void employeeLoop(Scanner sc) {
+	public static void adminLoop(Scanner sc) {
 		// Start by entering username and the password
 		String input = "";
 		Employee thisEmployee = new Employee();
