@@ -8,16 +8,10 @@ public class Employee extends Person{
 	}
 
 	public void viewAccount(Customer a) {
-	bankAccount [] b =a.allAccounts(a);
-	for(bankAccount x: b)
-		System.out.print(x.getAccountNumber());
-	}
-
-	@Override
-	public double viewAccount(bankAccount a) { // get rid  of
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		bankAccount [] b =a.allAccounts(a);
+		for(bankAccount x: b)
+			System.out.print(x.getAccountNumber());
+		}
 	
 	
 }

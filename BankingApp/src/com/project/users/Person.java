@@ -9,9 +9,8 @@ public abstract class Person {
 	String last;
 	static HashMap<String, String> cInfo = new HashMap<String,String>();
 	static ArrayList <Customer> list =  new ArrayList<>();
-	public abstract double viewAccount(bankAccount a);
 	 List<bankAccount> bAccount = new ArrayList<>();
-	
+
 	public void addBankAccount() { // adds brand new account
 		bankAccount a = new bankAccount();
 		bAccount.add(a);
@@ -38,6 +37,11 @@ public abstract class Person {
 			
 		}
 		return null;
+	}
+	public boolean checkMoney(bankAccount a, double money) {
+		if(a.getBalance()>=  money)
+			return true;
+		return false;
 	}
 	public String getName() {
 		return name;

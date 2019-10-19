@@ -6,10 +6,14 @@ public class Customer extends Person{
 public Customer(String name, String last) {
 	this.name = name;
 	this.last = last;
-	bankAccount a = new bankAccount();
 	this.addBankAccount();
 	list.add(this);
 }
+public void viewAccount() {
+	bankAccount [] b =this.allAccounts(this);
+	for(bankAccount x: b)
+		System.out.print(x.getAccountNumber());
+	}
 
 	public double viewAccount(bankAccount account) { // check cash amount
 		if(bAccount.contains(account))
@@ -21,15 +25,17 @@ public Customer(String name, String last) {
 	public boolean transfer(double amount ,bankAccount takeAccount, bankAccount giveAccount) { 
 		if(bAccount.contains(takeAccount)) {
 			if(bAccount.contains(giveAccount)) {
-				takeAccount.withdraw(amount);
+				if(checkMoney(takeAccount, amount)) {
+				takeAccount.withdraw(amount, takeAccount);
 				giveAccount.deposit(amount);
 				return true;
+				}
 			}
 		}	
 		return false;
 	}
 	
-	public boolean jointAccount(Customer a, Customer b,bankAccount c  ) { //apply for
+	public boolean jointAccount(Customer a, Customer b,bankAccount c) { //apply for
 		if(cInfo.containsKey(a)) {
 			if(cInfo.containsKey(b)) {
 				if(bAccount.contains(bAccount)) {
@@ -54,4 +60,5 @@ public Customer(String name, String last) {
 		return Array;
 		
 	}
+	
 }
