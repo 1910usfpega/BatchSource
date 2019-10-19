@@ -26,7 +26,7 @@ public class AccountsIO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void readUserFile() {
+	public static void readFile() {
 		try (ObjectInputStream objectIn = new ObjectInputStream(
 				new FileInputStream(ioFile));) {
 			

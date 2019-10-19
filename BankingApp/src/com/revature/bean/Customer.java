@@ -1,7 +1,11 @@
 package com.revature.bean;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
+
+import com.revature.io.AccountsIO;
 
 
 
@@ -9,6 +13,8 @@ public class Customer extends User implements  Serializable {
 	/**
 	 * 
 	 */
+	public static Scanner sc= new Scanner(System.in);
+	
 	private static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
@@ -92,30 +98,62 @@ public class Customer extends User implements  Serializable {
 		
     @Override
     public void showMenu() {
-    	System.out.println("Customer: " + this.getFirstName() + " " + this.getLastName());
-    	System.out.println("Accounts:");
-    	if (this.accountList == null) {
-    		System.out.println("No accounts");
-    	} else {
-    		
+    	
+    	List<String> commands = new ArrayList<String>();
+    	commands.add("Apply for a new account");
+    	
+    	
+    	System.out.println("WELCOME, " + this.getFirstName() + " " + this.getLastName() + "\n");
+    	System.out.println("Your accounts:");
+    	Boolean no_accounts = true;
+    	
+    	
+    	AccountsIO.readFile();
+    	for (int i = 0; i<AccountsIO.accountList.size(); i++) {
+    		//Account account:AccountsIO.accountList
+    		Account account = AccountsIO.accountList.get(i);
+    		if (account.getOwnerUsername().equals(this.getUsername())) {
+    			commands.add("Work with account: " + account.getAccountNumber().toString());
+    			System.out.print(" - " + account.getAccountName() + " (Account number: "+account.getAccountNumber() + ") – " );
+    			if (account.getAccountStatus().equals("pending")) {
+    				System.out.println("pending");
+    			} else if (account.getAccountStatus().equals("canceled")) {
+    				System.out.print("canceled");
+    			} else {
+    				System.out.print("$"+account.getBalance());
+    			}
+    			System.out.println();
+    			
+    			no_accounts = false;
+    		}
     	}
     	
-    	/*
-    	 * Customer: Iskandar B
-    	 * Accounts:
-    	 * 1. AccountName (num:1234) - $5000.00
-    	 * 2. CHECKING (num: 2434) - pending
-    	 * 
-    	 * Which account you want work with? (input 1-2)
-    	 */
+    	if (no_accounts) {
+    		System.out.println("You don't have accounts yet");
+    		// Sysout all account in the following format:
+    	}
+    	
+    	
+    	Boolean flag = true;
+    	
+    	while (flag) {
+    		System.out.println("============\n\nWhat you want to do?");
+        	for (int i=0; i<commands.size(); i++) {
+        		System.out.println((i+1) + ". "+ commands.get(i));
+        	}
+        	System.out.print("Input number of action 1-" + commands.size()+": ");
+        	
+        	if (sc.hasNextInt()) {
+        		Integer contentsFromUser = sc.nextInt();
+        		if ( (contentsFromUser) <= commands.size() ) {
+        			System.out.format( "You chose the action %s: %s", 
+        					contentsFromUser, 
+        					commands.get(contentsFromUser-1));
+        			flag=false;
+        		}
+        	}
+    		
+    	}
     }
-
-
-//	public static User logon( String firstName, String lastName, String username, String password, Date dateOfBirth, List<User> usersList) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-	
-
 
 }

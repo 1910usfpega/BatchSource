@@ -14,15 +14,14 @@ import com.revature.io.IOWithCollections;
 public class Driver {
 	public static Scanner sc = new Scanner(System.in);
 	public static User currentUser = null;
-
 	
 	
 	public static void main(String[] args) {
 		IOWithCollections.readUserFile();
 		
 		String contents = null;
-		System.out.println("What would you like to do?\nLogin press 1\nLogon press 2");
-		System.out.println(sc.hasNextInt());
+		System.out.println("What would you like to do?\n1. Login 1\n2. Register new Account");
+		System.out.print("Input number of action: ");
 		//(contents = sc.nextInt()) !=0
 		
 		while ((contents = sc.nextLine())!= null) {
@@ -37,15 +36,16 @@ public class Driver {
 		if (contents.equals("1")) {
 			System.out.println("Start Login process");
 			currentUser = Login.loginProcess(IOWithCollections.usersList);
-			currentUser.showMenu();
-			System.out.println("Successfull login: " + currentUser.getClass().getName());
+//			System.out.println("Successfull login: " + currentUser.getClass().getName());
 		} else if (contents.equals("2")) {
 			System.out.println("Start Logon process");
 			currentUser = Logon.logonProcess(IOWithCollections.usersList);
 			IOWithCollections.usersList.add(currentUser);
 			IOWithCollections.writeUserFile();
 		}
-		System.out.println(currentUser.getUsername());
+		
+		
+		currentUser.showMenu();
 		
 		
 
