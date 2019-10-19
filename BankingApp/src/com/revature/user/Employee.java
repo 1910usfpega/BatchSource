@@ -7,6 +7,9 @@ import com.revature.storage.OpenApplications;
 public class Employee extends User {
 	//private int[] myCustomers; //change this to a set??
 	
+	public Employee() {
+		
+	}
 	
 	public Employee(String username,String password) {
 		super(username,password);

@@ -23,7 +23,7 @@ public class Account {
 	}
 	public Account(String accountType, ArrayList<Customer> users) {
 		super();
-		this.accountNumber=(int) Math.random();
+		this.accountNumber=(int)(Math.random()*1000000000);
 		this.accountType = accountType;
 		this.accountBalance = 0;
 		this.users=users;

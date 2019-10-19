@@ -28,6 +28,8 @@ public class CustomerLoop {
 			if (LoginInfo.checkUser(ru, rp)==true) {
 				thisUser=CustomerStorage.getThisCustomer(ru);
 				loggedIn=true;
+			}else {
+				System.out.println("Sorry, that username is not in our database.");
 			}
 		}
 		while (input != "EXIT") {
@@ -171,7 +173,7 @@ public class CustomerLoop {
 				while (valid==false) {
 					System.out.println("New account: ");
 					System.out.println("Press 1 for checking,");
-					System.out.println("Press 2 for savings, ");
+					System.out.println("Press 2 for savings ");
 					String r4=sc.nextLine();
 					if(r4.contains("1")) {
 						accountType="Checking";
@@ -207,6 +209,7 @@ public class CustomerLoop {
 				
 			case "5":
 				input="EXIT";
+				//write to file
 				break;
 				
 			default:

@@ -1,6 +1,7 @@
 package com.revature.user;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -8,7 +9,7 @@ import java.util.Set;
 
 public class Customer extends User {
 	//private ArrayList<Account> myAccounts;
-	private HashMap<Integer, Account> myAccounts;
+	private HashMap<Integer, Account> myAccounts= new HashMap<Integer, Account>();
 	//private Employee myEmployee;
 	
 	
@@ -57,6 +58,11 @@ public class Customer extends User {
 	
 	public HashMap<Integer, Account> getMyAccounts() {
 		return myAccounts;
+	}
+	
+	public Collection<Account> getOnlyAccounts() {
+		
+		return myAccounts.values();
 	}
 
 

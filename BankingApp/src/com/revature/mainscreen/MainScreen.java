@@ -2,10 +2,26 @@ package com.revature.mainscreen;
 
 import java.util.Scanner;
 
+import com.revature.storage.EmployeeLoginInfo;
+import com.revature.storage.EmployeeStorage;
+import com.revature.user.Admin;
+import com.revature.user.Employee;
+
 public class MainScreen {
 	private static String input = "";
 
 	public static void main(String[] args) {
+		EmployeeStorage.add(new Employee("GregSmith","1234"));
+		EmployeeLoginInfo.newEmployee("GregSmith", "1234");
+		EmployeeStorage.add(new Employee("SamuelFulton","4321"));
+		EmployeeLoginInfo.newEmployee("SamuelFulton", "4321");
+		EmployeeStorage.add(new Employee("Bob","111"));
+		EmployeeLoginInfo.newEmployee("Bob", "111");
+		EmployeeStorage.add(new Admin("TheBoss","admin"));
+		EmployeeLoginInfo.newEmployee("TheBoss", "admin");
+		
+		
+		
 		// read from file
 
 		Scanner sc = new Scanner(System.in);
@@ -27,7 +43,7 @@ public class MainScreen {
 				CustomerLoop.customerLoop(sc);
 				break;
 			case "3":
-				employeeLoop(sc);
+				EmployeeLoop.employeeLoop(sc);
 				break;
 			case "4":
 				adminLoop(sc);
@@ -39,22 +55,16 @@ public class MainScreen {
 			default:
 				System.out.println("That is not a 1, 2, 3, 4 or 5. Try again");
 			}
+			
 		}
+		sc.close();
+		//write to file
 	}
 
 
 
 	
-	public static void employeeLoop(Scanner sc) {
-		while (input != "EXIT") {
-			input = sc.nextLine();
-			switch (input) {
 
-			}
-
-		}
-
-	}
 
 	public static void adminLoop(Scanner sc) {
 		while (input != "EXIT") {

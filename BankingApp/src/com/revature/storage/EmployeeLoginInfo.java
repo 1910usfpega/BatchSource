@@ -3,10 +3,10 @@ package com.revature.storage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginInfo {
-	private static Map<String,String> stored = new HashMap<>();
+public class EmployeeLoginInfo {
+private static Map<String,String> stored = new HashMap<>();
 	
-	public static boolean newUser(String username, String password) {
+	public static boolean newEmployee(String username, String password) {
 		if(stored.containsKey(username)==false) {
 			stored.put(username, password);
 			return true;
@@ -23,7 +23,10 @@ public class LoginInfo {
 		}
 	}
 	
-	public static boolean checkUser(String username,String password) {
+	public static boolean checkEmployee(String username,String password) {
+
+		System.out.println(username);
+		
 		if (stored.containsKey(username) && stored.get(username).equals(password)) {
 			return true;
 		}else {
@@ -37,6 +40,7 @@ public class LoginInfo {
 	}
 
 	public static void setLoginInfo(Map<String, String> stored) {
-		LoginInfo.stored = stored;
+		EmployeeLoginInfo.stored = stored;
 	}
+
 }

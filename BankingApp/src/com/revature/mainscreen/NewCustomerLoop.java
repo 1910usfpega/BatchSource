@@ -10,7 +10,7 @@ public class NewCustomerLoop {
 	public static void newCustomerLoop(Scanner sc) {
 		boolean uniqueName = false;
 		while (uniqueName == false) {
-			System.out.println("What would you like your username to be? (Enter \"back\" to go back");
+			System.out.println("What would you like your username to be? (Enter \"back\" to go back)");
 			String r1 = sc.nextLine();
 			if (r1.toLowerCase().equals("back")) {
 				return;
@@ -22,6 +22,7 @@ public class NewCustomerLoop {
 				CustomerStorage.add(newUser);
 				System.out.println("New user info added.");
 				uniqueName = true;
+				//write to file
 			} else {
 				System.out.println("Sorry, that username has been taken.");
 			}
