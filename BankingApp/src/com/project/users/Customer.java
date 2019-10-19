@@ -1,28 +1,24 @@
 package com.project.users;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Customer extends Person{
 
-	List<bankAccount> bAccount = new ArrayList<>();
+public Customer(String name, String last) {
+	this.name = name;
+	this.last = last;
+	bankAccount a = new bankAccount();
+	this.addBankAccount();
+	list.add(this);
+}
 
-
-
-	public double viewAccount(bankAccount account) {
+	public double viewAccount(bankAccount account) { // check cash amount
 		if(bAccount.contains(account))
 			return account.getBalance();
 		return -1;
 	}
 	
-	public void addBankAccount() {
-		bankAccount a = new bankAccount();
-		bAccount.add(a);
-	}
-	private void addBankAccount(bankAccount c) {
-		bAccount.add(c);
-	}
-	public boolean transfer(double amount ,bankAccount takeAccount, bankAccount giveAccount) {
+
+	public boolean transfer(double amount ,bankAccount takeAccount, bankAccount giveAccount) { 
 		if(bAccount.contains(takeAccount)) {
 			if(bAccount.contains(giveAccount)) {
 				takeAccount.withdraw(amount);
@@ -33,7 +29,7 @@ public class Customer extends Person{
 		return false;
 	}
 	
-	public boolean jointAccount(Customer a, Customer b,bankAccount c  ) {
+	public boolean jointAccount(Customer a, Customer b,bankAccount c  ) { //apply for
 		if(cInfo.containsKey(a)) {
 			if(cInfo.containsKey(b)) {
 				if(bAccount.contains(bAccount)) {
@@ -45,19 +41,17 @@ public class Customer extends Person{
 		return false;
 	}
 	
-	public int [] allAccounts() {
-		int[] Array = new int[bAccount.size()];
-		if(!bAccount.isEmpty()) {
+	public bankAccount [] allAccounts(Customer a) { // returns all account that the user has 
+			
+		bankAccount[] Array = new bankAccount[a.bAccount.size()];
+		if(!a.bAccount.isEmpty()) {
 			int i = 0;
 			for(bankAccount x :this.bAccount ) {
-				Array[i] = x.getAccountNumber();
+				Array[i] = x;
 				i++;
 			}
 		}
 		return Array;
 		
 	}
-
-
-	
 }
