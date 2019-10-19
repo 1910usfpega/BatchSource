@@ -1,13 +1,28 @@
 package com.project.users;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customer extends Person{
+	List<bankAccount> bAccount = new ArrayList<>();
 
-public Customer(String name, String last) {
-	this.name = name;
-	this.last = last;
+public Customer(String name, String last, String username,String password) {
+	super(name, last,username,password);
 	this.addBankAccount();
 	list.add(this);
+}
+
+public void addBankAccount() { // adds brand new account
+	bankAccount a = new bankAccount();
+	bAccount.add(a);
+	bankAccounts.add(a);
+}
+public boolean addBankAccount(bankAccount c) { //adds an existing account
+	if(bankAccounts.contains(c)) {
+	pending.put(this, c);
+	return true;
+	}
+	return false;
 }
 public void viewAccount() {
 	bankAccount [] b =this.allAccounts(this);
@@ -15,7 +30,7 @@ public void viewAccount() {
 		System.out.print(x.getAccountNumber());
 	}
 
-	public double viewAccount(bankAccount account) { // check cash amount
+	public double viewAccountBalance(bankAccount account) { // check cash amount
 		if(bAccount.contains(account))
 			return account.getBalance();
 		return -1;
@@ -35,13 +50,11 @@ public void viewAccount() {
 		return false;
 	}
 	
-	public boolean jointAccount(Customer a, Customer b,bankAccount c) { //apply for
+	public boolean jointAccount(Customer a ,bankAccount c) { //apply for
 		if(cInfo.containsKey(a)) {
-			if(cInfo.containsKey(b)) {
-				if(bAccount.contains(bAccount)) {
-					b.addBankAccount(c);
-					return true;
-				}
+			if(bankAccounts.contains(c)) {
+	 pendingJoint.put(a, c);
+			return true;
 			}
 		}
 		return false;
