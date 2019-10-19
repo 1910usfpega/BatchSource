@@ -10,6 +10,8 @@ public class PrintFib {
 		for (int i=0; i<iteractions; i++) {
 			if (i == 0) {
 				System.out.print(previous + " ");
+			} else if (i == 1) {
+				System.out.print(current + " ");
 			} else {
 				System.out.print(previous + current + " ");
 				int temp = previous + current;
