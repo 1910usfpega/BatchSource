@@ -1,6 +1,6 @@
 package com.revature.homework;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 /*******************************************************************************
@@ -11,8 +11,14 @@ import org.junit.jupiter.api.Test;
 class Question2Test {
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testFibonacci() {
+		int[] result= {0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368};
+		Question2 q=new Question2();
+		q.Fibanacci();
+		
+		assertArrayEquals(result,q.x);
+		
+		
 	}
 
 }

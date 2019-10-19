@@ -13,7 +13,15 @@ class Question3Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		String str = "hello";
+		String result ="olleh";
+//		StringBuilder result = new StringBuilder();
+//		
+//		result.append(str);
+//		result.reverse();
+		Question3 q= new Question3();
+		assertEquals(result,q.reverseString(str));
+		
 	}
 
 }

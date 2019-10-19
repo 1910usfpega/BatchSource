@@ -13,7 +13,8 @@ class Question4Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		Question4 q=  new Question4();
+		assertEquals(120,q.factorialN(5));
 	}
 
 }
