@@ -43,6 +43,8 @@ public class User implements Serializable{
 	}
 	
 	
+	
+	
 	public static User login(String username, String password, List<User> usersList) throws LoginException {
 		for (User user:usersList) {
 			if (user.getUsername().toString().equals(username)) {
@@ -61,6 +63,8 @@ public class User implements Serializable{
 		System.out.println("User blueprint not have menu");
 		System.out.println(this.toString());
 	}
+	
+
 	
 	
 	
