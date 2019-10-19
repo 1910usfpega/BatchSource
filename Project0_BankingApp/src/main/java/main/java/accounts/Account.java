@@ -42,5 +42,10 @@ public class Account implements Serializable {
 	public void setAccountBalance(Double accountBalance) {
 		this.accountBalance = accountBalance;
 	}
+	@Override
+	public String toString() {
+		return "Account [accountType=" + accountType + ", username=" + username + ", accountBalance=" + accountBalance
+				+ "]";
+	}
 	
 }
