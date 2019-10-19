@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.revature.anotherpack1.DemoClass1;
+import com.revature.anotherpack2.DemoClass2;
+
 public class Driver {
 
 	public static void main(String[] args) {
@@ -121,7 +124,39 @@ public class Driver {
 		
 		
 		
+		/* Write a program that would access two float-variables 
+		 * from a class that exists in another package. 
+		 * 
+		 * Note, you will need to create two packages to demonstrate the solution.	
+		 */
+		System.out.println();
+		System.out.println("==> Q11");
 		
+		System.out.println("Float from Class 1: " + DemoClass1.f1);
+		System.out.println("Float from Class 2: " + DemoClass2.f2);
+		
+		// Write a program to store numbers from 1 to 100 in an array. 
+		// Print out all the even numbers from the array. 
+		// Use the enhanced FOR loop for printing out the numbers.
+		System.out.println();
+		System.out.println("==> Q11");
+		
+		int[] a = new int[100];
+		for (int i = 0; i < 100; ++i) {
+			a[i] = i+1;
+		}
+		
+		System.out.print("Numbers printed by enchanced loop: ");
+		for (int iii:a) {
+			System.out.print(iii + " ");
+		}
+		System.out.println();
+		
+		
+		// Display the triangle on the console as follows using any type of loop.  
+		// Do NOT use a simple group of print statements to accomplish this.  
+		System.out.println();
+		System.out.println("==> Q12");
 		
 
 	}
