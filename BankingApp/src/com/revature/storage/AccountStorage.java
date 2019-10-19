@@ -16,10 +16,21 @@ public class AccountStorage {
 		AccountStorage.allAccounts.remove(acct);
 	}
 	
+	public static Account getThisAccount(int acct) {
+		return allAccounts.get(acct);
+	}
 	
 	
 	public static ArrayList<Account> getAllAccounts() {
 		return allAccounts;
+	}
+	
+	public static ArrayList<Integer> getAllAccountNumbers() {
+		ArrayList<Integer> allAccountNums= new ArrayList<Integer>();
+		for (Account x:allAccounts) {
+			allAccountNums.add(x.getAccountNumber());
+		}
+		return allAccountNums;
 	}
 
 	public static void setAllAccounts(ArrayList<Account> allAccounts) {

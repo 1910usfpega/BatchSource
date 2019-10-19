@@ -57,8 +57,8 @@ public class EmployeeLoop {
 						System.out.println("account number: "+y.getAccountNumber());
 						System.out.println("account type: "+y.getAccountType());
 						System.out.println("account balance: "+y.getAccountBalance());
-						System.out.println("---------------------------------");
 					}
+					System.out.println("---------------------------------");
 				}
 				System.out.println("---------------------------------");
 				System.out.println("End of customers");
@@ -91,7 +91,7 @@ public class EmployeeLoop {
 					System.out.println("account username: "+y.getAccountNumber());
 					System.out.println("account type: "+y.getAccountType());
 					System.out.println("account balance: "+y.getAccountBalance());
-					System.out.println("---------------------------------");
+					//System.out.println("---------------------------------");
 				}
 				System.out.println("---------------------------------");
 				System.out.println("End of info.");
@@ -110,9 +110,9 @@ public class EmployeeLoop {
 						counting++;
 						System.out.println("User #"+counting+":");
 						System.out.println("user name: "+y.getUsername());
-						System.out.println("---------------------------------");
 					}
-					
+					System.out.println("---------------------------------");
+
 				}
 				System.out.println("---------------------------------");
 				System.out.println("End of open applications");
@@ -156,8 +156,8 @@ public class EmployeeLoop {
 					counting++;
 					System.out.println("User #"+counting+":");
 					System.out.println("user name: "+y.getUsername());
-					System.out.println("---------------------------------");
 				}
+				System.out.println("---------------------------------");
 				boolean done=false;
 				while(done==false) {
 					
@@ -181,8 +181,9 @@ public class EmployeeLoop {
 						System.out.println("Sorry, that is not a valid selection. Please try again");
 					}
 				}
-				
 				break;
+				
+				
 			case "5":
 				input="EXIT";
 				//write to file

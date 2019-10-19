@@ -1,5 +1,6 @@
 package com.revature.storage;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +26,11 @@ public class CustomerStorage {
 		return allCustomers;
 	}
 
+	public static Collection<Customer> getOnlyCustomers() {
+		return allCustomers.values();
+		
+	}
+	
 	public static void setAllCustomers(Map<String,Customer> allCustomers) {
 		CustomerStorage.allCustomers = allCustomers;
 	}

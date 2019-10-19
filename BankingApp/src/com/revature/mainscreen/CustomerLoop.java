@@ -1,6 +1,7 @@
 package com.revature.mainscreen;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -32,6 +33,20 @@ public class CustomerLoop {
 				System.out.println("Sorry, that username is not in our database.");
 			}
 		}
+		System.out.println("Your account info:");
+		System.out.println("Username: "+thisUser.getUsername());
+		Collection<Account> accounts = thisUser.getOnlyAccounts();
+		System.out.println("Number of accounts: "+accounts.size());
+		int count=0;
+		for(Account y:accounts) {
+			count++;
+			System.out.println("Account #"+count+":");
+			System.out.println("account username: "+y.getAccountNumber());
+			System.out.println("account type: "+y.getAccountType());
+			System.out.println("account balance: "+y.getAccountBalance());
+			
+		}
+		System.out.println("---------------------------------");
 		while (input != "EXIT") {
 			System.out.println("Press 1 to deposit");
 			System.out.println("Press 2 to withdraw");
@@ -41,6 +56,7 @@ public class CustomerLoop {
 			input = sc.nextLine();
 			switch (input) {
 			
+			
 			case "1":
 				// This is the DEPOSIT branch
 				if(thisUser.getMyAccounts().size()==0) {
@@ -49,8 +65,6 @@ public class CustomerLoop {
 					Set<Integer> set=thisUser.getAccountNumbers();
 					boolean found=false;
 					while (found==false){
-						System.out.println("Your accounts:");
-						System.out.println(set);
 						System.out.println("Enter account number you want to deposit to. (Enter \"back\" to go back)");
 						String r1=sc.nextLine();
 						if (r1.toLowerCase().equals("back")) {
@@ -83,8 +97,6 @@ public class CustomerLoop {
 					Set<Integer> set=thisUser.getAccountNumbers();
 					boolean found=false;
 					while (found==false){
-						System.out.println("Your accounts:");
-						System.out.println(set);
 						System.out.println("Enter account number you want to withdraw from. (Enter \"back\" to go back)");
 						String r1=sc.nextLine();
 						if (r1.toLowerCase().equals("back")) {
@@ -110,6 +122,7 @@ public class CustomerLoop {
 				}
 				break;
 				
+				
 			case "3":
 				// This is the TRANSFER branch
 				if(thisUser.getMyAccounts().size()<2) {
@@ -121,8 +134,6 @@ public class CustomerLoop {
 					Set<Integer> set=thisUser.getAccountNumbers();
 					boolean found=false;
 					while (found==false){
-						System.out.println("Your accounts:");
-						System.out.println(set);
 						System.out.println("Enter account number you want to withdraw from. (Enter \"back\" to go back)");
 						String r1=sc.nextLine();
 						if (r1.toLowerCase().equals("back")) {
@@ -144,8 +155,8 @@ public class CustomerLoop {
 					}
 					found=false;
 					while (found==false){
-						System.out.println("Your accounts:");
-						System.out.println(set);
+						//System.out.println("Your accounts:");
+						//System.out.println(set);
 						System.out.println("Enter account number you want to deposit to. (Enter \"back\" to go back)");
 						String r1=sc.nextLine();
 						if (r1.toLowerCase().equals("back")) {
@@ -206,20 +217,15 @@ public class CustomerLoop {
 				break;
 				
 				
-				
 			case "5":
 				input="EXIT";
 				//write to file
 				break;
 				
+				
 			default:
 				System.out.println("Sorry, that is not a valid selection");
-				
 			}
-
 		}
-
 	}
-
-
 }
