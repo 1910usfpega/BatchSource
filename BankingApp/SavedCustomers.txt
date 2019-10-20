@@ -1,2 +1,3 @@
 greg;g:591631051,Savings,0.0;OPEN,675589631,Checking,0.0;OPEN,298858685,Checking,0.0;
 sam;s:455133191,Savings,17638.0;591631051,Savings,0.0;OPEN,591830768,Checking,0.0;OPEN,298858685,Checking,0.0;
+hacker;s:454133181,Savings,1000000.0;
