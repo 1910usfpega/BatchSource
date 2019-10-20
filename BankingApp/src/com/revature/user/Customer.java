@@ -2,7 +2,9 @@ package com.revature.user;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Set;
 
 //import com.revature.user.User;
@@ -17,10 +19,6 @@ public class Customer extends User {
 		super(username, password);
 	}
 	
-	public Customer(String username, String password, Employee employee) {
-		super(username, password);
-		//this.myEmployee=employee; //get rid of this??
-	}
 	
 	public Account getThisAccount(int acct) {
 		return myAccounts.get(acct);
@@ -61,7 +59,6 @@ public class Customer extends User {
 	}
 	
 	public Collection<Account> getOnlyAccounts() {
-		
 		return myAccounts.values();
 	}
 
@@ -85,10 +82,7 @@ public class Customer extends User {
 		return acct.deposit(amount);
 	}
 	
-	public void transfer(double amount, Account fromAcct, Account toAcct) {
-		fromAcct.withdraw(amount);
-		toAcct.deposit(amount);
-	}
+
 	
 
 	public Customer() {
@@ -104,10 +98,16 @@ public class Customer extends User {
 //		this.myEmployee = myEmployee;
 //	}
 
-	@Override
-	public String toString() {
-		return super.toString();
-	}
+//	@Override
+//	public String toString() {
+//		String myString=this.username+":"+this.password;
+//		Iterator<Integer> iter = (Iterator<Integer>) myAccounts.keySet().iterator();
+//		while(iter.hasNext()) {
+//			myString+=":";
+//			myString+=iter.next().;
+//		}
+//		return myString;
+//	}
 	
 	
 	

@@ -6,7 +6,7 @@ public class Account {
 	private int accountNumber;
 	private String accountType;
 	private double accountBalance;
-	private ArrayList<Customer> users;
+	private ArrayList<Customer> users=new ArrayList<Customer>();
 	
 	public Account() {
 		
