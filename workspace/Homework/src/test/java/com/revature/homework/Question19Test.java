@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 class Question19Test {
 
 	@Test
-	void test() {
+	static void test() {
 		Question19 q = new Question19();
 		q.arrayListStuff();
 	}

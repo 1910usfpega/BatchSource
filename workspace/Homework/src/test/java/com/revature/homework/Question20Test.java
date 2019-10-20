@@ -23,9 +23,13 @@ import org.junit.jupiter.api.Test;
 class Question20Test {
 
 	@Test
+	static
 	void test() {
 		Question20 q = new Question20();
 		q.printPerson();
+	}
+public static void main(String[] args) {
+		test();
 	}
 
 }

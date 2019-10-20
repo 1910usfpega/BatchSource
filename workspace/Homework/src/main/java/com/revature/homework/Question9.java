@@ -42,6 +42,7 @@ public class Question9 {
 		System.out.println("The Prime numbers between 1-100 are : ");
 		for(int i: result)
 			System.out.print(i+" ");
+		System.out.println();
 		return result;
 
 	}

@@ -14,18 +14,17 @@ import org.junit.jupiter.api.Test;
  *****************************************************************************/
 
 class Question10Test {
-
+	Number a = 10;
+	Number b = 50;
+	
 	@Test
-	void test(Number answer ,Number a, Number b) {
+	void testTrue() {
 		Question10 q= new Question10();
 		
-//		 a = 10;
-//		 b = 50;
-		
-		assertEquals(answer, q.getMin(a, b));
-		
-		
+		 
+		assertEquals(a, q.getMin(a, b));
 		
 	}
 
+	
 }

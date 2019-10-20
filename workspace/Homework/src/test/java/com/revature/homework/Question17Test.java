@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 class Question17Test {
 
 	@Test
-	void test() {
+	static void test() {
 		Question17 q = new Question17();
 		q.calculateMoneyThings();
 	}

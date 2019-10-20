@@ -44,15 +44,15 @@ class Question7Test {
 					return arg0.getAge()-arg1.getAge()
 							;}
 				);
-		System.out.println("Results List: ");
-		for(Employee i: resultList) System.out.println(i);
+		//System.out.println("Results List: ");
+		//for(Employee i: resultList) System.out.println(i);
 		
-		System.out.println("Employees Sorted? : ");
+		//System.out.println("Employees Sorted? : ");
 		//sorts based age
 		//Collections.sort(employeeList, new Question7());
 		q.sortName(employeeList);
 		
-		for(Employee i: employeeList) System.out.println(i);
+		//for(Employee i: employeeList) System.out.println(i);
 		
 		Employee[] r = resultList.toArray(new Employee[resultList.size()]);
 		

@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 class Question18Test {
 
 	@Test
-	void test() {
+	static void test() {
 		System.out.println("Do the thing!\n");
 		
 		Question18.main(null);

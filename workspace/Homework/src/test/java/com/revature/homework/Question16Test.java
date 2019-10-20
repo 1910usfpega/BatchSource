@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 class Question16Test {
 
 	@Test
+	static
 	void test() {
 		
 		Scanner sc = new Scanner(System.in);
@@ -24,6 +25,9 @@ class Question16Test {
 		Question16.main(test);
 		sc.close();
 		
+	}
+public static void main(String[] args) {
+	test();	
 	}
 
 }

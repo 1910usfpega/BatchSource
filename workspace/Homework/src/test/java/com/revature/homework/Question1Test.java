@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 class Question1Test {
 
 	@Test
+	static
 	void testArrayOrder() {
 
 		//create object of type Question1 to actually test the method
@@ -31,6 +32,9 @@ class Question1Test {
 //		System.out.println(Arrays.toString(result));
 		assertArrayEquals(expectedResult, startingPoint);
 
+	}
+public static void main(String[] args) {
+	testArrayOrder();	
 	}
 
 }

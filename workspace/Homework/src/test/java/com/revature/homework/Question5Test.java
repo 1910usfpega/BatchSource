@@ -15,7 +15,11 @@ class Question5Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		String s1 = "running";
+		int index = 3;
+		String r1 = "run";
+		Question5 q = new Question5();
+		assertEquals(r1,q.newString(s1, index));
 	}
 
 }
