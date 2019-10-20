@@ -2,6 +2,9 @@ package com.revature.user;
 
 import java.util.ArrayList;
 
+import com.revature.storage.AccountStorage;
+import com.revature.storage.OpenApplications;
+
 public class Account {
 	private int accountNumber;
 	private String accountType;
@@ -15,15 +18,22 @@ public class Account {
 	public Account(String accountType, Customer ... user) {
 		super();
 		this.accountNumber=(int)(Math.random()*1000000000);
+		while(AccountStorage.alreadyUsed(this.accountNumber) || OpenApplications.alreadyUsed(this.accountNumber)) {
+			this.accountNumber=(int)(Math.random()*1000000000);
+		}
 		this.accountType = accountType;
 		this.accountBalance = 0;
 		for (Customer x:user) {
 			this.users.add(x);
 		}
 	}
+	
 	public Account(String accountType, ArrayList<Customer> users) {
 		super();
 		this.accountNumber=(int)(Math.random()*1000000000);
+		while(AccountStorage.alreadyUsed(this.accountNumber) || OpenApplications.alreadyUsed(this.accountNumber)) {
+			this.accountNumber=(int)(Math.random()*1000000000);
+		}
 		this.accountType = accountType;
 		this.accountBalance = 0;
 		this.users=users;

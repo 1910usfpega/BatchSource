@@ -10,13 +10,21 @@ public class NewCustomerLoop {
 	public static void newCustomerLoop(Scanner sc) {
 		boolean uniqueName = false;
 		while (uniqueName == false) {
-			System.out.println("What would you like your username to be? (Enter \"back\" to go back)");
-			String r1 = sc.nextLine();
+			String r1;
+			do{
+				System.out.println("(Enter \"back\" to go back)");
+				System.out.println("What would you like your username to be? (; and : not allowed)");
+				r1 = sc.nextLine();
+			}while(r1.contains(";")||r1.contains(":"));
 			if (r1.toLowerCase().equals("back")) {
 				return;
 			} else if (LoginInfo.alreadyUsed(r1) == false) {
-				System.out.println("What would you like your password to be?");
-				String r2 = sc.nextLine();
+				String r2;
+				do{
+					System.out.println("What would you like your password to be? (; and : not allowed)");
+					r2 = sc.nextLine();
+				}while(r2.contains(";")||r2.contains(":"));
+				
 				LoginInfo.newUser(r1, r2);
 				Customer newUser = new Customer(r1, r2);
 				CustomerStorage.add(newUser);
@@ -27,6 +35,5 @@ public class NewCustomerLoop {
 				System.out.println("Sorry, that username has been taken.");
 			}
 		}
-
 	}
 }

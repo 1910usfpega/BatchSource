@@ -13,6 +13,8 @@ public class MainScreen {
 	public static void main(String[] args) {
 		EmployeeStorage.add(new Employee("GregSmith","1234"));
 		EmployeeLoginInfo.newEmployee("GregSmith", "1234");
+		EmployeeStorage.add(new Employee("DerronMarshall","2552"));
+		EmployeeLoginInfo.newEmployee("DerronMarshall", "2552");
 		EmployeeStorage.add(new Employee("SamuelFulton","4321"));
 		EmployeeLoginInfo.newEmployee("SamuelFulton", "4321");
 		EmployeeStorage.add(new Employee("Bob","111"));
@@ -49,7 +51,7 @@ public class MainScreen {
 				AdminLoop.adminLoop(sc);
 				break;
 			case "5":
-				WriteToMyFile.writeCustomers();
+				WriteToFile.writeCustomers();
 				input = "EXIT";
 				break;
 			default:
@@ -57,6 +59,5 @@ public class MainScreen {
 			}
 		}
 		sc.close();
-		//write to file
 	}
 }

@@ -41,7 +41,7 @@ public class CustomerLoop {
 		for(Account y:accounts) {
 			count++;
 			System.out.println("Account #"+count+":");
-			System.out.println("account username: "+y.getAccountNumber());
+			System.out.println("account number: "+y.getAccountNumber());
 			System.out.println("account type: "+y.getAccountType());
 			System.out.println("account balance: "+y.getAccountBalance());
 			
@@ -77,6 +77,7 @@ public class CustomerLoop {
 							if (amount>0) {
 								System.out.println(thisUser.deposit(amount, acct));
 								System.out.println("Deposit successful.");
+								found=true;
 							}else {
 								System.out.println("That is not a valid number");
 							}
@@ -177,6 +178,7 @@ public class CustomerLoop {
 				
 				
 			case "4":
+				// This is the branch to apply for a new account
 				boolean valid=false;
 				ArrayList<Customer> customers=new ArrayList<Customer>();
 				customers.add(thisUser);
@@ -213,6 +215,9 @@ public class CustomerLoop {
 				}
 				Account newAccount=new Account(accountType,customers);
 				OpenApplications.addApplication(newAccount);
+				for(Customer x:customers) {
+					x.addNewApplication(newAccount);
+				}
 				System.out.println("Application submitted. Awaiting approval from an employee.");
 				break;
 				

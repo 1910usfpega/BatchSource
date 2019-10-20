@@ -95,7 +95,7 @@ public class AdminLoop {
 				for (Account y : accounts) {
 					count++;
 					System.out.println("Account #" + count + ":");
-					System.out.println("account username: " + y.getAccountNumber());
+					System.out.println("account number: " + y.getAccountNumber());
 					System.out.println("account type: " + y.getAccountType());
 					System.out.println("account balance: " + y.getAccountBalance());
 				}
@@ -192,6 +192,7 @@ public class AdminLoop {
 
 				
 			case "5":
+				// This is the branch to view all accounts that have been approved
 				System.out.println("All active accounts:");
 				ArrayList<Account> allAccounts = AccountStorage.getAllAccounts();
 				for (Account x : allAccounts) {

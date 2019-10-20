@@ -88,7 +88,7 @@ public class EmployeeLoop {
 				for(Account y:accounts) {
 					count++;
 					System.out.println("Account #"+count+":");
-					System.out.println("account username: "+y.getAccountNumber());
+					System.out.println("account number: "+y.getAccountNumber());
 					System.out.println("account type: "+y.getAccountType());
 					System.out.println("account balance: "+y.getAccountBalance());
 					//System.out.println("---------------------------------");

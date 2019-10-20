@@ -1,2 +1,2 @@
-roman;555:453289770,Checking,1000000.0;
-sam;sss:453289770,Checking,1000000.0;912519484,Checking,0.0;
+greg;g:591631051,Savings,0.0;OPEN,675589631,Checking,0.0;OPEN,298858685,Checking,0.0;
+sam;s:455133191,Savings,17638.0;591631051,Savings,0.0;OPEN,591830768,Checking,0.0;OPEN,298858685,Checking,0.0;

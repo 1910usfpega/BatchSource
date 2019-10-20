@@ -20,24 +20,22 @@ public class Employee extends User {
 		AccountStorage.addAccount(acct);
 		for(Customer x : acct.getUsers()) {
 			x.addNewAccount(acct);
+			x.removeApplication(acct);
 		}
 	}
 	
 	public void denyAccount(Account acct) {
 		OpenApplications.removeApplication(acct);
+		for(Customer x : acct.getUsers()) {
+			x.removeApplication(acct);
+		}
 	}
 	
 	public void viewCust(Customer cust) {
-		System.out.println("Username: "+cust.getUsername()); //move the sysout methods to the main screen??
+		System.out.println("Username: "+cust.getUsername());
 		System.out.println("Number of accounts: "+cust.getMyAccounts().size());
 
 	}
-//	public int[] getMyCustomers() {
-//		return myCustomers;
-//	}
-//	public void setMyCustomers(int[] myCustomers) {
-//		this.myCustomers = myCustomers;
-//	}
 
 	
 	

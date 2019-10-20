@@ -5,12 +5,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
-//import com.revature.user.User;
 
 public class Customer extends User {
 	//private ArrayList<Account> myAccounts;
 	private HashMap<Integer, Account> myAccounts= new HashMap<Integer, Account>();
-	//private Employee myEmployee;
+	private HashMap<Integer, Account> myApplications= new HashMap<Integer, Account>();
 	
 	
 	public Customer(String username, String password) {
@@ -20,6 +19,14 @@ public class Customer extends User {
 	
 	public Account getThisAccount(int acct) {
 		return myAccounts.get(acct);
+	}
+
+	public Account getThisApplication(int acct) {
+		return myApplications.get(acct);
+	}
+	
+	public void addNewApplication(Account acct) {
+		this.myApplications.put(acct.getAccountNumber(),acct);
 	}
 
 	public void addNewAccount(Account acct) {
@@ -42,11 +49,14 @@ public class Customer extends User {
 	public void removeAccount(int acct) {
 		this.myAccounts.remove(acct);
 	}
+	public void removeApplication(Account acct) {
+		this.myApplications.remove(acct.getAccountNumber());
+	}
 	
+	public void removeApplications(int acct) {
+		this.myApplications.remove(acct);
+	}
 	
-//	public void removeAccount(int acct) {
-//		this.myAccounts.remove();
-//	}
 	
 	public Set<Integer> getAccountNumbers(){
 		return myAccounts.keySet();
@@ -61,16 +71,23 @@ public class Customer extends User {
 	}
 
 
+	public Collection<Account> getOnlyApplications() {
+		return myApplications.values();
+	}
 
+	public HashMap<Integer, Account> getMyApplications() {
+		return myApplications;
+	}
+
+
+	public void setMyApplications(HashMap<Integer, Account> myApplications) {
+		this.myApplications = myApplications;
+	}
 
 
 	public void setMyAccounts(HashMap<Integer, Account> myAccounts) {
 		this.myAccounts = myAccounts;
 	}
-
-
-
-
 
 	public double withdraw(double amount, Account acct) {
 		return acct.withdraw(amount);
@@ -80,35 +97,7 @@ public class Customer extends User {
 		return acct.deposit(amount);
 	}
 	
-
-	
-
 	public Customer() {
 		
 	}
-//	public Employee getMyEmployee() {
-//		return myEmployee;
-//	}
-//
-//
-//
-//	public void setMyEmployee(Employee myEmployee) {
-//		this.myEmployee = myEmployee;
-//	}
-
-//	@Override
-//	public String toString() {
-//		String myString=this.username+":"+this.password;
-//		Iterator<Integer> iter = (Iterator<Integer>) myAccounts.keySet().iterator();
-//		while(iter.hasNext()) {
-//			myString+=":";
-//			myString+=iter.next().;
-//		}
-//		return myString;
-//	}
-	
-	
-	
-	
-
 }
