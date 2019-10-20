@@ -29,6 +29,20 @@ public class Account {
 		this.users=users;
 	}
 	
+	public Account(int accountNumber,String accountType,double accountBalance, Customer ... user) {
+		super();
+		this.accountNumber=accountNumber;
+		this.accountType = accountType;
+		this.accountBalance = accountBalance;
+		for (Customer x:user) {
+			this.users.add(x);
+		}
+	}
+	
+	public void addUser(Customer user) {
+		this.users.add(user);
+	}
+	
 	
 	
 	public ArrayList<Customer> getUsers() {

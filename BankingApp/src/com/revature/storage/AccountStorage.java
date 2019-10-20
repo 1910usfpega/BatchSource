@@ -16,9 +16,6 @@ public class AccountStorage {
 		AccountStorage.allAccounts.remove(acct);
 	}
 	
-	public static Account getThisAccount(int acct) {
-		return allAccounts.get(acct);
-	}
 	
 	
 	public static ArrayList<Account> getAllAccounts() {
@@ -37,7 +34,26 @@ public class AccountStorage {
 		AccountStorage.allAccounts = allAccounts;
 	}
 	
+	public static boolean alreadyUsed(int acctNum) {
+		boolean found=false;
+		for(Account x:allAccounts) {
+			if (x.getAccountNumber()==acctNum) {
+				found=true;
+			}
+		}
+		return found;
+	}
 	
+	public static Account getThisAccount(int acctNum) {
+		for(Account x:allAccounts) {
+			if(x.getAccountNumber()==acctNum) {
+				return x;
+			}
+		}
+		return null;
+	}
+	
+	 
 	
 
 }

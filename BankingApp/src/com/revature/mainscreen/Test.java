@@ -1,6 +1,7 @@
 package com.revature.mainscreen;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -19,20 +20,22 @@ public class Test {
 	
 	
 	public static void main(String[] args) {
-		Customer testdude = new Customer("sam","bam");
-		Account acct = new Account("Savings",testdude);
-		HashMap<Integer,Account> myacct = new HashMap<Integer,Account>();
-		//ArrayList<Customer> myacct=new ArrayList<Customer>();
-		testdude.setMyAccounts(myacct);
-//		String temp;
-		//String myString=this.username+":"+this.password;
-		Iterator<Integer> iter = (Iterator<Integer>) testdude.getMyAccounts().keySet().iterator();
-		while(iter.hasNext()) {
-			//myString+=":";
-			System.out.println(iter.next());
-		}
-		//sysout myString;
-		
+//		Customer testdude = new Customer("sam","bam");
+//		Account acct = new Account("Savings",testdude);
+//		HashMap<Integer,Account> myacct = new HashMap<Integer,Account>();
+//
+//		testdude.setMyAccounts(myacct);
+//
+//		Collection<Account> hisaccts= testdude.getOnlyAccounts();
+//		for(Account x:hisaccts) {
+//			Sy
+//		}
+//		while(iter.hasNext()) {
+//			//myString+=":";
+//			System.out.println(iter.next().intValue());
+//		}
+//		//sysout myString;{
+//		
 
 	}
 	

@@ -22,7 +22,7 @@ public class MainScreen {
 		
 		
 		
-		// read from file
+		ReadFromFile.readCustomers();
 
 		Scanner sc = new Scanner(System.in);
 		while (input != "EXIT") {
@@ -49,7 +49,7 @@ public class MainScreen {
 				AdminLoop.adminLoop(sc);
 				break;
 			case "5":
-				// write to file
+				WriteToMyFile.writeCustomers();
 				input = "EXIT";
 				break;
 			default:
