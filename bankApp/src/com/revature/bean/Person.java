@@ -1,5 +1,4 @@
 package com.revature.bean;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,7 +7,7 @@ public abstract class Person {
 	String last;
 	String username;
 	static HashMap<String, String> cInfo = new HashMap<>();
-	static HashMap<Customer, bankAccount> pending = new HashMap<>();
+	static ArrayList<Customer> pending = new ArrayList<>();
 	static HashMap<Customer, bankAccount> pendingJoint = new HashMap<>();
 	static ArrayList <Customer> list =  new ArrayList<>();
 	static ArrayList <bankAccount> bankAccounts =  new ArrayList<>();
@@ -26,7 +25,7 @@ public abstract class Person {
 		else
 			return false;
 	}
-	public ArrayList<bankAccount> getBankAccountsForIDCheck(){
+	public static ArrayList<bankAccount> getBankAccountsForIDCheck(){
 		return bankAccounts;
 	}
 	public static boolean userCheck(String user) { // check username aliabilty
@@ -56,4 +55,3 @@ public abstract class Person {
 		return this.username;
 	}	
 }
-

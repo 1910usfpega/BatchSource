@@ -1,6 +1,5 @@
 package com.revature.bean;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +11,14 @@ public Customer(String name, String last, String username,String password) {
 	this.addBankAccount();
 	list.add(this);
 }
-
 public void addBankAccount() { // adds brand new account
-	bankAccount a = new bankAccount();
+	bankAccount a = new bankAccount(Person.getBankAccountsForIDCheck());
 	bAccount.add(a);
 	bankAccounts.add(a);
 }
 public boolean addBankAccount(bankAccount c) { //adds an existing account
 	if(bankAccounts.contains(c)) {
-	pending.put(this, c);
+	pending.add(this);
 	return true;
 	}
 	return false;
@@ -36,7 +34,6 @@ public void viewAccount() {
 			return account.getBalance();
 		return -1;
 	}
-	
 
 	public boolean transfer(double amount ,bankAccount takeAccount, bankAccount giveAccount) { 
 		if(bAccount.contains(takeAccount)) {
@@ -52,7 +49,7 @@ public void viewAccount() {
 	}
 	
 	public boolean jointAccount(Customer a ,bankAccount c) { //apply for
-		if(cInfo.containsKey(a)) {
+		if(cInfo.containsKey(a.getUsername())) {
 			if(bankAccounts.contains(c)) {
 	 pendingJoint.put(a, c);
 			return true;
@@ -60,9 +57,7 @@ public void viewAccount() {
 		}
 		return false;
 	}
-	
 	public bankAccount [] allAccounts(Customer a) { // returns all account that the user has 
-			
 		bankAccount[] Array = new bankAccount[a.bAccount.size()];
 		if(!a.bAccount.isEmpty()) {
 			int i = 0;
@@ -72,7 +67,5 @@ public void viewAccount() {
 			}
 		}
 		return Array;
-		
 	}
-	
 }

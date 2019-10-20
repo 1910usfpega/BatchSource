@@ -14,7 +14,4 @@ public class Employee extends Person{
 		for(bankAccount x: b)
 			System.out.print(x.getAccountNumber());
 		}
-	
-	
 }
-

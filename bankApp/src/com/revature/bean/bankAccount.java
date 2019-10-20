@@ -1,7 +1,6 @@
 package com.revature.bean;
 import java.util.ArrayList;
 
-
 public class bankAccount {
 	double amount;
 	final int ACCOUNTNUMBER;
@@ -20,9 +19,7 @@ public class bankAccount {
 			}}
 			opened= false;
 			go = false;
-		
 			}
-			
 		}
 		this.ACCOUNTNUMBER = temp;
 	}
