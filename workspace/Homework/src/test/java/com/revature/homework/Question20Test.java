@@ -24,7 +24,8 @@ class Question20Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		Question20 q = new Question20();
+		q.printPerson();
 	}
 
 }

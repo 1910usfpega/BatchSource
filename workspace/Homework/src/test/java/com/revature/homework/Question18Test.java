@@ -26,7 +26,9 @@ class Question18Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		System.out.println("Do the thing!\n");
+		
+		Question18.main(null);
 	}
 
 }

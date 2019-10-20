@@ -19,7 +19,8 @@ class Question19Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		Question19 q = new Question19();
+		q.arrayListStuff();
 	}
 
 }

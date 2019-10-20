@@ -7,7 +7,7 @@ public class Employee {
 	private String company;
 	private int age;
 	
-	
+	public static float question10a = 2342534;
 	
 	
 	

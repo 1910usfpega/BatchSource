@@ -1,6 +1,6 @@
 package com.revature.homework;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,14 @@ class Question16Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Give me a command!");
+		String[] test = sc.nextLine().split("");
+		//Question16 q = new Question16();
+		Question16.main(test);
+		sc.close();
+		
 	}
 
 }

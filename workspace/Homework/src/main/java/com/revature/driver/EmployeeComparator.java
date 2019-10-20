@@ -6,6 +6,7 @@ import com.revature.bean.Employee;
 
 public class EmployeeComparator implements Comparator{
 
+	public static float question10b = 12342;
 	
 
 //	@Override

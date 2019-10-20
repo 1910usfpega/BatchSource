@@ -15,7 +15,13 @@ class Question12Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		Question12 q=new Question12();
+		
+		int[] r = new int[100];
+		for (int i =0;i <100; i++)
+			r[i]=i+1;
+		
+		assertArrayEquals(r, q.countingFun());
 	}
 
 }

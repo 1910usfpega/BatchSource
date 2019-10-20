@@ -1,6 +1,7 @@
 package com.revature.homework;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /******************************************************************************
  * Create an ArrayList which stores numbers from 1 to 100 and prints out all the
@@ -14,23 +15,34 @@ public class Question9 {
 
 	ArrayList<Integer> a = new ArrayList<Integer>();
 
-	public void countingPrimes() {
-		
-		for (int i = 1; i < 100; i++) {
-			int isPrime=0;
+	public int[] countingPrimes() {
+		List<Integer> r = new ArrayList<Integer>();
+
+		for (int i = 0; i < 100; i++) {
+			boolean isNotPrime = false;
 			a.add(i + 1);
-			for (int j = 1; j < i ; j++) {
-			
+			if (i >1) {
+				for (int j = 2; j <= i / 2; j++) {
+
 //					if(i==2)
 //						System.out.println(i+ ": is a Prime Number.");
 					if (i % j == 0) {
-						isPrime++;
+						isNotPrime = true;
+						break;
+					}
+				}
+				if (!isNotPrime) {
+					r.add(i);
 				}
 			}
-			if(isPrime==2) {
-			System.out.println(i*2+ ": is a Prime Number.");
-			}
 		}
+		int[] result = new int[r.size()];
+		for(int i =0;i<r.size();i++)
+			result[i]= r.get(i);
+		System.out.println("The Prime numbers between 1-100 are : ");
+		for(int i: result)
+			System.out.print(i+" ");
+		return result;
 
 	}
 

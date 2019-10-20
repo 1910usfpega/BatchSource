@@ -18,7 +18,12 @@ class Question14Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		Question14 q=new Question14();
+		
+		q.doTheThing(3);
+		q.doTheThing(2);
+		q.doTheThing(1);
+		q.doTheThing(5);
 	}
 
 }

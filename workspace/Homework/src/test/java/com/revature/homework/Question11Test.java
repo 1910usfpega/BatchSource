@@ -16,7 +16,9 @@ class Question11Test {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		float[] answer = {2342534,12342};
+		Question11 q = new Question11();
+		assertArrayEquals(answer,q.getFloat());
 	}
 
 }
