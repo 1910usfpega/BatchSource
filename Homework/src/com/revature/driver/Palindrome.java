@@ -1,7 +1,7 @@
 package com.revature.driver;
 
 public class Palindrome {
-	static boolean isPalindrome(String str) 
+	public static boolean isPalindrome(String str) 
     { 
   
         // Pointers pointing to the beginning 
