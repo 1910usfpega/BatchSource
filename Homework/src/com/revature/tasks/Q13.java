@@ -1,6 +1,6 @@
 package com.revature.tasks;
 
-import com.revature.driver.DisplayTriangle;
+import utils.DisplayTriangle;
 
 public class Q13 {
 	// Display the triangle on the console as follows using any type of loop.  

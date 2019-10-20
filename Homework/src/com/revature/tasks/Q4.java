@@ -1,6 +1,6 @@
 package com.revature.tasks;
 
-import com.revature.driver.Factorial;
+import utils.Factorial;
 
 public class Q4 {
 	// Write a program to compute N factorial.

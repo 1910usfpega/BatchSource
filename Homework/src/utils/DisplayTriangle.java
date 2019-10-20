@@ -1,4 +1,4 @@
-package com.revature.driver;
+package utils;
 
 public class DisplayTriangle {
 	public static void display(int lines) {

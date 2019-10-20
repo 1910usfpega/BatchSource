@@ -1,6 +1,6 @@
 package com.revature.tasks;
 
-import com.revature.driver.PrintFib;
+import utils.PrintFib;
 
 public class Q2 {
 	

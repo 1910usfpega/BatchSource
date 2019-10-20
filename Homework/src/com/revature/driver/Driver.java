@@ -7,7 +7,12 @@ import com.revature.tasks.Q12;
 import com.revature.tasks.Q13;
 import com.revature.tasks.Q14;
 import com.revature.tasks.Q15;
+import com.revature.tasks.Q16;
+import com.revature.tasks.Q17;
+import com.revature.tasks.Q18;
+import com.revature.tasks.Q19;
 import com.revature.tasks.Q2;
+import com.revature.tasks.Q20;
 import com.revature.tasks.Q3;
 import com.revature.tasks.Q4;
 import com.revature.tasks.Q5;
@@ -37,6 +42,14 @@ public class Driver {
 		Q13.driver();
 		Q14.driver();
 		Q15.driver();
+		Q16.driver();
+		Q17.driver();
+		Q18.driver();
+		Q19.driver();
+		Q20.driver();
+		
+		System.out.println();
+		System.out.println("Thanks for watching!");
 		
 
 	}

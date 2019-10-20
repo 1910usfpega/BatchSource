@@ -1,4 +1,4 @@
-package com.revature.driver;
+package utils;
 
 public class Factorial {
 	public static Integer factorial(Integer input) {

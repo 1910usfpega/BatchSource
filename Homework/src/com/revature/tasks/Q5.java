@@ -1,6 +1,6 @@
 package com.revature.tasks;
 
-import com.revature.driver.SubStringFun;
+import utils.SubStringFun;
 
 public class Q5 {
 	/*

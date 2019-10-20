@@ -3,7 +3,7 @@ package com.revature.tasks;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.driver.PrimeNumber;
+import utils.PrimeNumber;
 
 public class Q9 {
 	// Create an ArrayList which stores numbers from 1 to 100 and 

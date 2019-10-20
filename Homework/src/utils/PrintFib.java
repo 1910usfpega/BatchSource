@@ -1,4 +1,4 @@
-package com.revature.driver;
+package utils;
 
 public class PrintFib {
 	private static int previous = 0;

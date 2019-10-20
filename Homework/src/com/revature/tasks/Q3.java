@@ -1,6 +1,6 @@
 package com.revature.tasks;
 
-import com.revature.driver.ReversString;
+import utils.ReversString;
 
 public class Q3 {
 	// Reverse a string without using a temporary variable.  

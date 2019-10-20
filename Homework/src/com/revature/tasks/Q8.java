@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.revature.driver.Palindrome;
+import utils.Palindrome;
 
 public class Q8 {
 	// Write a program that stores the following strings in an ArrayList 

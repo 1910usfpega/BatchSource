@@ -1,4 +1,4 @@
-package com.revature.driver;
+package utils;
 
 import java.util.Arrays;
 
@@ -10,8 +10,7 @@ public class BubbleSort {
 				if (a[j] > a[j+1]) {
 					temp = a[j];
 					a[j] = a[j+1];
-					a[j+1] = temp; 
-//					System.out.println(Arrays.toString(a));
+					a[j+1] = temp;
 				}
 			}
 		}
