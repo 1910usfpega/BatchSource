@@ -13,6 +13,7 @@ class StringTest {
 		
 		// assertEquals
 		assertEquals(expectedLength, actualLenght);
+//		assertEquals(expectedLength, actualLenght);
 //		fail("Not yet implemented");
 	}
 

@@ -39,13 +39,24 @@ public class Q19 {
 		System.out.println("Even numbers sum: " + evenSum);
 		System.out.println("Odd numbers sum: " + oddSum);
 		
-		for (int i = 0; i<arrayToTen.size(); i++ ) {
-			if (PrimeNumber.checkPrime(arrayToTen.get(i))) {
-				arrayToTen.remove(i);
-			}
-		}
+//		for (int i = 0; i<arrayToTen.size(); i++ ) {
+//			if (PrimeNumber.checkPrime(arrayToTen.get(i))) {
+//				arrayToTen.remove(i);
+//			}
+//		}
+		
+		arrayToTen = deletePrimeNumbers(arrayToTen);
 		
 		System.out.println("ArrayList without prime numbers: " + arrayToTen.toString());
 
+	}
+	
+	public static List<Integer> deletePrimeNumbers(List<Integer> list) {
+		for (int i = 0; i<list.size(); i++ ) {
+			if (PrimeNumber.checkPrime(list.get(i))) {
+				list.remove(i);
+			}
+		}
+		return list;
 	}
 }

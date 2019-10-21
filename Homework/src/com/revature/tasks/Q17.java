@@ -32,8 +32,13 @@ public class Q17 {
 		System.out.println("Your Time is: " + interest_variables.get(2).toString());
 
 		System.out.println();
-		System.out.println("Your interest is: $" + (interest_variables.get(0).doubleValue()
-				* (interest_variables.get(1).doubleValue() / 100) * interest_variables.get(2).doubleValue()));
+		System.out.println("Your interest is: $" + calcInterest(interest_variables));
+	}
+	
+	public static double calcInterest(List<Number> interest_variables) {
+		double interest = interest_variables.get(0).doubleValue() * (interest_variables.get(1).doubleValue() / 100) * interest_variables.get(2).doubleValue();
+		
+		return interest;
 	}
 
 	private static List<Number> getTime(List<Number> interest_variables) {

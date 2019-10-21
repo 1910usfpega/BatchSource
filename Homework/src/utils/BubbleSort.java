@@ -3,7 +3,7 @@ package utils;
 import java.util.Arrays;
 
 public class BubbleSort {
-	public static void sortMe(int[] a) {
+	public static int[] sortMe(int[] a) {
 		int temp=0;
 		for (int i=0; i<a.length; i++) {
 			for (int j=0; j<a.length-1; j++) {
@@ -14,6 +14,7 @@ public class BubbleSort {
 				}
 			}
 		}
-		System.out.println("Result:" + Arrays.toString(a));
+		return a;
+//		
 	}
 }

@@ -12,6 +12,8 @@ public class Q1 {
 		System.out.println("==> Q1");
 		int [] myArray = {1,0,5,6,3,2,3,7,9,8,4};
 		System.out.println("Input: " + Arrays.toString(myArray));
-		BubbleSort.sortMe(myArray);
+		
+		int [] newArray = BubbleSort.sortMe(myArray);
+		System.out.println("Result:" + Arrays.toString(newArray));
 	}
 }

@@ -35,7 +35,7 @@ public class Q16 {
 			System.out.println("Number of characters: "+args[0].length());
 		} else {
 			System.out.println("You entered many arguments. I will concantinate it before");
-			String full_ss = "";
+			String full_ss = concatArgs(args);
 			
 			for (String ss:args) {
 				full_ss = full_ss.concat(ss + " ");
@@ -43,5 +43,14 @@ public class Q16 {
 			System.out.println("Number of characters: "+(full_ss.length()-1));
 		}
 		
+	}
+	
+	public static String concatArgs (String [] args) {
+		String full_ss = "";
+		
+		for (String ss:args) {
+			full_ss = full_ss.concat(ss + " ");
+		}
+		return full_ss;
 	}
 }

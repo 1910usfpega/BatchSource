@@ -1,5 +1,7 @@
 package com.revature.tasks;
 
+import java.util.List;
+
 import utils.PrintFib;
 
 public class Q2 {
@@ -9,6 +11,14 @@ public class Q2 {
 	public static void driver() {
 		System.out.println();
 		System.out.println("==> Q2");
-		PrintFib.start(25);
+		int iteractions = 5;
+		System.out.print("First "+ iteractions + " Fibonacci numbers: ");
+		List<Integer> result = PrintFib.start(iteractions);
+		
+		for (int i=0; i<result.size(); i++) {
+			System.out.print(result.get(i).toString() + " ");
+		}
+		
+		
 	}
 }

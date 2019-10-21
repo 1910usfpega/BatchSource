@@ -9,10 +9,7 @@ public class Q12 {
 		System.out.println();
 		System.out.println("==> Q12");
 		
-		int[] a = new int[100];
-		for (int i = 0; i < 100; ++i) {
-			a[i] = i+1;
-		}
+		int[] a = createArray(100);
 		
 		System.out.print("Numbers printed by enchanced loop: ");
 		for (int iii:a) {
@@ -20,6 +17,14 @@ public class Q12 {
 		}
 		System.out.println();
 
+	}
+	
+	public static int[] createArray(int countOfElemnts) {
+		int[] a = new int[countOfElemnts];
+		for (int i = 0; i < countOfElemnts; ++i) {
+			a[i] = i+1;
+		}
+		return a;
 	}
 
 }

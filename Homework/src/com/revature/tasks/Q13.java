@@ -1,6 +1,6 @@
 package com.revature.tasks;
 
-import utils.DisplayTriangle;
+import utils.Triangle;
 
 public class Q13 {
 	// Display the triangle on the console as follows using any type of loop.  
@@ -9,6 +9,6 @@ public class Q13 {
 	public static void driver() {
 		System.out.println();
 		System.out.println("==> Q13");
-		DisplayTriangle.display(4);
+		System.out.println(Triangle.draw(4));
 	}
 }
