@@ -3,12 +3,12 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintFib {
+public class Fib {
 	private static int previous = 0;
 	private static int current = 1;
 	
 	
-	public static List<Integer> start (int iteractions) {
+	public static List<Integer> createListWithFib (int iteractions) {
 		List<Integer> out_list = new ArrayList<Integer>();
 		for (int i=0; i<iteractions; i++) {
 			if (i == 0) {

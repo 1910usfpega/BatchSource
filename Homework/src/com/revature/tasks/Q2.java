@@ -2,7 +2,7 @@ package com.revature.tasks;
 
 import java.util.List;
 
-import utils.PrintFib;
+import utils.Fib;
 
 public class Q2 {
 	
@@ -13,8 +13,11 @@ public class Q2 {
 		System.out.println("==> Q2");
 		int iteractions = 5;
 		System.out.print("First "+ iteractions + " Fibonacci numbers: ");
-		List<Integer> result = PrintFib.start(iteractions);
 		
+		// Create list with N Fibonacci numbers
+		List<Integer> result = Fib.createListWithFib(iteractions);
+		
+		// Print values from the list
 		for (int i=0; i<result.size(); i++) {
 			System.out.print(result.get(i).toString() + " ");
 		}

@@ -25,7 +25,7 @@ import utils.BubbleSort;
 import utils.Factorial;
 import utils.Palindrome;
 import utils.PrimeNumber;
-import utils.PrintFib;
+import utils.Fib;
 import utils.ReversString;
 import utils.SubStringFun;
 import utils.Triangle;
@@ -46,7 +46,7 @@ class HomeworkTest {
 	
 	@Test
 	void test_q2() {
-		List<Integer> actualResult = PrintFib.start(5);
+		List<Integer> actualResult = Fib.createListWithFib(5);
 		List<Integer> expectedResult = new ArrayList<Integer>(Arrays.asList(0, 1, 1, 2, 3));
 		assertEquals(actualResult, expectedResult);
 	}

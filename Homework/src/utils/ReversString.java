@@ -8,7 +8,9 @@ public class ReversString {
 		System.out.println("Reversed:         " + ReversString.reversingString(stringToRevers));	
 		
 	}
-	// Function to reverse string and return revesed string 
+	
+	
+	// Func reversing string without new Variable and return reversed string 
 	public static String reversingString(String str) {
 		for (int i = 0; i < str.length(); i++) {
 			str = str.substring(1, str.length() - i)
