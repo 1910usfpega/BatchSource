@@ -1,9 +1,12 @@
 package com.revature.assignment;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class Q8 {
-	public static void main(String[] args) {
+	
+	public static void palsOnPals() {
+		int a = 0;
 		ArrayList<String> pal = new ArrayList<>();
 		pal.add("Karan");
 		pal.add("madam");
@@ -16,21 +19,43 @@ public class Q8 {
 		pal.add ("billy");
 		pal.add("did");
 	System.out.println(pal);	
-	ArrayList<String> store = new ArrayList<>();
-	
-	for (int i = 0; i < pal.size(); ++i) {
-	    String longestPalindrome = null;
-	    String candidate = "";
-	    for (int j = i; j < pal.size(); ++j) {
-	        candidate += pal.get(j);
-	        if (candidate != null)
-	            longestPalindrome = candidate;
-	    }
+	ArrayList<String> storeEm = new ArrayList<>();
+	ListIterator<String> iterator = pal.listIterator();
 
-	    if (longestPalindrome != null)
-	       store.add(longestPalindrome);
+	while(iterator.hasNext()) {
+
+		char[] cArray = iterator.next().toCharArray();
+
+		a = 0;
+
+		while((cArray.length - a - 1) > 0) {
+
+
+			if(!(cArray[a] == cArray[cArray.length - a - 1])) { 
+
+				break;
+
+			} 
+			
+			if((cArray.length - a - 1) == a) {
+
+				String string = String.copyValueOf(cArray);
+
+				storeEm.add(string);
+
+			}
+
+			a++;
+
+		}
+
 	}
-	System.out.println(store);
+
+	
+	System.out.println("\nStore all them pals");
+
+	System.out.print(storeEm);
+	
 	
 }
 	}

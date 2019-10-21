@@ -30,7 +30,7 @@ public class Driver {
 	ComparatorMain.Comparator();
 	System.out.println("====================");
 	System.out.println("Question 8");
-	//need to do
+	Q8.palsOnPals();
 	System.out.println("====================");
 	System.out.println("Question 9");
 	Q9.primeTime();
