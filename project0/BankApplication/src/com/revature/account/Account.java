@@ -1,6 +1,10 @@
 package com.revature.account;
 
-public class Account {
+
+import java.io.Serializable;
+
+public class Account implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	String first;
 	String last;	
@@ -9,18 +13,40 @@ public class Account {
 	double balance;
 	double withdraw;
 	double deposit;
+	int firstDeposit;
 	int accountNumber;
+	int jointAccountNumber; 
 	
 	public Account(){
 	}
 	
-	public Account(String first, String last, int ssn, String employee){
+	public Account(String first, String last, int ssn, String employee, int firstDeposit){
 		this.first = first;
 		this.last = last;
 		this.ssn = ssn;
 		this.employee = employee;
+		this.balance = firstDeposit;
 	}
 	
+	public Account(String first, String last, int ssn, int firstDeposit){
+		this.first = first;
+		this.last = last;
+		this.ssn = ssn;
+		this.firstDeposit = firstDeposit;
+	}
+	
+	
+	public int getJointAccountNumber() {
+		return jointAccountNumber;
+	}
+
+	public void setJointAccountNumber(int jointAccountNumber) {
+		this.jointAccountNumber = jointAccountNumber;
+	}
+
+	public int getFirstDeposit() {
+		return firstDeposit;
+	}
 	
 
 	@Override
@@ -93,7 +119,12 @@ public class Account {
 	}
 
 	public void setWithdraw(double withdraw) {
-		this.withdraw = withdraw;
+		if(withdraw < balance) {
+			balance -= withdraw;
+			System.out.println("New Balance = "+ balance);
+		}else {
+			System.out.println("Too little funds. Balance = "+balance);
+		}
 	}
 
 	public double getDeposit() {
@@ -101,7 +132,8 @@ public class Account {
 	}
 
 	public void setDeposit(double deposit) {
-		this.deposit = deposit;
+		this.balance += deposit;
+		System.out.println("New balance = "+ balance);
 	}
 
 	public int getAccountNumber() {
@@ -111,11 +143,15 @@ public class Account {
 	public void setAccountNumber(int accountNumber) {
 		this.accountNumber = accountNumber;
 	}
-
+	
+	
+	
+	
 	@Override
 	public String toString() {
-		return "Account [first=" + first + ", last=" + last + ", employee=" + employee + ", ssn=" + ssn + "]" ;
+		return "Account [first=" + first + ", last=" + last + ", employee=" + employee + ", ssn=" + ssn + ", balance=" + balance+ " ]" ;
 	}
+	
 	
 	
 
