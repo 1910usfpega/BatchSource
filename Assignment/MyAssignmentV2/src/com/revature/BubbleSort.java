@@ -9,7 +9,7 @@ public class BubbleSort {
 
 	
 	
-	public  void bubbleSort() {
+	public  int[] bubbleSort() {
 		int arr[] = { 1,0,5,6,3,2,3,7,9,8,4 };
 		
 //		System.out.println("Array Before Bubble Sort");
@@ -33,7 +33,8 @@ public class BubbleSort {
 	  	for(int i = 0; i < arr.length; i++) {
 	  		System.out.print(arr[i] + " ");
 	  	}
-	     System.out.println(" "); 
+	     System.out.println(" ");
+		return arr; 
 	   }
 	
 	

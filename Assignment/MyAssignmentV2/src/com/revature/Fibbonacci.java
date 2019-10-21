@@ -9,8 +9,8 @@ public class Fibbonacci {
 	
 
     						
-    public void fibbonacci(){
-    	
+    public int[] fibbonacci(){
+    	int arr[] = {};
     	System.out.print("Fibonacci Series of "+maxNumber+" numbers:");
     	while(i <= maxNumber)
 
@@ -24,6 +24,10 @@ public class Fibbonacci {
     	
     	
     	System.out.println(" ");
+    	for(int i = 0; i < arr.length; i++) {
+	  		System.out.print(arr[i] + " ");
+	  	}
+		return arr ;
     }
 
 

@@ -2,7 +2,7 @@ package com.revature;
 
 public class IntegerIsEven {
 	
-	public static void testEvenNumber(int number) {
+	public static int testEvenNumber(int number) {
 		
 		System.out.println("Number :"+ number + " is ");
 		 int result= (number/2)*2;
@@ -10,5 +10,6 @@ public class IntegerIsEven {
 			 System.out.println("even number");
 		 }
 		 System.out.println(" ");
+		return result;
 	}
 }

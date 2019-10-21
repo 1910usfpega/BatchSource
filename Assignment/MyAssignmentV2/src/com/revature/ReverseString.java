@@ -2,7 +2,7 @@ package com.revature;
 
 public class ReverseString {
 
-	public void reverseString() {
+	public String reverseString() {
 		String str = "hello";
 		System.out.println("Original String: "+ "\n"+str);
 		String interChange = "";  
@@ -13,5 +13,6 @@ public class ReverseString {
         }
         System.out.println("Reversed string is:");
         System.out.println(interChange);
+		return interChange;
 	}
 }
