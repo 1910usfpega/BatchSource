@@ -37,16 +37,16 @@ public class IO {
 
 	}
 	
-	public String readInputStreamContents() {
-		File file = new File(inFile);
-		StringBuilder s = new StringBuilder();
-		InputStream is = new FileInputStream(file);
-		int b = 0;
-		while((b=is.read()) != -1) {
-			char c = (char)b;
-			s.append(c);
-		}
-		return s.toString();
-	}
+//	public String readInputStreamContents() {
+//		File file = new File(inFile);
+//		StringBuilder s = new StringBuilder();
+//		InputStream is = new FileInputStream(file);
+//		int b = 0;
+//		while((b=is.read()) != -1) {
+//			char c = (char)b;
+//			s.append(c);
+//		}
+//		return s.toString();
+//	}
 
 }
