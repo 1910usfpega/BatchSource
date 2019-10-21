@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.revature.bean.Account;
 
-public class AccountsIO {
+public class AccountsIO {//This is a class that keeps the list of all accounts 
 	private static AccountsIO instance;
 	
 	public static synchronized AccountsIO getInstance() {
