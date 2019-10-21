@@ -1,4 +1,4 @@
-package com.revature.Q20;
+package com.revature.q20;
 
 public class Person {
 	private String fName;

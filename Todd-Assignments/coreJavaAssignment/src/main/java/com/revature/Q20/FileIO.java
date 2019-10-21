@@ -1,4 +1,4 @@
-package com.revature.Q20;
+package com.revature.q20;
 
 import java.io.File;
 import java.io.FileNotFoundException;
