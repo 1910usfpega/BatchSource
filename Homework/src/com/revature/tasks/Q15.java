@@ -12,7 +12,7 @@ public class Q15 {
 	 * in a test class having a main method that calls the implementing class.
 	 */
 	
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q15");
 		MathImplementation mm = new MathImplementation();

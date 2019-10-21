@@ -11,7 +11,7 @@ public class Q8 {
 	// Write a program that stores the following strings in an ArrayList 
 	// and saves all the palindromes in another ArrayList.
 	
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q8");
 		

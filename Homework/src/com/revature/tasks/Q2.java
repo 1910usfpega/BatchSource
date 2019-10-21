@@ -8,7 +8,7 @@ public class Q2 {
 	
 	// Write a program to display the first 25 Fibonacci numbers beginning at 0
 	
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q2");
 		int iteractions = 5;

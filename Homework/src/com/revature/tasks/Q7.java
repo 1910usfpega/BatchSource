@@ -12,7 +12,7 @@ public class Q7 {
 	// Sort two employees based on their  name, department, and age 
 	// using the Comparator interface.
 	
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q7");
 		

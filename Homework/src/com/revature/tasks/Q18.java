@@ -12,7 +12,7 @@ public class Q18 {
 	 * Create an appropriate class having a main method to test the above setup.
 	 */
 	
-	public static void driver() {
+	public static void main(String [] args) {
 
 		System.out.println();
 		System.out.println("==> Q18");

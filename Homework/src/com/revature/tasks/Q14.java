@@ -12,7 +12,7 @@ public class Q14 {
 	 * “I am learning Core Java”
 	 */
 	
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q14");
 		System.out.println("Switch-case demo");

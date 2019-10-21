@@ -5,7 +5,7 @@ import utils.Factorial;
 public class Q4 {
 	// Write a program to compute N factorial.
 	
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q4");
 		Integer n = 5;

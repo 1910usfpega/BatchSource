@@ -4,7 +4,7 @@ public class Q6 {
 	// Write a program to determine if an integer is 
 	// even without using the modulus operator (%)
 	
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q6");
 		int n = 6;

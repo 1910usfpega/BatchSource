@@ -11,7 +11,7 @@ public class Q5 {
 	 * in the String, StringBuilder, or StringBuffer APIs.
 	 */
 	
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q5");
 		String ss_in = "SomeStringString";

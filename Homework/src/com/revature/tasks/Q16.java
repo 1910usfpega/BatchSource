@@ -11,23 +11,27 @@ public class Q16 {
 	
 	public static Scanner sc = new Scanner(System.in);
 	
-	public static void driver() {
-		String contents;
-		System.out.println("To test with command line arguments run command \"java Q16\" with string as a paramter");
-		
-		// pwd: /Users/Iskandar/Documents/Developing/revature/BatchSource/Homework/src
-		// javac com/revature/tasks/Q16.java
-		// java com.revature.tasks.Q16 "Test sting"
-		
-		
-		System.out.println("Or input your string here:");
-		contents = sc.nextLine();
-		System.out.println("You entered: " + contents);
-		System.out.println("Length of this string:" + contents.length());
-		
-	}
+//	public static void driver() {
+//		String contents;
+//		System.out.println("To test with command line arguments run command \"java Q16\" with string as a paramter");
+//		
+//		// pwd: /Users/Iskandar/Documents/Developing/revature/BatchSource/Homework/src
+//		// javac com/revature/tasks/Q16.java
+//		// java com.revature.tasks.Q16 "Test sting"
+//		
+//		
+//		System.out.println("Or input your string here:");
+//		contents = sc.nextLine();
+//		System.out.println("You entered: " + contents);
+//		System.out.println("Length of this string:" + contents.length());
+//		
+//	}
 	
 	public static void main(String [] args) {
+		
+		System.out.println();
+		System.out.println("==> Q16");
+		
 		if (args.length==0) {
 			System.out.println("String shouldn't be empty");
 

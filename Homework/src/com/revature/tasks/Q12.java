@@ -5,7 +5,7 @@ public class Q12 {
 	// Print out all the even numbers from the array. 
 	// Use the enhanced FOR loop for printing out the numbers.
 
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q12");
 		

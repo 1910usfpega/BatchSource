@@ -3,7 +3,7 @@ package com.revature.tasks;
 public class Q10 {
 	//Find the minimum of two numbers using ternary operators
 	
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q10");
 		

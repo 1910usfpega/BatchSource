@@ -15,7 +15,7 @@ public class Q17 {
 
 	public static Scanner sc = new Scanner(System.in);
 
-	public static void driver() {
+	public static void main(String [] args) {
 
 		System.out.println();
 		System.out.println("==> Q17");

@@ -9,7 +9,7 @@ public class Q9 {
 	// Create an ArrayList which stores numbers from 1 to 100 and 
 	// prints out all the prime numbers to the console.
 	
-	public static void driver() {
+	public static void main(String [] args) {
 		System.out.println();
 		System.out.println("==> Q9");
 		List<Integer> listOfIntegers = new ArrayList<Integer>();
