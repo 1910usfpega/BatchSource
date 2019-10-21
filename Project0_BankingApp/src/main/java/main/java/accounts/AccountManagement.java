@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.zip.ZipEntry;
 
 import javax.management.loading.PrivateClassLoader;
 
@@ -36,6 +37,7 @@ public class AccountManagement {
 		
 	}
 	//Read accounts to file
+	@SuppressWarnings("unchecked")
 	public static void readAccountFile() {
 		try(ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(accountFile));){
 			accountList = (ArrayList<Account>) objectIn.readObject();
@@ -54,6 +56,7 @@ public class AccountManagement {
 	public static void CreateSinglePersonCheckingAccount(String username) {
 		System.out.println("Please enter initial deposit ammount.");
 		Scanner scanner = new Scanner(System.in);
+		readAccountFile();
 		accountList.add(new Account("Checking", username, scanner.nextDouble()));
 		System.out.println("Account created.");
 		writeAccountFile();
@@ -61,6 +64,7 @@ public class AccountManagement {
 	}
 	//Create a Joint checking account between two people
 	public static void CreateJointCheckingAccount(String usernameA, String usernameB) {
+		readAccountFile();
 		System.out.println("Please enter initial deposit ammount.");
 		Scanner scanner = new Scanner(System.in);
 		accountList.add(new Account("Checking", usernameA+"/"+usernameB, scanner.nextDouble()));
@@ -69,6 +73,7 @@ public class AccountManagement {
 	}
 	//Create a one person savings account.
 	public static void CreateSinglePersonSavingsAccount(String username) {
+		readAccountFile();
 		System.out.println("Please enter initial deposit ammount.");
 		Scanner scanner = new Scanner(System.in);
 		accountList.add(new Account("Savings", username, scanner.nextDouble()));
@@ -87,33 +92,108 @@ public class AccountManagement {
 	}
 	//Transfer funds between accounts
 	public static void transferFunds(String Username) {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Select account to transfer from!");
 		readAccountFile();
+		int numOfaccounts = 0;
+		 Double holdTempBalance;//Holds account ballance of current ammount.
 		for (int i = 0; i < accountList.size(); i++) {
 			if (accountList.get(i).getUsername().contains(Username)) {
-				System.out.println(i+": "+accountList.get(i).getAccountType());
+				numOfaccounts = i;
+				System.out.println(i+": "+accountList.get(i).getAccountType()+": "+accountList.get(i).getAccountBalance());
 			}
-			Scanner scanner = new Scanner(System.in);
-			 Double holdTempBalance;//Holds account ballance of current ammount.
-			if (i == scanner.nextInt()) {
-				System.out.println("Which account would you like to transfer to?");
-				for (int j = 0; j < accountList.size(); j++) {
-					System.out.println(j+": "+accountList.get(i).getAccountType());
-					if(j==scanner.nextInt()) {
-						System.out.println("How much would like to transfer?");
-						holdTempBalance = accountList.get(j).getAccountBalance();
-						Scanner sc = new Scanner(System.in);
-						if (sc.nextDouble() > accountList.get(i).getAccountBalance()) {
-							accountList.get(j).setAccountBalance(accountList.get(j).getAccountBalance()+sc.nextDouble());//adds funds to account
-							accountList.get(i).setAccountBalance(accountList.get(i).getAccountBalance()-sc.nextDouble());//Remove funds from account.
-							System.out.println("Funds added successfuly from your "+accountList.get(i).getAccountType()+"to your "+accountList.get(j).getAccountType());
-							writeAccountFile();
-							ProgramStart.customerMenu(Username);
-						}
-					}
+		}
+		int fromAcct = scanner.nextInt();
+		if (fromAcct <= numOfaccounts) {
+			
+			System.out.println("Which account would you like to transfer to?");
+			for (int j = 0; j < accountList.size(); j++) {
+				
+				System.out.println(j+": "+accountList.get(j).getAccountType());
+			}
+			int toAcct = scanner.nextInt();
+			double dollarAmt = 0.0;
+			if (toAcct <= numOfaccounts) {
+				System.out.println("How much would like to transfer?");
+				dollarAmt = scanner.nextDouble();
+			}
+			for (int j = 0; j < accountList.size(); j++) {
+				if (dollarAmt <= accountList.get(j).getAccountBalance()) {
+					accountList.get(toAcct).setAccountBalance(accountList.get(toAcct).getAccountBalance()+dollarAmt);//adds funds to account
+					accountList.get(fromAcct).setAccountBalance(accountList.get(fromAcct).getAccountBalance()-dollarAmt);//Remove funds from account.
+					System.out.println("Funds successfuly transfered!");
+					writeAccountFile();
+					ProgramStart.customerMenu(Username);
+
 				}
 			}
 		}
+	}
+	//Add funds to account
+	public static void deposit(String username) {
+		Scanner scanner = new Scanner(System.in);
+		readAccountFile();
+		int numOfAccounts = 0;
+		double dollarAmt = 0.0;
+		System.out.println("Select account to deposit to.");
+		ArrayList<Double> listAcct = new ArrayList<>();//Stores customers account temperately for functionality.
+		for (int i = 0; i < accountList.size(); i++) {
+			if (accountList.get(i).getUsername().contains(username)) {
+				listAcct.add(accountList.get(i).getAccountBalance());
+				System.out.println(i+": "+accountList.get(i).getAccountType()+": "+accountList.get(i).getAccountBalance());
+			}
+		}
+		
+			int selectedAcct = scanner.nextInt();
+			System.out.println("how much would you like to deposit?");
+			dollarAmt = scanner.nextDouble();
+			for (int j = 0; j < accountList.size(); j++) {
+				for (int i = 0; i < listAcct.size(); i++) {
+						if(accountList.get(j).getAccountBalance() == listAcct.get(selectedAcct)) {
+							if(accountList.get(j).getAccountBalance() >= dollarAmt) {
+								accountList.get(selectedAcct).setAccountBalance(accountList.get(selectedAcct).getAccountBalance()+dollarAmt);
+								System.out.println("Deposit successful!");
+							}else {
+								System.out.println("Something went wrong please try again.");
+								deposit(username);
+							}
+						}
+					}
+			}
+			writeAccountFile();
+	}
+	//Make a withdraw
+	public static void withdraw(String username) {
+		Scanner scanner = new Scanner(System.in);
+		readAccountFile();
+		int numOfAccounts = 0;
+		double dollarAmt = 0.0;
+		System.out.println("Select account to deposit to.");
+		ArrayList<Double> listAcct = new ArrayList<>();//Stores customers account temperately for functionality.
+		for (int i = 0; i < accountList.size(); i++) {
+			if (accountList.get(i).getUsername().contains(username)) {
+				listAcct.add(accountList.get(i).getAccountBalance());
+				System.out.println(i+": "+accountList.get(i).getAccountType()+": "+accountList.get(i).getAccountBalance());
+			}
+		}
+		
+			int selectedAcct = scanner.nextInt();
+			System.out.println("how much would you like to withdraw?");
+			dollarAmt = scanner.nextDouble();
+			for (int j = 0; j < accountList.size(); j++) {
+				for (int i = 0; i < listAcct.size(); i++) {
+						if(accountList.get(j).getAccountBalance() == listAcct.get(selectedAcct)) {
+							if(accountList.get(j).getAccountBalance() >= dollarAmt) {
+								accountList.get(selectedAcct).setAccountBalance(accountList.get(selectedAcct).getAccountBalance()-dollarAmt);
+								System.out.println("Withdraw successful!");
+							}else {
+								System.out.println("Something went wrong please try again.");
+								deposit(username);
+							}
+						}
+					}
+			}
+			writeAccountFile();
 	}
 	public static void getAccountsByName(String username) {
 		readAccountFile();

@@ -3,20 +3,13 @@ package main.java.accounts;
 import java.io.Serializable;
 
 public class Account implements Serializable {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -6222345555992770377L;
 	private String accountType;
 	private String username;
 	private Double accountBalance;
 	//Constructor
 	public Account(String accountType, String username, Double accountBalance) {
-		super();
 		this.accountType = accountType;
-		this.username = username;
-		this.accountBalance = accountBalance;
-	}
-	//Custom Constructor
-	public Account(String username, Double accountBalance) {
-		super();
 		this.username = username;
 		this.accountBalance = accountBalance;
 	}
