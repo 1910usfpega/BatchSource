@@ -12,7 +12,7 @@ public class Q10 {
 		num1 = scanner.nextInt();
 		System.out.println("Enter Second Number:");
 		num2 = scanner.nextInt();
-		scanner.close();
+		
 		
 		temp = num1< num2 ? num1:num2;
 		result = temp;

@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 public class Q17 {
 
-	public static int main(int i) {
+	public static void main(String[] args) {
+		interest(100);
+	}
+	
+	public static String interest(int i) {
 		float p, r, t, sinterest;
 		
 		Scanner scan = new Scanner(System.in);
@@ -18,5 +22,6 @@ public class Q17 {
 		
 		sinterest = (r * t * p) / 100;
 		System.out.print("The Simple Interest is : " + sinterest);
-	return (int) sinterest;}
+	
+		return "sinterest";}
 }

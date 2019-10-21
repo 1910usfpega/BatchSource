@@ -128,14 +128,14 @@ class QTests {
 	}
 	@Test
 	void test17() {
-		int si = Q17.main(100);
-		assertEquals(si, "Simple Interest");
+		String si = Q17.interest(100);
+		assertEquals(si, "sinterest");
 		
 	}
 	@Test
 	void test18(){
-		boolean su = Q18.isStringUpperCase(null);
-		assertEquals(su,true);
+		boolean su = Q18.isStringUpperCase("s");
+		assertEquals(su,false);
 		
 	}
 	@Test
