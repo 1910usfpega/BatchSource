@@ -3,6 +3,9 @@ package com.revature.questions;
 import java.util.Scanner;
 
 public class Q10 {
+	/*
+	 * gets 2 numbers from the user and compares them with ternary operators
+	 */
 
 	public static void main(Scanner sc) {
 		//Scanner sc = new Scanner(System.in);

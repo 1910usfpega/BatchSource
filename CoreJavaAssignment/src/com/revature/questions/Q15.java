@@ -2,6 +2,9 @@ package com.revature.questions;
 
 import com.revature.differentpackage.Implementor;
 public class Q15 {
+	/*
+	 * This gets functions from the implementor class in the folder "differentpackage"
+	 */
 
 	public static double main(String[] args) {
 		double a=7.0;

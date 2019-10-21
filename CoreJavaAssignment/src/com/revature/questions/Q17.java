@@ -3,6 +3,9 @@ package com.revature.questions;
 import java.util.Scanner;
 
 public class Q17 {
+	/*
+	 * This takes 3 numbers from the user and uses them to calculate interest
+	 */
 
 	public static void main(Scanner sc) {
 		//Scanner sc = new Scanner(System.in);
@@ -17,6 +20,10 @@ public class Q17 {
 	}
 	
 	public static double calculate(String a,String b,String c) {
+		/*
+		 * In order for this to work with JUnits the calculation has been separated from 
+		 * the method which asks for user input
+		 */
 		double interest=Double.parseDouble(a)*Double.parseDouble(b)*Double.parseDouble(c);
 		return interest;
 	}

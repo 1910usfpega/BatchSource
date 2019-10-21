@@ -3,6 +3,10 @@ package com.revature.questions;
 import com.revature.differentpackage.Abstr;
 
 public class Q18 extends Abstr{
+	/*
+	 * This class extends an abstract class, defines the functions and prints from 3 different methods
+	 *  
+	 */
 
 	public static void main(String[] args) {
 		Q18 q= new Q18();
@@ -18,11 +22,18 @@ public class Q18 extends Abstr{
 	}
 	
 	public Q18() {
+		/*
+		 * This is only here because the abstract methods could not be static, so
+		 * in order to run the methods contained here it must be constructed
+		 */
 		
 	}
 
 	@Override
 	public boolean hasUpper(String s) {
+		/*
+		 * Returns true if there is an upper case letter.
+		 */
 		if(s.toLowerCase().equals(s)){
 			return false;
 		}else {

@@ -3,6 +3,11 @@ package com.revature.questions;
 import java.util.ArrayList;
 
 public class Q12 {
+	/*
+	 * Makes an arraylist of numbers 1 to 100
+	 * then makes another array with only the evens.
+	 * 
+	 */
 
 	public static ArrayList<Integer> main(String[] args) {
 		int [] allNumbers= new int[100];

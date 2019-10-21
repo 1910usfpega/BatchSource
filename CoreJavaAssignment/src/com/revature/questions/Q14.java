@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Q14 {
+	/*
+	 * This uses a switch statement to go down different branches depending on user input
+	 */
 
 	static Scanner sc = new Scanner(System.in);
 	
