@@ -30,7 +30,7 @@ public class Palindrome {
 		    reverseString = reverseString + reverseWord + " ";
 		}
 		 
-		 
+		   
 		System.out.println(reverseString);
 	 }
 }
