@@ -20,12 +20,13 @@ public class Account implements Serializable {
 	public Account(){
 	}
 	
-	public Account(String first, String last, int ssn, String employee, int firstDeposit){
+	public Account(String first, String last, int ssn, String employee, double balance, int accountNumber){
 		this.first = first;
 		this.last = last;
 		this.ssn = ssn;
 		this.employee = employee;
-		this.balance = firstDeposit;
+		this.balance = balance;
+		this.accountNumber = accountNumber;
 	}
 	
 	public Account(String first, String last, int ssn, int firstDeposit){
@@ -149,7 +150,8 @@ public class Account implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Account [first=" + first + ", last=" + last + ", employee=" + employee + ", ssn=" + ssn + ", balance=" + balance+ " ]" ;
+		return "Account [first=" + first + ", last=" + last + ", employee=" + employee + ", ssn=" + ssn + ", balance="
+				+ balance +  ", accountNumber=" + accountNumber +  "]";
 	}
 	
 	
