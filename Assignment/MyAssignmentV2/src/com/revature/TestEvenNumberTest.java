@@ -9,8 +9,8 @@ class TestEvenNumberTest {
 	@Test
 	void test() {
 		IntegerIsEven inteT = new IntegerIsEven();
-		 int output = inteT.testEvenNumber(4);
-		 assertEquals(4,output);
+		 boolean output = inteT.testEvenNumber(4);
+		 assertEquals(true,output);
 	}
 
 }
