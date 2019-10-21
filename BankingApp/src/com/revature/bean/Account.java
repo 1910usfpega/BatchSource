@@ -1,19 +1,24 @@
 package com.revature.bean;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Scanner;
 
-public class Account implements Serializable{
+import com.revature.io.AccountsIO;
+
+public class Account implements Serializable {
 	/**
 	 * 
 	 */
+	public static Scanner sc = new Scanner(System.in);
+
 	private static final long serialVersionUID = -6442998822103581490L;
-	
+
 	private String accountName;
 	private Double balance;
 	private String ownerUsername;
 	private String accountStatus;
 	private Integer accountNumber;
-	
 
 	public Account(String accountName, Double balance, String ownerUsername, String accountStatus,
 			Integer accountNumber) {
@@ -71,6 +76,56 @@ public class Account implements Serializable{
 				+ ", accountStatus=" + accountStatus + ", accountNumber=" + accountNumber + "]";
 	}
 
-	
-	
+	public static Account getAccount(Integer accountNum, List<Account> accountList) {
+		for (int i = 0; i < accountList.size(); i++) {
+			if (accountList.get(i).accountNumber.equals(accountNum)) {
+				return accountList.get(i);
+			}
+		}
+		return null;
+
+	}
+
+	public static void workWithAccountMenuLoop (Account currentAccount, Customer currentCustomer) {
+		Boolean flag1 = true;
+		while (flag1) {
+			System.out.format("\n\n==================\n"
+					+ "Account: %s\n"
+					+ "Account number: %s\n"
+					+ "Balance: %s\n", 
+					currentAccount.getAccountName(), 
+					currentAccount.getAccountNumber(),
+					currentAccount.getAccountStatus(),
+					currentAccount.getBalance()
+					);
+			
+			
+			if (currentAccount.getAccountStatus().equals("active")) {
+				// TODO Work with active account
+				System.out.println("What whoud you like to do?");
+				System.out.println("1. ");
+			} else if (currentAccount.getAccountStatus().equals("pending")) {
+				System.out.println("What whoud you like to do?");
+				System.out.println("1. Cancel Application");
+				System.out.println("2. Back to My Account");
+				System.out.println("Input action number");
+				
+				if (sc.hasNextInt()) {
+					Integer contentsFromUser = sc.nextInt();
+					if (contentsFromUser.equals(1) ) {
+						currentAccount.setAccountStatus("canceled");
+						AccountsIO.getInstance().writeToFile();
+					} else if (contentsFromUser.equals(2)) {
+						flag1 = false;
+					}
+				}
+			} else if (currentAccount.getAccountStatus().equals("canceled")) {
+				System.out.println("\nThis account was canceled. You cant work with it. Call us!");
+			}
+			
+			
+			flag1 = false;
+		}
+	}
+
 }

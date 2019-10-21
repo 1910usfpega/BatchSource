@@ -99,19 +99,22 @@ public class Customer extends User implements  Serializable {
     @Override
     public void showMenu() {
     	
-    	List<String> commands = new ArrayList<String>();
-    	commands.add("Apply for a new account");
     	
     	
-    	System.out.println("WELCOME, " + this.getFirstName() + " " + this.getLastName() + "\n");
+    	Boolean flag = true;
+    	while (flag) {
+    		List<String> commands = new ArrayList<String>();
+        	commands.add("Apply for a new account");
+    		
+    	System.out.println("\n\nWELCOME, " + this.getFirstName() + " " + this.getLastName() + "\n");
     	System.out.println("Your accounts:");
     	Boolean no_accounts = true;
     	
     	
-    	AccountsIO.readFile();
-    	for (int i = 0; i<AccountsIO.accountList.size(); i++) {
+    	AccountsIO accIO = AccountsIO.getInstance();
+    	for (int i = 0; i<accIO.accountList.size(); i++) {
     		//Account account:AccountsIO.accountList
-    		Account account = AccountsIO.accountList.get(i);
+    		Account account = accIO.accountList.get(i);
     		if (account.getOwnerUsername().equals(this.getUsername())) {
     			commands.add("Work with account: " + account.getAccountNumber().toString());
     			System.out.print(" - " + account.getAccountName() + " (Account number: "+account.getAccountNumber() + ") – " );
@@ -134,9 +137,9 @@ public class Customer extends User implements  Serializable {
     	}
     	
     	commands.add("Logout");
-    	Boolean flag = true;
     	
-    	while (flag) {
+    	
+    	
     		System.out.println("============\n\nWhat you want to do?");
         	for (int i=0; i<commands.size(); i++) {
         		System.out.println((i+1) + ". "+ commands.get(i));
@@ -156,8 +159,8 @@ public class Customer extends User implements  Serializable {
         			} else if (commands.get(contentsFromUser-1).substring(0,"Work with account:".length()).equals("Work with account:")) {
         				String accountNumString =  commands.get(contentsFromUser-1).substring("Work with account: ".length());
         				Integer accountNum = Integer.parseInt(accountNumString);
-        				System.out.println("Account work WITH: "+ accountNum);
-        				
+        				Account currentAccount = Account.getAccount(accountNum, AccountsIO.accountList);
+        				Account.workWithAccountMenuLoop(currentAccount, this);
         			} else if (commands.get(contentsFromUser-1).equals("Apply for a new account")) {
         				System.out.println("Apply for NEW account: ");
         			}

@@ -9,6 +9,7 @@ import com.revature.bean.Login;
 //import com.revature.bean.LoginException;
 import com.revature.bean.Logon;
 import com.revature.bean.User;
+import com.revature.io.AccountsIO;
 import com.revature.io.IOWithCollections;
 import com.revature.loops.MainLoop;
 
@@ -17,7 +18,8 @@ public class Driver {
 	public static void main(String[] args) {
 		IOWithCollections.readUserFile();
 		
-		
+		AccountsIO aIO = new AccountsIO();
+		aIO.readFile();
 		MainLoop.main();
 		
 		

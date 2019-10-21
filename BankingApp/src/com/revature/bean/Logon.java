@@ -74,7 +74,7 @@ public class Logon {
 			if(flag) {
 				
 				newUser = new  Customer( firstname,  lastname, null ,  true,  login, pass);
-
+				
 			}else {
 				System.out.println("This " + login + "already exists, please type another username");
 			}

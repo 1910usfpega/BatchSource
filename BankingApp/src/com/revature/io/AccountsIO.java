@@ -11,6 +11,19 @@ import java.util.List;
 import com.revature.bean.Account;
 
 public class AccountsIO {
+	private static AccountsIO instance;
+	
+	public static synchronized AccountsIO getInstance() {
+		if (instance == null) {
+			instance = new AccountsIO();
+		}
+		return instance;
+	}
+	
+	public AccountsIO () {
+		
+	}
+
 	private static final String ioFile="accounts.txt";
 	public static List<Account> accountList = new ArrayList<Account>();
 	
