@@ -1,0 +1,4 @@
+Mickey:Mouse:35:Arizona
+daffy:Mouse:35:Virginia 
+chuchu:Mouse:35:California
+chichi:Mouse:35:Texas
