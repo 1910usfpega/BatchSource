@@ -21,9 +21,9 @@ public class Q20 {
 		String[] eachLine=str.toString().split("\n");
 		for(String x:eachLine) {
 			String[] each=x.split(":");
-			System.out.println("Name: "+each[0]);
-			System.out.println("Age: "+each[1]);
-			System.out.println("State: "+each[2]);
+			System.out.println("Name: "+each[0]+" "+each[1]);
+			System.out.println("Age: "+each[2]);
+			System.out.println("State: "+each[3]);
 			System.out.println();
 		}
 		return str.toString();

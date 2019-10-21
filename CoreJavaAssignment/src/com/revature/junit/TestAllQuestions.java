@@ -9,14 +9,19 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.revature.employee.Employee;
+import com.revature.questions.Q1;
+import com.revature.questions.Q4;
 
 class TestAllQuestions {
+	/*
+	 *  This runs at least one JUnit test for each question
+	 */
 
 	@Test           //Q1
 	void test1() {
 		int[] bubble= {5,4,8,35,22,6};
-		int[] result = com.revature.questions.Q1.bubbleSort(bubble);
-		assertEquals(Arrays.toString(new int[]{4,5,6,8,22,35}),Arrays.toString(result));
+		int[] result = Q1.bubbleSort(bubble);
+		assertEquals("[4, 5, 6, 8, 22, 35]"  ,  Arrays.toString(result));
 	}
 	@Test           //Q2
 	void test2() {
@@ -41,7 +46,7 @@ class TestAllQuestions {
 	
 	@Test           //Q4
 	void test5() {
-		int result = com.revature.questions.Q4.computeFactorial(2);
+		int result = Q4.computeFactorial(2);
 		assertEquals(2,result);
 	}
 	

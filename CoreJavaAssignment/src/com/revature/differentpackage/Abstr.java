@@ -1,6 +1,9 @@
 package com.revature.differentpackage;
 
 public abstract class Abstr {
+	/*
+	 * This is the abstract class for question Q18
+	 */
 	
 	public  abstract boolean hasUpper(String s);
 	

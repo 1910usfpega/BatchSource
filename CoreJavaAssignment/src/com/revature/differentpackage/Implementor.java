@@ -1,6 +1,10 @@
 package com.revature.differentpackage;
 
 public class Implementor implements MathInterface {
+	/*
+	 * Question 15 requires an implementor for an interface.
+	 * This is that implementor
+	 */
 
 
 	@Override

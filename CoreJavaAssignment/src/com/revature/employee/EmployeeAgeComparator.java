@@ -4,10 +4,10 @@ import java.util.Comparator;
 
 public class EmployeeAgeComparator implements Comparator<Employee> {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	/*
+	 * This is a simple comparator for Employee objects for question 6
+	 * which sorts by age.
+	 */ 
 
 	@Override
 	public int compare(Employee o1, Employee o2) {
