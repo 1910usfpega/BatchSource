@@ -8,21 +8,29 @@ public class Palindrome {
 	
 
 
+	public static  void arrayLists(){
 		
-	public static void arrayLists() {	
-		String[] thisIsAStringArray = new String[] {"karan", "madam", "tom", "civic", "radar", "jimmy", "kayak", "john",  "refer", "billy", "did"};
 
-		String name = thisIsAStringArray[j];
-		String reverse = "";
-		int arrayLength = thisIsAStringArray.length;
-		for ( int j = 0; j<=arrayLength; j++) {	
-			for (int i=name.length();i>0;--i) {	
-				
-				reverse=reverse+(name.charAt(i-1));	
-		     }		
-
+		
+        String[] words = new String[]{"karan", "madam", "tom", "civic", "radar", "jimmy", "kayak", "john",  "refer", "billy", "did"};
+        
+		String reverseString = "";
+		 
+		for (int i = 0; i < words.length; i++) 
+		{
+		    String word = words[i];
+		     
+		    String reverseWord = "";
+		     
+		    for (int j = word.length()-1; j >= 0; j--) 
+		    {
+		        reverseWord = reverseWord + word.charAt(j);
+		    }
+		     
+		    reverseString = reverseString + reverseWord + " ";
 		}
-		System.out.println(reverse); 
+		 
+		 
+		System.out.println(reverseString);
 	 }
-	
 }
