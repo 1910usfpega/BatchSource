@@ -3,4 +3,12 @@
   <groupId>com.revature</groupId>
   <artifactId>CoreJava</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+<!-- https://mvnrepository.com/artifact/org.junit/junit5-engine -->
+<dependency>
+    <groupId>org.junit</groupId>
+    <artifactId>junit5-engine</artifactId>
+    <version>5.0.0-ALPHA</version>
+</dependency>
+</dependencies>
 </project>
