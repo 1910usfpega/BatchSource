@@ -1,5 +1,6 @@
 package com.revature.bean;
 import java.util.ArrayList;
+import com.revature.bean.*;
 
 public class bankAccount {
 	double amount;
@@ -22,6 +23,13 @@ public class bankAccount {
 			}
 		}
 		this.ACCOUNTNUMBER = temp;
+	}
+	public bankAccount() { // testing purposes only
+		this.amount = 0;
+		int temp =0;
+		boolean opened = true;
+		boolean go = true;
+		this.ACCOUNTNUMBER = 1;
 	}
 	public boolean check(int a, ArrayList<bankAccount> aa) {
 		boolean taken = true;

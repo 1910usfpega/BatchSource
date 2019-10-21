@@ -2,10 +2,8 @@ package com.revature.driver;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import com.revature.bean.*;
 
-import com.revature.bean.Customer;
-import com.revature.bean.Person;
-import com.revature.bean.bankAccount;
 
 public class Driver {
 	static Scanner myObj = new Scanner(System.in);
@@ -14,7 +12,7 @@ public class Driver {
 public static void main(String [] args) {
 	Customer a = new Customer("Ryan","Crnich","Ryancrnich","123");
 	a.addBankAccount();
-	bankAccount[] aa =a.allAccounts(a);
+	bankAccount[] aa =a.allAccounts();
 	for(bankAccount aaa:aa) {
 		System.out.print(aaa.getAccountNumber() +" ");
 		aaa.deposit(200);
@@ -59,7 +57,7 @@ public static void main(String [] args) {
 	    			System.out.println("2: new bank account");
 	    			user.addBankAccount();
 	    			System.out.println("3: get existing account");
-	    			user.addBankAccount(c);
+	    			user.addBankAccount();
 	    			System.out.println("4: get balance");
 	    			System.out.println("5: new jointAccount");
 	    			System.out.println("6: transfer");
@@ -84,9 +82,7 @@ public static void main(String [] args) {
 	   
 	    	}
 	    	
-	    	
-	    	
-	    	
+	    		
 	    	else {
 	    		System.out.print("enter vaild option");
 	    	}

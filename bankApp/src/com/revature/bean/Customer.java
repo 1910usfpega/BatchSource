@@ -24,7 +24,7 @@ public boolean addBankAccount(bankAccount c) { //adds an existing account
 	return false;
 }
 public void viewAccount() {
-	bankAccount [] b =this.allAccounts(this);
+	bankAccount [] b =this.allAccounts();
 	for(bankAccount x: b)
 		System.out.print(x.getAccountNumber());
 	}
@@ -47,8 +47,6 @@ public void viewAccount() {
 		}	
 		return false;
 	}
-	
-	
 	public boolean jointAccount(Customer a ,bankAccount c) { //apply for
 		if(cInfo.containsKey(a.getUsername())) {
 			if(bankAccounts.contains(c)) {
@@ -58,9 +56,9 @@ public void viewAccount() {
 		}
 		return false;
 	}
-	public bankAccount [] allAccounts(Customer a) { // returns all account that the user has 
-		bankAccount[] Array = new bankAccount[a.bAccount.size()];
-		if(!a.bAccount.isEmpty()) {
+	public bankAccount [] allAccounts() { // returns all account that the user has 
+		bankAccount[] Array = new bankAccount[this.bAccount.size()];
+		if(!this.bAccount.isEmpty()) {
 			int i = 0;
 			for(bankAccount x :this.bAccount ) {
 				Array[i] = x;
