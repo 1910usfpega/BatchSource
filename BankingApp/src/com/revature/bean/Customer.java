@@ -133,7 +133,7 @@ public class Customer extends User implements  Serializable {
     		// Sysout all account in the following format:
     	}
     	
-    	
+    	commands.add("Logout");
     	Boolean flag = true;
     	
     	while (flag) {
@@ -146,10 +146,23 @@ public class Customer extends User implements  Serializable {
         	if (sc.hasNextInt()) {
         		Integer contentsFromUser = sc.nextInt();
         		if ( (contentsFromUser) <= commands.size() ) {
-        			System.out.format( "You chose the action %s: %s", 
-        					contentsFromUser, 
-        					commands.get(contentsFromUser-1));
-        			flag=false;
+//        			System.out.format( "You chose the action %s: %s", 
+//        					contentsFromUser, 
+//        					commands.get(contentsFromUser-1));
+//        			
+        			if (commands.get(contentsFromUser-1).equals("Logout")) {
+        				flag=false;
+        				
+        			} else if (commands.get(contentsFromUser-1).substring(0,"Work with account:".length()).equals("Work with account:")) {
+        				String accountNumString =  commands.get(contentsFromUser-1).substring("Work with account: ".length());
+        				Integer accountNum = Integer.parseInt(accountNumString);
+        				System.out.println("Account work WITH: "+ accountNum);
+        				
+        			} else if (commands.get(contentsFromUser-1).equals("Apply for a new account")) {
+        				System.out.println("Apply for NEW account: ");
+        			}
+        			
+        			
         		}
         	}
     		
