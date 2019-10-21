@@ -4,18 +4,22 @@ package com.revature.palindrome;
 
  */
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Palindrome {
 	
 
 
 	public static  void arrayLists(){
 		
-
-		
         String[] words = new String[]{"karan", "madam", "tom", "civic", "radar", "jimmy", "kayak", "john",  "refer", "billy", "did"};
+        System.out.println("Original List: " + Arrays.toString(words));
         
-		String reverseString = "";
-		 
+		String reverseWords = "";
+		String[] reverseWordList;
+		ArrayList<String> palindromList = new ArrayList<String>();
+        
 		for (int i = 0; i < words.length; i++) 
 		{
 		    String word = words[i];
@@ -25,12 +29,29 @@ public class Palindrome {
 		    for (int j = word.length()-1; j >= 0; j--) 
 		    {
 		        reverseWord = reverseWord + word.charAt(j);
+		       
 		    }
 		     
-		    reverseString = reverseString + reverseWord + " ";
+		    reverseWords = reverseWords + reverseWord + ",";
 		}
-		 
-		 
-		System.out.println(reverseString);
+		reverseWordList = reverseWords.split(",");
+		System.out.println("Reversed Original List: " + Arrays.toString(reverseWordList));
+		
+		for (int i = 0; i < words.length; i++)
+		{
+			if(words[i].equals(reverseWordList[i])) {
+				
+				palindromList.add(words[i]);
+				//System.out.println(palindromList.toString());
+			}
+		}
+		
+		
+		
+		System.out.println("The palindromes list is: " + palindromList.toString());
+		
+		
+		
+		
 	 }
 }
