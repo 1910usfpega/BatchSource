@@ -3,6 +3,8 @@ package com.revature.bean;
 import java.util.List;
 import java.util.Scanner;
 
+import com.revature.loops.MainLoop;
+
 public class Login {
 
 	
@@ -30,8 +32,10 @@ public class Login {
 	public static User loginProcess(List<User> usersList) {
 		
 		User currentUser = null;
+		Integer numberofattempts = 0; 
 		
-		while (currentUser==null)	{
+		
+		while (currentUser==null && numberofattempts < 3)	{//we will have 3 attempts to login, otherwise we go back to the MainLoop.main();
 			String login =  Login.getLoginFromSC();
 			String pass = Login.getPasswordFromSC();
 					
@@ -43,8 +47,8 @@ public class Login {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 				System.out.println("No such Unsername or password. Try again!");
-			} 
-			
+			} 		
+			numberofattempts++;
 			
 		}
 		return currentUser;

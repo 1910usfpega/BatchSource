@@ -37,10 +37,7 @@ public class MainLoop {
 				IOWithCollections.writeUserFile();
 			}
 			
-			
-			if (!currentUser.equals(null)) {
-				currentUser.showMenu();
-			}
+
 		}
 		
 	}

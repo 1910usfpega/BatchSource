@@ -63,7 +63,7 @@ public class Logon {
 //			String dateOfBirth = (Date) Logon.getLogonDobFromSC();
 			Boolean flag = true;
 			
-			for (User user:usersList) {
+			for (User user: usersList) {//
 				if (user.getUsername().toString().equals(login)) {
 					flag = false;
 					break;
