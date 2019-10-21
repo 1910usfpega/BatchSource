@@ -8,7 +8,7 @@ public class StringCharCount {
 		
 		//Get character count from each string and display total
 		for (String s : args) { count += s.length(); }
-		System.out.println(count + "\n");
+		System.out.println("Character count: " + count + "\n");
 		
 	}
 	

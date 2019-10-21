@@ -16,10 +16,9 @@ import java.util.Arrays;
 
 public class BubbleSort {
 
-	public static void sort() {
+	public static int[] sort(int[] myArray) {
 		System.out.println("Q1");
 		
-		int[] myArray = new int[] {1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4};
 		System.out.println("Array: " + Arrays.toString(myArray));
 		
 		for(int i=0; i<myArray.length; i++) {
@@ -32,5 +31,6 @@ public class BubbleSort {
 			}
 		}
 		System.out.println("Sorted array: " + Arrays.toString(myArray) + "\n");
+		return myArray;
 	}
 }
