@@ -37,9 +37,16 @@ public class bankAccount {
 		return this.amount;
 	}
 	
+	public boolean withdraw(double withdraw) {
+		if(this.getBalance()>= withdraw) {
+		this.amount = this.amount-withdraw;
+		return true;
+		}
+		return false;
+	}
 	public boolean withdraw(double withdraw, bankAccount b) {
 		if(b.getBalance()>= withdraw) {
-		this.amount = this.amount-withdraw;
+		b.amount = b.amount-withdraw;
 		return true;
 		}
 		return false;

@@ -48,6 +48,7 @@ public void viewAccount() {
 		return false;
 	}
 	
+	
 	public boolean jointAccount(Customer a ,bankAccount c) { //apply for
 		if(cInfo.containsKey(a.getUsername())) {
 			if(bankAccounts.contains(c)) {
