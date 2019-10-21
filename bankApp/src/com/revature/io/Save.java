@@ -21,7 +21,7 @@ public class Save {
 	public static final File customerFile = new File("customers.txt");
 	public static final File pendingAccountFile = new File("pendingAccounts.txt");
 
-	public static void save(ArrayList<Customer> cus, ArrayList<Employee> emp, ArrayList<bankAdmin> adm,
+	public static void writeData(ArrayList<Customer> cus, ArrayList<Employee> emp, ArrayList<bankAdmin> adm,
 			ArrayList<PendingAccount> pen) {
 
 		// Write all admins in admin collection to admin.txt
@@ -61,6 +61,6 @@ public class Save {
 			e.printStackTrace();
 		}
 
-	}
+	}//End method writeData
 
-}
+}//End class Save
