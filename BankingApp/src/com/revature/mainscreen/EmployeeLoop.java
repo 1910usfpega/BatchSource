@@ -4,17 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 
-import com.revature.storage.CustomerStorage;
-import com.revature.storage.EmployeeLoginInfo;
-import com.revature.storage.EmployeeStorage;
-import com.revature.storage.OpenApplications;
+import com.revature.storage.Bank;
 import com.revature.user.Account;
 import com.revature.user.Customer;
 import com.revature.user.Employee;
 
 public class EmployeeLoop {
 
-	public static void employeeLoop(Scanner sc) {
+	public static void employeeLoop(Scanner sc, Bank bank) {
 		// Start by entering username and the password
 		String input="";
 		Employee thisEmployee=new Employee();
@@ -27,8 +24,8 @@ public class EmployeeLoop {
 			}
 			System.out.println("Enter your password.");
 			String rp=sc.nextLine();
-			if (EmployeeLoginInfo.checkEmployee(ru, rp)==true) {
-				thisEmployee=EmployeeStorage.getThisEmployee(ru);
+			if (bank.checkEmployee(ru, rp)==true) {
+				thisEmployee=bank.getThisEmployee(ru);
 				loggedIn=true;
 			}else {
 				System.out.println("Invalid username or password");
@@ -45,7 +42,7 @@ public class EmployeeLoop {
 			
 			
 			case "1":
-				Collection<Customer> allCustomers=CustomerStorage.getAllCustomers().values();
+				Collection<Customer> allCustomers=bank.getAllCustomers().values();
 				for (Customer x : allCustomers) {
 					System.out.println("Username: "+x.getUsername());
 					Collection<Account> accounts = x.getOnlyAccounts();
@@ -73,8 +70,8 @@ public class EmployeeLoop {
 					name=sc.nextLine();
 					if(name.toLowerCase().equals("back")){
 						return;
-					}else if(CustomerStorage.getAllCustomers().containsKey(name)) {
-						cust=CustomerStorage.getThisCustomer(name);
+					}else if(bank.getAllCustomers().containsKey(name)) {
+						cust=bank.getThisCustomer(name);
 						found=true;
 					}else {
 						System.out.println("There is no customer with that username. Please try again.");
@@ -99,7 +96,7 @@ public class EmployeeLoop {
 				
 				
 			case "3":
-				ArrayList<Account> allOpenAccounts=OpenApplications.getAllApplications();
+				ArrayList<Account> allOpenAccounts=bank.getAllApplications();
 				for (Account x : allOpenAccounts) {
 					System.out.println("account number: "+x.getAccountNumber());
 					System.out.println("account type: "+x.getAccountType());
@@ -131,7 +128,7 @@ public class EmployeeLoop {
 					if(num.equals("back")){
 						return;
 					}else {
-						ArrayList<Account> allAccounts=OpenApplications.getAllApplications();
+						ArrayList<Account> allAccounts=bank.getAllApplications();
 						boolean exists=false;
 						for(Account x:allAccounts) {
 							if(x.getAccountNumber()==number) {
@@ -167,11 +164,11 @@ public class EmployeeLoop {
 					String input2=sc.nextLine();
 					switch(input2) {
 					case "1":
-						thisEmployee.approveAccount(acct);
+						thisEmployee.approveAccount(bank, acct);
 						done=true;
 						break;
 					case "2":
-						thisEmployee.denyAccount(acct);
+						thisEmployee.denyAccount(bank, acct);
 						done=true;
 						break;
 					case"3":

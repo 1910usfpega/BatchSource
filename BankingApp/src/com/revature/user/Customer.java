@@ -5,8 +5,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
+import com.revature.storage.Bank;
+
 
 public class Customer extends User {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2627095195643602020L;
 	//private ArrayList<Account> myAccounts;
 	private HashMap<Integer, Account> myAccounts= new HashMap<Integer, Account>();
 	private HashMap<Integer, Account> myApplications= new HashMap<Integer, Account>();
@@ -33,12 +39,12 @@ public class Customer extends User {
 		this.myAccounts.put(acct.getAccountNumber(),acct);
 	}
 	
-	public void addNewAccount(String accountType, Customer ... users) {
-		Account newAccount=new Account(accountType, users);
+	public void addNewAccount(Bank bank,String accountType, Customer ... users) {
+		Account newAccount=new Account( bank, accountType, users);
 		this.myAccounts.put(newAccount.getAccountNumber(),newAccount);
 	}
-	public void addNewAccount(String accountType, ArrayList<Customer> users) {
-		Account newAccount=new Account(accountType, users);
+	public void addNewAccount(Bank bank,String accountType, ArrayList<Customer> users) {
+		Account newAccount=new Account(bank, accountType, users);
 		this.myAccounts.put(newAccount.getAccountNumber(),newAccount);
 	}
 	

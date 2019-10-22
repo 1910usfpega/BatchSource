@@ -1,11 +1,18 @@
 package com.revature.user;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5759373799307012942L;
 	protected String username;
 	protected String password;
 	//private int userNumber;
 	
-	public User(){
+	public User() {
 		
 	}
 	

@@ -1,11 +1,15 @@
 package com.revature.user;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.revature.storage.AccountStorage;
-import com.revature.storage.OpenApplications;
+import com.revature.storage.Bank;
 
-public class Account {
+public class Account implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2320503989427815506L;
 	private int accountNumber;
 	private String accountType;
 	private double accountBalance;
@@ -15,10 +19,10 @@ public class Account {
 		
 	}
 	
-	public Account(String accountType, Customer ... user) {
+	public Account(Bank bank,String accountType, Customer ... user) {
 		super();
 		this.accountNumber=(int)(Math.random()*1000000000);
-		while(AccountStorage.alreadyUsed(this.accountNumber) || OpenApplications.alreadyUsed(this.accountNumber)) {
+		while(bank.acctNumAlreadyUsed(this.accountNumber) || bank.openAcctNumAlreadyUsed(this.accountNumber)) {
 			this.accountNumber=(int)(Math.random()*1000000000);
 		}
 		this.accountType = accountType;
@@ -28,10 +32,10 @@ public class Account {
 		}
 	}
 	
-	public Account(String accountType, ArrayList<Customer> users) {
+	public Account(Bank bank,String accountType, ArrayList<Customer> users) {
 		super();
 		this.accountNumber=(int)(Math.random()*1000000000);
-		while(AccountStorage.alreadyUsed(this.accountNumber) || OpenApplications.alreadyUsed(this.accountNumber)) {
+		while(bank.acctNumAlreadyUsed(this.accountNumber) || bank.openAcctNumAlreadyUsed(this.accountNumber)) {
 			this.accountNumber=(int)(Math.random()*1000000000);
 		}
 		this.accountType = accountType;

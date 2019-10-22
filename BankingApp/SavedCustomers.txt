@@ -1,3 +1,5 @@
-greg;g:591631051,Savings,0.0;OPEN,675589631,Checking,0.0;OPEN,298858685,Checking,0.0;
-sam;s:455133191,Savings,17638.0;591631051,Savings,0.0;OPEN,591830768,Checking,0.0;OPEN,298858685,Checking,0.0;
-hacker;s:454133181,Savings,1000000.0;
+hacker;s:
+bobby;s:755133191,Savings,8333192.0;
+roman;5555:597634091,Savings,0.0;
+greg;g:591631051,Savings,140.0;675589631,Checking,0.0;OPEN,298858685,Checking,0.0;
+sam;s:455133191,Savings,17498.0;591631051,Savings,140.0;OPEN,298858685,Checking,0.0;

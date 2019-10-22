@@ -5,15 +5,13 @@ import java.util.Collection;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.revature.storage.OpenApplications;
-import com.revature.storage.CustomerStorage;
-import com.revature.storage.LoginInfo;
+import com.revature.storage.Bank;
 import com.revature.user.Account;
 import com.revature.user.Customer;
 
 public class CustomerLoop {
 
-	public static void customerLoop(Scanner sc) {
+	public static void customerLoop(Scanner sc, Bank bank) {
 		// Start by entering username and the password
 		String input="";
 		Customer thisUser=new Customer();
@@ -26,8 +24,8 @@ public class CustomerLoop {
 			}
 			System.out.println("Enter your password.");
 			String rp=sc.nextLine();
-			if (LoginInfo.checkUser(ru, rp)==true) {
-				thisUser=CustomerStorage.getThisCustomer(ru);
+			if (bank.checkUser(ru, rp)==true) {
+				thisUser=bank.getThisCustomer(ru);
 				loggedIn=true;
 			}else {
 				System.out.println("Sorry, that username is not in our database.");
@@ -206,15 +204,15 @@ public class CustomerLoop {
 					String r5=sc.nextLine();
 					if(r5.isEmpty()) {
 						done=true;
-					}else if(CustomerStorage.getAllCustomers().containsKey(r5)==true) {
-						customers.add(CustomerStorage.getThisCustomer(r5));
+					}else if(bank.getAllCustomers().containsKey(r5)==true) {
+						customers.add(bank.getThisCustomer(r5));
 						System.out.println("Customer added to application");
 					}else {
 						System.out.println("Sorry, could not find that username. Please try again.");
 					}
 				}
-				Account newAccount=new Account(accountType,customers);
-				OpenApplications.addApplication(newAccount);
+				Account newAccount=new Account(bank, accountType,customers);
+				bank.addApplication(newAccount);
 				for(Customer x:customers) {
 					x.addNewApplication(newAccount);
 				}

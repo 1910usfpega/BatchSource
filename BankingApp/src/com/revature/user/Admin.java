@@ -3,22 +3,26 @@ package com.revature.user;
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.revature.storage.AccountStorage;
-import com.revature.storage.CustomerStorage;
+import com.revature.storage.Bank;
 
-public class Admin extends Employee {
+public class Admin extends Employee  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2264073195831418063L;
+
 	public Admin(String username,String password) {
 		super(username,password);
 	}
 	
-	public Map<String, Customer> viewAllCustomers() {
-		return CustomerStorage.getAllCustomers();
+	public Map<String, Customer> viewAllCustomers(Bank bank) {
+		return bank.getAllCustomers();
 		
 	}
 	
-	public ArrayList<Account> viewAllAccounts() {
-		return AccountStorage.getAllAccounts();
+	public ArrayList<Account> viewAllAccounts(Bank bank) {
+		return bank.getAllAccounts();
 	}
 	
 	public double withdraw(Account acct, double amount) {
