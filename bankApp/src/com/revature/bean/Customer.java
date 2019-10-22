@@ -1,16 +1,29 @@
 package com.revature.bean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Customer extends Person{
 	List<bankAccount> bAccount = new ArrayList<>();
-
+	static HashMap<String, Customer> matchUserName = new HashMap<>();
+	
 public Customer(String name, String last, String username,String password) {
 	super(name, last,username,password);
 	this.addBankAccount();
 	list.add(this);
+	matchUserName.put(username, this);
 }
+
+public static Customer getCustomer(String username) {
+	Customer a = null;
+	if(matchUserName.containsKey(username)) {
+		a  = matchUserName.get(username);
+	}
+	return a;
+}
+
+
 public void addBankAccount() { // adds brand new account
 	bankAccount a = new bankAccount(Person.getBankAccountsForIDCheck());
 	bAccount.add(a);
@@ -23,10 +36,15 @@ public boolean addBankAccount(bankAccount c) { //adds an existing account
 	}
 	return false;
 }
-public void viewAccount() {
+public Integer[] viewAccount() {
 	bankAccount [] b =this.allAccounts();
-	for(bankAccount x: b)
-		System.out.print(x.getAccountNumber());
+	Integer [] v =new Integer[b.length];
+	int i = 0;
+	for(bankAccount x: b) {
+		v[i]=x.getAccountNumber();
+		i++;
+		}
+	return v;
 	}
 
 	public double viewAccountBalance(bankAccount account) { // check cash amount
@@ -35,7 +53,7 @@ public void viewAccount() {
 		return -1;
 	}
 
-	public boolean transfer(double amount ,bankAccount takeAccount, bankAccount giveAccount) { 
+	public boolean transfer(double amount ,bankAccount takeAccount, bankAccount giveAccount) { // fixit
 		if(bAccount.contains(takeAccount)) {
 			if(bAccount.contains(giveAccount)) {
 				if(checkMoney(takeAccount, amount)) {

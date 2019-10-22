@@ -1,11 +1,14 @@
 package com.revature.bean;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.revature.*;
 import com.revature.bean.*;
 
 public class bankAccount {
 	double amount;
 	final int ACCOUNTNUMBER;
-	
+	static HashMap<Integer, bankAccount> matchBankAccountNumber = new HashMap<>();
 	public bankAccount(ArrayList <bankAccount>aa) {
 		this.amount = 0;
 		int temp =0;
@@ -21,9 +24,24 @@ public class bankAccount {
 			opened= false;
 			go = false;
 			}
+		
 		}
 		this.ACCOUNTNUMBER = temp;
+		matchBankAccountNumber.put(temp, this);
 	}
+	
+	
+	public static bankAccount getBankAccount(Integer number) {
+		bankAccount a = null;
+		if(matchBankAccountNumber.containsKey(number)) {
+			a  = matchBankAccountNumber.get(number);
+		}
+		return a;
+	}
+
+	
+	
+	
 	public bankAccount() { // testing purposes only
 		this.amount = 0;
 		int temp =0;

@@ -37,7 +37,7 @@ class bankAccountTest {
 		bankAccount a = new bankAccount();
 		a.deposit(20);
 		double temp = a.getBalance();
-		assertEquals(20,20);
+		assertEquals(20,temp);
 	}
 
 }

@@ -10,6 +10,7 @@ public abstract class Person {
 	static ArrayList<Customer> pending = new ArrayList<>();
 	static HashMap<Customer, bankAccount> pendingJoint = new HashMap<>();
 	static ArrayList <Customer> list =  new ArrayList<>();
+	static ArrayList <Customer> Empolyees =  new ArrayList<>();
 	static ArrayList <bankAccount> bankAccounts =  new ArrayList<>();
 	
 	public Person(String name, String last, String username, String password) {
