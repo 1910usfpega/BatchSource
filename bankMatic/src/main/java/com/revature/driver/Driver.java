@@ -18,7 +18,7 @@ public class Driver {
 	public static void main(String[] args) {
 		IOWithCollections.readUserFile();
 		
-		AccountsIO aIO = new AccountsIO();
+		AccountsIO aIO = AccountsIO.getInstance();
 		aIO.readFile();
 		MainLoop.main();
 		

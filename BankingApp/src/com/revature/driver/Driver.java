@@ -4,6 +4,7 @@ package com.revature.driver;
 //import java.util.List;
 import java.util.Scanner;
 
+import com.revature.bean.Account;
 //import com.revature.bean.Customer;
 import com.revature.bean.Login;
 //import com.revature.bean.LoginException;
@@ -20,7 +21,11 @@ public class Driver {
 		
 		AccountsIO aIO = AccountsIO.getInstance();
 		aIO.readFile();
-		System.out.println(aIO.accountList.toString());
+		
+		for (Account acc:aIO.accountList) {
+			System.out.println(acc.toString());
+		}
+//		System.out.println(aIO.accountList.toString());
 		MainLoop.main();
 		
 		
