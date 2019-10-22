@@ -107,12 +107,14 @@ public class Account implements Serializable {
 				if (sc.hasNextInt()) {
 					Integer contentsFromUser = sc.nextInt();
 					if (contentsFromUser.equals(1) ) {
-						System.out.println("How much would you like to deposit?");
-						Integer  m;
-						m = sc.nextInt();
+//						System.out.println("How much would you like to deposit?");
+//						Integer  m;
+//						m = sc.nextInt();
 						
 						
 						currentAccount.deposit(500.00);
+						AccountsIO aIO = AccountsIO.getInstance();
+						aIO.writeToFile();
 						
 					}
 				
