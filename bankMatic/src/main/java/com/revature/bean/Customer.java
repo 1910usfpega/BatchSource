@@ -147,37 +147,37 @@ public class Customer extends User implements  Serializable {
     		List<String> commands = new ArrayList<String>();
         	commands.add("Apply for a new account");
     		
-    	System.out.println("\n\nWELCOME, " + this.getFirstName() + " " + this.getLastName() + "\n");
-    	System.out.println("Your accounts:");
-    	Boolean no_accounts = true;
-    	
-    	
-    	AccountsIO aIO = AccountsIO.getInstance();
-    	for (int i = 0; i<aIO.accountList.size(); i++) {
-    		//Account account:AccountsIO.accountList
-    		Account account = aIO.accountList.get(i);
-    		if (account.getOwnerUsername().equals(this.getUsername())) {
-    			commands.add("Work with account: " + account.getAccountNumber().toString());
-    			System.out.print(" - " + account.getAccountName() + " (Account number: "+account.getAccountNumber() + ") – " );
-    			if (account.getAccountStatus().equals("pending")) {
-    				System.out.println("pending");
-    			} else if (account.getAccountStatus().equals("canceled")) {
-    				System.out.print("canceled");
-    			} else {
-    				System.out.print("$"+account.getBalance());
-    			}
-    			System.out.println();
-    			
-    			no_accounts = false;
-    		}
-    	}
-    	
-    	if (no_accounts) {
-    		System.out.println("You don't have accounts yet");
-    		// Sysout all account in the following format:
-    	}
-    	
-    	commands.add("Logout");
+	    	System.out.println("\n\nWELCOME, " + this.getFirstName() + " " + this.getLastName() + "\n");
+	    	System.out.println("Your accounts:");
+	    	Boolean no_accounts = true;
+	    	
+	    	
+	    	AccountsIO aIO = AccountsIO.getInstance();
+	    	for (int i = 0; i<aIO.accountList.size(); i++) {
+	    		//Account account:AccountsIO.accountList
+	    		Account account = aIO.accountList.get(i);
+	    		if (account.getOwnerUsername().equals(this.getUsername())) {
+	    			commands.add("Work with account: " + account.getAccountNumber().toString());
+	    			System.out.print(" - " + account.getAccountName() + " (Account number: "+account.getAccountNumber() + ") – " );
+	    			if (account.getAccountStatus().equals("pending")) {
+	    				System.out.println("pending");
+	    			} else if (account.getAccountStatus().equals("canceled")) {
+	    				System.out.print("canceled");
+	    			} else {
+	    				System.out.print("$"+account.getBalance());
+	    			}
+	    			System.out.println();
+	    			
+	    			no_accounts = false;
+	    		}
+	    	}
+	    	
+	    	if (no_accounts) {
+	    		System.out.println("You don't have accounts yet");
+	    		// Sysout all account in the following format:
+	    	}
+	    	
+	    	commands.add("Logout");
     	
     	
     	

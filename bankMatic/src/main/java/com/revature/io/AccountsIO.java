@@ -48,6 +48,16 @@ public class AccountsIO {//This is a class that keeps the list of all accounts
 		return max_val+1;
 	}
 	
+	public int countOfAccountsWithStatus(String status) {
+		int count = 0;
+		for (int i=0; i<this.accountList.size(); i++) {
+			if (this.accountList.get(i).getAccountStatus().equals(status)) {
+				count++;
+			}
+		} 
+		return count;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public void readFile() {
 		try (ObjectInputStream objectIn = new ObjectInputStream(

@@ -1,6 +1,7 @@
 package com.revature.io;
 
 import com.revature.bean.Account;
+import com.revature.bean.Employee;
 
 public class Driver {
 
@@ -15,6 +16,15 @@ public class Driver {
 //		AccountsIO.writeToFile();
 //		
 //		System.out.println("Done");
+		
+		
+		Employee a1 = new Employee("emp", "pass");
+		
+		IOWithCollections.readUserFile();
+		IOWithCollections.usersList.add(a1);
+		IOWithCollections.writeUserFile();
+		
+		System.out.println(IOWithCollections.usersList.toString());
 		
 	}
 
