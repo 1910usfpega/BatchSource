@@ -8,7 +8,7 @@ public class bankAdmin extends Employee{
 
 	public boolean approvalNewAccount(Customer a) {
 			boolean approve = false;
-				if(pending.containsKey(a)) {
+				if(pending.contains(a)) {//check
 			// scanner here
 					System.out.println(a.getName() +" "+a.getUsername()+
 					"wants a new account! y or n");
@@ -38,11 +38,4 @@ public class bankAdmin extends Employee{
 	public void removeAccount(bankAccount a, Customer b) {
 		removeAccount(a, b);
 	}
-
-	@Override
-	public String toString() {
-		return "bankAdmin [name=" + name + ", last=" + last + ", username=" + username + "]";
-	}
-	
-	
 }

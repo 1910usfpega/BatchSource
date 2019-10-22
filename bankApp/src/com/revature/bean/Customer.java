@@ -1,84 +1,88 @@
 package com.revature.bean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class Customer extends Person {
+public class Customer extends Person{
 	List<bankAccount> bAccount = new ArrayList<>();
+	static HashMap<String, Customer> matchUserName = new HashMap<>();
+	
+public Customer(String name, String last, String username,String password) {
+	super(name, last,username,password);
+	this.addBankAccount();
+	list.add(this);
+	matchUserName.put(username, this);
+}
 
-	public Customer(String name, String last, String username, String password) {
-		super(name, last, username, password);
-		this.addBankAccount();
-		list.add(this);
+public static Customer getCustomer(String username) {
+	Customer a = null;
+	if(matchUserName.containsKey(username)) {
+		a  = matchUserName.get(username);
 	}
+	return a;
+}
 
-	public void addBankAccount() { // adds brand new account
-		bankAccount a = new bankAccount(bankAccounts);
-		bAccount.add(a);
-		bankAccounts.add(a);
+
+public void addBankAccount() { // adds brand new account
+	bankAccount a = new bankAccount(Person.getBankAccountsForIDCheck());
+	bAccount.add(a);
+	bankAccounts.add(a);
+}
+public boolean addBankAccount(bankAccount c) { //adds an existing account
+	if(bankAccounts.contains(c)) {
+	pending.add(this);
+	return true;
 	}
-
-	public boolean addBankAccount(bankAccount c) { // adds an existing account
-		if (bankAccounts.contains(c)) {
-			pending.add((PendingAccount)c);
-			return true;
+	return false;
+}
+public Integer[] viewAccount() {
+	bankAccount [] b =this.allAccounts();
+	Integer [] v =new Integer[b.length];
+	int i = 0;
+	for(bankAccount x: b) {
+		v[i]=x.getAccountNumber();
+		i++;
 		}
-		return false;
-	}
-
-	public void viewAccount() {
-		bankAccount[] b = this.allAccounts(this);
-		for (bankAccount x : b)
-			System.out.print(x.getAccountNumber());
+	return v;
 	}
 
 	public double viewAccountBalance(bankAccount account) { // check cash amount
-		if (bAccount.contains(account))
+		if(bAccount.contains(account))
 			return account.getBalance();
 		return -1;
 	}
 
-	public boolean transfer(double amount, bankAccount takeAccount, bankAccount giveAccount) {
-		if (bAccount.contains(takeAccount)) {
-			if (bAccount.contains(giveAccount)) {
-				if (checkMoney(takeAccount, amount)) {
-					takeAccount.withdraw(amount, takeAccount);
-					giveAccount.deposit(amount);
-					return true;
+	public boolean transfer(double amount ,bankAccount takeAccount, bankAccount giveAccount) { // fixit
+		if(this.bAccount.contains(takeAccount)) {
+			if(bankAccounts.contains(giveAccount)) {
+				if(checkMoney(takeAccount, amount)) {
+				takeAccount.withdraw(amount, takeAccount);
+				giveAccount.deposit(amount);
+				return true;
 				}
 			}
-		}
+		}	
 		return false;
 	}
-
-	public boolean jointAccount(Customer a, bankAccount c) { // apply for
-		if (cInfo.containsKey(a)) {
-			if (bankAccounts.contains(c)) {
-				pendingJoint.add((PendingAccount)c);
-				return true;
+	public boolean jointAccount(Customer a ,bankAccount c) { //apply for
+		if(cInfo.containsKey(a.getUsername())) {
+			if(bankAccounts.contains(c)) {
+	 pendingJoint.put(a, c);
+			return true;
 			}
 		}
 		return false;
 	}
-
-	public bankAccount[] allAccounts(Customer a) { // returns all account that the user has
-
-		bankAccount[] Array = new bankAccount[a.bAccount.size()];
-		if (!a.bAccount.isEmpty()) {
+	public bankAccount [] allAccounts() { // returns all account that the user has 
+		bankAccount[] Array = new bankAccount[this.bAccount.size()];
+		if(!this.bAccount.isEmpty()) {
 			int i = 0;
-			for (bankAccount x : this.bAccount) {
+			for(bankAccount x :this.bAccount ) {
 				Array[i] = x;
 				i++;
 			}
 		}
 		return Array;
-
 	}
-
-	@Override
-	public String toString() {
-		return "Customer [bAccount=" + bAccount + ", name=" + name + ", last=" + last + ", username=" + username + "]";
-	}
-
-	
 }
