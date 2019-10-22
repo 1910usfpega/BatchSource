@@ -43,7 +43,7 @@ class CustomerTest {
 		bankAccount [] d = b.allAccounts();
 		c[0].deposit(amount);
 		System.out.print(" "+c[0].getBalance());
-		a.transfer(amount-1, c[0], d[0]);
+		a.transfer(amount, c[0], d[0]);
 		System.out.print(" "+d[0].getBalance()+" ");
 		assertEquals(d[0].getBalance(),amount);
 	}

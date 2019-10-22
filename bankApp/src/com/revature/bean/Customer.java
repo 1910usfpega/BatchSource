@@ -47,15 +47,29 @@ public Integer[] viewAccount() {
 	return v;
 	}
 
-	public double viewAccountBalance(bankAccount account) { // check cash amount
-		if(bAccount.contains(account))
-			return account.getBalance();
-		return -1;
+public double viewAccountBalance(bankAccount account) { // check cash amount
+	if(bAccount.contains(account))
+		return account.getBalance();
+	return -1;
+}
+
+
+public HashMap<Integer, bankAccount> getAccountChoose() {
+	bankAccount [] b =this.allAccounts();
+	
+	HashMap<Integer,bankAccount> a= null;
+	int j = 0;
+	for(bankAccount x: b) {
+		a.put(j, x);
+		j++;
 	}
+		return a;
+		}
+	
 
 	public boolean transfer(double amount ,bankAccount takeAccount, bankAccount giveAccount) { // fixit
-		if(bAccount.contains(takeAccount)) {
-			if(bAccount.contains(giveAccount)) {
+		if(this.bAccount.contains(takeAccount)) {
+			if(bankAccounts.contains(giveAccount)) {
 				if(checkMoney(takeAccount, amount)) {
 				takeAccount.withdraw(amount, takeAccount);
 				giveAccount.deposit(amount);
