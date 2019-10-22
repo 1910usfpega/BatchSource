@@ -24,6 +24,15 @@ public class Save {
 	public static void writeData(ArrayList<Customer> cus, ArrayList<Employee> emp, ArrayList<bankAdmin> adm,
 			ArrayList<PendingAccount> pen) {
 
+		//Check if adminFile exists. If not, create adminFile.
+		if (!adminFile.exists()) {
+			try {
+				adminFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		// Write all admins in admin collection to admin.txt
 		try (ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(adminFile, false));) {
 			objOut.writeObject(adm);
@@ -33,6 +42,15 @@ public class Save {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//Check if employeFile exists. If not, create employeeFile.
+				if (!employeeFile.exists()) {
+					try {
+						employeeFile.createNewFile();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 
 		// Write all employees to employee.txt
 		try (ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(employeeFile, false));) {
@@ -42,6 +60,15 @@ public class Save {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//Check if customerFile exists. If not, create customerFile.
+				if (!customerFile.exists()) {
+					try {
+						customerFile.createNewFile();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 
 		// Write all customers to customer.txt
 		try (ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(employeeFile, false));) {
@@ -51,6 +78,15 @@ public class Save {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//Check if pendingAccountFile exists. If not, create pendingAccountFile.
+				if (!pendingAccountFile.exists()) {
+					try {
+						pendingAccountFile.createNewFile();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 
 		// Write all pending accounts to pending.txt
 		try (ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(pendingAccountFile, false));) {
@@ -61,6 +97,6 @@ public class Save {
 			e.printStackTrace();
 		}
 
-	}//End method writeData
+	}// End method writeData
 
-}//End class Save
+}// End class Save

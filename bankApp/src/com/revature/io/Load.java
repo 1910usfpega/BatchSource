@@ -14,13 +14,13 @@ import com.revature.bean.bankAdmin;
 
 public class Load {
 
-	//Upon load, instantiate files containing data collections
+	// Upon load, instantiate files containing data collections
 	public static final File adminFile = new File("admins.txt");
 	public static final File employeeFile = new File("employees.txt");
 	public static final File customerFile = new File("customers.txt");
 	public static final File pendingAccountsFile = new File("pendingAccounts.txt");
 
-	//Upon load, instantiate the collections
+	// Upon load, instantiate the collections
 	public static ArrayList<Customer> cus = new ArrayList<>();
 	public static ArrayList<Employee> emp = new ArrayList<>();
 	public static ArrayList<bankAdmin> adm = new ArrayList<>();
@@ -28,8 +28,43 @@ public class Load {
 
 	@SuppressWarnings("unchecked")
 	public static void readData() {
+		// Check to see if adminFile exists. If not, create adminFile
+		if (!adminFile.exists()) {
+			try {
+				adminFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
-		//Read all admin objects and add them to the admin collection
+		// Check if employeeFile exists. If not, create employeeFile.
+		if (!employeeFile.exists()) {
+			try {
+				employeeFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		// Check if customerFile exists. If not, create customerFile.
+		if (!customerFile.exists()) {
+			try {
+				customerFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		// Check if pendingAccountsFile exists. If not, create pendingAccountsFile.
+		if (!pendingAccountsFile.exists()) {
+			try {
+				pendingAccountsFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		// Read all admin objects and add them to the admin collection
 		try (ObjectInputStream objIn = new ObjectInputStream(new FileInputStream(adminFile))) {
 			adm = (ArrayList<bankAdmin>) objIn.readObject();
 		} catch (FileNotFoundException e) {
@@ -40,7 +75,7 @@ public class Load {
 			e.printStackTrace();
 		}
 
-		//Read all employee objects and add them to the employee collection
+		// Read all employee objects and add them to the employee collection
 		try (ObjectInputStream objIn = new ObjectInputStream(new FileInputStream(employeeFile))) {
 			emp = (ArrayList<Employee>) objIn.readObject();
 		} catch (FileNotFoundException e1) {
@@ -51,7 +86,7 @@ public class Load {
 			e.printStackTrace();
 		}
 
-		//Read all customer objects and add them to the customer collection
+		// Read all customer objects and add them to the customer collection
 		try (ObjectInputStream objIn = new ObjectInputStream(new FileInputStream(customerFile))) {
 			cus = (ArrayList<Customer>) objIn.readObject();
 		} catch (FileNotFoundException e1) {
@@ -62,7 +97,8 @@ public class Load {
 			e.printStackTrace();
 		}
 
-		//Read all pending account objects and add them to the pending accounts collection
+		// Read all pending account objects and add them to the pending accounts
+		// collection
 		try (ObjectInputStream objIn = new ObjectInputStream(new FileInputStream(pendingAccountsFile))) {
 			pen = (ArrayList<PendingAccount>) objIn.readObject();
 		} catch (FileNotFoundException e1) {
@@ -73,6 +109,6 @@ public class Load {
 			e.printStackTrace();
 		}
 
-	}//End method readData()
+	}// End method readData()
 
-}//End class Load
+}// End class Load
