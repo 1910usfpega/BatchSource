@@ -1,5 +1,8 @@
 package com.revature.bean;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class bankAdmin extends Employee{
 	
 	public bankAdmin(String name, String last, String username, String password) {
@@ -33,6 +36,17 @@ public class bankAdmin extends Employee{
 					}	}	}	}
 		
 		return false;
+	}
+	
+	public ArrayList<Customer> jPending() {
+		if(!pending2.isEmpty()) {
+			Customer dCustomer = pending.get(0);
+			HashMap<Customer, bankAccount> sCustomer = Person.joint();
+			bankAccount toAdd = sCustomer.get(dCustomer);
+			dCustomer.addBankAccount(toAdd);
+		}
+	
+		return null;
 	}
 	
 	public void removeAccount(bankAccount a, Customer b) {

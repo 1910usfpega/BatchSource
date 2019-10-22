@@ -12,6 +12,7 @@ public class Employee extends Person{
 	public void viewAccount(Customer a) {
 		bankAccount [] b =a.allAccounts();
 		for(bankAccount x: b)
-			System.out.print(x.getAccountNumber());
+			System.out.print("Account number: " + x.getAccountNumber() + " " + "Account Balance: " + x.getBalance());
 		}
+
 }

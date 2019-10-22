@@ -12,6 +12,7 @@ public abstract class Person {
 	static ArrayList <Customer> list =  new ArrayList<>();
 	static ArrayList <Customer> Empolyees =  new ArrayList<>();
 	static ArrayList <bankAccount> bankAccounts =  new ArrayList<>();
+	static ArrayList <Customer> pending2 = new ArrayList<>();
 	
 	public Person(String name, String last, String username, String password) {
 		this.name = name;
@@ -19,6 +20,14 @@ public abstract class Person {
 		this.username = username;
 		cInfo.put(username,password);
 	}
+	
+	public static HashMap<Customer, bankAccount> joint(){
+		if(!pendingJoint.isEmpty()) {
+			return pendingJoint;
+		}
+		return null;
+	}
+	
 	public static boolean login(String user, String pw) { 
 		String temp = cInfo.get(user);
 		if(temp == pw)
@@ -34,11 +43,6 @@ public abstract class Person {
 			return true;
 		else
 			return false;
-	}
-	public boolean checkMoney(bankAccount a, double money) {
-		if(a.getBalance()>=  money)
-			return true;
-		return false;
 	}
 	public String getName() {
 		return name;

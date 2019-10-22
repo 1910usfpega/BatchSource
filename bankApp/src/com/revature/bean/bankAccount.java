@@ -30,6 +30,11 @@ public class bankAccount {
 		matchBankAccountNumber.put(temp, this);
 	}
 	
+	public boolean checkMoney(double money) {
+		if(this.getBalance()>=  money)
+			return true;
+		return false;
+	}
 	
 	public static bankAccount getBankAccount(Integer number) {
 		bankAccount a = null;
@@ -37,6 +42,19 @@ public class bankAccount {
 			a  = matchBankAccountNumber.get(number);
 		}
 		return a;
+	}
+	public static boolean checkBankAccount(Integer number) {
+		bankAccount a = null;
+		if(matchBankAccountNumber.containsKey(number)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean checkAccountExist(Integer a) {
+		if(matchBankAccountNumber.containsKey(a))
+			return true;
+		return false;
 	}
 
 	
