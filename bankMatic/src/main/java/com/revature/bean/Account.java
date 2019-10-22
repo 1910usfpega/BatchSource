@@ -111,7 +111,7 @@ public class Account implements Serializable {
 						Double  m;
 						m = sc.nextDouble();
 						
-						
+		
 						currentAccount.deposit(m);
 						AccountsIO aIO = AccountsIO.getInstance();
 						aIO.writeToFile();
