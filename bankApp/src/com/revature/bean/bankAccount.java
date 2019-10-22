@@ -1,13 +1,14 @@
 package com.revature.bean;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.revature.*;
+import com.revature.bean.*;
 
 public class bankAccount {
 	double amount;
 	final int ACCOUNTNUMBER;
-	
-	
-	
+	static HashMap<Integer, bankAccount> matchBankAccountNumber = new HashMap<>();
 	public bankAccount(ArrayList <bankAccount>aa) {
 		this.amount = 0;
 		int temp =0;
@@ -22,11 +23,31 @@ public class bankAccount {
 			}}
 			opened= false;
 			go = false;
-		
 			}
-			
+		
 		}
 		this.ACCOUNTNUMBER = temp;
+		matchBankAccountNumber.put(temp, this);
+	}
+	
+	
+	public static bankAccount getBankAccount(Integer number) {
+		bankAccount a = null;
+		if(matchBankAccountNumber.containsKey(number)) {
+			a  = matchBankAccountNumber.get(number);
+		}
+		return a;
+	}
+
+	
+	
+	
+	public bankAccount() { // testing purposes only
+		this.amount = 0;
+		int temp =0;
+		boolean opened = true;
+		boolean go = true;
+		this.ACCOUNTNUMBER = 1;
 	}
 	public boolean check(int a, ArrayList<bankAccount> aa) {
 		boolean taken = true;
@@ -42,9 +63,16 @@ public class bankAccount {
 		return this.amount;
 	}
 	
+	public boolean withdraw(double withdraw) {
+		if(this.getBalance()>= withdraw) {
+		this.amount = this.amount-withdraw;
+		return true;
+		}
+		return false;
+	}
 	public boolean withdraw(double withdraw, bankAccount b) {
 		if(b.getBalance()>= withdraw) {
-		this.amount = this.amount-withdraw;
+		b.amount = b.amount-withdraw;
 		return true;
 		}
 		return false;
