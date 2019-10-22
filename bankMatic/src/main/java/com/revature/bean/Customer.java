@@ -146,7 +146,7 @@ public class Customer extends User implements  Serializable {
     	while (flag) {
     		List<String> commands = new ArrayList<String>();
         	commands.add("Apply for a new account");
-    		
+        	
 	    	System.out.println("\n\nWELCOME, " + this.getFirstName() + " " + this.getLastName() + "\n");
 	    	System.out.println("Your accounts:");
 	    	Boolean no_accounts = true;
