@@ -172,6 +172,10 @@ public class Customer extends User implements  Serializable {
     		}
     	}
     	
+    	
+    	
+    	
+    	
     	if (no_accounts) {
     		System.out.println("You don't have accounts yet");
     		// Sysout all account in the following format:

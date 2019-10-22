@@ -103,7 +103,21 @@ public class Account implements Serializable {
 			if (currentAccount.getAccountStatus().equals("active")) {
 				// TODO Work with active account
 				System.out.println("What whoud you like to do?");
-				System.out.println("1. ");
+				System.out.println("1.Deposit");
+				if (sc.hasNextInt()) {
+					Integer contentsFromUser = sc.nextInt();
+					if (contentsFromUser.equals(1) ) {
+						System.out.println("How much would you like to deposit?");
+						Integer  m;
+						m = sc.nextInt();
+						
+						
+						currentAccount.deposit(500.00);
+						
+					}
+				
+				}
+				
 			} else if (currentAccount.getAccountStatus().equals("pending")) {
 				System.out.println("What whoud you like to do?");
 				System.out.println("1. Cancel Application");
@@ -127,5 +141,19 @@ public class Account implements Serializable {
 			flag1 = false;
 		}
 	}
+	
+	public void withdraw(double money) {
+		this.balance = this.balance - money;	
+	}
+	
+	public void deposit(double money) {
+		this.balance = this.balance + money;
+	}
 
+	public void transfer(Account a, double money) {
+		this.withdraw(money);
+		a.deposit(money);
+		
+	}
+	
 }
