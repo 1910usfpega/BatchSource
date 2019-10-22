@@ -16,6 +16,7 @@ import java.util.zip.ZipEntry;
 
 import javax.management.loading.PrivateClassLoader;
 
+import main.java.bean.Account;
 import main.java.bean.User;
 import main.java.programstart.ProgramStart;
 
@@ -150,7 +151,7 @@ public class AccountManagement {
 			for (int j = 0; j < accountList.size(); j++) {
 				for (int i = 0; i < listAcct.size(); i++) {
 						if(accountList.get(j).getAccountBalance() == listAcct.get(selectedAcct)) {
-							if(accountList.get(j).getAccountBalance() >= dollarAmt) {
+							if(dollarAmt >= 0.0) {
 								accountList.get(selectedAcct).setAccountBalance(accountList.get(selectedAcct).getAccountBalance()+dollarAmt);
 								System.out.println("Deposit successful!");
 							}else {
@@ -188,7 +189,7 @@ public class AccountManagement {
 								System.out.println("Withdraw successful!");
 							}else {
 								System.out.println("Something went wrong please try again.");
-								deposit(username);
+								withdraw(username);
 							}
 						}
 					}
