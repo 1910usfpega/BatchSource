@@ -36,7 +36,9 @@ public class MainLoop {
 				IOWithCollections.usersList.add(currentUser);
 				IOWithCollections.writeUserFile();
 			}
-			
+			if (!currentUser.equals(null)) {
+				currentUser.showMenu();
+			}
 
 		}
 		
