@@ -56,9 +56,8 @@ public double viewAccountBalance(bankAccount account) { // check cash amount
 
 public HashMap<Integer, bankAccount> getAccountChoose() {
 	bankAccount [] b =this.allAccounts();
-	
 	HashMap<Integer,bankAccount> a= null;
-	int j = 0;
+	Integer j = 1;
 	for(bankAccount x: b) {
 		a.put(j, x);
 		j++;
