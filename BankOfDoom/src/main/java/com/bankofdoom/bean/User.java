@@ -1,10 +1,14 @@
 package com.bankofdoom.bean;
 
+import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Scanner;
 
-public class User {
-	Scanner sc = new Scanner(System.in);
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -805205426868800794L;
+		//Scanner sc = new Scanner(System.in);
 	// details for the user bean
 		private String userName;
 		private String password;
@@ -12,12 +16,14 @@ public class User {
 		private String lastName;
 		private String address;
 		private String email;
-		private BigInteger phoneNumber;
+		private String phoneNumber;
 		private String userType;
+		
+		
 		
 //		constructor
 		public User(String userName, String password, String firstName, String lastName, String address, String email,
-				BigInteger phoneNumber, String userType) {
+				String phoneNumber, String userType) {
 			super();
 			this.userName = userName;
 			this.password = password;
@@ -27,6 +33,11 @@ public class User {
 			this.email = email;
 			this.phoneNumber = phoneNumber;
 			this.userType = userType;
+		}
+
+		public User() {
+			super();
+			// TODO Auto-generated constructor stub
 		}
 
 		public String getUserName() {
@@ -77,11 +88,11 @@ public class User {
 			this.email = email;
 		}
 
-		public BigInteger getPhoneNumber() {
+		public String getPhoneNumber() {
 			return phoneNumber;
 		}
 
-		public void setPhoneNumber(BigInteger phoneNumber) {
+		public void setPhoneNumber(String phoneNumber) {
 			this.phoneNumber = phoneNumber;
 		}
 
@@ -95,11 +106,12 @@ public class User {
 
 		@Override
 		public String toString() {
-			return "User [userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName="
-					+ lastName + ", address=" + address + ", email=" + email + ", phoneNumber=" + phoneNumber
-					+ ", userType=" + userType + "]";
+			return userName + "," + password + "," + firstName + ","+ lastName 
+					+ "," + address + "," + email + "," + phoneNumber
+					+ "," + userType;
 		}
 		
+		/* moved to IOUser
 		//method to create new user/account. still need logic
 		public void openAccount() {
 			//new log in info
@@ -122,7 +134,7 @@ public class User {
 			phoneNumber=sc.nextBigInteger();
 		}
 
-
+*/
 		
 
 	

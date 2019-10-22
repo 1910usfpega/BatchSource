@@ -1,4 +1,4 @@
-package com.bankofdoom.driver;
+package com.bankofdoom.bean;
 
 public enum MenuActionsEnum {
 

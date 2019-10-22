@@ -1,4 +1,4 @@
-package com.bankofdoom.account;
+package com.bankofdoom.driver;
 
 import com.bankofdoom.bean.Account;
 
