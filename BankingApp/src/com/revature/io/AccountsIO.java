@@ -25,9 +25,9 @@ public class AccountsIO {//This is a class that keeps the list of all accounts
 	}
 
 	private static final String ioFile="accounts.txt";
-	public static List<Account> accountList = new ArrayList<Account>();
+	public List<Account> accountList = new ArrayList<Account>();
 	
-	public static void writeToFile() {
+	public void writeToFile() {
 		try (ObjectOutputStream objectOut = new ObjectOutputStream(
 				new FileOutputStream(ioFile));){
 			objectOut.writeObject(accountList);
@@ -38,8 +38,18 @@ public class AccountsIO {//This is a class that keeps the list of all accounts
 		
 	}
 	
+	public int getNextAccountNum() {
+		int max_val = 100000;
+		for (int i=0; i<this.accountList.size(); i++) {
+			if (this.accountList.get(i).getAccountNumber() > max_val) {
+				max_val = this.accountList.get(i).getAccountNumber();
+			}
+		}
+		return max_val+1;
+	}
+	
 	@SuppressWarnings("unchecked")
-	public static void readFile() {
+	public void readFile() {
 		try (ObjectInputStream objectIn = new ObjectInputStream(
 				new FileInputStream(ioFile));) {
 			

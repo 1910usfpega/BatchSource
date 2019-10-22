@@ -95,6 +95,47 @@ public class Customer extends User implements  Serializable {
 				+ ", status=" + status + ", username=" + getUsername() + ", password=" + getPassword() + ", accountNumber="
 				+ accountList + "]";
 	}
+	
+	public void applyForNewAccountLoop() {
+		Boolean accountTypeFlag = true;
+		
+		String newAccountType = null; 
+		
+
+    		
+		while (accountTypeFlag) {
+    		System.out.println("Which type of account you want to apply for?");
+    		System.out.println("1. Checking");
+    		System.out.println("2. Savings");
+    		System.out.println("3. Back to Menu");
+    		
+    		if (sc.hasNextInt()) {
+    			Integer contentsFromUser = sc.nextInt();
+    			
+    			if (contentsFromUser.equals(1)) {
+    				newAccountType = "Checking";
+    				accountTypeFlag = false;
+    			} else if (contentsFromUser.equals(2)) {
+    				newAccountType = "Savings";
+    				accountTypeFlag = false;
+    			} else if (contentsFromUser.equals(3)) {
+    				accountTypeFlag = false;
+    			}
+    		}
+		}
+		
+		if (newAccountType != null) {
+			AccountsIO aIO = AccountsIO.getInstance();
+			Account newAccount = new Account(newAccountType, 0.0, this.getUsername(), "pending", aIO.getNextAccountNum() );
+			aIO.accountList.add(newAccount);
+			aIO.writeToFile();
+		}
+		
+	
+		
+		
+		
+	}
 		
     @Override
     public void showMenu() {
@@ -111,10 +152,10 @@ public class Customer extends User implements  Serializable {
     	Boolean no_accounts = true;
     	
     	
-    	AccountsIO accIO = AccountsIO.getInstance();
-    	for (int i = 0; i<accIO.accountList.size(); i++) {
+    	AccountsIO aIO = AccountsIO.getInstance();
+    	for (int i = 0; i<aIO.accountList.size(); i++) {
     		//Account account:AccountsIO.accountList
-    		Account account = accIO.accountList.get(i);
+    		Account account = aIO.accountList.get(i);
     		if (account.getOwnerUsername().equals(this.getUsername())) {
     			commands.add("Work with account: " + account.getAccountNumber().toString());
     			System.out.print(" - " + account.getAccountName() + " (Account number: "+account.getAccountNumber() + ") – " );
@@ -159,10 +200,12 @@ public class Customer extends User implements  Serializable {
         			} else if (commands.get(contentsFromUser-1).substring(0,"Work with account:".length()).equals("Work with account:")) {
         				String accountNumString =  commands.get(contentsFromUser-1).substring("Work with account: ".length());
         				Integer accountNum = Integer.parseInt(accountNumString);
-        				Account currentAccount = Account.getAccount(accountNum, AccountsIO.accountList);
+//        				AccountsIO aIO = AccountsIO.getInstance();
+        				Account currentAccount = Account.getAccount(accountNum, aIO.accountList);
         				Account.workWithAccountMenuLoop(currentAccount, this);
         			} else if (commands.get(contentsFromUser-1).equals("Apply for a new account")) {
         				System.out.println("Apply for NEW account: ");
+        				applyForNewAccountLoop();
         			}
         			
         			

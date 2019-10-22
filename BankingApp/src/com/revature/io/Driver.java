@@ -9,10 +9,10 @@ public class Driver {
 		Account a2 = new Account("Checking", 5020.00, "username1", "active", 1000002);
 		Account a3 = new Account("Checking2", 5021.00, "username1", "active", 1000003);
 		
-		AccountsIO.accountList.add(a1);
-		AccountsIO.accountList.add(a2);
-		AccountsIO.accountList.add(a3);
-		AccountsIO.writeToFile();
+//		AccountsIO.accountList.add(a1);
+//		AccountsIO.accountList.add(a2);
+//		AccountsIO.accountList.add(a3);
+//		AccountsIO.writeToFile();
 		
 		System.out.println("Done");
 		
