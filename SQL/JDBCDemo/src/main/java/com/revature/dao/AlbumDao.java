@@ -8,4 +8,5 @@ import com.revature.beans.Album;
 public interface AlbumDao {
 //CRUD OPS
 	public List<Album> getAllAlbums() throws SQLException;
+	public List<Album> getAlbumsById(int id)throws SQLException;
 }

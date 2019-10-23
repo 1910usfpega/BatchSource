@@ -34,7 +34,7 @@ public class Album {
 	}
 	@Override
 	public String toString() {
-		return "Album [albumId=" + albumId + ", title=" + title + ", artistId=" + artistId + "]\n"+"\n";
+		return "Album [albumId=" + albumId + ", title=" + title + ", artistId=" + artistId + "]\n";
 	}
 	
 }
