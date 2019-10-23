@@ -115,7 +115,7 @@ public class Driver {
 		//Q9
 		System.out.println("NUMBER NINE.");
 		int lePrime = 100;
-		System.out.println("These are the prime numbers between 0 and " + lePrime + " : " + FunwithJavaWeekB.isPrimey(lePrime));
+		System.out.println("These are the prime numbers between 0 and " + lePrime + " : " + FunwithJavaWeekB.isPrimey(lePrime);
 		System.out.println("\n\n");		
 		
 				

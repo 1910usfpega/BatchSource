@@ -75,7 +75,16 @@ class PerfectTesting {
 	void test7() {
 		//Q7
 		
+	//	assertEquals();
 	}
 	
 	
+	
+
+	@Test 
+	void test8() {
+		//Q8
+		
+		assertEquals();
+	}
 }
