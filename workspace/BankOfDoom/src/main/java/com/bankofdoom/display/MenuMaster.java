@@ -16,7 +16,7 @@ public class MenuMaster {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		IOBank io = new IOBank();
+		UserManager io = new UserManager();
 
 		System.out.println("Welcome to Bank of Doom!");
 
@@ -34,7 +34,7 @@ public class MenuMaster {
 			System.out.println(thankYouMsg);
 			break;
 		case"y":
-			if(IOBank.userLogin(sc)) MenuMethod.displayMainMenu();;
+			if(UserManager.userLogin(sc)) MenuMethod.displayMainMenu();;
 			break;
 		case "n":
 			io.userPersonalInfo(sc);

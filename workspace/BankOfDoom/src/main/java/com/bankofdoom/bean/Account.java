@@ -2,43 +2,45 @@ package com.bankofdoom.bean;
 
 public class Account {
 
-	protected String accountID;
+	private int accountID;
+	private boolean checkingAccount;
 	
+	private double balance;
+	
+	private String uName;
+	
+	private boolean approved;
 
-	protected boolean checkingAccount;
-	protected String firstName;
-	protected String lastName;
-	protected double balance;
-	protected static double overdraftFee = 30.00;
-	protected boolean approved;
-
-	public Account(String accountID, boolean checkingAccount, String firstName, String lastName, double balance) {
-		super();
-		this.accountID = accountID;
-		this.checkingAccount = checkingAccount;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.balance = balance;
-	}
-
-	public double getOverdraftFee() {
-		return overdraftFee;
-	}
-
-	public String getAccountID() {
-		return accountID;
-	}
-
-	public void setAccountID(String accountID) {
-		this.accountID = accountID;
-	}
-
+	
+	private final static double overdraftFee = 5.00;
+	
 	public Account() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean isChecking() {
+	
+
+	public Account(int accountID, boolean checkingAccount, double balance, String uName, boolean approved) {
+		super();
+		this.accountID = accountID;
+		this.checkingAccount = checkingAccount;
+		this.balance = balance;
+		this.uName = uName;
+		this.approved = approved;
+	}
+
+
+
+	public int getAccountID() {
+		return accountID;
+	}
+
+	public void setAccountID(int accountID) {
+		this.accountID = accountID;
+	}
+
+	public boolean isCheckingAccount() {
 		return checkingAccount;
 	}
 
@@ -46,16 +48,20 @@ public class Account {
 		this.checkingAccount = checkingAccount;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getuName() {
+		return uName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setuName(String uName) {
+		this.uName = uName;
 	}
 
-	public boolean isCheckingAccount() {
-		return checkingAccount;
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 
 	public boolean isApproved() {
@@ -66,26 +72,14 @@ public class Account {
 		this.approved = approved;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
-	public double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-	
 	@Override
 	public String toString() {
-		return accountID + ","+ checkingAccount + "," + firstName
-				+ "," + lastName + "," + balance + "," + approved;
+		return "Account [accountID=" + accountID + ", checkingAccount=" + checkingAccount + ", balance=" + balance
+				+ ", uName=" + uName + ", approved=" + approved + "]";
 	}
+
+	
 
 }
