@@ -15,145 +15,136 @@ import com.bankofdoom.bean.User;
 
 public class IOBank {
 
-
-	//controller class for Users
+	// controller class for Users
 	private static final String inUserFile = "src/main/resources/DefaultUsers.txt";
 	private static final String inAccountFile = "src/main/resources/Accounts.txt";
 
 	public static List<User> userList = new ArrayList<User>();
 	public static List<Account> accountList = new ArrayList<Account>();
 
-	public String createUserName() {
+	public String createUserName(Scanner sc) {
 		String userName = null;
-		Scanner sc = new Scanner(System.in);
-		//no duplicate usernames allowed
-		while(userName==null) {
+//		Scanner sc = new Scanner(System.in);
+		// no duplicate usernames allowed
+		while (userName == null) {
 			String tmp;
 			System.out.println("Please enter new username:");
-			tmp=sc.next();
-			//set username to false I would much prefer to do this the other way
-			//but i'm tired and this SHOULD work fine.... i hope... well I'll find out later
+			tmp = sc.next();
+			// set username to false I would much prefer to do this the other way
+			// but i'm tired and this SHOULD work fine.... i hope... well I'll find out
+			// later
 			boolean usernameExists = false;
-			for(User i: userList) {
-				if(i.getUserName().contentEquals(tmp)) {
-					usernameExists=true;
+			for (User i : userList) {
+				if (i.getUserName().contentEquals(tmp)) {
+					usernameExists = true;
 				}
 			}
-			if(!usernameExists) {
-				userName=tmp;
-			}else {
-				System.out.println("Invalid entry username already in use."
-						+"Please choose another username.");
+			if (!usernameExists) {
+				userName = tmp;
+			} else {
+				System.out.println("Invalid entry username already in use." + "Please choose another username.");
 			}
 		}
-		//		sc.close();		
+		// sc.close();
 		return userName;
 	}
 
-	private String createUserPassword() {
+	private String createUserPassword(Scanner sc) {
 
-		Scanner sc = new Scanner(System.in);
+//		Scanner sc = new Scanner(System.in);
 
-		String pass1,pass2,password;
-		password=null;
+		String pass1, pass2, password;
+		password = null;
 
-		while(password==null) {
+		while (password == null) {
 			System.out.println("Please enter a new password:");
-			pass1=sc.next();
+			pass1 = sc.next();
 			System.out.println("Please re-enter the password:");
-			pass2=sc.next();
-			if(pass1.equals(pass2)) {
-				password=pass1;
-			}else {
-				System.out.println("The passwords you entered do not match.\n"
-						+"Please try again.");
+			pass2 = sc.next();
+			if (pass1.equals(pass2)) {
+				password = pass1;
+			} else {
+				System.out.println("The passwords you entered do not match.\n" + "Please try again.");
 			}
 
 		}
-		//		sc.close();		
+		// sc.close();
 		return password;
 	}
 
-	//method to create new user/account. still need logic
+	// method to create new user/account. still need logic
 
-	public void openAccount() {
+	public void openAccount(Scanner sc) {
 		User u = new User();
-		//new log in info
-		u.setUserName(createUserName());
-		u.setPassword(createUserPassword());
-
-
+		// new log in info
+		u.setUserName(createUserName(sc));
+		u.setPassword(createUserPassword(sc));
 
 	}
-	
-	//method to add personal info to newly created account. still need logic
 
-	public void userPersonalInfo() {
-		Scanner sc = new Scanner(System.in);
+	// method to add personal info to newly created account. still need logic
+
+	public void userPersonalInfo(Scanner sc) {
+//		Scanner sc = new Scanner(System.in);
 
 		String tmp = "";
 		User u = new User();
-		u.setUserName(createUserName());
-		u.setPassword(createUserPassword());
+		u.setUserName(createUserName(sc));
+		u.setPassword(createUserPassword(sc));
 
 		System.out.println("Please enter First name:");
-		tmp =sc.nextLine();
+		tmp = sc.nextLine();
 		u.setFirstName(tmp);
 		System.out.println("Please enter Last name:");
-		tmp =sc.nextLine();
+		tmp = sc.nextLine();
 		u.setLastName(tmp);
 		System.out.println("Please enter address:");
-		tmp =sc.nextLine();
+		tmp = sc.nextLine();
 		u.setAddress(tmp);
 		System.out.println("Please enter email:");
-		tmp =sc.nextLine();
+		tmp = sc.nextLine();
 		u.setEmail(tmp);
 		System.out.println("Please enter phone number:");
-		tmp =sc.nextLine();
+		tmp = sc.nextLine();
 		u.setPhoneNumber(tmp);
 		System.out.println("Please enter user type for this customer.");
-		tmp =sc.nextLine();
+		tmp = sc.nextLine();
 		u.setUserType(tmp);
 
-		//add new user to master user list
+		// add new user to master user list
 		userList.add(u);
 
-		//		sc.close();
+		// sc.close();
 	}
 
-	
 	/**
 	 * method for logging in a user
 	 */
 
-
-	public static boolean userLogin() {
-		Scanner sc = new Scanner(System.in);
+	public static boolean userLogin(Scanner sc) {
+//		Scanner sc = new Scanner(System.in);
 
 		String un;
 		String pw;
 		System.out.println("Welcome please enter Username: ");
-		un= sc.nextLine();
+		un = sc.nextLine();
 		System.out.println("Password: ");
-		pw =sc.nextLine();
+		pw = sc.nextLine();
 
-		if(IOBank.isValidUserLogin(un, pw)) {
-			System.out.println("Welcome "+un+"!");
+		if (IOBank.isValidUserLogin(un, pw)) {
+			System.out.println("Welcome " + un + "!");
 			return true;
 		} else {
-			System.out.println("Invalid User/Password combination. Please try "
-					+ "again!");
+			System.out.println("Invalid User/Password combination. Please try " + "again!");
 
 		}
 		return false;
-		//		sc.close();
+		// sc.close();
 	}
 
-
-
 	/***************************************************************************
-	 * Takes in two strings that have been sanitized (not done yet!!!!) to verify if login credentials
-	 * are valid
+	 * Takes in two strings that have been sanitized (not done yet!!!!) to verify if
+	 * login credentials are valid
 	 * 
 	 * @param name username entered by user
 	 * @param pwd  password entered by user
@@ -161,7 +152,6 @@ public class IOBank {
 	 *         username and password are found in the record of users
 	 *************************************************************************/
 	private static boolean isValidUserLogin(String name, String pwd) {
-
 
 		// first pull up the user file list from the Default users
 		readUserFile();
@@ -174,11 +164,11 @@ public class IOBank {
 				authorized = true;
 			}
 		}
-		
-		//		if(!authorizedLogin) {
-		//			System.out.println("Username and password do not match known users "
-		//					+ "please try again.");
-		//		}
+
+		// if(!authorizedLogin) {
+		// System.out.println("Username and password do not match known users "
+		// + "please try again.");
+		// }
 		// return login value
 		return authorized;
 
@@ -187,11 +177,10 @@ public class IOBank {
 	/**
 	 * write list of user to a file
 	 */
-	public static void writeUserFile() {
+	public void writeUserFile() {
 
-		try (BufferedWriter out = new BufferedWriter(
-				new FileWriter(inUserFile, true));) {
-			for(User i : userList) {
+		try (BufferedWriter out = new BufferedWriter(new FileWriter(inUserFile, true));) {
+			for (User i : userList) {
 				out.write(i.toString());
 			}
 		} catch (FileNotFoundException e) {
@@ -203,16 +192,14 @@ public class IOBank {
 		}
 
 	}
-	
-	
+
 	/**
 	 * write list of user to a file
 	 */
 	public static void writeAccountFile() {
 
-		try (BufferedWriter out = new BufferedWriter(
-				new FileWriter(inAccountFile, true));) {
-			for(Account i : accountList) {
+		try (BufferedWriter out = new BufferedWriter(new FileWriter(inAccountFile, true));) {
+			for (Account i : accountList) {
 				out.write(i.toString());
 			}
 		} catch (FileNotFoundException e) {
@@ -230,13 +217,12 @@ public class IOBank {
 	 */
 	public static void readUserFile() {
 		User u = new User();
-		try (BufferedReader br = new BufferedReader(
-				new FileReader(inUserFile)); ) {
+		try (BufferedReader br = new BufferedReader(new FileReader(inUserFile));) {
 			String str;
-			while((str = br.readLine())!= null) {
-				//there is a better way to do this 
-				//but time is short so split the read file and
-				//then set the variables
+			while ((str = br.readLine()) != null) {
+				// there is a better way to do this
+				// but time is short so split the read file and
+				// then set the variables
 				String[] s = str.split(",");
 				u.setUserName(s[0]);
 				u.setPassword(s[1]);
@@ -257,22 +243,22 @@ public class IOBank {
 		}
 
 	}
+
 	/**
 	 * reads users from a file and stores them into a static arraylist
 	 * 
-	 * return accountID + ","+ checkingAccount + "," + firstName
-				+ "," + lastName + "," + balance + "," + approved
+	 * return accountID + ","+ checkingAccount + "," + firstName + "," + lastName +
+	 * "," + balance + "," + approved
 	 */
 	public static void readAccountFile() {
 		Account u = new Account();
-		
-		try (BufferedReader br = new BufferedReader(
-				new FileReader(inAccountFile)); ) {
+
+		try (BufferedReader br = new BufferedReader(new FileReader(inAccountFile));) {
 			String str;
-			while((str = br.readLine())!= null) {
-				//there is a better way to do this 
-				//but time is short so split the read file and
-				//then set the variables
+			while ((str = br.readLine()) != null) {
+				// there is a better way to do this
+				// but time is short so split the read file and
+				// then set the variables
 				String[] s = str.split(",");
 				u.setAccountID(s[0]);
 				u.setCheckingAccount(Boolean.parseBoolean((s[1])));

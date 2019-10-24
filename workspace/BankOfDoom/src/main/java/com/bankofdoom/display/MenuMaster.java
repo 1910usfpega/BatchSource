@@ -34,10 +34,10 @@ public class MenuMaster {
 			System.out.println(thankYouMsg);
 			break;
 		case"y":
-			if(IOBank.userLogin()) MenuMethod.displayMainMenu();;
+			if(IOBank.userLogin(sc)) MenuMethod.displayMainMenu();;
 			break;
 		case "n":
-			io.userPersonalInfo();
+			io.userPersonalInfo(sc);
 			io.writeUserFile();
 			break;
 		default:
