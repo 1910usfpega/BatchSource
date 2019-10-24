@@ -19,3 +19,8 @@ public class Reverse {
 	
 	}	
 }
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> origin/NarrainenS

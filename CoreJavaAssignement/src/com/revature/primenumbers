@@ -26,12 +26,11 @@ public class PrimeNumbers {
 				}
 				
 			}
-		     
+		
 		}
 	}
         	
 	}	
+  
 }
-
-
 

@@ -19,16 +19,26 @@ public class Driver {
 		// TODO Auto-generated method 
 //Q1. Perform a bubble sort on the following integer array:  1,0,5,6,3,2,3,7,9,8,4
 		
+<<<<<<< HEAD
 //		BubbleSort.bubbleSort();
 //		System.out.println("\n");
 //Q2. Write a program to display the first 25 Fibonacci numbers beginning at 0.
 		
 //		Fibonacci.fibonacci();
 //		System.out.println("\n");
+=======
+		BubbleSort.bubbleSort();
+		System.out.println("\n");
+//Q2. Write a program to display the first 25 Fibonacci numbers beginning at 0.
+		
+		Fibonacci.fibonacci();
+		System.out.println("\n");
+>>>>>>> origin/NarrainenS
 /*Q3Reverse a string without using a temporary variable.  
  * Do NOT use reverse() in the StringBuffer or the StringBuilder APIs
  */
 		
+<<<<<<< HEAD
 //		Reverse.reverse();
 //		System.out.println("\n");
 		
@@ -36,6 +46,15 @@ public class Driver {
 
 //		Nfactorial.fact();
 //		System.out.println("\n");
+=======
+		Reverse.reverse();
+		System.out.println("\n");
+		
+//Q4. Write a program to compute N factorial.
+
+		Nfactorial.fact();
+		System.out.println("\n");
+>>>>>>> origin/NarrainenS
 
 /*
  * Q5. Write a substring method that accepts a string str and an integer idx and returns
@@ -43,6 +62,7 @@ public class Driver {
  *  substring methods in the String, StringBuilder, or StringBuffer APIs.
  */	
 		
+<<<<<<< HEAD
 //		Substring.substring();
 //		System.out.println("\n");
 //Q6. Write a program to determine if an integer is even without using the modulus operator (%)
@@ -54,6 +74,19 @@ public class Driver {
 ////		CompareMain.Compare();
 ////		System.out.println("\n");
 //		
+=======
+		Substring.substring();
+		System.out.println("\n");
+//Q6. Write a program to determine if an integer is even without using the modulus operator (%)
+		
+		Even.evenornoteven();
+		System.out.println("\n");
+//Q7. Sort two employees based on their  name, department, and age using the Comparator interface.
+
+		CompareMain.Compare();
+		System.out.println("\n");
+		
+>>>>>>> origin/NarrainenS
 /*
  * Q8. Write a program that stores the following strings in an ArrayList and saves all the palindromes in another ArrayList.
 “karan”, “madam”, ”tom”, “civic”, “radar”, “jimmy”, “kayak”, “john”,  “refer”, “billy”, “did”
