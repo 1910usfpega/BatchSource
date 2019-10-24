@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.dao;
 import com.revature.bean.Bear;
 import com.revature.dao.BearDao;
 import com.revature.util.ConnFactoryW;
