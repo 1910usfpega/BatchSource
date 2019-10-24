@@ -1,0 +1,7 @@
+s Andy abc true 1000
+c Grant 123 false 2000
+s Ruzzell 1234 true 3000
+
+c Jeff bezos123 false 20000.0 
+s jeffrey bezosi false 34444.0
+c tutu tutubi34 false 565777.0 
