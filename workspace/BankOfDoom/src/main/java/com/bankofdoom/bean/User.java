@@ -5,8 +5,16 @@ import java.util.ArrayList;
 
 public class User implements Serializable {
 	/**
-	 * 
+	 *  
 	 */
+	
+	
+	
+	
+	
+	
+	
+	
 	private static final long serialVersionUID = -805205426868800794L;
 	// Scanner sc = new Scanner(System.in);
 	// details for the user bean
