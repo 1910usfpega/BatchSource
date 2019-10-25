@@ -49,6 +49,7 @@
 			<item value="name"/>
 		</list>
 		<list key="artifactId">
+			<item value="JDBCBank"/>
 			<item value="BenrightsBank"/>
 		</list>
 		<list key="projectNameTemplate">
