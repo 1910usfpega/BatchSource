@@ -1,0 +1,19 @@
+package com.revature.driver;
+
+import com.revature.daoimpl.AlbumDaoImpl;
+
+import java.sql.SQLException;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		AlbumDaoImpl adi = new AlbumDaoImpl();
+		try {
+			System.out.println(adi.getAlbumsById(22));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}
