@@ -1,0 +1,5 @@
+#comment
+#whitespace DOES matter
+url=jdbc:postgresql://dbbenright.cviba8ddmknh.us-east-2.rds.amazonaws.com/postgres
+user=benright313
+password=awsDB313

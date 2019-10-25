@@ -1,0 +1,14 @@
+package com.revature.daoimpl;
+
+import com.revature.beans.FunctionTest;
+import com.revature.util.ConnFactory;
+
+public class FTDaoImpl {
+	public static ConnFactory cf = ConnFactory.getInstance();
+	
+	public FunctionTest testFun() {
+		
+	}
+	
+	
+}

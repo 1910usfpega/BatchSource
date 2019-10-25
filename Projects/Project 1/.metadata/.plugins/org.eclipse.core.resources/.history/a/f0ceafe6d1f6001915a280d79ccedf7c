@@ -1,0 +1,10 @@
+package com.revature.login;
+
+import java.util.Scanner;
+
+public class Intro {
+	
+	static Scanner input = new Scanner(System.in);
+	
+	public static void i
+}
