@@ -1,0 +1,21 @@
+package com.revature.daoimpl;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.revature.beans.Album;
+import com.revature.dao.AlbumDao;
+import com.revature.util.ConnFactory;
+
+public class AlbumDaoImpl implements AlbumDao {
+
+	public static ConnFactory cf = ConnFactory.getInstance();
+	
+	@Override
+	public List<Album> getAllAlbums() throws SQLException {
+		List<Album> albumList = new ArrayList<Album>();
+		return null;
+	}
+
+}

@@ -24,6 +24,8 @@ public class UserDaoImplication implements UserDao {
 	public List<User> getUsersByAccountId(int accountId) throws SQLException {
 		List<User> userList = new ArrayList<User>();
 		Connection conn = dbc.getConnection();
+		String sql = "select * from Users where user";
+		PreparedStatement ps = conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery("select * from \"Album\"");
 	}
 
