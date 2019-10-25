@@ -1,11 +1,5 @@
 package com.bankofdoom.driver;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +8,9 @@ import com.bankofdoom.bean.Account;
 import com.bankofdoom.bean.User;
 
 public class UserManager {
-	private User u = new User();
+	
+	private static User u = new User();
+	private static UserManager um = new UserManager();
 	private final long SALT = 1285967041;
 	public static List<User> userList = new ArrayList<User>();
 	public static List<Account> accountList = new ArrayList<Account>();
@@ -153,18 +149,18 @@ public class UserManager {
 	public static boolean userLogin(Scanner sc) {
 //		Scanner sc = new Scanner(System.in);
 
-		UserManager();
+//		UserManager();
 		
 		String un;
 		String pw;
 		System.out.println("Welcome please enter Username: ");
 		un = sc.nextLine();
-		if(!this.isGoodUserName(un))
+		if(um.isGoodUserName(un))
 			
 		System.out.println("Password: ");
 		pw = sc.nextLine();
 
-		if (UserManager.isValidUserLogin(un, sanitizeInput(pw))) {
+		if (um.isValidUserLogin(un, um.sanitizeInput(pw))) {
 			System.out.println("Welcome " + un + "!");
 			return true;
 		} else {
@@ -184,7 +180,7 @@ public class UserManager {
 	 * @return authorized boolean value that is false if no matching combination of
 	 *         username and password are found in the record of users
 	 *************************************************************************/
-	private static boolean isValidUserLogin(String name, long pwd) {
+	private boolean isValidUserLogin(String name, long pwd) {
 
 		// first pull up the user file list from the Default users
 		
@@ -201,75 +197,4 @@ public class UserManager {
 
 	}
 
-	
-
-	
-
-//	/**
-//	 * reads users from a file and stores them into a static arraylist
-//	 */
-//	public static void readUserFile() {
-//		User u = new User();
-//		try (BufferedReader br = new BufferedReader(new FileReader(inUserFile));) {
-//			String str;
-//			while ((str = br.readLine()) != null) {
-//				// there is a better way to do this
-//				// but time is short so split the read file and
-//				// then set the variables
-//				String[] s = str.split(",");
-//				u.setUserName(s[0]);
-//				u.setPassword(s[1]);
-//				u.setFirstName(s[2]);
-//				u.setLastName(s[3]);
-//				u.setAddress(s[4]);
-//				u.setEmail(s[5]);
-//				u.setPhoneNumber(s[6]);
-//				u.setUserType(s[7]);
-//				userList.add(u);
-//			}
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
-
-//	/**
-//	 * reads users from a file and stores them into a static arraylist
-//	 * 
-//	 * return accountID + ","+ checkingAccount + "," + firstName + "," + lastName +
-//	 * "," + balance + "," + approved
-//	 */
-//	public static void readAccountFile() {
-//		Account u = new Account();
-//
-//		try (BufferedReader br = new BufferedReader(new FileReader(inAccountFile));) {
-//			String str;
-//			while ((str = br.readLine()) != null) {
-//				// there is a better way to do this
-//				// but time is short so split the read file and
-//				// then set the variables
-//				String[] s = str.split(",");
-//				u.setAccountID(s[0]);
-//				u.setCheckingAccount(Boolean.parseBoolean((s[1])));
-//				u.setFirstName(s[2]);
-//				u.setLastName(s[3]);
-//				u.setBalance(Double.parseDouble(s[4]));
-//				u.setApproved(Boolean.parseBoolean(s[5]));
-////				u.setPhoneNumber(s[6]);
-////				u.setUserType(s[7]);
-//				accountList.add(u);
-//			}
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
 }
