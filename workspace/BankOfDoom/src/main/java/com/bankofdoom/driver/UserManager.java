@@ -14,12 +14,12 @@ import com.bankofdoom.bean.Account;
 import com.bankofdoom.bean.User;
 
 public class UserManager {
-
+	private User u = new User();
 	private final long SALT = 1285967041;
 	public static List<User> userList = new ArrayList<User>();
 	public static List<Account> accountList = new ArrayList<Account>();
 
-	private User u;
+	
 	
 	
 	
@@ -30,7 +30,7 @@ public class UserManager {
 		return false;
 	}
 
-	public String createUser(Scanner sc) {
+	public String createUserName(Scanner sc) {
 		String uName = null;
 //		Scanner sc = new Scanner(System.in);
 		// no duplicate usernames allowed
@@ -100,8 +100,8 @@ public class UserManager {
 	private void registerUser(Scanner sc) {
 		
 		// new log in info
-		this.u.setUser(createUser(sc));
-		this.u.setPassword(createPassword(sc));
+		u.setuName(createUserName(sc));
+		u.setPassword(createPassword(sc));
 
 	}
 
@@ -117,24 +117,27 @@ public class UserManager {
 		
 		registerUser(sc);
 
-		System.out.println("Please enter Legal name:");
+		System.out.println("Please enter full Legal name:");
 		tmp = sc.nextLine();
 		u.setName(tmp);
+		
 //		System.out.println("Please enter Last name:");
 //		tmp = sc.nextLine();
+//		u.setName(tmp);
 		
-		u.setLastName(tmp);
 		System.out.println("Please enter address:");
 		tmp = sc.nextLine();
 		u.setAddress(tmp);
+		
 		System.out.println("Please enter email:");
 		tmp = sc.nextLine();
 		u.setEmail(tmp);
+		
 		System.out.println("Please enter phone number:");
 		tmp = sc.nextLine();
 		u.setPhoneNumber(tmp);
-		
-		u.setRole("user");
+	
+		u.addRole("user");
 		
 
 		// add new user to master user list

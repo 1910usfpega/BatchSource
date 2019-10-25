@@ -56,9 +56,17 @@ public class User implements Serializable {
 	//accessors and modifiers
 	
 
-	public void setUname(String user) {
-		this.uName = user;
+	
+
+	public void setuName(String uName) {
+		this.uName = uName;
 	}
+
+
+	public String getuName() {
+		return uName;
+	}
+
 
 	public long getPassword() {
 		return password;
@@ -74,14 +82,6 @@ public class User implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getuName() {
-		return uName;
-	}
-
-	public void setuName(String uName) {
-		this.uName = uName;
 	}
 
 	public String getAddress() {
@@ -116,6 +116,9 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
+	public void addRole(String s) {
+		this.role.add(s);
+	}
 	
 	@Override
 	public String toString() {

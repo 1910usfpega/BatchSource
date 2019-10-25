@@ -16,7 +16,7 @@ public class MenuMaster {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		UserManager io = new UserManager();
+		//UserManager io = new UserManager();
 
 		System.out.println("Welcome to Bank of Doom!");
 
@@ -37,8 +37,10 @@ public class MenuMaster {
 			if(UserManager.userLogin(sc)) MenuMethod.displayMainMenu();;
 			break;
 		case "n":
-			io.userPersonalInfo(sc);
-			io.writeUserFile();
+			
+			//needs to be replaced with db calls
+//			io.userPersonalInfo(sc);
+//			io.writeUserFile();
 			break;
 		default:
 			System.out.println("Invalid Option! Self-destruct sequence "

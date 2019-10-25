@@ -1,8 +1,12 @@
 package com.revature.util;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class ConnFactoryW {
 //singleton factory
@@ -24,13 +28,20 @@ public class ConnFactoryW {
 
 	public Connection getConnection() {
 		Connection conn = null;
-		String url = "jdbc:postgresql://mypegabatch.cfgmuw0zkwrh.us-east-2.rds.amazonaws.com/postgres";
-		String user = "MadScientist626";
-		String password = "3eDru-=0FaP8L-tiTh8p";
+		Properties prop = new Properties();
 		try {
-			conn = DriverManager.getConnection(url, user, password);
+			prop.load(new FileReader("src/main/resources/database.properties"));
+			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("secret"));
 		} catch (SQLException e) {
 			System.out.println("Failed to create connection");
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("File not Found");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Oops bad IO");
 			e.printStackTrace();
 		}
 		return conn;
