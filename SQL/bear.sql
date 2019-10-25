@@ -4,18 +4,23 @@
  * Woo!
 */
 
-create table bear(
-	bear_id integer primary key,
-	bear_type_id integer,
-	bear_name varchar(100),
-	bear_birthdate date,
-	bear_weight integer default 200,
-	cave_id integer
+create table user(
+	//
+	user_uname integer primary key,
+	/*what data type should I use for PASSWORD */
+	user_password bigint,
+	user_full_name varchar(25),
+	user_date_of_birth date,
+	user_email varchar(50),
+	user_address varchar(100),
+	user_phone_number varchar(12)
 );
 
-create table bear_type(
-bear_type_id integer primary key,
-bear_type_name varchar(100)
+create table account(
+account_acc_id integer primary key,
+account_balance varchar(100),
+account_full_name varchar(30),
+account_balance money
 );
 
 create table cave(
@@ -81,10 +86,8 @@ select * from bear where bear_type_id=3;
 --truncate table bear_type;
 
 --Full Query Example
-select count("EmployeeId"), "City","Country" 
+select count("EmployeeId"), "City","Country"
 from "Employee"
-group by "Country","City" 
+group by "Country","City"
 having count("EmployeeId")>1
 order by "City" desc;
-
-
