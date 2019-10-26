@@ -19,7 +19,7 @@ public class BankDaoImpl implements BankDao {
 
 	@Override
 
-	public List<Customer> getAllAlbums() throws SQLException {
+	public List<Customer> getCustomers() throws SQLException {
 
 		List<Customer> CustomerList= new ArrayList<Customer>();
 
@@ -27,7 +27,7 @@ public class BankDaoImpl implements BankDao {
 
 		Statement stmt= conn.createStatement();
 
-		ResultSet rs= stmt.executeQuery("select * from \"Customer\"");
+		ResultSet rs= stmt.executeQuery("select * from \"customer_table\"");
 
 		Customer a=null;
 
@@ -45,17 +45,17 @@ public class BankDaoImpl implements BankDao {
 
 	@Override
 
-	public List<Customer> getAlbumsById(int id) throws SQLException {
+	public List<Customer> getCustomerName(String name) throws SQLException {
 
 		List<Customer> CustomerList= new ArrayList<Customer>();
 
 		Connection conn= cf.getConnection();
 
-		String sql="select * from \"Customer\" where \"ArtistId\" = ?";
+		String sql="select * from \"customer_table\" where \"first_name\" = ?";
 
 		PreparedStatement ps= conn.prepareStatement(sql);
 
-		ps.setInt(1,id);
+		ps.setString(1,name);
 
 		ResultSet rs= ps.executeQuery();
 

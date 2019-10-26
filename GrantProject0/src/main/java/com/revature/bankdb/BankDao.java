@@ -7,8 +7,8 @@ import com.revature.bean.Customer;
 
 public interface BankDao {
 
-	public List<Customer> getAllAlbums() throws SQLException;
+	public List<Customer> getCustomers() throws SQLException;
 
-	public List<Customer> getAlbumsById(int id)throws SQLException;
+	public List<Customer> getCustomerName(String name)throws SQLException;
 	
 }
