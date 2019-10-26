@@ -1,0 +1,12 @@
+package com.revature.q11;
+
+import com.revature.q1.BubbleSort;
+
+public class FloatGrabber {
+
+	public static void grabSomeFloats() {
+		BubbleSort.FloatGrabber1 = 727;
+		BubbleSort.FloatGrabber2 = 313;
+	}
+	
+}

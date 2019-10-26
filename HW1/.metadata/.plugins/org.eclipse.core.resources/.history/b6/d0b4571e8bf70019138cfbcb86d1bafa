@@ -1,0 +1,10 @@
+package com.revature.q15;
+
+public interface MathInterface {
+
+	public int addition();
+	public int subtraction();
+	public int multiplication();
+	public int division();
+	
+}

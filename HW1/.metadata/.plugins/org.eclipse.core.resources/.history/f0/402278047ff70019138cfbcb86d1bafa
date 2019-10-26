@@ -1,0 +1,43 @@
+package com.revature.q14;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+
+public class SwitchItUp {
+
+	public static Scanner input = new Scanner(System.in);
+	public static int x;
+	public static String myString;
+	
+	public static void switchTime() {
+		
+		System.out.println("Please enter:\n1. Find the Squareroot\n2. Display Today's Date\n3. Split a string to store each word into an array \n 4. Exit");
+		System.out.println("Only number i.e. 1");
+		x = input.nextInt();
+		switch(x) {
+			case 1: 
+				System.out.println("Enter an Integer: ");
+				x = input.nextInt();
+				System.out.println("The square root of " + x + " is " + Math.sqrt(x));
+				break;
+			case 2:
+				DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+				LocalDateTime now = LocalDateTime.now();
+				System.out.println(date.format(now));
+				break;
+			case 3:
+				myString = "I am learning Core Java";
+				String array1[]= myString.split(" ");
+				array1.toString();
+				for (String temp: array1){
+				      System.out.println(temp);
+				}
+				break;	
+			default:
+				switchTime();
+			break; 
+		}
+	
+	}
+}

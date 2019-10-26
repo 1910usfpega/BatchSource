@@ -1,0 +1,17 @@
+package com.revature.q19;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayListFun {
+
+	public static List<Integer> myArrayList = new ArrayList<Integer>();
+	
+	public static void addTo() {
+		for (int i = 1; i <= 10; i++) {
+			myArrayList.add(i);
+		}
+		System.out.println(myArrayList.toString());
+	}
+	
+}

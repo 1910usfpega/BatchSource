@@ -1,0 +1,15 @@
+package com.revature.q11;
+
+import com.revature.q1.BubbleSort;
+
+public class FloatGrabber {
+
+	public static void grabSomeFloats() {
+		BubbleSort.FloatGrabber1 = 727;
+		BubbleSort.FloatGrabber2 = 313;
+		System.out.println("I stole these from BubbleSort and switched them, hope he won't notice.");
+		System.out.println("\t FloatGrabber1 = " + BubbleSort.FloatGrabber1);
+		System.out.println("\t FloatGrabber1 = " + BubbleSort.FloatGrabber2);
+	}
+	
+}

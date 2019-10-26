@@ -1,0 +1,14 @@
+package com.revature.assignment;
+
+public class Q15Driver {
+
+	public static void main(String[] args) {
+		ImplementInterface II = new ImplementInterface();
+		II.add();
+		II.subtract();
+		II.multiply();
+		II.divide();
+
+	}
+
+}

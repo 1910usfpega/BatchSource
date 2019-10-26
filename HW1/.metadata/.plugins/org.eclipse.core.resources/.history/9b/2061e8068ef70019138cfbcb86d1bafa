@@ -1,0 +1,30 @@
+package com.revature.driver;
+
+public class MathImpl implements MathInterface {
+
+	static int temp = 0;
+	
+	public int addition(int x, int y) {
+		temp = (x + y);
+		return (x + y);
+	}
+	
+	public int subtraction(int x, int y) {
+		temp = (x - y);
+		return (x - y);
+	}
+	
+	public int multiplication(int x, int y) {
+		temp = (x * y);
+		return (x * y);
+	}
+	
+	public int division(int x, int y) {
+		temp = (x / y);
+		return (x / y);
+	}
+	
+	public static void result() {
+		System.out.println();
+	}
+}

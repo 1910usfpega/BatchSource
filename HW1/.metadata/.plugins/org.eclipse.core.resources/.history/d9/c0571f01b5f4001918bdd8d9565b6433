@@ -1,0 +1,39 @@
+package com.revature.driver;
+
+import com.revature.q1.BubbleSort;
+import com.revature.q2.Fibonacci;
+import com.revature.q3.Reverse;
+import com.revature.q4.Factorial;
+import com.revature.q6.EvenSteven;
+import com.revature.q9.Prime;
+import com.revature.q10.Ternary;
+import com.revature.q12.EvenMoreArrays;
+import com.revature.q13.Triangle;
+
+
+public class Driver {
+	
+	public static void main(String[] args) {
+		/*1*/ BubbleSort.sortBubble(BubbleSort.intArray);
+		/*2*/ Fibonacci.fibo25();
+		/*3*/ Reverse.reverseReverse();
+		/*4*/ Factorial.exclaimationPoint();
+		/*5*/
+		/*6*/ EvenSteven.noPercentage();
+		/*7*/
+		/*8*/
+		/*9*/ Prime.prime();
+		/*10*/ Ternary.minFind();
+		/*11*/
+		/*12*/ EvenMoreArrays.evenArray();
+		/*13*/ Triangle.makeTheThing();
+		/*14*/
+		/*15*/
+		/*16*/
+		/*17*/
+		/*18*/
+		/*19*/
+		/*20*/	
+	}
+
+}

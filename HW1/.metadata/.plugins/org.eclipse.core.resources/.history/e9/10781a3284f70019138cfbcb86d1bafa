@@ -1,0 +1,14 @@
+package com.revature.q16;
+
+import java.util.Scanner;
+
+public class StringLength {
+
+	public static Scanner input = new Scanner(System.in);
+	
+	public static void howMany() {
+	    System.out.println("Enter a string");
+	    String myString = input.nextLine();
+	    System.out.println("Total amount of characters: " + myString.length());
+	}
+}
