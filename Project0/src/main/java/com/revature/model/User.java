@@ -5,21 +5,17 @@ public class User {
 	private String password;
 	private String firstName;
 	private String lastName;
-	
-	private boolean isLoggedIn;
 
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public User(String username, String password, String firstName, String lastName, boolean isLoggedIn) {
+	public User(String username, String password, String firstName, String lastName) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.isLoggedIn = isLoggedIn;
 	}
 
 	public String getUsername() {
@@ -54,20 +50,11 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public boolean isLoggedIn() {
-		return isLoggedIn;
-	}
-
-	public void setLoggedIn(boolean isLoggedIn) {
-		this.isLoggedIn = isLoggedIn;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + (isLoggedIn ? 1231 : 1237);
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -87,8 +74,6 @@ public class User {
 			if (other.firstName != null)
 				return false;
 		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (isLoggedIn != other.isLoggedIn)
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
@@ -111,6 +96,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", isLoggedIn=" + isLoggedIn + "]";
+				+ lastName + "]";
 	}
+
 }

@@ -4,14 +4,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.revature.model.Account;
-import com.revature.model.User;
 
 public interface AccountDao {
-	
-	public List<Account> getAllAlbums() throws SQLException;
-	public List<Account> getAlbumsByID(int id) throws SQLException;
-	public void insertAccount(Account account, User user) throws SQLException;
-	
-	
+
+	// public void insertAccount(Account account, User user) throws SQLException;
+
+	public List<Account> getAllAccounts() throws SQLException;
+
+	public List<Account> getAccountByID(String acct_id) throws SQLException;
+
+	public int createAccount(Account account) throws SQLException;
+
+	public int updateAccount(Account account) throws SQLException;
+
+	public double getBalance(String acct_id) throws SQLException;
 
 }
