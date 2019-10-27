@@ -53,10 +53,11 @@ public class AccountDaoImpl implements AccountDao {
 
 		Account a =null;
 		while(rs.next()) {
-			a = new Account(rs.getString(1), rs.getDouble(2), rs.getString(3));
+			a = new Account(rs.getString(2), rs.getDouble(3), rs.getString(4));
 			accountList.add(a);
 			
 		}
+		System.out.println(accountList);
 		return accountList;
 	
 	}
@@ -65,7 +66,7 @@ public class AccountDaoImpl implements AccountDao {
 		// if executeUpdate work returns 1 that we assign to this
 		int accountsCreated = 0;
 
-		String sql = "INSERT INTO accounts(acct_id, balance, acct_type) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO accounts(acct_number, acct_id, balance, acct_type) VALUES (nextval (\'acctseq\'), ?, ?, ?)";
 
 		Connection conn = cf.getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);

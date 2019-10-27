@@ -60,7 +60,9 @@ public class Input extends UserDaoImpl {
 	}
 	
 	public void createNewBankAccount() throws SQLException {
-		System.out.println("Select an amount to deposit:");
+		System.out.println("Enter your username: ");
+		String username = scan.nextLine();
+		System.out.println("Select an amount to deposit: ");
 		double balance = scan.nextDouble();
 		System.out.println("enter the type of account \"checking\" or \"savings\": ");
 		String type = scan.nextLine();
@@ -68,6 +70,7 @@ public class Input extends UserDaoImpl {
 		
 		//check why username not getting to the account id filed sql?
 		Account account= new Account();
+		
 		account.setId(user.getUsername());
 		account.setBalance(balance);
 		account.setType(type);

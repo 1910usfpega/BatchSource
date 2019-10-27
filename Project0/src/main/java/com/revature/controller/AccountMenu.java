@@ -52,7 +52,8 @@ public class AccountMenu extends Input {
 		System.out.println("2.) To make a deposit.");
 		System.out.println("3.) To make a withdraw");
 		System.out.println("4.) To create a new account.");
-		System.out.println("5.) To exit the app");
+		System.out.println("5.) To view all your accounts.");
+		System.out.println("6.) To exit the app");
 		
 		do {
 			System.out.println("your choice: ");
@@ -99,13 +100,16 @@ public class AccountMenu extends Input {
 				createNewBankAccount();
 				break;
 			case 5:
-				System.out.println("Thank you for letting us service you");
+				System.out.println("These are your accounts: \n");
+				adi.getAccountByID(username);
 				break;
-				
+			case 6: 
+				System.out.println("Thank you for letting us service you");
+				break;				
 			default: 
 				System.out.println("Enter a number from the menu (1-4)");
 			}
-		} while (choice != 4);
+		} while (choice != 6);
 			Account account = new Account();
 			account.setId(username);
 			account.setBalance(balance);
