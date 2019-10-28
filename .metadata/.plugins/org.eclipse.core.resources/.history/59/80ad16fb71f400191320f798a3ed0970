@@ -1,0 +1,61 @@
+package com.revature.driver;
+
+import java.util.Scanner;
+
+import com.revature.bean.Admin;
+import com.revature.bean.Customer;
+import com.revature.bean.Employee;
+
+public class MainMenu {
+
+	public static void main(String[] args) {
+		System.out.println("Welcome to Baby Driver");
+		System.out.println("New User or Returning User?");
+		System.out.println("Enter 1 for Customer");
+		System.out.println("Enter 4 for New Customer");
+		System.out.println("Enter 2 for Employee");
+		System.out.println("Enter 3 for Admin");
+		
+		Scanner in = new Scanner(System.in);
+		
+		String key= in.next();
+	
+	switch(key) {
+	case "1":
+	IOUser.readUserFile1();
+	IOUser.customerlogin(in);
+	
+		break; 
+	case "4":
+		IOUser.writeUserFile();
+		IOUser.newuserLogin();
+		break;
+	case "2":
+		IOUser.employeelogin(in);
+		IOUser.readUserFile1();
+		break;
+	case"3":
+		Admin.adminlogin();
+		IOUser.readUserFile1();
+		break;
+	case "5":
+		IOUser.readUserFile1();
+		break;
+	case "6":
+		IOUser.customerInfo();
+		IOUser.writeUserFile();
+		break;
+	
+		
+		default:
+			System.out.println("Invalid Menu Option!");
+			
+		IOUser.customerInfo();
+		IOUser.writeUserFile();
+		
+		
+
+	}
+
+	}
+}

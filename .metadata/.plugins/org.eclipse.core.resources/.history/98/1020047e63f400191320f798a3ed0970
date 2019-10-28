@@ -1,0 +1,215 @@
+package com.revature.driver;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.revature.bean.User;
+
+
+
+	public class IOUser {
+		public static List<User> userList = new ArrayList <User>();
+		private static final String inFile= "Baby.txt";
+
+
+		public static void writeUserFile() {
+
+
+
+			try (BufferedWriter out = new BufferedWriter(
+
+					new FileWriter(inFile, true));) {
+
+				for(User e : userList) {
+
+					out.write(e.toString());
+
+				}
+
+			} catch (FileNotFoundException e) {
+
+
+
+				e.printStackTrace();
+
+			} catch (IOException e) {
+
+
+
+				e.printStackTrace();
+
+			}
+		}
+
+
+
+		public static void readUserFile1() {
+
+			User u = new User();
+
+			try (BufferedReader br = new BufferedReader(
+
+					new FileReader(inFile)); ) {
+
+				String str;
+
+				while((str = br.readLine())!= null) {
+
+
+					String[] s = str.split(",");
+
+
+
+					u.setFirstName(s[1]);
+
+					u.setLastName(s[2]);
+
+					u.setAddress(s[3]);
+
+					u.setUsername(s[4]);
+
+					u.setPassword(s[5]);
+
+					u.setUserType(s[6]);
+
+					userList.add(u);
+
+				}
+
+			} catch (FileNotFoundException e) {
+
+
+
+				e.printStackTrace();
+
+			} catch (IOException e) {
+
+
+
+				e.printStackTrace();
+
+			}
+
+
+
+		}
+
+	   
+
+	public static void customerInfo() {
+		User e= new User(); 
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please enter First name");
+		e.setFirstName(in.next());
+		System.out.println("Please enter Last name");
+		e.setLastName(in.next());
+		System.out.println("Please enter User Type");
+		e.setUserType(in.next());
+		System.out.println("Please enter Address");
+		e.setAddress(in.next());
+
+		userList.add(e);
+
+	}
+	public static void newuserLogin() {
+
+
+
+		System.out.println("Welcome New Customer!");
+		System.out.println("Please Choose a Username:");
+		Scanner in= new Scanner(System.in);
+		String username = in.next();
+		String password = null;
+		while (password == null){
+			System.out.println("Please Choose a Password:");
+			String password1 = in.next();
+			System.out.println("Please retype your password");
+			String password2 = in.next();
+
+			if (password1.equals(password2)) {
+				password=password1;
+			}else {
+				System.out.println("Passwords do not match, Please try again");
+
+			}
+
+		}
+		System.out.println("You have successfully created your log in!" );
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+public static void customerinfo() {
+	User e= new User(); 
+	Scanner in = new Scanner(System.in);
+	System.out.println("Please enter First name");
+	e.setFirstName(in.next());
+	System.out.println("Please enter Last name");
+	e.setLastName(in.next());
+	System.out.println("Please enter User Type");
+	e.setUserType(in.next());
+	System.out.println("Please enter Address");
+	e.setAddress(in.next());
+
+	userList.add(e);
+
+}
+public static void newuserlogin() {
+
+
+
+	System.out.println("Welcome New Customer!");
+	System.out.println("Please Choose a Username:");
+	Scanner in= new Scanner(System.in);
+	String username = in.next();
+	String password = null;
+	while (password == null){
+		System.out.println("Please Choose a Password:");
+		String password1 = in.next();
+		System.out.println("Please retype your password");
+		String password2 = in.next();
+
+		if (password1.equals(password2)) {
+			password=password1;
+		}else {
+			System.out.println("Passwords do not match, Please try again");
+
+		}
+
+	}
+	System.out.println("You have successfully created your log in!" );
+
+
+}
+public static void readUserFile() {
+	// TODO Auto-generated method stub
+
+}
+
+
+
+}
+
+
+
+
+
+
+
