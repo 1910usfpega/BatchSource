@@ -7,21 +7,19 @@ public class User{
 	private String user;
 	private String pw;
 	private String name;
-	private int aType;
 
 	// Constructors
-	public User(int accountId, String user, String pw, String name, int aType) {
+	public User(int accountId, String user, String pw, String name) {
 
 		this.accountId = accountId;
 		this.user = user;
 		this.pw = pw;
 		this.name = name;
-		this.aType = aType;
 	}
 
 	// No-arg Constructor (Default Constructor)
 	public User() {
-		// super(); implicitly there
+		super();
 	}
 
 	public int getAccountId() {
@@ -56,18 +54,10 @@ public class User{
 		this.name = name;
 	}
 
-	public int getAType() {
-		return aType;
-	}
-
-	public void setAType(int aType) {
-		this.aType = aType;
-	}
 
 	@Override
 	public String toString() {
-		return "User [Account ID: " + accountId + ", Username = " + user + ", Password = " + pw + ", Name = " + name + ", Account Type = " + aType
-				+ "]";
+		return "User [Account ID: " + accountId + ", Username = " + user + ", Password = " + pw + ", Name = " + name + "]";
 	}
 
 }

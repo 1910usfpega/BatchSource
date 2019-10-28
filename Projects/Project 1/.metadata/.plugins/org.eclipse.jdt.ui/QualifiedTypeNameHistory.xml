@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.revature.daoimpl.LoginDaoImpl"/>
+<fullyQualifiedTypeName name="com.revature.util.JDBConnector"/>
+<fullyQualifiedTypeName name="com.revature.dao.LoginDao"/>
+<fullyQualifiedTypeName name="com.revature.dao.CustomerMenuDao"/>
+<fullyQualifiedTypeName name="com.revature.dao.AdminMenuDao"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
