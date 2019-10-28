@@ -64,12 +64,13 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public void updateUserRole(User u) throws SQLException{
-		sql= "update user_table(user_role) values(?) where user_id=?";
+		sql= "update user_table(user_role) values() where user_id=?";
 		PreparedStatement ps= conn.prepareStatement(sql);
 		
 		ps.setString(2, u.getuName());
 		ps.setInt(1, u.getRole());
 	}
+	
 	@Override
 	public void createNewUser(User u) throws SQLException {
 		sql= "insert into user_table("
@@ -138,9 +139,9 @@ public class UserDaoImpl implements UserDao {
 		ps.setInt(2, u.getPassword());
 		ResultSet rs= ps.executeQuery();
 		
-		if(!rs.next())
+		if(!rs.next()) {
 			return null;
-		
+		}
 		u= new User(rs.getInt(1),rs.getString(2));
 		
 		return u;

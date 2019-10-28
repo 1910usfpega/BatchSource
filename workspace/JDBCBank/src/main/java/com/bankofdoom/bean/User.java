@@ -71,6 +71,12 @@ public class User implements Serializable {
 		this.uName = uName;
 	}
 
+	public User(String un, int pw) {
+		super();
+		this.uName=un;
+		this.password=pw;
+	}
+
 	// accessors and modifiers
 	public int getUserId() {
 		return userId;

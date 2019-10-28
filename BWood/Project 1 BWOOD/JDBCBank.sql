@@ -9,7 +9,7 @@ user_Name varchar(15),
 legal_name varchar(50),
 address varchar(100),
 email varchar(30),
-contact_num varchar(13)
+contact_num varchar(15)
 );
 
 --table for accounts

@@ -4,32 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.bankofdoom.bean.Account;
 import com.bankofdoom.bean.User;
+import com.bankofdoom.daoimpl.UserDaoImpl;
 
 public class UserManager {
 
 	//private static objects to limit the amount of times I need to create these
 	//object to hopefully make the program run better, this may or may not be 
 	//a good idea
-	private static User u = new User();
 	private static UserManager um = new UserManager();
-	
+	private static UserDaoImpl udi;
 	
 //	public static 
 //	public static List<Account> accountList = new ArrayList<Account>();
 //	
 	//sesssion credential I'm not sure if this is the correct spot to put this
-	private static User loggedInUser = new User();
+	private User loggedInUser = new User();
 	
 	
 
-	public static User getLoggedInUser() {
+	private User getLoggedInUser() {
 		return loggedInUser;
 	}
 
-	public static void setLoggedInUser(User loggedInUser) {
-		UserManager.loggedInUser = loggedInUser;
+	private void setLoggedInUser(User loggedInUser) {
+		this.loggedInUser = loggedInUser;
 	}
 /**
  * Ensures that user name field only contains alphanumeric string and is safe
@@ -37,7 +36,7 @@ public class UserManager {
  * @return true if contains only alpha numeric characters false if contains 
  * 			illegal characters
  */
-	private boolean isGoodUserName(String s) {
+	public boolean isGoodUserName(String s) {
 		if (s.matches("[a-zA-Z0-9]+"))
 			return true;
 
@@ -121,28 +120,32 @@ public class UserManager {
  * Register a new user
  * @param sc
  */
-	private void registerUser(Scanner sc) {
-
+	public User registerUser(Scanner sc) {
+		User u = new User();
 		// new log in info
 		u.setuName(createUserName(sc));
 		
 		//password credentials do not persist through the program they are 
 		//immediately sent to the database
 		u.setPassword(createPassword(sc));
+		
+		return u;
 
 	}
 
-	public void createAdmin(Scanner sc) {
-
-	}
+	
 	// method to add personal info to newly created account. still need logic
 
-	public void userPersonalInfo(Scanner sc) {
+	public User userPersonalInfo(Scanner sc) {
 		//		Scanner sc = new Scanner(System.in);
-
+		User u = new User();
 		String tmp = "";
 
-		registerUser(sc);
+		u.setuName(createUserName(sc));
+		
+		//password credentials do not persist through the program they are 
+		//immediately sent to the database
+		u.setPassword(createPassword(sc));
 
 		
 		System.out.println("Please enter full Legal name:");
@@ -170,7 +173,7 @@ public class UserManager {
 
 		// add new user to master user list
 		//userList.add(u);
-
+		return u;
 		// sc.close();
 	}
 
@@ -178,25 +181,7 @@ public class UserManager {
 	 * method for logging in a user
 	 */
 
-	public static boolean userLogin(Scanner sc) {
-		
-
-		String un;
-		int pw;
-		System.out.println("Welcome please enter Username: ");
-		un = sc.nextLine();
-		if(um.isGoodUserName(un)) {
-
-			System.out.println("Password: ");
-			pw = um.sanitizeInput(sc.nextLine());
-
-			//call user doa login!!!
-			
-			
-		}
-		return false;
-		// sc.close();
-	}
+	
 
 	/***************************************************************************
 	 * Takes in two strings that have been sanitized (not done yet!!!!) to verify if
