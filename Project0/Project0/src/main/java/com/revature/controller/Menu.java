@@ -11,16 +11,15 @@ public class Menu extends Input {
 	
 	Input input = new Input();
 	
-	public void welcomeMenu() throws SQLException {
+	public void initialMenu() throws SQLException {
 		int choice;
 		
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("Welcome");
-		System.out.println("1.) To create a new User Account");
-		System.out.println("2.) To log in to an exisiting account");
-		System.out.println("3.) Create a new Bank Account");
-		System.out.println("4.) To exit the program");
+		System.out.println("Welcome to your Bank");
+		System.out.println("1.) To Sign up for a new user account");
+		System.out.println("2.) To Log in to an exisiting account");
+		System.out.println("3.) To exit the program");
 		System.out.println("Please make a selection");
 		
 		do {
@@ -32,19 +31,16 @@ public class Menu extends Input {
 				System.out.println("now select 2 to log in to your account");
 				break;
 			case 2: 
-				input.login();
+				input.userLogin();
 				break;
 			case 3:
-				
-				break;
-			case 4:
 				System.out.println("Thank you and See you soon");
 				break;
 				
 			default:
-				System.out.println("enter a choice from 1-4");
+				System.out.println("enter a choice from 1 to 3");
 			}
-		} while(choice !=4);
+		} while(choice !=3);
 
 
 	}

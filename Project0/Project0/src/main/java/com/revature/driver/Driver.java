@@ -10,7 +10,7 @@ import com.revature.model.User;
 public class Driver {
 	public static void main(String[] args) throws SQLException {
 		Menu session = new Menu();
-		session.welcomeMenu();
+		session.initialMenu();
 		
 	}
 

@@ -1,6 +1,7 @@
 package com.revature.model;
 
 public class Account {
+	int accountNumber;
 	private String id;
 	private double balance;
 	private String type;
@@ -9,11 +10,19 @@ public class Account {
 		super();
 	}
 
-	public Account(String id, double balance, String type) {
+	public Account(int accountNumber, String id, double balance, String type) {
 		super();
+		this.accountNumber = accountNumber;
 		this.id = id;
 		this.balance = balance;
 		this.type = type;
+	}
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
 	public String getId() {
@@ -44,6 +53,7 @@ public class Account {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + accountNumber;
 		long temp;
 		temp = Double.doubleToLongBits(balance);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -61,6 +71,8 @@ public class Account {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
+		if (accountNumber != other.accountNumber)
+			return false;
 		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))
 			return false;
 		if (id == null) {
@@ -78,6 +90,9 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", balance=" + balance + ", type=" + type + "]";
+		return "Account [accountNumber=" + accountNumber + ", id=" + id + ", balance=" + balance + ", type=" + type
+				+ "]";
 	}
+
+	
 }

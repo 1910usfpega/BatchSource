@@ -9,23 +9,30 @@ import com.revature.model.Account;
 import com.revature.model.User;
 
 public class Input extends UserDaoImpl {
-	
+
 	public Input() {
 		super();
 	}
-	
+
 	Scanner scan = new Scanner(System.in);
-	
+
 	User user = new User();
-	
+
 	public void createUserAccount() throws SQLException {
 		String username;
 		String password;
 		String firstName;
 		String lastName;
-		
+
 		System.out.println("Enter a userame you want to use: ");
+		
 		username = scan.nextLine();
+		// must fix so when username already in use lets you input it again
+		
+		while (doesUsernameMatch(username)) {
+			System.out.println("username already in use, try again: ");
+			username = scan.nextLine();
+		}
 		user.setUsername(username);
 		
 		System.out.println("Enter your secret password: ");
@@ -37,50 +44,55 @@ public class Input extends UserDaoImpl {
 		System.out.println("Enter your last name: ");
 		lastName = scan.nextLine();
 		user.setLastName(lastName);
-		
+
 		createUser(user);
 	}
-	
-	public void login() throws SQLException {
-		System.out.println("Enter a userame you want to use: ");
+
+	public void userLogin() throws SQLException {
+
+		System.out.println("Enter your username: ");
 		String username = scan.nextLine();
-		while(!doesUsernameMatch(username)) {
-			System.out.println("not found, try again: ");
+		while (!doesUsernameMatch(username)) {
+			System.out.println("Username not found, try again: ");
 			username = scan.nextLine();
 		}
 		System.out.println("Enter your password: ");
 		String password = scan.nextLine();
-		while(!doesPasswordMatch(password, username)) {
-			System.out.println("No match, try again: ");
+		while (!doesPasswordMatch(password, username)) {
+			System.out.println("Password does not match, try again: ");
 			password = scan.nextLine();
 		}
 		AccountMenu acctMenu = new AccountMenu();
 		acctMenu.accountMenuOtions(username);
-		
+
 	}
-	
+
 	public void createNewBankAccount() throws SQLException {
+		String username;
+		double balance;
+		String type;
+
 		System.out.println("Enter your username: ");
-		String username = scan.nextLine();
-		System.out.println("Select an amount to deposit: ");
-		double balance = scan.nextDouble();
+		username = scan.nextLine();
+
 		System.out.println("enter the type of account \"checking\" or \"savings\": ");
-		String type = scan.nextLine();
-		
-		
-		//check why username not getting to the account id filed sql?
-		Account account= new Account();
-		
-		account.setId(user.getUsername());
+		type = scan.nextLine();
+
+		System.out.println("Select an amount to deposit: ");
+		balance = scan.nextDouble();
+
+		Account account = new Account();
+
+		account.setId(username);
 		account.setBalance(balance);
 		account.setType(type);
-		
+
 		AccountDaoImpl acdi = new AccountDaoImpl();
 		acdi.createAccount(account);
-		
+
 		AccountMenu acctMenu = new AccountMenu();
-		acctMenu.accountMenuOtions(user.getUsername());
-		
+		acctMenu.accountMenuOtions(username);
+
 	}
 
 }

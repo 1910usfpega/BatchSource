@@ -36,12 +36,17 @@ public class AccountMenu extends Input {
 	
 	public void accountMenuOtions(String username) throws SQLException {
 		
+		//shows the accounts after login, figure out why double sysout?
 		AccountDaoImpl adi = new AccountDaoImpl();
-		balance = adi.getBalance(username);
+		System.out.println(adi.getAccountsByID(username)+ "\n");
+		
+		//selects an account to deposit or withdraw
+		System.out.println("Enter an account number: ");
+		Scanner scan = new Scanner(System.in);
+		int accountNumber = scan.nextInt();
+		balance = adi.getBalance(accountNumber);
 		
 		int choice;
-		
-		Scanner scan = new Scanner(System.in);
 		
 		double depositAmount = 0;
 		double withdrawAmount = 0;
@@ -53,7 +58,8 @@ public class AccountMenu extends Input {
 		System.out.println("3.) To make a withdraw");
 		System.out.println("4.) To create a new account.");
 		System.out.println("5.) To view all your accounts.");
-		System.out.println("6.) To exit the app");
+		System.out.println("6.) To select an account.");
+		System.out.println("7.) To exit the app");
 		
 		do {
 			System.out.println("your choice: ");
@@ -64,9 +70,9 @@ public class AccountMenu extends Input {
 				System.out.println("Your account's balance is: " + balance);
 				break;
 			case 2:
-				System.out.println("Amount to deposit: ");
+				System.out.println("Enter an amount to deposit: ");
 				while(!(scan.hasNextDouble())) {
-					System.out.println("you must enter a numeric value");
+					System.out.println("You must enter a numeric value, try again.");
 					scan.next();
 				}
 				depositAmount = scan.nextDouble();
@@ -74,23 +80,23 @@ public class AccountMenu extends Input {
 				if (depositAmount > 0) {
 					deposit(depositAmount);
 				} else {
-					System.out.println("you attemtep to deposit a negative amount.");
+					System.out.println("You attemtepted to deposit an invalid amount. Try again.");
 				}
 				break;
 			case 3: 
 				
-				System.out.println("Enter amount to withdraw: ");
+				System.out.println("Enter an amount to withdraw: ");
 				while(!(scan.hasNextDouble())) {
-					System.out.println("Enter a number and try again.");
+					System.out.println("Amount must be a valid number, try again.");
 					scan.next();
 				}
 				
 				withdrawAmount = scan.nextDouble();
 				
 				if (withdrawAmount < 0) {
-					System.out.println("You entered a negative amount.");
+					System.out.println("You entered a negative amount. Try again.");
 				} else if (withdrawAmount > balance) {
-					System.out.println("You attempted an amount larger than your balance");
+					System.out.println("You attempted to withdraw more than your balance");
 					
 				} else {
 					withdraw(withdrawAmount);
@@ -100,16 +106,25 @@ public class AccountMenu extends Input {
 				createNewBankAccount();
 				break;
 			case 5:
-				System.out.println("These are your accounts: \n");
-				adi.getAccountByID(username);
+				System.out.println("These are your available accounts: \n");
+				adi.getAccountsByID(username);
 				break;
 			case 6: 
-				System.out.println("Thank you for letting us service you");
-				break;				
+				System.out.println("enter an account number to select that account: ");
+				
+				int acct_number = scan.nextInt();
+				
+				Account account = adi.selectAccount(acct_number);
+			
+				adi.updateAccount(account);
+				break;
+			case 7:
+				System.out.println("Thank you for letting us service you, see you soon.");
+				break;
 			default: 
-				System.out.println("Enter a number from the menu (1-4)");
+				System.out.println("Please enter a valid number ranging from 1-7");
 			}
-		} while (choice != 6);
+		} while (choice != 7);
 			Account account = new Account();
 			account.setId(username);
 			account.setBalance(balance);

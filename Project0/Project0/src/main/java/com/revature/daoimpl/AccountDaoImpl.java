@@ -28,14 +28,14 @@ public class AccountDaoImpl implements AccountDao {
 		Account a =null;
 		//while loop to add new Album from each row
 		while(rs.next()) {
-			a = new Account(rs.getString(1), rs.getDouble(2), rs.getString(3));
+			a = new Account(rs.getInt(1), rs.getString(1), rs.getDouble(2), rs.getString(3));
 			accountsList.add(a);
 			
 		}
 		return accountsList;
 	}
 
-	public List<Account> getAccountByID(String acct_id) throws SQLException {
+	public List<Account> getAccountsByID(String acct_id) throws SQLException {
 		List<Account> accountList = new ArrayList<Account>();
 		//we grab the getConnection from the conn factory
 		Connection conn= cf.getConnection();
@@ -53,13 +53,34 @@ public class AccountDaoImpl implements AccountDao {
 
 		Account a =null;
 		while(rs.next()) {
-			a = new Account(rs.getString(2), rs.getDouble(3), rs.getString(4));
+			a = new Account(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4));
 			accountList.add(a);
 			
 		}
 		System.out.println(accountList);
 		return accountList;
 	
+	}
+	
+	public Account selectAccount(int acct_number) throws SQLException {
+		Connection conn= cf.getConnection();
+		
+		String sql = "SELECT * FROM accounts WHERE acct_number = ? ";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		
+		ps.setInt(1, acct_number);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		Account a = null;
+		
+		while(rs.next()) {
+			a = new Account(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getString(4));
+			System.out.println(a);
+		}
+		
+		return a;
+		
 	}
 
 	public int createAccount(Account account) throws SQLException {
@@ -85,27 +106,27 @@ public class AccountDaoImpl implements AccountDao {
 	public int updateAccount(Account account) throws SQLException {
 		int accountsUpdated = 0;
 
-		String sql = "UPDATE accounts " + " set balance = ?" + " WHERE acct_id = ? ";
+		String sql = "UPDATE accounts " + " set balance = ?" + " WHERE acct_number = ? ";
 
 		Connection conn = cf.getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
 		ps.setDouble(1, account.getBalance());
-		ps.setString(2, account.getId());
+		ps.setInt(2, account.getAccountNumber());
 		
 		return accountsUpdated;
 	}
 	
-	public double getBalance(String acct_id) throws SQLException {
+	public double getBalance(int accountNumber) throws SQLException {
 		double balance = 0;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM accounts WHERE acct_id = ?";
+		String sql = "SELECT * FROM accounts WHERE acct_number = ?";
 
 		Connection conn = cf.getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);
 
-		ps.setString(1, acct_id);
+		ps.setInt(1, accountNumber);
 		rs = ps.executeQuery();
 
 		while (rs.next()) {

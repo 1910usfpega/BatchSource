@@ -11,12 +11,12 @@ public interface AccountDao {
 
 	public List<Account> getAllAccounts() throws SQLException;
 
-	public List<Account> getAccountByID(String acct_id) throws SQLException;
+	public List<Account> getAccountsByID(String acct_id) throws SQLException;
 
 	public int createAccount(Account account) throws SQLException;
 
 	public int updateAccount(Account account) throws SQLException;
 
-	public double getBalance(String acct_id) throws SQLException;
+	public double getBalance(int accountNumber) throws SQLException;
 
 }
