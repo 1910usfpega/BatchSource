@@ -4,13 +4,15 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.bankofdoom.bean.User;
+import com.bankofdoom.daoimpl.AccountDaoImpl;
 import com.bankofdoom.daoimpl.UserDaoImpl;
 import com.bankofdoom.driver.UserManager;
 
 public class MenuMethod {
-
+	
 	static Scanner sc = new Scanner(System.in);
-
+	private static UserDaoImpl udi = new UserDaoImpl();
+	private static AccountDaoImpl adi = new AccountDaoImpl();
 	// method to run Main Menu in the scanner
 	public static void displayLoginMenu() {
 		String s;
@@ -20,9 +22,11 @@ public class MenuMethod {
 				+ "Please enter X if you wish to close the application.";
 		String thankYouMsg = "Thank you for choosing JDBC Bank for" + " all your Banking needs!";
 
-		UserDaoImpl udi = new UserDaoImpl();
+
 		UserManager um = new UserManager();
+		
 		User u = new User();
+		
 		System.out.println("Welcome to my JDBC Bank Application!\n" + tryAgain);
 
 		s = sc.next();
@@ -51,7 +55,7 @@ public class MenuMethod {
 					e.printStackTrace();
 				}
 				if (u != null) {
-					displayMainMenu();
+					displayMainMenu(u);
 				} else {
 					System.out.println("Invalid Username/Password combination.\n" + "Please try again");
 					displayLoginMenu();
@@ -63,8 +67,8 @@ public class MenuMethod {
 		case "n":
 
 			// needs to be replaced with db calls
-//			io.userPersonalInfo(sc);
-//			io.writeUserFile();
+			//			io.userPersonalInfo(sc);
+			//			io.writeUserFile();
 			break;
 		default:
 			System.out.println("Invalid Option! Self-destruct sequence " + "initiated!\n" + thankYouMsg);
@@ -75,57 +79,61 @@ public class MenuMethod {
 
 	}
 
-	private static void displayMainMenu() {
+	private static void displayMainMenu(User currentUser) {
 		int choose;
-		// loop to generate numbered options in Main Menu to choose from
+		
+		System.out.println("Welcome "+currentUser.getuName());
+		
+		System.out.println("\t Main Menu \n"
+				+ "1. View Account Balances \n "
+				+ "2. Withdrawal \n"
+				+ "3. Deposit \n"
+				+ "4. Transfer Funds \n"
+				+ "5. Cancel");
+		System.out.println("Please make a selection: ");
 
-	
-			System.out.println("\t Main Menu \n 1. View Account Balances \n "
-					+ "2. Withdrawal \n 3. Deposit \n 4. Transfer Funds \n " + "5. Cancel");
-			System.out.println("Please enter number:");
-			
-			choose = sc.nextInt();
-			// what happens once option is selected
+		choose = sc.nextInt();
+		// what happens once option is selected
 
-			switch (choose) {
+		switch (choose) {
 
-			// viewing account balances
-			case 1:
-				System.out.println("Account Balances:");
+		// viewing account balances
+		case 1:
+			System.out.println("Account Balances:");
 
-				// System.out.println("Checking Account: $" + balance);
-				// System.out.println("Savings Account: $"+ balance);
-				// }
-				break;
+			// System.out.println("Checking Account: $" + balance);
+			// System.out.println("Savings Account: $"+ balance);
+			// }
+			break;
 
 			// Bring up withdrawal menu
-			case 2:
-				MenuMethod.withdrawalMenu();
+		case 2:
+			MenuMethod.withdrawalMenu();
 
-				// }
-				break;
+			// }
+			break;
 
 			// Bring up deposit menu
-			case 3:
-				MenuMethod.depositMenu();
+		case 3:
+			MenuMethod.depositMenu();
 
-				break;
+			break;
 
 			// Transfer funds menu
-			case 4:
-				MenuMethod.transferMenu();
-				break;
+		case 4:
+			MenuMethod.transferMenu();
+			break;
 
-			case 5:
-				System.out.println("Transaction canceled..");
-				displayLoginMenu();
-				break;
-			default:
-				System.out.println("Entry invalid... Please try again.");
-				displayMainMenu();
+		case 5:
+			System.out.println("Transaction canceled..");
+			displayLoginMenu();
+			break;
+		default:
+			System.out.println("Entry invalid... Please try again.");
+			displayMainMenu(currentUser);
 
-			}
-		
+		}
+
 	}
 
 	// display menu for withdrawal

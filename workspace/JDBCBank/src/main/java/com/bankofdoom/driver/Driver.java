@@ -34,24 +34,24 @@ public class Driver {
 		 * 
 		 */
 		
-		AccountDaoImpl adi = new AccountDaoImpl();
-		Account test = new Account(1,true,100,13285,true);
-		Account test1 = new Account(2,false,25.43,13272,true);
-		Account test2 = new Account(3,true,10000000,13259,true);
-		Account test3 = new Account(4,false,1,13246,true);
-		Account test4 = new Account(5,false,0,13298,true);
-		Account test5 = new Account(6,true,0.21,13233,true);
-		try {
-			adi.createAccount(test5);
-			adi.createAccount(test4);
-			adi.createAccount(test3);
-			adi.createAccount(test2);
-			adi.createAccount(test1);
-			adi.createAccount(test);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		AccountDaoImpl adi = new AccountDaoImpl();
+//		Account test = new Account(1,true,100,13285,true);
+//		Account test1 = new Account(2,false,25.43,13272,true);
+//		Account test2 = new Account(3,true,10000000,13259,true);
+//		Account test3 = new Account(4,false,1,13246,true);
+//		Account test4 = new Account(5,false,0,13298,true);
+//		Account test5 = new Account(6,true,0.21,13233,true);
+//		try {
+//			adi.createAccount(test5);
+//			adi.createAccount(test4);
+//			adi.createAccount(test3);
+//			adi.createAccount(test2);
+//			adi.createAccount(test1);
+//			adi.createAccount(test);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //		User test = new User("jandd","Pass*word123".hashCode(),
 //				"Jane Doe","2 Test Dr Tampa FL 33613",
 //				"janed@test.com","(111)123-1234");
@@ -79,6 +79,6 @@ public class Driver {
 //			e.printStackTrace();
 //		}
 		
-		//MenuMethod.displayLoginMenu();
+		MenuMethod.displayLoginMenu();
 	}
 }
