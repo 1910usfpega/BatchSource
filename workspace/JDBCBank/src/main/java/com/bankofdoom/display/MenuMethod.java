@@ -1,16 +1,9 @@
 package com.bankofdoom.display;
-import com.bankofdoom.bean.*;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Scanner;
-import com.bankofdoom.driver.*;
+
+
 public class MenuMethod {
 
 	static Scanner sc = new Scanner(System.in);
@@ -33,6 +26,7 @@ public class MenuMethod {
 			//viewing account balances
 			case 1:
 				System.out.println("Account Balances:");
+				
 				//System.out.println("Checking Account: $" + balance);
 				//System.out.println("Savings Account: $"+ balance);
 				//}

@@ -18,10 +18,8 @@ public class MenuMaster {
 		Scanner sc = new Scanner(System.in);
 		//UserManager io = new UserManager();
 
-		System.out.println("Welcome to Bank of Doom!");
+		System.out.println("Welcome to my JDBC Bank Application!\n"+tryAgain);
 
-		System.out.println("Owned by LuthorCorp \n"
-				+tryAgain);
 
 
 		s = sc.next();
@@ -34,7 +32,7 @@ public class MenuMaster {
 			System.out.println(thankYouMsg);
 			break;
 		case"y":
-			if(UserManager.userLogin(sc)) MenuMethod.displayMainMenu();;
+			//if(UserManager.userLogin(sc)) MenuMethod.displayMainMenu();;
 			break;
 		case "n":
 			

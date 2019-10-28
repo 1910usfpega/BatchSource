@@ -31,7 +31,8 @@ public class ConnFactoryW {
 		Properties prop = new Properties();
 		try {
 			prop.load(new FileReader("src/main/resources/database.properties"));
-			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("secret"));
+			conn = DriverManager.getConnection(prop.getProperty("url"),
+					prop.getProperty("user"), prop.getProperty("secret"));
 		} catch (SQLException e) {
 			System.out.println("Failed to create connection");
 			e.printStackTrace();

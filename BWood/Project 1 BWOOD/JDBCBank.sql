@@ -1,93 +1,182 @@
-/*Bank of Doom sql script
- *Three tables 
- *
- *Table: user
- *this is the traditional 'User name' displayed and will be sanitized
- * 	private String uName;
- *	private String name;
- * 	private String address
- * 	private String email;
- * 	private String phoneNumber;
- *role based access
- *	private ArrayList<String> role;
-	
- *Table: Account 
- *	private int accountID;
- *	private boolean checkingAccount;
- *	private double balance;
- *	private String uName;
- *	private boolean approved;
- *	
- *Table: User-Account
- *	user_uName -> table_uName
- *	
- *
- *Table registered users
- *	for security reasons passwords are NEVER handled as a string
- * 	private String uName	
- * private long password;
+/*
+ * JDBC Bank database
  */
-create table users(
-userId integer primary key,
-uName varchar(15),
-name varchar(50),
+
+--table for users
+create table user_table(
+user_Id integer primary key,
+user_Name varchar(15),
+legal_name varchar(50),
 address varchar(100),
 email varchar(30),
-contactnum varchar(13)
+contact_num varchar(13)
 );
 
-create table accounts(
-accountId integer primary key,
+--table for accounts
+create table account_table(
+account_Id integer primary key,
 checking boolean,
 balance numeric,
-uName varchar(50),
+user_Name varchar(50),
 approved boolean
 );
 
-create table users_accounts(
-userId integer,
-accountId integer,
-primary key(userId,accountId)
+
+--account user lookup
+create table user_account(
+user_Id integer,
+account_Id integer,
+primary key(user_Id,account_Id)
 );
 
-create table registered_users(
-uName varchar(15) primary key,
+--add a login table
+create table registered_user(
+user_Name varchar(15) primary key,
 password bigint
 );
 
+--add table for roles
 create table roles(
-uName varchar(50) primary key,
-myrole varchar(10)
+user_role integer primary key,
+my_role varchar(10)
 );
 
-/* alter table bear 
-add constraint fk_bear_type
-foreign key (bear_type_id)
-references bear_type(bear_type_id);
-*/
-alter table users
-add constraint fk_uName
-foreign key (uName)
-references roles(uName);
 
-alter table users
-add constraint fk_users
-foreign key (uName)
-references registered_users(uName);
+--reference roles table
+alter table user_table
+add constraint fk_user_role
+foreign key (user_role)
+references roles(user_role) 
+ON UPDATE CASCADE ON DELETE CASCADE;
+
+--add in the reference to registered users
+alter table user_table
+add constraint fk_user
+foreign key (user_name)
+references registered_user(user_Name) 
+ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--add values to roles table
+insert into roles values (0,'user');
+insert into roles values (1, 'admin');
+
+
+--constraints for user account lookup table
+
+alter table user_account
+add constraint fk_user
+foreign key (user_Id)
+references user_table(user_Id)
+on delete cascade on update cascade,
+add constraint fk_account
+foreign key (account_Id)
+references account_table(account_Id) 
+ON DELETE CASCADE ON UPDATE CASCADE;
+
+--constraints for user table
+alter table user_table 
+add constraint fk_user_name
+foreign key (user_name)
+references registered_user(user_name)
+on delete cascade on update cascade;
+
+
 /*
-alter table roles
-add constraint fk_users
-foreign key (uName)
-references users(uName);
+select * from users right join roles 
+on users.uname=roles.uname;
 */
-alter table users_accounts
-add constraint fk_users
-foreign key (userId)
-references users(userId),
-add constraint fk_accounts
-foreign key (accountId)
-references accounts(accountId);
+
+--sequence for account id's
+create sequence my_bank_seq
+	increment by -7
+	start with 10101010101
+	minvalue 9000
+	maxvalue 101010101011;
+
+--sequence for user id's *is running already
+CREATE SEQUENCE myseq
+	increment by -13
+	START with 13337
+	MINVALUE 975
+	MAXVALUE 101010;
+
+--return set for login
+CREATE TYPE login_result AS (f1 int, f2 text);
+
+
+--return user id and username upon successful login
+CREATE function bank_login(text ,int) RETURNS login_result
+    AS $$ 
+SELECT user_id , user_name
+from user_table 
+where user_table.user_name= (
+		select user_name 
+		from registered_user 
+		where registered_user.user_name= $1 
+		and 
+		registered_user.password=$2
+); $$
+    LANGUAGE SQL;
+
+SELECT * FROM bank_login('test',42);
+
+
+
+--add generated user id upon insert
+create or replace function user_insert()
+returns trigger as $$
+begin
+	if(TG_OP = 'INSERT') then
+	new.user_id = (select nextval('myseq'));
+	end if;
+	return new;
+end;
+$$ language plpgsql;
+
+--trigger for inserting into the user table
+create trigger user_insert
+before insert on user_table
+for each row
+execute function user_insert();
+
+--add generated account id upon insert
+create or replace function account_insert()
+returns trigger as $$
+begin
+	if(TG_OP = 'INSERT') then
+	new.account_id = (select nextval('my_bank_seq'));
+	end if;
+	return new;
+end;
+$$ language plpgsql;
+
+--trigger for inserting into the user table
+create trigger account_insert
+before insert on account_table
+for each row
+execute function account_insert();
+
+
+
+/*
+ * testing certain functionality
+select nextval('my_bank_seq');
+
+select nextval('myseq');
+
+select currval('myseq');
+
+
+insert into registered_user(EmployeeId,FirstName,LastName)
+values(-43,'matt','k');
 
 
 
 
+delete from registered_user where user_name='test';
+insert into registered_user values('test' , 123);
+
+*/
+
+delete from registered_user where user_name='johnd';

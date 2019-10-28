@@ -2,77 +2,97 @@ package com.bankofdoom.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class User implements Serializable {
 	/**
 	 *  
 	 */
-	
-	
-	
-	
-	
-	
-	
-	
+
 	private static final long serialVersionUID = -805205426868800794L;
 	// Scanner sc = new Scanner(System.in);
 	// details for the user bean
-	
-	//this is the traditional 'User name' displayed and will be sanitized
+	private int userId;
+
+	// this is the traditional 'User name' displayed and will be sanitized
 	private String uName;
-	//for security reasons passwords are NEVER handled as a string
-	private long password;
-	
-	//User information
+
+	// for security reasons passwords are NEVER handled as a string
+	private int password;
+
+	// User information
 	private String name;
 	private String address;
 	private String email;
 	private String phoneNumber;
-	
-	//role based access
-	private ArrayList<String> role;
 
-//		constructor
+	// role based access
+	// because the
+	private int role;
+
+	// constructor
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public User(String uName, long password, String name, String address, String email, String phoneNumber,
-		ArrayList<String> role) {
-	super();
-	this.uName = uName;
-	this.password = password;
-	this.name = name;
-	this.address = address;
-	this.email = email;
-	this.phoneNumber = phoneNumber;
-	this.role = role;
-}
-
-	//accessors and modifiers
-	
+	public User(int userId, String uName, String name, String address, String email, String phoneNumber,
+			int role) {
+		super();
+		this.setUserId(userId);
+		this.uName = uName;
+		this.name = name;
+		this.address = address;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.role = role;
+	}
 
 	
+	public User(String uName, int password, String name, String address, String email, String phoneNumber) {
+		super();
+		this.uName = uName;
+		this.password = password;
+		this.name = name;
+		this.address = address;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+	}
+
+	public User(int userId) {
+		super();
+		this.userId = userId;
+	}
+
+	public User(int userId, String uName) {
+		super();
+		this.userId = userId;
+		this.uName = uName;
+	}
+
+	// accessors and modifiers
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	public void setuName(String uName) {
 		this.uName = uName;
 	}
 
-
 	public String getuName() {
 		return uName;
 	}
 
-
-	public long getPassword() {
+	public int getPassword() {
 		return password;
 	}
 
-	public void setPassword(long password) {
+	public void setPassword(int password) {
 		this.password = password;
 	}
 
@@ -108,24 +128,19 @@ public class User implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public ArrayList<String> getRole() {
+	public int getRole() {
 		return role;
 	}
 
-	public void setRole(ArrayList<String> role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 
-	public void addRole(String s) {
-		this.role.add(s);
-	}
-	
+
 	@Override
 	public String toString() {
-		return "User [uName=" + uName + ", password=" 
-				+ password + ", name=" + name + ", address="+ address 
-				+ ", email=" + email + ", phoneNumber=" + phoneNumber 
-				+ ", role=" + role + "]";
+		return "User [uName=" + uName + ", password=" + ", name=" + name + ", address=" + address + ", email=" + email
+				+ ", phoneNumber=" + phoneNumber + ", role=" + role + "]";
 	}
 
 }

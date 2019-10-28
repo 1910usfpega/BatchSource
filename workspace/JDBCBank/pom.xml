@@ -3,6 +3,14 @@
   <groupId>com.revature</groupId>
   <artifactId>BankOfDoom</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+     <dependencies>
+     <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.8</version>
+        </dependency>
+  
+  </dependencies>
     <properties>
      <maven.compiler.source>1.8</maven.compiler.source>
      <maven.compiler.target>1.8</maven.compiler.target>
