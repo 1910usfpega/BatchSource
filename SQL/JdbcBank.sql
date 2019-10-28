@@ -4,66 +4,118 @@
  * Woo!
 */
 
-create table user (
-	user_uname integer primary key,
+drop table people
+
+create table people (
+	user_ID integer primary key,
+	user_uname varchar (20),
 	/*what data type should I use for PASSWORD */
-	user_password bigint,
 	user_full_name varchar(25),
 	user_date_of_birth date,
 	user_email varchar(50),
 	user_address varchar(100),
 	user_phone_number varchar(12)
-	account_acc_id integer foreign key,
-);
-
-CREATE table user_role (
-	user_type_uname integer primary key,
-	user_password bigint,
-	user_email varchar(50),
-	account_role_user_id_fkey boolean
-);
-
-CREATE TABLE user_info (
-	user_name integer primary KEY
-	user_email varchar(50),
-	user_address varchar(100),
-	user_full_name varchar(25),
-	user_phone_number varchar(12)
-);
+	);
 
 create table account (
-	account_acc_id integer primary key,
-	account_balance varchar(100),
-	account_full_name varchar(30),
+	bank_account_ID integer primary key,
+	account_full_name varchar(20),
 	account_type boolean,
 	account_balance numeric
 );
 
-CREATE TABLE log in (
-	user_name integer foreign KEY,
-	user_password bigint
+CREATE TABLE login (
+	user_name varchar(20)primary key,
+	user_password integer
 );
 
-create table user_account (
-	account_acc_id integer,
-	user_id foreign KEY
+
+create table people_account (
+	user_ID integer,
+	--∆ here
+	bank_account_ID integer,
+	primary key (user_ID, bank_account_ID)
 );
 
-create table transaction_type (
-	transaction_type_withdraw numeric,
-	transaction_type_desposit numeric,
-	transaction_type_transfer numeric
+--∆∆2nd creating a new table to be referenced by
+--people.user_type //////kinda like this.field in java
+CREATE table user_type (
+	usr_type integer primary key,
+	description varchar(30)
 );
 
-CREATE TABLE account_role(
-  user_id integer NOT NULL,
-  role_id integer NOT NULL,
-  grant_date timestamp without time zone,
-  PRIMARY KEY (user_uname, role_id),
-  CONSTRAINT account_role_role_id_fkey FOREIGN KEY (role_id)
-      REFERENCES role (role_id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT account_role_user_id_fkey FOREIGN KEY (user_id)
-      REFERENCES account (user_id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
-);
+
+
+--Sequence
+CREATE SEQUENCE bank_account_ID_sequence
+START WITH 1,
+--default is increment by one
+INCREMENT BY 1
+owned by people_account.bank_account_ID;
+
+create SEQUENCE user_account_ID_sequence
+	START with 1
+	owned by people_account.user_ID;
+
+
+
+--created relationships to enable usage of tables
+alter table people_account
+add constraint fk_user_ID
+foreign key (user_id) references people(user_id)
+on update cascade
+on delete cascade;
+
+alter table people_account
+add constraint fk_bank_account_id
+foreign key (bank_account_id) references account(bank_account_id)
+on update cascade
+on delete cascade;
+
+
+alter table people
+add constraint fk_user_uname
+foreign key (user_uname) references login(user_name)
+on update cascade
+on delete cascade;
+
+--∆∆1st adding a column for table people
+--to specify different users customer/admin
+alter table people
+add column usr_type integer;
+
+--∆∆3rd adding a constraint to the table people of column user_type
+--to give the column a fkey
+alter table People
+add constraint fk_usr_type
+foreign key (usr_type) references user_type(usr_type)
+ on
+
+
+alter table people_account alter column bank_account_ID
+--a function
+set default nextVal('bank_account_ID_sequence');
+
+alter table people_account alter column user_id
+--a function
+set default nextVal('user_ID_sequence');
+
+--this function returns the People table's values
+CREATE or Replace function get_all_users()
+	returns Table (
+		user_ID integer primary key,
+		user_uname varchar,
+		user_full_name varchar,
+		user_date_of_birth date,
+		user_email varchar,
+		user_address varchar,
+		user_phone_number varchar
+	)
+	AS $$
+	Begin
+		Return Query select * From people;
+	End; $$
+	Language 'plpgsql';
+
+	--call it like a table
+select get_all_users()
