@@ -3,8 +3,12 @@ package com.revature.controller;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+//this class holds the initial menu to :
+//1. sign up an account 
+//2. to log in to an account
+//3. exit? make exit return to login instead of just shutting down the console.
 public class Menu extends Input {
-	
+	//we extend input to have access to createUserAccountMethod 
 	public Menu() {
 		super();
 	}
@@ -12,8 +16,8 @@ public class Menu extends Input {
 	Input input = new Input();
 	
 	public void initialMenu() throws SQLException {
-		int choice;
 		
+		int choice;
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Welcome to your Bank");
@@ -28,12 +32,16 @@ public class Menu extends Input {
 			switch(choice) {
 			case 1:
 				createUserAccount();
-				System.out.println("now select 2 to log in to your account");
+				//auto login?
+				//call login from createUSerAccount() method or 
+				//overload the login() method in the input class to receive a username and password paramaters.
+				System.out.println("Now select 2 to log in to your newly created account: ");
 				break;
 			case 2: 
 				input.userLogin();
 				break;
 			case 3:
+				//instead of exiting the program make it return you to intial menu again
 				System.out.println("Thank you and See you soon");
 				break;
 				

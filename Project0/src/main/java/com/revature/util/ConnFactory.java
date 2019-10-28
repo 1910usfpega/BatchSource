@@ -17,39 +17,27 @@ public class ConnFactory {
 	
 	public static synchronized ConnFactory getInstance() {
 		if(cf==null) {
-			cf = new ConnFactory();
-			
+			cf = new ConnFactory();		
 		}
-		return cf;
-		
+		return cf;	
 	}
 	
 	public Connection getConnection() {
 		Connection conn = null;
 		Properties prop= new Properties();
 		
-		/*
-		String url = "jdbc:postgresql://projectdatabase.cye3goi34rqb.us-east-1.rds.amazonaws.com/postgres";
-		String user = "amart31";
-		String password = "10109496";
-		*/
-		
 		try {
 			prop.load(new FileReader("database.properties"));
 			conn= DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
 			
-			//conn= DriverManager.getConnection(url,user,password);
 		} catch (SQLException e) {
 			System.out.println("failed to create connection");
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return conn;
 	}
-
 }

@@ -62,7 +62,7 @@ public class AccountMenu extends Input {
 		System.out.println("7.) To exit the app");
 		
 		do {
-			System.out.println("your choice: ");
+			System.out.println("your selection: ");
 			choice = scan.nextInt();
 			
 			switch(choice) {
@@ -71,28 +71,28 @@ public class AccountMenu extends Input {
 				break;
 			case 2:
 				System.out.println("Enter an amount to deposit: ");
+				//if can't be interpreted as a Double 
 				while(!(scan.hasNextDouble())) {
 					System.out.println("You must enter a numeric value, try again.");
 					scan.next();
 				}
 				depositAmount = scan.nextDouble();
-				
+				// if amount greater than 0 proced with deposit.
 				if (depositAmount > 0) {
 					deposit(depositAmount);
 				} else {
 					System.out.println("You attemtepted to deposit an invalid amount. Try again.");
 				}
 				break;
-			case 3: 
-				
+			case 3: 	
 				System.out.println("Enter an amount to withdraw: ");
 				while(!(scan.hasNextDouble())) {
 					System.out.println("Amount must be a valid number, try again.");
 					scan.next();
-				}
-				
+				}				
 				withdrawAmount = scan.nextDouble();
 				
+				//check if greater than 0 and less than balance.
 				if (withdrawAmount < 0) {
 					System.out.println("You entered a negative amount. Try again.");
 				} else if (withdrawAmount > balance) {
