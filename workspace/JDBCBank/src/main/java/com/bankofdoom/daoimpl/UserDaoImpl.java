@@ -82,9 +82,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void createNewUser(User u) {
+	public void createNewUser(User u, int role) {
 		sql = "insert into user_table(" + "user_name, legal_name, address, email, contact_num,user_role) "
-				+ "values(?,?,?,?,?,0)";
+				+ "values(?,?,?,?,?,?)";
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -93,6 +93,7 @@ public class UserDaoImpl implements UserDao {
 			ps.setString(3, u.getAddress());
 			ps.setString(4, u.getEmail());
 			ps.setString(5, u.getPhoneNumber());
+			ps.setInt(6, role);
 			ps.execute();
 		} catch (SQLException e) {
 			System.out.println("Unable to create new user!");

@@ -12,40 +12,47 @@ public class UserManager {
 	//private static objects to limit the amount of times I need to create these
 	//object to hopefully make the program run better, this may or may not be 
 	//a good idea
-	private static UserManager um = new UserManager();
-	private static UserDaoImpl udi;
-	
-//	public static 
-//	public static List<Account> accountList = new ArrayList<Account>();
-//	
+	//private static UserManager um = new UserManager();
+	//	public static 
+	//	public static List<Account> accountList = new ArrayList<Account>();
+	//	
 	//sesssion credential I'm not sure if this is the correct spot to put this
-	private User loggedInUser = new User();
-	
-	
+	//private User loggedInUser = new User();
 
-	private User getLoggedInUser() {
-		return loggedInUser;
-	}
 
-	private void setLoggedInUser(User loggedInUser) {
-		this.loggedInUser = loggedInUser;
-	}
-/**
- * Ensures that user name field only contains alphanumeric string and is safe
- * @param s string entered by user that may or may not be safe
- * @return true if contains only alpha numeric characters false if contains 
- * 			illegal characters
- */
-	public boolean isGoodUserName(String s) {
+
+
+	/**
+	 * Ensures that user name field only contains alphanumeric string and is safe
+	 * @param s string entered by user that may or may not be safe
+	 * @return true if contains only alpha numeric characters false if contains 
+	 * 			illegal characters
+	 */
+	private boolean isGoodUserName(String s) {
 		if (s.matches("[a-zA-Z0-9]+"))
 			return true;
 
 		return false;
 	}
+	public String enterUserName(Scanner sc) {
+		String s = null;
+		System.out.println("Please enter new username:");
+		s = sc.next();
+		if(isGoodUserName(s)) {
+			return s;
+		} else {
+			return null;
+		}
+
+	}
+	public int enterUserPassword(Scanner sc) {
+		System.out.println("Please enter password:");
+		return sanitizeInput(sc.next());
+	}
 
 	public String createUserName(Scanner sc) {
 		List<User> userList = new ArrayList<User>();
-		
+
 		String uName = null;
 		//		Scanner sc = new Scanner(System.in);
 		// no duplicate usernames allowed
@@ -76,21 +83,21 @@ public class UserManager {
 		return uName;
 	}
 
-/**
- * Sanitize input into a hashvalue
- * @param s string input taken from user input
- * @return hashvalue of that input
- */
-	public int sanitizeInput(String s) {
+	/**
+	 * Sanitize input into a hashvalue
+	 * @param s string input taken from user input
+	 * @return hashvalue of that input
+	 */
+	private int sanitizeInput(String s) {
 		return s.hashCode();
 	}
 
-/**
- * Create a valid password
- * @param sc scanner being passed in to collect password
- * @return hash value of the confirmed password made by the user
- */
-	private int createPassword(Scanner sc) {
+	/**
+	 * Create a valid password
+	 * @param sc scanner being passed in to collect password
+	 * @return hash value of the confirmed password made by the user
+	 */
+	public int createPassword(Scanner sc) {
 
 		//		Scanner sc = new Scanner(System.in);
 
@@ -116,38 +123,38 @@ public class UserManager {
 	}
 
 	// method to create new user/account. still need logic
-/**
- * Register a new user
- * @param sc
- */
+	/**
+	 * Register a new user
+	 * @param sc
+	 */
 	public User registerUser(Scanner sc) {
 		User u = new User();
 		// new log in info
 		u.setuName(createUserName(sc));
-		
+
 		//password credentials do not persist through the program they are 
 		//immediately sent to the database
 		u.setPassword(createPassword(sc));
-		
+
 		return u;
 
 	}
 
-	
+
 	// method to add personal info to newly created account. still need logic
 
-	public User userPersonalInfo(Scanner sc) {
+	public User newUserInfo(Scanner sc) {
 		//		Scanner sc = new Scanner(System.in);
 		User u = new User();
 		String tmp = "";
 
 		u.setuName(createUserName(sc));
-		
+
 		//password credentials do not persist through the program they are 
 		//immediately sent to the database
 		u.setPassword(createPassword(sc));
 
-		
+
 		System.out.println("Please enter full Legal name:");
 		tmp = sc.nextLine();
 		u.setName(tmp);
@@ -181,7 +188,7 @@ public class UserManager {
 	 * method for logging in a user
 	 */
 
-	
+
 
 	/***************************************************************************
 	 * Takes in two strings that have been sanitized (not done yet!!!!) to verify if
@@ -192,21 +199,21 @@ public class UserManager {
 	 * @return authorized boolean value that is false if no matching combination of
 	 *         username and password are found in the record of users
 	 *************************************************************************/
-//	private boolean isValidUserLogin(String name, long pwd) {
-//
-//		// first pull up the user file list from the Default users
-//
-//		//getUserList -  from UserDAO
-//
-//
-//		// poll my list of known users and check the string against it
-//		for (User u : userList) {
-//			if (name.equalsIgnoreCase(u.getuName()) && pwd == u.getPassword()) {
-//				return true;
-//			}
-//		}
-//		return false;
-//
-//	}
+	//	private boolean isValidUserLogin(String name, long pwd) {
+	//
+	//		// first pull up the user file list from the Default users
+	//
+	//		//getUserList -  from UserDAO
+	//
+	//
+	//		// poll my list of known users and check the string against it
+	//		for (User u : userList) {
+	//			if (name.equalsIgnoreCase(u.getuName()) && pwd == u.getPassword()) {
+	//				return true;
+	//			}
+	//		}
+	//		return false;
+	//
+	//	}
 
 }
