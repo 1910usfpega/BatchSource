@@ -44,7 +44,7 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public void removeAccount(Account closedAccount) throws SQLException {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = n
 		
 	}
 
