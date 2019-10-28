@@ -40,8 +40,8 @@ CREATE SCHEMA IF NOT EXISTS JDBC_Bank;
 CREATE TABLE JDBC_Bank.User_Info
 (
      User_ID  int NOT NULL,
-     User_Name  VARCHAR(60) NOT NULL,
-     User_Type  INT NOT NULL,
+     User_Name  VARCHAR(60) NOT null UNIQUE,
+     User_Typ  INT NOT NULL,
      FirstName  VARCHAR(20) NOT NULL,
      LastName  VARCHAR(20) NOT NULL,
      Address  VARCHAR(70),
@@ -57,9 +57,9 @@ CREATE TABLE JDBC_Bank.User_Info
 
 CREATE TABLE JDBC_Bank.Account
 (
-     Bank_Acc_ID  INT NOT NULL,
+     Bank_Acc_ID  INT NOT null UNIQUE,
 	 User_ID  int NOT NULL,
-     Acc_Type  INT NOT NULL,
+     Acc_Typ  INT NOT NULL,
      Balance  NUMERIC(10,2) NOT null,
     CONSTRAINT  PK_Account  PRIMARY KEY  ( Bank_Acc_ID , User_ID )
 );
@@ -77,9 +77,9 @@ CREATE TABLE JDBC_Bank.Transaction_info
 
 CREATE TABLE JDBC_Bank.User_Type
 (
-     User_Type  INT NOT NULL,
+     User_Typ  INT NOT NULL,
      Description  VARCHAR(20) NOT NULL,
-    CONSTRAINT  PK_User_Type  PRIMARY KEY  ( User_Type )
+    CONSTRAINT  PK_User_Type  PRIMARY KEY  ( User_Typ )
 );
 
 
@@ -87,7 +87,7 @@ CREATE TABLE JDBC_Bank.Acc_Type
 (
      Acc_Typ  INT NOT NULL,
      Description  VARCHAR(20) NOT NULL,
-    CONSTRAINT  PK_Acc_type  PRIMARY KEY  ( Acc_Type )
+    CONSTRAINT  PK_Acc_type  PRIMARY KEY  ( Acc_Typ )
 ); 
 
 CREATE TABLE JDBC_Bank.Trans_Type
@@ -101,64 +101,64 @@ CREATE TABLE JDBC_Bank.Log_In
 (
      User_Name  VARCHAR(60) NOT NULL,
      Passwd  VARCHAR(20) NOT NULL,
-    CONSTRAINT  PK_Log_In  PRIMARY KEY  ( User_ID )
+    CONSTRAINT  PK_Log_In  PRIMARY KEY  ( User_Name )
 ); 
 
--- drop table JDBC_Bank.Log_In
--- drop table JDBC_Bank.Trans_Type
--- drop table JDBC_Bank.Acc_Type
--- drop table JDBC_Bank.User_Type
--- drop table JDBC_Bank.Transaction_info
--- drop table JDBC_Bank.User_Info
--- drop table JDBC_Bank.account
+-- drop table JDBC_Bank.User_Info CASCADE;
+-- drop table JDBC_Bank.Account CASCADE;
+-- drop table JDBC_Bank.Transaction_info CASCADE;
+-- drop table JDBC_Bank.User_Type CASCADE;
+-- drop table JDBC_Bank.Acc_Type CASCADE;
+-- drop table JDBC_Bank.Trans_Type CASCADE;
+-- drop table JDBC_Bank.Log_In CASCADE;
 
 /*******************************************************************************
    Create Sequence + Add sequence to tables
 ********************************************************************************/
 
-CREATE SEQUENCE  seq_userid 
+CREATE SEQUENCE  JDBC_Bank.seq_userid 
 START WITH  100 
 OWNED BY  JDBC_Bank.User_Info.User_ID;
                 
 ALTER TABLE  JDBC_Bank.User_Info ALTER COLUMN User_ID 
-SET DEFAULT nextVal seq_userid  
+SET DEFAULT nextVal ('JDBC_Bank.seq_userid');  
 
 
-CREATE SEQUENCE  seq_bank_Accid
+CREATE SEQUENCE  JDBC_Bank.seq_bank_Accid
 START WITH  1000 
 OWNED BY  JDBC_Bank.Account.Bank_Acc_ID;
                 
 ALTER TABLE  JDBC_Bank.Account ALTER COLUMN  Bank_Acc_ID 
-SET DEFAULT nextVal seq_bank_Accid
+SET DEFAULT nextVal ('JDBC_Bank.seq_bank_Accid'); 
 
 
-CREATE SEQUENCE  seq_TransID
+CREATE SEQUENCE  JDBC_Bank.seq_TransID
 START WITH  1 
 OWNED BY  JDBC_Bank.Transaction_info.Trans_ID;
                 
 ALTER TABLE  JDBC_Bank.Transaction_info ALTER COLUMN  Trans_ID 
-SET DEFAULT nextVal seq_TransID
+SET DEFAULT nextVal ('JDBC_Bank.seq_TransID'); 
 
-CREATE SEQUENCE  seq_UserType
+CREATE SEQUENCE  JDBC_Bank.seq_UserType
 START WITH  1 
-OWNED BY  JDBC_Bank.User_Type.UserType;
+OWNED BY  JDBC_Bank.User_Type.User_Typ;
                 
-ALTER TABLE  JDBC_Bank.User_Type ALTER COLUMN  UserType 
-SET DEFAULT nextVal seq_UserType
+ALTER TABLE  JDBC_Bank.User_Type ALTER COLUMN  User_Typ 
+SET DEFAULT nextVal ('JDBC_Bank.seq_UserType'); 
 
-CREATE SEQUENCE  seq_AccTyp
+CREATE SEQUENCE  JDBC_Bank.seq_AccTyp
 START WITH  1 
 OWNED BY  JDBC_Bank.Acc_Type.Acc_Typ;
                 
 ALTER TABLE  JDBC_Bank.Acc_Type ALTER COLUMN  Acc_Typ  
-SET DEFAULT nextVal seq_AccTyp
+SET DEFAULT nextVal ('JDBC_Bank.seq_AccTyp'); 
 
-CREATE SEQUENCE  seq_TransTyp
+CREATE SEQUENCE  JDBC_Bank.seq_TransTyp
 START WITH  1 
 OWNED BY  JDBC_Bank.Trans_Type.Trans_Typ;
                 
 ALTER TABLE  JDBC_Bank.Trans_Type ALTER COLUMN  Trans_Typ 
-SET DEFAULT nextVal seq_TransTyp
+SET DEFAULT nextVal ('JDBC_Bank.seq_TransTyp'); 
 
 
 
@@ -172,14 +172,23 @@ ALTER TABLE JDBC_Bank.Account ADD CONSTRAINT FK_AccountUser_ID
 ALTER TABLE JDBC_Bank.Transaction_info ADD CONSTRAINT FK_TransUser_ID
     FOREIGN KEY (User_ID) REFERENCES JDBC_Bank.User_Info (User_ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE JDBC_Bank.Transaction_info ADD CONSTRAINT FK_TransUser_ID
-    FOREIGN KEY (Acc_num) REFERENCES JDBC_Bank.Account (Acc_num) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE JDBC_Bank.Transaction_info ADD CONSTRAINT FK_TransAcc_ID
+    FOREIGN KEY (Bank_Acc_ID) REFERENCES JDBC_Bank.Account (Bank_Acc_ID) ON DELETE CASCADE ON UPDATE CASCADE;
    
 ALTER TABLE JDBC_Bank.Log_In ADD CONSTRAINT FK_LogInUser_Nme
     FOREIGN KEY (User_Name) REFERENCES JDBC_Bank.User_Info (User_Name) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE JDBC_Bank.User_Info ADD CONSTRAINT FK_User_typ
+    FOREIGN KEY (User_Typ) REFERENCES JDBC_Bank.User_Type (User_Typ) ON DELETE CASCADE ON UPDATE CASCADE;
+   
+ALTER TABLE JDBC_Bank.Account ADD CONSTRAINT FK_Account_typ
+    FOREIGN KEY (Acc_Typ) REFERENCES JDBC_Bank.Acc_Type (Acc_Typ) ON DELETE CASCADE ON UPDATE CASCADE;
+   
+ALTER TABLE JDBC_Bank.Transaction_info ADD CONSTRAINT FK_Trans_typ
+    FOREIGN KEY (Trans_Typ) REFERENCES JDBC_Bank.Trans_Type (Trans_Typ) ON DELETE CASCADE ON UPDATE CASCADE;   
  
 /*******************************************************************************
-   Functions
+         Functions
 ********************************************************************************/
 ----Selects
 CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllUsers () 
@@ -211,7 +220,7 @@ CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllAccounts ()
    RETURNS TABLE (
       Bank_Acc_ID  INT,
 	 User_ID  INT,
-     Acc_Type  INT,
+     Acc_Typ  INT,
      Balance  NUMERIC(10,2) 
 ) 
 AS $$
@@ -245,7 +254,7 @@ LANGUAGE 'plpgsql';
 ---- 
 CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllUserTypes() 
    RETURNS TABLE (
-      User_Type  INT,
+      User_Typ  INT,
      Description  VARCHAR(20) 
 ) 
 AS $$
@@ -260,8 +269,8 @@ LANGUAGE 'plpgsql';
 ----  
 CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllAccTypes() 
    RETURNS TABLE (
-      Acc_Typ  INT NOT NULL,
-     Description  VARCHAR(20) NOT NULL 
+      Acc_Typ  INT,
+     Description  VARCHAR(20) 
 ) 
 AS $$
 BEGIN
@@ -275,8 +284,8 @@ LANGUAGE 'plpgsql';
 ---- 
 CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllTransTypes() 
    RETURNS TABLE (
-      Trans_Typ  INT NOT NULL,
-     Description  VARCHAR(20) NOT NULL 
+      Trans_Typ  INT,
+     Description  VARCHAR(20) 
 ) 
 AS $$
 BEGIN
@@ -290,8 +299,8 @@ LANGUAGE 'plpgsql';
 ----
 CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllLogIn() 
    RETURNS TABLE (
-      User_Name  VARCHAR(60) NOT NULL,
-     Passwd  VARCHAR(20) NOT NULL 
+      User_Name  VARCHAR(60) ,
+     Passwd  VARCHAR(20) 
 ) 
 AS $$
 BEGIN
@@ -309,8 +318,8 @@ CREATE FUNCTION JDBC_Bank.AddUser(uName VARCHAR, utype integer, fname VARCHAR, l
   RETURNS void AS
   $BODY$
       BEGIN
-        INSERT INTO JDBC_Bank.User_Info(User_ID, User_Name, User_Type, FirstName, LastName, Address, City, State, Country, PostalCode, Phone, Email)
-        VALUES(DEFAULT, utype, fname, lname, adds, city, state, ctry, zip, phne, eml);
+        INSERT INTO JDBC_Bank.User_Info(User_ID, User_Name, User_Typ, FirstName, LastName, Address, City, State, Country, PostalCode, Phone, Email)
+        VALUES(DEFAULT, uName, utype, fname, lname, adds, city, state, ctry, zip, phne, eml);
       END;
   $BODY$
   LANGUAGE 'plpgsql';
@@ -320,7 +329,7 @@ CREATE FUNCTION JDBC_Bank.AddAccount( uid integer, acctyp integer, balance numer
   RETURNS void AS
   $BODY$
       BEGIN
-        INSERT INTO JDBC_Bank.Account(Bank_Acc_ID, User_ID, Acc_Type, Balance)
+        INSERT INTO JDBC_Bank.Account(Bank_Acc_ID, User_ID, Acc_Typ, Balance)
         VALUES(DEFAULT, uid, acctyp, balance);
       END;
   $BODY$
@@ -340,7 +349,7 @@ CREATE FUNCTION JDBC_Bank.AddUType(udesc VARCHAR)
   RETURNS void AS
   $BODY$
       BEGIN
-        INSERT INTO JDBC_Bank.User_Type(User_Type, Description)
+        INSERT INTO JDBC_Bank.User_Type(User_Typ, Description)
         VALUES(DEFAULT, udesc);
       END;
   $BODY$
@@ -379,7 +388,7 @@ CREATE FUNCTION JDBC_Bank.AddLogIN(uName VARCHAR, pwd VARCHAR)
 ------deletitions
 
  --I wanted to make a dynamic fuction that can delete 1 record at a time from any table
-CREATE OR REPLACE FUNCTION JDBC_Bank.deleteRec(tableName nvarchar(50), columnName nvarchar(100),value nvarchar(100))
+CREATE OR REPLACE FUNCTION JDBC_Bank.deleteRec(tableName varchar, columnName varchar,value varchar)
  RETURNS void AS
 
 $BODY$ 
@@ -392,7 +401,7 @@ $BODY$
 LANGUAGE plpgsql VOLATILE;
 
  --I wanted to make a dynamic fuction that can delete all records from any table
-CREATE OR REPLACE FUNCTION JDBC_Bank.deleteAllRec(tableName nvarchar(50))
+CREATE OR REPLACE FUNCTION JDBC_Bank.deleteAllRec(tableName varchar)
  RETURNS void AS
 
 $BODY$ 
@@ -407,7 +416,7 @@ LANGUAGE plpgsql VOLATILE;
 ------update
 
  --I wanted to make a dynamic fuction that can update 1 record at a time from any table
-CREATE OR REPLACE FUNCTION JDBC_Bank.UpdateRec(tableName nvarchar(50), columnName1 nvarchar(100), columnName2 nvarchar(100), value1 nvarchar(100), value2 nvarchar(100))
+CREATE OR REPLACE FUNCTION JDBC_Bank.UpdateRec(tableName varchar, columnName1 varchar, columnName2 varchar, value1 varchar, value2 varchar)
  RETURNS void AS
 
 $BODY$ 
@@ -419,6 +428,44 @@ $BODY$
 
 LANGUAGE plpgsql VOLATILE;
  
+
+
+
+/*******************************************************************************
+   Populate Tables with Some Assumed data
+********************************************************************************/
+
+
+INSERT INTO JDBC_Bank.User_Type(User_Typ, Description)
+        VALUES(DEFAULT,'Admin');
+INSERT INTO JDBC_Bank.User_Type(User_Typ, Description)
+        VALUES(DEFAULT,'Customer');  
+       
+select * from JDBC_Bank.User_Type
+----
+INSERT INTO JDBC_Bank.Acc_Type(Acc_Typ, Description)
+        VALUES(DEFAULT, 'Checking');
+INSERT INTO JDBC_Bank.Acc_Type(Acc_Typ, Description)
+        VALUES(DEFAULT, 'Savings');
+
+select * from JDBC_Bank.Acc_Type
+----
+INSERT INTO JDBC_Bank.Trans_Type(Trans_Typ, Description)
+        VALUES(DEFAULT, 'Deposit');
+INSERT INTO JDBC_Bank.Trans_Type(Trans_Typ, Description)
+        VALUES(DEFAULT, 'Withdraw');
+       
+select * from JDBC_Bank.Trans_Type
+----
+INSERT INTO JDBC_Bank.User_Info(User_ID, User_Name, User_Typ, FirstName, LastName, Address, City, State, Country, PostalCode, Phone, Email)
+        VALUES(DEFAULT, 'boss@admin.com',1, 'Boss', 'Man', '111 Runthis Ave', 'Jamrock', 'FL', 'USA', '12345', '212-333-4567', 'boss@admin.com');
+       
+select * from JDBC_Bank.User_Info       
+----
+INSERT INTO JDBC_Bank.Log_In(User_Name, Passwd)
+        VALUES('boss@admin.com', 'passwd123');
+  
+select * from JDBC_Bank.Log_In       
 
 /*******************************************************************************/
 
