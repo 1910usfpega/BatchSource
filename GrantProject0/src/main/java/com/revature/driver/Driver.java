@@ -1,9 +1,12 @@
 package com.revature.driver;
 import java.sql.SQLException;
 import java.util.Scanner;
+
 import com.revature.bean.Customer;
 import com.revature.bean.User;
+import com.revature.daoimpl.BankDaoImpl;
 import com.revature.daoimpl.CustomerDaoImpl;
+import com.revature.daoimpl.EmployeeDaoimpl;
 
 		public class Driver {
 		static Scanner scan = new Scanner(System.in);
@@ -32,13 +35,53 @@ import com.revature.daoimpl.CustomerDaoImpl;
 					 login = User.logIn(username, password);
 					if(login) {
 					user = a.getCustomerbyUsername(username);
-						System.out.println(": welcome " + user.getfName()+" "+user.getlName());
+						System.out.println(": Welcome " + user.getfName()+" "+user.getlName());
+						System.out.println("----------------------------");
 						System.out.println("1: View Account");
 						System.out.println("2: Get Balance");
-						System.out.println("3: deposit");
-						System.out.println("4: delete account");
-						System.out.println("5: change account");
-						System.out.println("6: logout");	
+						System.out.println("3: Withdraw");
+						System.out.println("4: Deposit");
+						System.out.println("5: Delete Account");
+						System.out.println("6: Change Account");
+						System.out.println("7: Logout");
+					loop:	switch (input) {
+						// Login log out
+						case 1:
+							//view account
+							BankDaoImpl viewAcc = new BankDaoImpl();
+							//viewAcc.ViewAccount(accountNumber);
+							break;
+						// create customer account
+						case 2:
+							BankDaoImpl getB = new BankDaoImpl();
+							//getB.ge
+							//get balance
+							break;
+						// create admin account
+						case 3:
+							//withdraw method
+							BankDaoImpl withM = new BankDaoImpl();
+				//			wit.withdraw(amount, accountNumber);
+							break;
+						// exit system
+						case 4:
+							//deposit
+							BankDaoImpl depM = new BankDaoImpl();
+							break;
+						case 5:
+							//delete account
+							BankDaoImpl delM = new BankDaoImpl();
+							break;
+						// exit system
+						case 6:
+							//change account;
+							break;
+							
+						case 7:
+							
+							break loop;
+							
+						}
 					}					
 					System.out.print("");
 					break;
@@ -49,12 +92,45 @@ import com.revature.daoimpl.CustomerDaoImpl;
 					 password = scan.next();
 					 login =User.logIn(username, password);
 					if(login) {
-						System.out.println("Welcome " + user.getfName()+" "+user.getlName());
-						System.out.println("enter 1 to veiw a user account");
-						System.out.println("2: check a user's balance");
-						System.out.println("4: delete a user's account");
-						System.out.println("5: update a user's account");
-						System.out.println("6: logout");
+						System.out.println(": Welcome " + user.getfName()+" "+user.getlName());
+						System.out.println("----------------------------");
+						System.out.println("1: View User Account");
+						System.out.println("2: Check User's Balance");
+						System.out.println("3: Delete a User's Account");
+						System.out.println("4: Update a User's Account");
+						System.out.println("5: Logout");
+						
+						switch (input) {
+						// Login log out
+						case 1:
+							//view account
+							BankDaoImpl viewAcc = new BankDaoImpl();
+							//viewAcc.ViewAccount(accountNumber);
+							break;
+						// create customer account
+						case 2:
+							BankDaoImpl getB = new BankDaoImpl();
+							//get balance
+							break;
+						// create admin account
+						case 3:
+							//delete
+							EmployeeDaoimpl DelUser = new EmployeeDaoimpl();
+				
+							break;
+					
+						case 4:
+							//update user account
+							EmployeeDaoimpl updateU = new EmployeeDaoimpl();
+							break;
+							
+						case 5:
+							
+						if(login) {
+									System.out.println("Thank you for Banking");
+						}
+						}
+						
 						}
 					break;
 				case 3: 
@@ -68,8 +144,7 @@ import com.revature.daoimpl.CustomerDaoImpl;
 					String password = scan.next();
 					
 					CustomerDaoImpl cdi = new CustomerDaoImpl();
-			    	System.out.println("DDDDDDDDD"+cdi.createUsers(fname, lname, username, password));
-					
+			    	System.out.println(" "+cdi.createUsers(fname, lname, username, password));
 					
 					boolean worked = user.createNewUser(username, fname, lname, password, false);
 					while(!worked) {
