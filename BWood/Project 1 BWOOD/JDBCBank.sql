@@ -17,17 +17,11 @@ create table account_table(
 account_Id integer primary key,
 checking boolean,
 balance numeric,
-user_Name varchar(50),
+user_id integer,
 approved boolean
 );
 
 
---account user lookup
-create table user_account(
-user_Id integer,
-account_Id integer,
-primary key(user_Id,account_Id)
-);
 
 --add a login table
 create table registered_user(
@@ -62,17 +56,13 @@ insert into roles values (0,'user');
 insert into roles values (1, 'admin');
 
 
---constraints for user account lookup table
+--constraints for account table
 
-alter table user_account
-add constraint fk_user
+alter table account_table
+add constraint fk_user_id
 foreign key (user_Id)
 references user_table(user_Id)
-on delete cascade on update cascade,
-add constraint fk_account
-foreign key (account_Id)
-references account_table(account_Id) 
-ON DELETE CASCADE ON UPDATE CASCADE;
+on delete cascade on update cascade;
 
 --constraints for user table
 alter table user_table 

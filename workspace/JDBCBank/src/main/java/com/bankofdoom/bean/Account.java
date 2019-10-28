@@ -7,12 +7,11 @@ public class Account {
 	
 	private double balance;
 	
-	private String uName;
+	private int userId;
 	
 	private boolean approved;
 
 	
-	private final static double overdraftFee = 5.00;
 	
 	public Account() {
 		super();
@@ -21,13 +20,23 @@ public class Account {
 
 	
 
-	public Account(int accountID, boolean checkingAccount, double balance, String uName, boolean approved) {
+	public Account(int accountID, boolean checkingAccount,
+			double balance, int userId, boolean approved) {
 		super();
 		this.accountID = accountID;
 		this.checkingAccount = checkingAccount;
 		this.balance = balance;
-		this.uName = uName;
+		this.userId = userId;
 		this.approved = approved;
+	}
+
+
+
+	public Account(int accountID, boolean checkingAccount, double balance) {
+		super();
+		this.accountID = accountID;
+		this.checkingAccount = checkingAccount;
+		this.balance = balance;
 	}
 
 
@@ -48,12 +57,12 @@ public class Account {
 		this.checkingAccount = checkingAccount;
 	}
 
-	public String getuName() {
-		return uName;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setuName(String uName) {
-		this.uName = uName;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public double getBalance() {
@@ -77,7 +86,7 @@ public class Account {
 	@Override
 	public String toString() {
 		return "Account [accountID=" + accountID + ", checkingAccount=" + checkingAccount + ", balance=" + balance
-				+ ", uName=" + uName + ", approved=" + approved + "]";
+				+ ", userId=" + userId + ", approved=" + approved + "]";
 	}
 
 	
