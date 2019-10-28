@@ -1,6 +1,7 @@
 package com.bankofdoom.driver;
 
 import com.bankofdoom.bean.Account;
+import com.bankofdoom.bean.User;
 
 /*****************************
  * Controller for actions upon account methods are withdrawal, deposit, and
@@ -50,7 +51,7 @@ public class AccountManager {
 		return false;
 
 	}
-
+	
 	/**
 	 * Method to deposit funds into a given account
 	 * 

@@ -92,13 +92,12 @@ CREATE SEQUENCE myseq
 	MAXVALUE 101010;
 
 --return set for login
-CREATE TYPE login_result AS (f1 int, f2 text);
-
+CREATE TYPE login_result AS (id int,uname text, myrole int);
 
 --return user id and username upon successful login
 CREATE function bank_login(text ,int) RETURNS login_result
     AS $$ 
-SELECT user_id , user_name
+SELECT user_id , user_name, user_role
 from user_table 
 where user_table.user_name= (
 		select user_name 
@@ -148,10 +147,10 @@ for each row
 execute function account_insert();
 
 
-insert into account_table(account_id,checking,balance,user_id,approved) values(true,100,13285,true);
+insert into account_table(account_id,checking,balance,user_id,approved) values(0,true,100,13285,true);
 
 
-select nextval('my_bank_seq');
+
 /*
  * testing certain functionality
 select nextval('my_bank_seq');

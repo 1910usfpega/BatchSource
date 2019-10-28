@@ -37,8 +37,7 @@ public class User implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(int userId, String uName, String name, String address, String email, String phoneNumber,
-			int role) {
+	public User(int userId, String uName, String name, String address, String email, String phoneNumber, int role) {
 		super();
 		this.setUserId(userId);
 		this.uName = uName;
@@ -49,7 +48,6 @@ public class User implements Serializable {
 		this.role = role;
 	}
 
-	
 	public User(String uName, int password, String name, String address, String email, String phoneNumber) {
 		super();
 		this.uName = uName;
@@ -71,10 +69,17 @@ public class User implements Serializable {
 		this.uName = uName;
 	}
 
+	public User(int userId, String uName, int role) {
+		super();
+		this.userId = userId;
+		this.uName = uName;
+		this.role = role;
+	}
+
 	public User(String un, int pw) {
 		super();
-		this.uName=un;
-		this.password=pw;
+		this.uName = un;
+		this.password = pw;
 	}
 
 	// accessors and modifiers
@@ -141,7 +146,6 @@ public class User implements Serializable {
 	public void setRole(int role) {
 		this.role = role;
 	}
-
 
 	@Override
 	public String toString() {
