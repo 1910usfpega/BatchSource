@@ -57,7 +57,7 @@ public class AccountDaoImpl implements AccountDao {
 			accountList.add(a);
 			
 		}
-		System.out.println(accountList);
+		System.out.println(accountList + "\n");
 		return accountList;
 	
 	}
@@ -106,7 +106,7 @@ public class AccountDaoImpl implements AccountDao {
 	public int updateAccount(Account account) throws SQLException {
 		int accountsUpdated = 0;
 
-		String sql = "UPDATE accounts " + " set balance = ?" + " WHERE acct_number = ? ";
+		String sql = "UPDATE accounts " + " SET balance = ?" + " WHERE acct_number = ? ";
 
 		Connection conn = cf.getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);

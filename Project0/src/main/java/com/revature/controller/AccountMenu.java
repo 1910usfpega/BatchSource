@@ -38,10 +38,11 @@ public class AccountMenu extends Input {
 		
 		//shows the accounts after login, figure out why double sysout?
 		AccountDaoImpl adi = new AccountDaoImpl();
-		System.out.println(adi.getAccountsByID(username)+ "\n");
+		//System.out.println("\n");
+		adi.getAccountsByID(username);
 		
 		//selects an account to deposit or withdraw
-		System.out.println("Enter an account number: ");
+		System.out.println("Enter an account number to access it: ");
 		Scanner scan = new Scanner(System.in);
 		int accountNumber = scan.nextInt();
 		balance = adi.getBalance(accountNumber);
@@ -53,9 +54,9 @@ public class AccountMenu extends Input {
 		
 		System.out.println("Welcome to your bank\n");
 		System.out.println("input a number for each choice");
-		System.out.println("1.) To view your balance.");
-		System.out.println("2.) To make a deposit.");
-		System.out.println("3.) To make a withdraw");
+		System.out.println("1.) To view your account's balance.");
+		System.out.println("2.) To make a deposit to an account.");
+		System.out.println("3.) To make a withdraw from an account");
 		System.out.println("4.) To create a new account.");
 		System.out.println("5.) To view all your accounts.");
 		System.out.println("6.) To select an account.");
@@ -77,7 +78,7 @@ public class AccountMenu extends Input {
 					scan.next();
 				}
 				depositAmount = scan.nextDouble();
-				// if amount greater than 0 proced with deposit.
+				// if amount greater than 0 proceed with deposit.
 				if (depositAmount > 0) {
 					deposit(depositAmount);
 				} else {
