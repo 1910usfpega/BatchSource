@@ -10,29 +10,29 @@ public class CustomerDaoImpl implements CustomerDao {
 	public static BankConnection cf= BankConnection.getInstance();
 	static CustomerDaoImpl a= new CustomerDaoImpl();
 	
-public boolean login(String username, String password) {
+public boolean login(String username, String password) throws SQLException {
 	Connection conn= cf.getConnection();
-	String sql="select * from \"customer_table\" where \"user_name\" = ? and passWord = ?";
+	String sql="select * from customer_table where user_name = ? and user_password = ?";
 	PreparedStatement ps;
-	try {
+	
 		ps = conn.prepareStatement(sql);
 		ps.setString(1,username);
 		ps.setString(2,password);
-		ResultSet rs= ps.executeQuery();
-		Customer a=null;
-		while(rs.next()) {
-			a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
-			return true;
+		ResultSet rs= null;
+		try {
+		 rs= ps.executeQuery();
 		}
-		if(a == null) {
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		 Customer a=null;
+		
+			while(rs.next()) {
+				a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+				return true;
+		}
 			return false;
-		}
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	return false;
+
 }
 	@Override
 	public String viewUser(String Username) throws SQLException {
@@ -129,7 +129,6 @@ public boolean login(String username, String password) {
 			ps.setString(2,Username);
 			ResultSet rs= ps.executeQuery();
 	}
-
 	public boolean createUsers(String name, String last, String username, String password) throws SQLException {
 		Connection conn= cf.getConnection();
 		if(a.checkusername(a.getCustomers(),username)) {
@@ -145,7 +144,6 @@ public boolean login(String username, String password) {
 				catch(Exception e) {
 					return false;
 				}
-		//		Customer asd = new Customer(name,last,username,password);
 				return true;
 			}
 		}

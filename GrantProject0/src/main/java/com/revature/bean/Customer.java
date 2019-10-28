@@ -12,7 +12,6 @@ public class Customer extends User {
 	String passWord;
 	static CustomerDaoImpl a = new CustomerDaoImpl();
 	
-	
 	public Customer(String userName, String fName, String lName, String passWord) {
 		super(userName, fName, lName, passWord);
 		this.userName = userName;

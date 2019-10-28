@@ -14,8 +14,13 @@ public abstract class User {
 		
 		static HashMap<String,String> logIn = new HashMap<>();
 		public static boolean logIn (String userName,String passWord) {
-			if(a.login(userName, passWord)) {
-				return true;
+			try {
+				if(a.login(userName, passWord)) {
+					return true;
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
 			}
 			return false;
 		}
@@ -53,10 +58,7 @@ public abstract class User {
 			this.lName = lName;
 			
 		}
-//		public String getUserName() {
-//			return a.getCustomerName(a.getCustomerbyUsername(userName));
-//			
-//		}
+
 		public void setUserName(String userName) {
 			this.userName = userName;
 		}
