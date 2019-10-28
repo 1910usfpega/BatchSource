@@ -30,7 +30,7 @@ public class AccountManager {
 			return true;
 		}
 
-		System.out.println("Withdrawal amount of $" + amount + " is greater than total balance. Transaction canceled.");
+		System.out.println("Withdrawal amount of $" + amount + " is greater than total balance. Please try a smaller amount.");
 		return false;
 	}
 
@@ -62,8 +62,8 @@ public class AccountManager {
 		// no negatives in deposit
 		if (amount > 0) {
 			account.setBalance(account.getBalance() + amount);
-			System.out
-					.println("Deposit of $" + amount + " accepted. New " + "balance = $" + account.getBalance() + ".");
+			System.out.println("Deposit of $" + amount + " accepted. New " 
+			+ "balance = $" + account.getBalance() + ".");
 			return true;
 		}
 

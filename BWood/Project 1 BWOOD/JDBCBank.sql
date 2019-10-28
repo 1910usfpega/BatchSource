@@ -80,9 +80,9 @@ on users.uname=roles.uname;
 --sequence for account id's
 create sequence my_bank_seq
 	increment by -7
-	start with 10101010101
+	start with 10101101
 	minvalue 9000
-	maxvalue 101010101011;
+	maxvalue 91010011;
 
 --sequence for user id's *is running already
 CREATE SEQUENCE myseq
@@ -148,7 +148,10 @@ for each row
 execute function account_insert();
 
 
+insert into account_table(account_id,checking,balance,user_id,approved) values(true,100,13285,true);
 
+
+select nextval('my_bank_seq');
 /*
  * testing certain functionality
 select nextval('my_bank_seq');

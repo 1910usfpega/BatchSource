@@ -68,14 +68,15 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public void createAccount(Account newAccount) throws SQLException {
-		sql= "insert into account_table set"
-				+ "account_id = ?, checking=?, balance=?, user_id=?,"
-				+ " approved=?";
+		sql= "insert into account_table(checking,balance,user_id,approved) values("
+				+ "?,?,?,?)";
 		PreparedStatement ps= conn.prepareStatement(sql);
-		ps.setInt(1, newAccount.getAccountID());
-		ps.setBoolean(2, newAccount.isCheckingAccount());
-		ps.setDouble(3, newAccount.getBalance());
-		ps.setInt(4, newAccount.getUserId());
+		//ps.setInt(1, newAccount.getAccountID());
+		ps.setBoolean(1, newAccount.isCheckingAccount());
+		ps.setDouble(2, newAccount.getBalance());
+		ps.setInt(3, newAccount.getUserId());
+		ps.setBoolean(4, newAccount.isApproved());
+		ps.execute();
 	}
 
 	@Override
