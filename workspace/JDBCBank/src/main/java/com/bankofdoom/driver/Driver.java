@@ -3,7 +3,9 @@ package com.bankofdoom.driver;
 import java.sql.SQLException;
 
 import com.bankofdoom.bean.Account;
+import com.bankofdoom.bean.User;
 import com.bankofdoom.daoimpl.AccountDaoImpl;
+import com.bankofdoom.daoimpl.UserDaoImpl;
 import com.bankofdoom.display.MenuMethod;
 
 public class Driver {
@@ -52,6 +54,8 @@ public class Driver {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+//		UserDaoImpl ud = new UserDaoImpl();
+//		
 //		User test = new User("jandd","Pass*word123".hashCode(),
 //				"Jane Doe","2 Test Dr Tampa FL 33613",
 //				"janed@test.com","(111)123-1234");
@@ -71,7 +75,8 @@ public class Driver {
 //		ud.createLogin(test2);
 //		ud.createNewUser(test2);
 //		ud.createLogin(test3);
-//		ud.createNewUser(test3);		
+//		ud.createNewUser(test3);
+//		System.out.println(ud.getAllUsers().toString());
 //		try {
 //			
 //		} catch (SQLException e) {
