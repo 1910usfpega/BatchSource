@@ -83,7 +83,7 @@ public class Users {
 	}
 
 
-	
+	//Method for new users
 public static void customerinfo() {
 		String password1 = "";
 		String password2 = "";
@@ -116,60 +116,3 @@ public static void customerinfo() {
 		
 	}
 	}
-//
-//}
-
-//		public String getUsername() {
-//			return username;
-//		}
-//		public void setUsername(String username) {
-//			this.username = username;
-//		}
-//		public String getPassword() {
-//			return password;
-//		}
-//		public void setPassword(String password) {
-//			this.password = password;
-//		}
-//		public String getFirstName() {
-//			return firstName;
-//		}
-//		public void setFirstName(String firstName) {
-//			this.firstName = firstName;
-//		}
-//		public String getLastName() {
-//			return lastName;
-//		}
-//		public void setLastName(String lastName) {
-//			this.lastName = lastName;
-//	
-//		}
-//		public int getUserType() {
-//			return userType;
-//		}
-//		public void setUserType(int userType) {
-//			this.userType = userType;
-//		}
-//		@Override
-//		public String toString() {
-//			return "User [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
-//					+ lastName + "userType=" + userType + "]";
-//		}
-//		public User(String username, String password, String firstName, String lastName,
-//				int userType) {
-//			super();
-//			this.username = username;
-//			this.firstName = firstName;
-//			this.lastName = lastName;
-//			this.password = password;
-//			this.userType = userType;
-//		}
-//		public User() {
-//			super();
-//			// TODO Auto-generated constructor stub
-//		}
-//		
-//		
-//
-//}
-//

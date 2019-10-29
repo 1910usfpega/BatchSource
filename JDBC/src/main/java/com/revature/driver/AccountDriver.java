@@ -6,27 +6,8 @@ import com.revature.accountsdaoimpl.AccountsDaoImpl;
 import com.revature.beans.Accounts;
 
 public class AccountDriver {
-	
-	
-//	public static void main(String[] args) {
-//		AccountsDaoImpl adi = new AccountsDaoImpl();
-//
-//		try {
-//
-//		adi.insertaccounts("bean", 2217, 6000.00, "checking");
-//
-//	} catch (SQLException e) {
-//
-//		e.printStackTrace();
-//	}
-//}
-//
 
-	
-	
-	
-	
-	public double checkbalance(Accounts a) {
+		public double checkbalance(Accounts a) {
 		return a.getAccounts_accountbalance(); 
 	}
 	

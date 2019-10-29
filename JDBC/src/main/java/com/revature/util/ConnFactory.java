@@ -39,16 +39,7 @@ public class ConnFactory {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		String url= "jdbc:postgresql://pega1019.ctp291bybmbe.us-east-2.rds.amazonaws.com/postgres";
-//		String user="ejhrdy22";
-//		String password="Ej090692";
-		
-//		try {
-//			conn=DriverManager.getConnection(url,user,password);
-//		}catch (SQLException e) {
-//			System.out.println("Failed to create connection");
-//			e.printStackTrace();
-//	}
+
 		return conn;
 		
 

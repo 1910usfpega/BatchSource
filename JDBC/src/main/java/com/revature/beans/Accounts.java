@@ -13,9 +13,8 @@ public class Accounts {
 		this.accounts_accountbalance= this.accounts_accountbalance+amount;
 	}
 	
-//	public void Withdraw(double amount) {
-//		this.accounts_accountbalance= this.accounts_accountbalance-amount;
-	
+
+	//Method for Overdraft Exception
 	public void withdraw(double amount1) throws WithdrawTooMuchException {
         double maxWithdrawAmount = accounts_accountbalance;
         if (amount1 < 0) {
@@ -24,7 +23,7 @@ public class Accounts {
             accounts_accountbalance -= amount1;
             System.out.println("New Balance = " + accounts_accountbalance);
         } else if(amount1 > maxWithdrawAmount) {
-            //throw a custom exception here
+            //throws a custom exception here
             throw new WithdrawTooMuchException(amount1 + " exceeds the max withdraw limit of: " + maxWithdrawAmount);
         }
         
@@ -79,6 +78,7 @@ public class Accounts {
 		super();
 	
 	}
+}
 	
 	
 	
@@ -115,58 +115,3 @@ public class Accounts {
 	
 	
 	
-//	public Accounts(String accounttype, int accountnumber, double accountbalance, String users_username,
-//			int users_usertype_id) {
-//		super();
-//		this.accounttype = accounttype;
-//		this.accountnumber = accountnumber;
-//		this.accountbalance = accountbalance;
-//		this.users_username = users_username;
-//		this.users_usertype_id = users_usertype_id;
-	}
-	
-//	
-//	public String getUsers_username() {
-//		return users_username;
-//	}
-//	public void setUsers_username(String users_username) {
-//		this.users_username = users_username;
-//	}
-//	public int getUsers_usertype_id() {
-//		return users_usertype_id;
-//	}
-//	public void setUsers_usertype_id(int users_usertype_id) {
-//		this.users_usertype_id = users_usertype_id;
-//	}
-//	public String getAccounttype() {
-//		return accounttype;
-//	}
-//	public void setAccounttype(String accounttype) {
-//		this.accounttype = accounttype;
-//	}
-//	public int getAccountnumber() {
-//		return accountnumber;
-//	}
-//	public void setAccountnumber(int accountnumber) {
-//		this.accountnumber = accountnumber;
-//	}
-//	public double getAccountbalance() {
-//		return accountbalance;
-//	}
-//	public void setAccountbalance(double accountbalance) {
-//		this.accountbalance = accountbalance;
-//	}
-//	@Override
-//	public String toString() {
-//		return "Account [accounttype=" + accounttype + ", accountnumber=" + accountnumber + ", accountbalance="
-//				+ accountbalance + ", users_username=" + users_username + ", users_usertype_id=" + users_usertype_id
-//				+ "]";
-//	}
-//	
-//	public Accounts() {
-//		super();
-//		
-//	}
-//	
-//
-//}

@@ -121,6 +121,14 @@ public class UsersDaoImpl1 implements UsersDao1 {
         ps.executeUpdate();
     }
 
+	public void deleteaccounts(String username) throws SQLException {
+        Connection conn = cf.getConnection();
+
+        String sql = "Delete from accounts where accounts_username=?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, username);
+        ps.executeUpdate();
+    }
 
 	public void updateUsername(String username, String oldusername) throws SQLException{
 		Connection conn = cf.getConnection();

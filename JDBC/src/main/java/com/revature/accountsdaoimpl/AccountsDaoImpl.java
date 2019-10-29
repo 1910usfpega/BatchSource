@@ -17,7 +17,7 @@ public class AccountsDaoImpl {
 	public static ConnFactory cf = ConnFactory.getInstance();
 
 	static Scanner in = new Scanner(System.in);
-
+//inserting accounts 
 	public void insertaccounts(String accounts_username, int accounts_accountnumber, double accounts_accountbalance,
 			String accounts_accounttype) throws SQLException {
 		Connection conn = cf.getConnection();
@@ -29,6 +29,7 @@ public class AccountsDaoImpl {
 		ps.setString(4, accounts_accounttype);
 		ps.executeUpdate();
 	}
+	//Getting accounts by username
 	public ArrayList<Accounts>getAccounts(String a){
 		ArrayList<Accounts>AccountList= new ArrayList<Accounts>();
 		Connection conn = cf.getConnection();
@@ -54,7 +55,7 @@ public class AccountsDaoImpl {
 		
 		return AccountList;
 	}
-
+//Getting accounts by account numbers
 	public Accounts getAccountsbyaccounts_accountnumber(int accounts_accountnumber) throws SQLException {
 		
 		Connection conn= cf.getConnection();
@@ -69,6 +70,7 @@ public class AccountsDaoImpl {
 		}
 		return a;
 	}
+	//Adding accounts to accounts table(Admin)
 	public void addAccount(Accounts z){
 		Connection conn= cf.getConnection();
 		String sql= "insert into accounts values(?,?,?,?,nextval('accountsseq'))";
@@ -88,7 +90,15 @@ public class AccountsDaoImpl {
 			e.printStackTrace();
 		}
 		
+		
+		
+		
+		
+		
+		
+		
 		}
+	//Updating accounts balance by acccount numbers (Admin)
 	public void updatebalance(Accounts s) {
 		Connection conn= cf.getConnection();
 		String sql= "Update accounts set accounts_accountbalance =? where accounts_accountnumber =?";

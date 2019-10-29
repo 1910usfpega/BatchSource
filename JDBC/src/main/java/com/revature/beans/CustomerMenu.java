@@ -67,12 +67,16 @@ public class CustomerMenu {
 		case "3":
 			//This is for Creating new account
 			System.out.println("What type of account would you like to create?");
+			System.out.println("What new username would you like to use?");
 			String type= in.next();
-			Accounts z =new Accounts(type, user);
+			String username= in.next();
+			
+			Accounts z =new Accounts(type, username);
 			adi.addAccount(z);
+			System.out.println("Account successfully created!");
 			break;
 		case "4":
-			System.out.println();
+			System.out.println("You have succesfully logged out!");
 			
 
 		}

@@ -68,7 +68,8 @@ public class AdminMenu {
 		System.out.println("Press 2 to create a new user");
 		System.out.println("Press 3 to delete users");
 		System.out.println("Press 4 to update users");
-		System.out.println("Press 5 to Log Out");
+		System.out.println("Press 5 to delete accounts");
+		System.out.println("Press 6 to Log Out!");
 	
 		
 		String key = in.next();
@@ -86,6 +87,7 @@ public class AdminMenu {
 			}
 		
 			break;
+			
 			case"2":
 			//This is for creating a new user
 			System.out.println("Please enter username,first name, last name, password, usertype, and user id");
@@ -95,10 +97,9 @@ public class AdminMenu {
             String users_lname = nuser.next();
             String users_pword = nuser.next();
             int users_usertype_id= nuser.nextInt();
-            int user_id=nuser.nextInt();
+            int user_id= nuser.nextInt();
             
             Users a = new Users();
-            
             a.setUsers_username(users_username);
             a.setUsers_fname(users_fname);
             a.setUsers_lname(users_lname);
@@ -109,6 +110,7 @@ public class AdminMenu {
             System.out.println("New user created sucessfully!");
             
             break;
+			
 			case "3":
 			//This is for deleting users
 			System.out.println("Please Enter username that you want to delete");
@@ -123,6 +125,7 @@ public class AdminMenu {
 			System.out.println("User has been successfully deleted");
 			
 			break;
+			
 			case"4":
 			//This is for updating users
 			System.out.println("Please enter username of user that you want to update");
@@ -178,6 +181,21 @@ public class AdminMenu {
 			
 					break;
 					case"5":
+						//This is for deleting accounts
+						System.out.println("Please Enter account username that you want to delete");
+						Scanner y = new Scanner(System.in);
+						String username2 = y.next();
+						try {
+							udi.deleteaccounts(username2);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						System.out.println("Account has been successfully deleted");
+						
+						break;
+						case"6":
+							
 					System.out.println("You have successfully logged out!");
             
  
@@ -186,40 +204,3 @@ public class AdminMenu {
 }
 
 
-//		
-//
-//		Connection conn = cf.getConnection();
-//		System.out.println("Hello Valued Admin!");
-//		String user1, pass;
-//		System.out.println("Enter your username:");
-//		user1 = in.next();
-//		Properties pro = new Properties();
-//		try {
-//			pro.load(new FileReader("Database.properties"));
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		if (user1.equals(pro.getProperty("adminusername"))) {
-//			System.out.println("Enter your password:");
-//			pass = in.next();
-//			if (pass.equals(pro.getProperty("adminpassword"))) {
-//				System.out.println("Welcome Admin!");
-//
-//			} else {
-//				System.out.println("You have entered wrong  password:");
-//			}
-//
-//		}
-//
-//		else {
-//			System.out.println("You have entered wrong username");
-//		}
-//
-//	}
-//
-//}
