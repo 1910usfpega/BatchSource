@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.revature.daoimpl.AccountDaoImpl;
+import com.revature.exception.MyCustomException;
 import com.revature.model.Account;
 
 public class AccountMenu extends Input {
@@ -35,7 +36,7 @@ public class AccountMenu extends Input {
 		return balance;
 	}
 
-	public void accountMenuOtions(String username) throws SQLException {
+	public void accountMenuOtions(String username) throws SQLException, MyCustomException {
 
 		AccountDaoImpl adi = new AccountDaoImpl();
 

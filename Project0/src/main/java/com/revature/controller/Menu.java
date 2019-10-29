@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import com.revature.exception.MyCustomException;
+
 //this class holds the initial menu to :
 //1. sign up an account 
 //2. to log in to an account
@@ -41,7 +43,12 @@ public class Menu extends Input {
 				System.out.println("Now select 2 to log in to your newly created account: ");
 				break;
 			case 2:
-				input.userLogin();
+				try {
+					input.userLogin();
+				} catch (MyCustomException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			case 3:
 				Scanner in = new Scanner(System.in);

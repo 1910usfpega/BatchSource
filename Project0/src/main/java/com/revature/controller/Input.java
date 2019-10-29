@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.revature.daoimpl.AccountDaoImpl;
 import com.revature.daoimpl.UserDaoImpl;
+import com.revature.exception.MyCustomException;
 import com.revature.model.Account;
 import com.revature.model.User;
 
@@ -65,7 +66,7 @@ public class Input extends UserDaoImpl {
 	}
 
 	//handles user login, no parameters because we use the scanner for input
-	public void userLogin() throws SQLException {
+	public void userLogin() throws SQLException, MyCustomException {
 
 		System.out.println("Enter your username: ");
 		String username = scan.nextLine();
@@ -126,7 +127,12 @@ public class Input extends UserDaoImpl {
 		//show the account menu options with the username passed to the account
 		//efficiency?
 		AccountMenu acctMenu = new AccountMenu();
-		acctMenu.accountMenuOtions(username);
+		try {
+			acctMenu.accountMenuOtions(username);
+		} catch (MyCustomException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
