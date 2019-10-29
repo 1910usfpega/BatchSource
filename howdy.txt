@@ -1,7 +1,0 @@
-
-  git clone url
-   git checkout master switch dir
-   git pull origin master
-   get status
-   git pusk
-
