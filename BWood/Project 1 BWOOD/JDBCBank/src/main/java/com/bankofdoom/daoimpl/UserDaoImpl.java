@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.bankofdoom.bean.User;
 import com.bankofdoom.dao.UserDao;
+import com.bankofdoom.display.MenuMethod;
 import com.bankofdoom.util.ConnFactoryW;
 
 public class UserDaoImpl implements UserDao {
@@ -205,8 +206,12 @@ public class UserDaoImpl implements UserDao {
 			System.out.println("Login error! :( ");
 			e.printStackTrace();
 		}
-
+		if(ul.equals(null)) {
+			System.out.println("OOPs");
+			MenuMethod.displayLoginMenu();
+		} 
 		return ul;
+		
 	}
 
 	@Override

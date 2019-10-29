@@ -17,7 +17,7 @@ import com.bankofdoom.bean.User;
 public class AccountManager {
 
 	// so I only have one instance of this object
-	private AccountManager am = new AccountManager();
+	//
 
 	/**
 	 * Method to debit accounts
@@ -48,6 +48,7 @@ public class AccountManager {
 	 * @return returns true if the action is successful
 	 */
 	public List<Account> transfer(Account debit, Account deposit, double amount) {
+		AccountManager am = new AccountManager();
 		List<Account> al = new ArrayList<Account>();
 		
 		if (amount< debit.getBalance()) {

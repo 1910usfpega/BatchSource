@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.bankofdoom.bean.User;
-import com.bankofdoom.daoimpl.UserDaoImpl;
+
 
 public class UserManager {
 
@@ -29,35 +29,44 @@ public class UserManager {
 	 * 			illegal characters
 	 */
 	private boolean isGoodUserName(String s) {
-		if (s.matches("[a-zA-Z0-9]+"))
+		String[] tmp1 = s.split("");
+		for(String i : tmp1) {
+		if (i.matches("[a-zA-Z0-9]"))
 			return true;
 
+		}
 		return false;
 	}
 	public String enterUserName(Scanner sc) {
+//		Scanner sc = new Scanner(System.in);
 		String s = null;
 		System.out.println("Please enter new username:");
 		s = sc.next();
 		if(isGoodUserName(s)) {
+//			sc.close();
 			return s;
+			
 		} else {
+//			sc.close();
 			return null;
 		}
 
 	}
 	public int enterUserPassword(Scanner sc) {
+//		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter password:");
+//		sc.close();
 		return sanitizeInput(sc.next());
 	}
 
 	public String createUserName(Scanner sc) {
 		List<User> userList = new ArrayList<User>();
 
-		String uName = null;
-		//		Scanner sc = new Scanner(System.in);
+		
+//				Scanner sc = new Scanner(System.in);
 		// no duplicate usernames allowed
 
-		while (uName == null) {
+		
 			String tmp;
 			System.out.println("Please enter new username:");
 
@@ -66,21 +75,23 @@ public class UserManager {
 			// set username to false I would much prefer to do this the other way
 			// but i'm tired and this SHOULD work fine.... i hope... well I'll find out
 			// later
-			boolean usernameExists = false;
+			
 			for (User i : userList) {
 				if (i.getuName().contentEquals(tmp)) {
-					usernameExists = true;
+					createUserName(sc);
 				}
 			}
-			if (!usernameExists && isGoodUserName(uName)) {
-				uName = tmp;
+			if (isGoodUserName(tmp)) {
+				return tmp;
 			} else {
 				System.out.println("Invalid entry, username already in use." 
 						+ "Please choose another username.");
+				
 			}
-		}
-		// sc.close();
-		return uName;
+		
+//		sc.close();
+		createUserName(sc);
+		return null;
 	}
 
 	/**
@@ -99,7 +110,7 @@ public class UserManager {
 	 */
 	public int createPassword(Scanner sc) {
 
-		//		Scanner sc = new Scanner(System.in);
+//				Scanner sc = new Scanner(System.in);
 
 		int pass1, pass2, password;
 		password = 0;
@@ -118,7 +129,7 @@ public class UserManager {
 			}
 
 		}
-		// sc.close();
+//		 sc.close();
 		return password;
 	}
 
@@ -141,7 +152,7 @@ public class UserManager {
 	}
 
 	public User updateUserInfo(Scanner sc, User old) {
-		//	Scanner sc = new Scanner(System.in);
+//			Scanner sc = new Scanner(System.in);
 
 		System.out.println("Your current user name is: "+old.getuName()+"\n"
 				+ "Do you wish to change it? Y/N?");
@@ -200,7 +211,7 @@ public class UserManager {
 			int i = sc.nextInt();
 			old.setRole(i);
 		}
-		
+//		sc.close();
 		return old;
 		
 
@@ -208,7 +219,7 @@ public class UserManager {
 	// method to add personal info to newly created account. still need logic
 
 	public User newUserInfo(Scanner sc) {
-		//		Scanner sc = new Scanner(System.in);
+//		Scanner sc = new Scanner(System.in);
 		User u = new User();
 		String tmp = "";
 
@@ -244,8 +255,9 @@ public class UserManager {
 
 		// add new user to master user list
 		//userList.add(u);
+//		sc.close();
 		return u;
-		// sc.close();
+		
 	}
 
 	/**
