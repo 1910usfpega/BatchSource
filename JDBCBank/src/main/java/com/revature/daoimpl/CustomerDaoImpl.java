@@ -78,16 +78,20 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 	}
 
-	//@Override TODO add this to the customerdao
+	@Override 
 	public void removeCustomerFromDatabase(String name) {
 		Connection conn = cf.getConnection();
 		String str1 = "delete from bank_accounts where username = ?";
-		String str2 = "delete from bank_customers where username = ?";
+		String str2 = "delete from bank_applications where username = ?";
+		String str3 = "delete from bank_customers where username = ?";
 		try {
 			PreparedStatement ps = conn.prepareStatement(str1);
 			ps.setString(1, name);
 			ps.execute();
 			ps = conn.prepareStatement(str2);
+			ps.setString(1, name);
+			ps.execute();
+			ps = conn.prepareStatement(str3);
 			ps.setString(1, name);
 			ps.execute();
 			ps=conn.prepareStatement("commit");

@@ -192,10 +192,12 @@ public class AdminLoop {
 					switch (input2) {
 					case "1":
 						thisEmployee.approveAccount(acct);
+						System.out.println("Account approved");
 						done = true;
 						break;
 					case "2":
 						thisEmployee.denyAccount(acct);
+						System.out.println("Account denied");
 						done = true;
 						break;
 					case "3":
@@ -382,6 +384,7 @@ public class AdminLoop {
 						System.out.println("Sorry, that username has been taken.");
 					}
 				}
+				break;
 				
 				
 			case "0":
