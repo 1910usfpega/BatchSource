@@ -5,30 +5,25 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import com.revature.model.Admin;
-
 //this class holds the initial menu to :
 //1. sign up an account 
 //2. to log in to an account
 //3. exit? make exit return to login instead of just shutting down the console.
 public class Menu extends Input {
-	//we extend input to have access to createUserAccountMethod 
 	public Menu() {
 		super();
 	}
-	
-	
+
 	Input input = new Input();
-	
-	SimpleDateFormat formatter= new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm:ss z");
+
+	SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm:ss z");
 	Date date = new Date(System.currentTimeMillis());
-	//System.out.println(formatter.format(date));
-	
+
 	public void initialMenu() throws SQLException {
-		
+
 		int choice;
 		Scanner scan = new Scanner(System.in);
-		
+
 		System.out.println("Welcome to your Bank");
 		System.out.println("Today's date and time: " + formatter.format(date));
 		System.out.println("1.) To Sign up for a new user account");
@@ -36,19 +31,16 @@ public class Menu extends Input {
 		System.out.println("3.) To access as Administrator");
 		System.out.println("4.) To exit the program");
 		System.out.println("Please make a selection");
-		
+
 		do {
 			choice = scan.nextInt();
-			
-			switch(choice) {
+
+			switch (choice) {
 			case 1:
 				createUserAccount();
-				//auto login?
-				//call login from createUSerAccount() method or 
-				//overload the login() method in the input class to receive a username and password paramaters.
 				System.out.println("Now select 2 to log in to your newly created account: ");
 				break;
-			case 2: 
+			case 2:
 				input.userLogin();
 				break;
 			case 3:
@@ -56,17 +48,12 @@ public class Menu extends Input {
 				com.revature.controller.AdminController.adminSession(in);
 				break;
 			case 4:
-				//instead of exiting the program make it return you to intial menu again
 				System.out.println("Thank you and See you soon");
 				break;
-				
 			default:
 				System.out.println("enter a choice from 1 to 3");
 			}
-		} while(choice !=4);
-
-
+		} while (choice != 4);
 	}
-	
 
 }
