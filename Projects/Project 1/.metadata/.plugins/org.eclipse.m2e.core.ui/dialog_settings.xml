@@ -70,6 +70,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\Benright\Documents\Revature\BatchSource\Projects\Project 1"/>
 			<item value="C:\Users\Benright\Documents\Revature\BatchSource\Projects\Project 1\BenrightsBank"/>
 			<item value="C:\Users\Benright\Documents\Revature\BatchSource\Projects\Project 1\JDBCBank"/>
 		</list>

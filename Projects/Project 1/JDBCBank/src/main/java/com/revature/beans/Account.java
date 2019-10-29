@@ -46,11 +46,10 @@ public class Account {
 	@Override
 	public String toString() {
 		if(accountType == 0) {
-			return "Checking Account #" + accountNum + ", Balance = " + amount + "]";
+			return "Checking Account #" + accountNum + ", Balance = $" + amount;
 		}
 		else {
-			return "Account [Account# = " + accountId + ", Account Type = " + accountType + ", Which Account = " + accountNum
-					+ ", Balance = " + amount + "]";
+			return "Savings Account #" + accountNum + ", Balance = $" + amount;
 		}
 	}
 	

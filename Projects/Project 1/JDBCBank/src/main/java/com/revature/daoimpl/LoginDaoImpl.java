@@ -25,7 +25,7 @@ public class LoginDaoImpl implements LoginDao {
 	//public static String currentUser;
 
 	// BASICALLY START
-	public void welcomeScreen() {
+	public void welcomeScreen() throws SQLException {
 
 		pwAttempts = 3;
 
@@ -56,7 +56,7 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	// ASKS TO ENTER YOUR USERNAME
-	public void login() {
+	public void login() throws SQLException {
 		System.out.println("Enter your Username: ");
 		String user = input.nextLine();
 		System.out.println();
@@ -97,7 +97,7 @@ public class LoginDaoImpl implements LoginDao {
 		}
 	}
 	
-	public void adminCheck(String user, String pw) {
+	public void adminCheck(String user, String pw) throws SQLException {
 		Properties prop = new Properties();
 		String adminUser = null; String adminPw = null;
 		String adminUser1 = null; String adminPw1 = null;

@@ -6,4 +6,6 @@
 <fullyQualifiedTypeName name="com.revature.dao.CustomerMenuDao"/>
 <fullyQualifiedTypeName name="com.revature.dao.AdminMenuDao"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.revature.beans.Account"/>
+<fullyQualifiedTypeName name="com.revature.beans.User"/>
 </qualifiedTypeNameHistroy>

@@ -8,15 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.revature.beans.Account;
 import com.revature.dao.CustomerMenuDao;
 import com.revature.util.JDBConnector;
 
 public class CustomerMenuDaoImpl implements CustomerMenuDao {
 
+	public String currentUser;
+	public int currentAccount;
+	public int howManyAccounts;	
+
 	static Scanner input = new Scanner(System.in);
 	public static JDBConnector jdbc = JDBConnector.getInstance();
 	
-	public void customerMenu(String currentUser, int currentAccount) {
+	public void customerMenu(String currentUser, int currentAccount) throws SQLException {
+		this.currentUser = currentUser;
+		this.currentAccount = currentAccount;
 		System.out.println("Welcome " + currentUser + "!");
 		System.out.println("ACCOUNT#: " + currentAccount);
 		System.out.println();
@@ -44,10 +51,10 @@ public class CustomerMenuDaoImpl implements CustomerMenuDao {
 			System.out.println("(Please enter numerical answers only i.e. 1 or 2)");
 			String choice = input.nextLine();
 			if (choice.equals("1")) {
-				//AccountManagement.CreateSinglePersonCheckingAccount(currentUser);
+				makeAccount(0);
 			}
 			else if (choice.equals("2")) {
-				//AccountManagement.CreateSinglePersonSavingsAccount(currentUser);
+				makeAccount(1);
 			}
 			else {
 				System.out.println("Invalid input.\n");
@@ -58,7 +65,7 @@ public class CustomerMenuDaoImpl implements CustomerMenuDao {
 	}
 	
 	public List<Account> checkBalances(int id) throws SQLException {
-		List<Account> balanceList = new ArrayList<Account>;
+		List<Account> balanceList = new ArrayList<Account>();
 		Connection conn = jdbc.getConnection();
 		String sql = "select * from \"AccountTable\" where \"BANK_ACCOUNT_ID\" = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
@@ -66,25 +73,44 @@ public class CustomerMenuDaoImpl implements CustomerMenuDao {
 		ResultSet rs = ps.executeQuery();
 		Account acct = null;
 		while(rs.next()) {
-			if(rs.getString(2).equals(user) && rs.getString(3).equals(pw)) {
-				System.out.println("Login Success!\n");
-				System.out.println("////////////////////\n");
-				customerMenu(rs.getString(4), rs.getInt(1));
-			}
+			acct = new Account(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getDouble(4));
+			System.out.println("hi");
+			balanceList.add(acct);
 		}
+		System.out.println(balanceList.toString());
+		return balanceList;
 	}
 	
-	public List<Album> getAlbumsById(int id) throws SQLException {
-		List<Album> albumList = new ArrayList<Album>();
-		Connection conn = cf.getConnection();
-		String sql = "select * from \"Album\" where \"ArtistId\" = ?";
+	public void makeAccount(int newAccountType) throws SQLException {
+		howManyAccounts(currentAccount, newAccountType);
+		Connection conn = jdbc.getConnection();
+		String sql = "insert into \"AccountTable\" values(currentUser,?,?,0.00)";
 		PreparedStatement ps = conn.prepareStatement(sql);
-		ps.setInt(1, id);
+		ps.setInt(1, newAccountType);
+		ps.setInt(2, howManyAccounts + 1);
+		ps.executeUpdate();
+		System.out.println("Account Successfully Created! Sending Back to Welcome Screen to Login...\n");
+		System.out.println("////////////////////\n");
+		howManyAccounts = 0;
+		customerMenu(currentUser, currentAccount);
+	}
+	
+	public void howManyAccounts(int currentAccount, int currentAccountType) throws SQLException {
+		List<Account> numOfAccounts = new ArrayList<Account>();
+		Connection conn = jdbc.getConnection();
+		String sql = "select * from \"AccountTable\" where \"BANK_ACCOUNT_ID\" = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setInt(1, currentAccount);
 		ResultSet rs = ps.executeQuery();
-		Album a = null;
+		Account acct = null;
 		while(rs.next()) {
-			a = new Album(rs.getInt(1),rs.getString(2), rs.getInt(3));
-			albumList.add(a);
+			if(rs.getInt(2) == currentAccountType) {
+				acct = new Account(rs.getInt(1),rs.getInt(2), rs.getInt(3), rs.getDouble(4));
+				numOfAccounts.add(acct);
+			}	
 		}
-		return albumList;
+		howManyAccounts = numOfAccounts.size();
+		
+	}
+	
 }
