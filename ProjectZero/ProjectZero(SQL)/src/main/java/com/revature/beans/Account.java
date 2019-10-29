@@ -1,10 +1,8 @@
 package com.revature.beans;
-import java.util.ArrayList;
 
 public class Account {
 	//fields
 	private int accountId;
-	
 	private double balance;
 	private String acctType;
 	private int userId;

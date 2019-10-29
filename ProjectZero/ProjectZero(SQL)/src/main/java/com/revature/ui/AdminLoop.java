@@ -15,18 +15,17 @@ public static void adminLoop(Scanner in) {
 
 	Person opAdmin = new Person();
 	boolean identity = false;
-	while (identity == false) {System.out.println("Enter User Name:");
-	un = in.nextLine();
+	while (identity == false) {
+		System.out.println("Enter User Name:");
+	un = in.next();
 	System.out.println("Enter Password:");
-	String pw = in.nextLine();
+	String pw = in.next();
 	if(pdi.checkUser(un, pw)== true	)
 	//	& opCust instanceof Customer
 		{			
 		try {
 			opAdmin =  pdi.getPersonByUN(un);
-			//opCust.setUserId(userId);
 			 System.out.println("Welcome "+opAdmin.getFirstName());
-			 //System.out.println(opCust.getUserId());
 				identity = true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -62,15 +61,15 @@ public static void adminLoop(Scanner in) {
 			while(nameFree ==false) {
 			
 			System.out.println("Enter First Name");
-			String fn = in.nextLine();
+			String fn = in.next();
 			System.out.println("Enter Last Name");
-			String ln = in.nextLine();
+			String ln = in.next();
 			System.out.println("Enter a potential User Name");
-			String us = in.nextLine();
+			String us = in.next();
 		if(pdi.checkAvailability(us)==true) {
 
 			System.out.println("User Name Available \n Enter a Password");
-			String pw = in.nextLine();
+			String pw = in.next();
 			Person newClient = new Person(fn,ln,us,pw);
 			try {
 				pdi.insertPerson(newClient);
@@ -99,7 +98,7 @@ public static void adminLoop(Scanner in) {
 					break;
 				case 2:
 					System.out.println("Are you sure you want to delete all personnel records? \n y/n");
-					String s = in.nextLine();
+					String s = in.next();
 					if (s.equals("y")) {
 						pdi.removeAllAcct();
 						System.out.println("All users removed from database");

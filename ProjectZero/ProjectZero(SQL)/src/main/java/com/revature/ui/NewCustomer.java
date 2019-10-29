@@ -8,23 +8,24 @@ import com.revature.daoimpl.PersonDaoImpl;
 public class NewCustomer {
 
 	public static  void newLoop(Scanner in) {
-		String input;
+		//String input;
+		int putIn = 0;
 		PersonDaoImpl pdi = new PersonDaoImpl();
 		boolean nameFree = false;
 		while(nameFree ==false) {		
 
 		System.out.println("Press 1 to Register");
 		System.out.println("Press 2 to exit");
-		input = in.nextLine();
-		int putIn = Integer.parseInt(input);
+		//input = in.nextLine();
+		 putIn = in.nextInt();
 		switch(putIn) {
 			case 1:
 						System.out.println("Enter First Name");
-						String fn = in.nextLine();
+						String fn = in.next();
 						System.out.println("Enter Last Name");
-						String ln = in.nextLine();
+						String ln = in.next();
 						System.out.println("Enter a potential User Name");
-					String un = in.nextLine();
+					String un = in.next();
 					if(pdi.checkAvailability(un)==true) {
 		
 						System.out.println("User Name Available \n Enter a Password");

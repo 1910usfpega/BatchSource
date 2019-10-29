@@ -1,7 +1,7 @@
 package com.revature.ui;
 
 import java.sql.SQLException;
-import java.util.HashMap;
+
 import java.util.Scanner;
 import com.revature.beans.Account;
 import com.revature.beans.Person;
@@ -10,16 +10,17 @@ import com.revature.daoimpl.PersonDaoImpl;
 
 public class ReturningCustomer {
 	public static  void returningLoop(Scanner in) {
-		String un = "";
+
 		AccountDaoImpl adi = new AccountDaoImpl();
 		PersonDaoImpl pdi = new PersonDaoImpl();
 		Person opCust = new Person();
 		boolean identity = false;
 		while (identity == false) {
+			String un;
 			System.out.println("Enter User Name:");
-			un = in.nextLine();
+			un = in.next();
 			System.out.println("Enter Password:");
-			String pw = in.nextLine();
+			String pw = in.next();
 			if(pdi.checkUser(un, pw)== true	){			
 				try {
 					opCust =  pdi.getPersonByUN(un);

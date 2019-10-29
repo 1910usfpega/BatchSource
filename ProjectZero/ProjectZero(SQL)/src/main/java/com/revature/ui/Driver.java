@@ -14,8 +14,8 @@ public class Driver {
 	
 		PersonDaoImpl pdi = new PersonDaoImpl();
 		AccountDaoImpl adi = new AccountDaoImpl();
-		String input= "";
-		while(input != "5") {
+		int input= 0;
+		while(input != 5) {
 		System.out.println("Welcome, What would you like to do today?");
 		System.out.println("--------------------------");
 		System.out.println("Press 1 for New Customer");
@@ -24,9 +24,9 @@ public class Driver {
 		System.out.println("Press 4 to leave Menus");
 		
 		//input = in.nextLine();
-		int putIn= in.nextInt();
+		 input= in.nextInt();
 		
-		switch(putIn)
+		switch(input)
 		{
 		case 1:
 			NewCustomer.newLoop(in);

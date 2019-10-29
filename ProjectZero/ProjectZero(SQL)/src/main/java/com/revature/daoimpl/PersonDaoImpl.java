@@ -5,9 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import com.revature.beans.Account;
 import com.revature.beans.Person;
 import com.revature.dao.PersonDao;
 import com.revature.util.ConnFac;
@@ -141,7 +138,7 @@ public class PersonDaoImpl implements PersonDao {
 		 String str = "delete * from person";
 		 try {
 			 PreparedStatement ps = conn.prepareStatement(str);
-			// ps.setInt(1, id);
+		
 			 ps.execute();
 			 ps= conn.prepareStatement("commit");
 			 ps.execute();
