@@ -44,27 +44,38 @@ public class MenuMethod {
 
 		switch (s) {
 
-		case "x":// exit application
+		case "x":
+			// exit application
 			System.out.println(thankYouMsg);
 			System.out.println("Application Closing!");
+			System.exit(0);
 			break;
-		case "y":// login existing user
+		
+		case "y":
+			// login existing user
 			u.setuName(um.enterUserName(sc));
 			u.setPassword(um.enterUserPassword(sc));
+			//set session user to the login result
 			u = udi.userLogin(u);
+			//if all the fields in the session user are null the login failed
 			if (!(u.getuName() == null)) {
+				//the fields are not null so it is safe to proceed
 				displayMainMenu(u);
 			} else {
+				//login failed send error message and return to login screen
 				System.out.println("Invalid Username/Password combination.\n" + "Please try again");
 				displayLoginMenu();
 			}
 			break;
+		
 		case "n":// create new user
 			u = um.newUserInfo(sc);
 			udi.createLogin(u);
+			//create new user with default role of user only admin can set a user to admin role
 			udi.createNewUser(u, 0);
 			displayLoginMenu();
 			break;
+		
 		default:
 			System.out.println(invalid);
 			displayLoginMenu();
