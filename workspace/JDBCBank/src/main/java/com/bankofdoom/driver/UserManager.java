@@ -140,7 +140,71 @@ public class UserManager {
 
 	}
 
+	public User updateUserInfo(Scanner sc, User old) {
+		//	Scanner sc = new Scanner(System.in);
 
+		System.out.println("Your current user name is: "+old.getuName()+"\n"
+				+ "Do you wish to change it? Y/N?");
+
+		String tmp = sc.next();
+		if (tmp.equalsIgnoreCase("y")) {
+			old.setuName(createUserName(sc));
+		}
+
+		System.out.println("Do you wish to reset the password for: "
+				+old.getuName()+" Y/N? ");
+		tmp = sc.next();
+		if (tmp.equalsIgnoreCase("y")) {
+			//password credentials are never shown
+			old.setPassword(createPassword(sc));
+		}
+		System.out.println("Do you wish to update the legal name for: "
+				+old.getuName()+" Y/N? ");
+		tmp = sc.next();
+		if (tmp.equalsIgnoreCase("y")) {
+			//password credentials are never shown
+			System.out.println("Please enter full Legal name:");
+			tmp = sc.nextLine();
+			old.setName(tmp);
+		}
+		System.out.println("Do you wish to update the address for: "
+				+old.getuName()+" Y/N? ");
+		tmp = sc.next();
+		if (tmp.equalsIgnoreCase("y")) {
+			
+			System.out.println("Please enter new address:");
+			tmp = sc.nextLine();
+			old.setAddress(tmp);
+		}
+		System.out.println("Do you wish to update the email address for: "
+				+old.getuName()+" Y/N? ");
+		tmp = sc.next();
+		if (tmp.equalsIgnoreCase("y")) {
+			System.out.println("Please enter email:");
+			tmp = sc.nextLine();
+			old.setEmail(tmp);
+		}
+		System.out.println("Do you wish to update the contact number for: "
+				+old.getuName()+" Y/N? ");
+		tmp = sc.next();
+		if (tmp.equalsIgnoreCase("y")) {
+			System.out.println("Please enter phone number: (###)###-####");
+			tmp = sc.nextLine();
+			old.setPhoneNumber(tmp);
+		}
+		System.out.println("Do you wish to update the role for: "
+				+old.getuName()+" Y/N? ");
+		tmp = sc.next();
+		if (tmp.equalsIgnoreCase("y")) {
+			System.out.println("Please enter 1 for admin and 0 for regular user: ");
+			int i = sc.nextInt();
+			old.setRole(i);
+		}
+		
+		return old;
+		
+
+	}
 	// method to add personal info to newly created account. still need logic
 
 	public User newUserInfo(Scanner sc) {

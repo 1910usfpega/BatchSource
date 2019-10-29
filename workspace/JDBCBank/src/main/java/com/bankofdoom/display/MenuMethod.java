@@ -14,7 +14,7 @@ import com.bankofdoom.driver.UserManager;
 
 public class MenuMethod {
 
-	static Scanner sc = new Scanner(System.in);
+	private static Scanner sc = new Scanner(System.in);
 	private static UserDaoImpl udi = new UserDaoImpl();
 	private static AccountDaoImpl adi = new AccountDaoImpl();
 	private static int selection;
@@ -22,18 +22,15 @@ public class MenuMethod {
 	private static AccountManager am = new AccountManager();
 	// method to run Main Menu in the scanner
 	private static String invalid = "Entry invalid... Please try again.";
-
-
+	private static String logout = "Logging out, have a nice day!";
 
 	public static void displayLoginMenu() {
 		String s;
 		//
-		String tryAgain = "Please enter Y if you have an existing" 
-				+ " account and wish to login \n"
+		String tryAgain = "Please enter Y if you have an existing" + " account and wish to login \n"
 				+ "Please enter N if you would like to create a new account.\n"
 				+ "Please enter X if you wish to close the application.";
 		String thankYouMsg = "Thank you for choosing JDBC Bank for" + " all your Banking needs!";
-
 
 		UserManager um = new UserManager();
 
@@ -47,11 +44,11 @@ public class MenuMethod {
 
 		switch (s) {
 
-		case "x"://exit application
+		case "x":// exit application
 			System.out.println(thankYouMsg);
 			System.out.println("Application Closing!");
 			break;
-		case "y"://login existing user
+		case "y":// login existing user
 			u.setuName(um.enterUserName(sc));
 			u.setPassword(um.enterUserPassword(sc));
 			u = udi.userLogin(u);
@@ -62,7 +59,7 @@ public class MenuMethod {
 				displayLoginMenu();
 			}
 			break;
-		case "n"://create new user
+		case "n":// create new user
 			u = um.newUserInfo(sc);
 			udi.createLogin(u);
 			udi.createNewUser(u, 0);
@@ -78,15 +75,13 @@ public class MenuMethod {
 
 	}
 
-
 	private static void displayMainMenu(User currentUser) {
-		//		List<?> daList= null;
+		// List<?> daList= null;
 
-		System.out.println("Welcome "+currentUser.getuName()+"\n"
-				+"What can we help you with today?");
+		System.out.println("Welcome " + currentUser.getuName() + "\n" + "What can we help you with today?");
 
 		System.out.println("Main Menu \n Please select from the following options: ");
-		if(currentUser.getRole()==0) {
+		if (currentUser.getRole() == 0) {
 			userMainMenu(currentUser);
 		} else {
 			adminMainMenu(currentUser);
@@ -97,69 +92,91 @@ public class MenuMethod {
 		List<User> ul = new ArrayList<User>();
 
 		ul = udi.getAllUsers();
-		System.out.println("1. Update Existing User \n"
-				+ "2. Delete User \n"
-				+ "3. Create New User \n "
-				+ "4. View All Users ");
+		System.out.println("1. Update Existing User \n" + "2. Delete User \n" + "3. Create New User \n "
+				+ "4. View All Users \n" + "5. Logout");
 		selection = sc.nextInt();
-		switch(selection) {
+		switch (selection) {
 		case 1:
-
+			System.out.println("Please enter the id of the user you wish to update: ");
+			selection = sc.nextInt();
+			User update = new User();
+			for (User i : ul) {
+				if (i.getUserId() == selection) {
+					update = i;
+				}
+			}
+			update = um.updateUserInfo(sc, update);
+			udi.updateUser(update);
 			break;
 		case 2:
-			deleteUser(currentUser);
+			System.out.println("Please enter the id of the user you wish to delete: ");
+			selection = sc.nextInt();
+			update = new User();
+			for (User i : ul) {
+				if (i.getUserId() == selection) {
+					update = i;
+				}
+			}
+			System.out.println("Deleting user: " + update.getUserId());
+			udi.deleteUser(update);
 			break;
+
 		case 3:
-			createNewUser(currentUser);
+			System.out.println("Please enter the type of user you wish to" + " create \n 1 for admin and 0 for user: ");
+
+			// because even sysadmins are human too
+			if ((selection = sc.nextInt()) < 0 || (selection = sc.nextInt()) > 1) {
+				System.out.println(invalid);
+				adminMainMenu(currentUser);
+			}
+			udi.createNewUser(um.newUserInfo(sc), selection);
+			break;
+		case 4:
+			System.out.println("Below are all the users currently in the system.");
+			for (User i : ul) {
+				System.out.println("User: " + i.getUserId());
+
+			}
+			break;
+		case 5:
+			System.out.println(logout);
+			displayLoginMenu();
+			break;
+		default:
+			System.out.println(invalid);
 
 		}
+		adminMainMenu(currentUser);
 
 	}
-	private static void createNewUser(User currentUser) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-	private static void deleteUser(User currentUser) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-	private static void updateUser(User currentUser) {
-		// TODO Auto-generated method stub
-
-	}
-
 
 	private static void userMainMenu(User currentUser) {
 
-
-		System.out.println("1. Existing Account \n"
-				+ "2. Create New Account \n"
-				+ "3. Close account (Balance must be zero) ");
+		System.out.println("1. Go to My Account \n" + "2. Create New Account \n"
+				+ "3. Close my account (Balance must be zero) " + "4. Logout");
 		selection = sc.nextInt();
-		switch(selection) {
+		switch (selection) {
 
 		case 1:
 			accountMenu(currentUser);
 		case 2:
 			System.out.println("Please select what type of new account would you like to open: \n"
-					+ "1. checking account \n"
-					+ "2. savings account ");
+					+ "1. checking account \n" + "2. savings account ");
 			selection = sc.nextInt();
 			Account acc = new Account();
-			if(selection == 1) {
-				acc = new Account(1,true,0,currentUser.getUserId(),true);
-			}else {
-				acc = new Account(1,false,0,currentUser.getUserId(),true);
+			if (selection == 1) {
+				acc = new Account(1, true, 0, currentUser.getUserId(), true);
+			} else {
+				acc = new Account(1, false, 0, currentUser.getUserId(), true);
 			}
 			adi.createAccount(acc);
 			break;
 		case 3:
 			closeAccount(currentUser);
-
+			break;
+		case 4:
+			System.out.println(logout);
+			displayLoginMenu();
 			break;
 		default:
 			System.out.println(invalid);
@@ -175,7 +192,7 @@ public class MenuMethod {
 		List<Account> daList = new ArrayList<Account>();
 
 		daList = adi.getAccounts(currentUser);
-		for(Account i: daList) {
+		for (Account i : daList) {
 			System.out.println(i.toString());
 		}
 		System.out.println("Please enter the account id for the account you wish to close: ");
@@ -183,59 +200,57 @@ public class MenuMethod {
 
 		System.out.println("Are you sure you wish to close your account: y/n?");
 		String s = sc.next();
-		if(s.equalsIgnoreCase("y")) {
-			for(Account i: daList) {
-				if (i.getAccountID()==selection) {
-					System.out.println("Closing account "+i.getAccountID());
-					if(adi.removeAccount(i)) {
-						System.out.println("Account "+i.getAccountID()+" closed.");
+		if (s.equalsIgnoreCase("y")) {
+			for (Account i : daList) {
+				if (i.getAccountID() == selection) {
+					System.out.println("Closing account " + i.getAccountID());
+					if (adi.removeAccount(i)) {
+						System.out.println("Account " + i.getAccountID() + " closed.");
 					} else {
-						System.out.println("Unable to close account "
-								+i.getAccountID()+" is your balance something other than $0.00?\n"
-								+ "If so please transfer funds to make the balance "
-								+ "$0.00 and try again.");
+						System.out.println("Unable to close account " + i.getAccountID()
+								+ " is your balance something other than $0.00?\n"
+								+ "If so please transfer funds to make the balance " + "$0.00 and try again.");
 					}
 				}
 
 			}
-		} 
+		}
 		System.out.println("Returning to main menu.");
 		displayMainMenu(currentUser);
 
 	}
 
-
-	// display menu for withdrawal
-	public static void withdrawalMenu(User currUser, Account selectedAcc) {
-
-		double withdraw;
-
-		System.out.println("Please choose the Account type to withdrawal from: "
-				+ "\n 1. Checking Account \n 2. Savings Account \n 3. Cancel ");
-		System.out.println("Please enter number:");
-		selection = sc.nextInt();
-		switch (selection) {
-		case 1:
-			System.out.println("You chose Checking Account.\n Enter withdrawal amount: ");
-			withdraw = sc.nextDouble();
-
-			System.out.println("Withdrawal complete. Updated Checking Account balance: ");
-			break;
-		case 2:
-			System.out.println("You chose Savings Account.\n Enter withdrawal amount: ");
-			withdraw = sc.nextDouble();
-			System.out.println("Withdrawal complete. Updated Savings Account balance: ");
-			break;
-		case 3:
-			System.out.println("Transaction canceled..");
-			accountMenu(currUser);
-			break;
-		default:
-			System.out.println(invalid);
-		}
-		withdrawalMenu(currUser, selectedAcc);
-
-	}
+//	// display menu for withdrawal
+//	public static void withdrawalMenu(User currUser, Account selectedAcc) {
+//
+//		double withdraw;
+//
+//		System.out.println("Please choose the Account type to withdrawal from: "
+//				+ "\n 1. Checking Account \n 2. Savings Account \n 3. Cancel ");
+//		System.out.println("Please enter number:");
+//		selection = sc.nextInt();
+//		switch (selection) {
+//		case 1:
+//			System.out.println("You chose Checking Account.\n Enter withdrawal amount: ");
+//			withdraw = sc.nextDouble();
+//
+//			System.out.println("Withdrawal complete. Updated Checking Account balance: ");
+//			break;
+//		case 2:
+//			System.out.println("You chose Savings Account.\n Enter withdrawal amount: ");
+//			withdraw = sc.nextDouble();
+//			System.out.println("Withdrawal complete. Updated Savings Account balance: ");
+//			break;
+//		case 3:
+//			System.out.println("Transaction canceled..");
+//			accountMenu(currUser);
+//			break;
+//		default:
+//			System.out.println(invalid);
+//		}
+//		withdrawalMenu(currUser, selectedAcc);
+//
+//	}
 
 	private static void accountMenu(User curUser) {
 
@@ -243,12 +258,8 @@ public class MenuMethod {
 
 		daList = adi.getAccounts(curUser);
 
-		System.out.println("\t Account Menu \n"
-				+ "1. View Account Balances \n "
-				+ "2. Withdrawal \n"
-				+ "3. Deposit \n"
-				+ "4. Transfer Funds \n"
-				+ "5. Cancel");
+		System.out.println("\t Account Menu \n" + "1. View Account Balances \n " + "2. Withdrawal \n" + "3. Deposit \n"
+				+ "4. Transfer Funds \n" + "5. Cancel");
 		System.out.println("Please make a selection: ");
 
 		selection = sc.nextInt();
@@ -259,31 +270,57 @@ public class MenuMethod {
 		// viewing account balances
 		case 1:
 			System.out.println("Account Balances:");
-			for(Account i: daList) {
+			for (Account i : daList) {
 				System.out.println(i.toString());
 			}
 
 			break;
 
-			// Bring up withdrawal menu
+		// Bring up withdrawal menu
 		case 2:
 			System.out.println("Please select which account you would like to withdraw from: ");
-			for(int i=0; i< daList.size();i++) {
-				System.out.println(i+". Account "+daList.get(i).getAccountID());
+			for (int i = 0; i < daList.size(); i++) {
+				System.out.println(i + ". Account " + daList.get(i).getAccountID());
 			}
 			selection = sc.nextInt();
-			MenuMethod.withdrawalMenu(curUser,daList.get(selection));
+			MenuMethod.withdrawalMenu(curUser, daList.get(selection));
 			break;
 
-			// Bring up deposit menu
+		// Bring up deposit menu
 		case 3:
-			//MenuMethod.depositMenu();
-
+			System.out.println("Please select which account you would like to deposit to: ");
+			for (int i = 0; i < daList.size(); i++) {
+				System.out.println(i + ". Account " + daList.get(i).getAccountID());
+			}
+			selection = sc.nextInt();
+			MenuMethod.depositMenu(curUser, daList.get(selection));
 			break;
 
-			// Transfer funds menu
+		// Transfer funds menu
 		case 4:
-			//MenuMethod.transferMenu();
+			List<Account> tmp = adi.getAccounts(curUser);
+			System.out.println("Please select which account you would like to transfer from: ");
+			for (int i = 0; i < daList.size(); i++) {
+				System.out.println(i + ". Account " + daList.get(i).getAccountID());
+			}
+			int from = sc.nextInt();
+			Account origin = daList.get(from);
+			for(Account i : tmp)
+				if(i.getAccountID()==origin.getAccountID()) origin = i;
+			
+			
+			
+			System.out.println("Please select which account you would like to transfer to: ");
+			for (int i = 0; i < daList.size(); i++) {
+				System.out.println(i + ". Account " + daList.get(i).getAccountID());
+			}
+			int to = sc.nextInt();
+
+			Account dest = daList.get(to);
+			for(Account i : tmp)
+				if(i.getAccountID()==dest.getAccountID()) dest = i;
+			System.out.println("Please enter the amount you wish to transfer: ");
+			
 			break;
 
 		case 5:
@@ -291,12 +328,13 @@ public class MenuMethod {
 			displayLoginMenu();
 			break;
 		default:
-			System.out.println();
+			System.out.println(invalid);
 			accountMenu(curUser);
 
 		}
 
 	}
+
 	// display menu for deposit
 	public static void depositMenu(User currentUser, Account selectedAccount) {
 		int choose;
@@ -304,7 +342,6 @@ public class MenuMethod {
 
 		// double amount = deposit;
 		// Account a = checkingAccount;
-
 
 		System.out.println("Please choose the Account type to deposit into: \n "
 				+ "1. Checking Account \n 2. Savings Account \n 3. Cancel ");
@@ -328,41 +365,42 @@ public class MenuMethod {
 		case 3:
 			System.out.println("Transaction canceled..");
 			break;
-		default: 
-			System.out.println(invalid);
-		}
-		depositMenu(currentUser,selectedAccount);
-	}
-
-	public static void transferMenu(User currentUser) {
-
-		double transfer;
-
-		System.out.println("Please choose the Account to transfer out of: "
-				+ "\n 1. Checking Account \n 2. Savings Account \n 3. Cancel ");
-		System.out.println("Please enter number:");
-		selection = sc.nextInt();
-		switch (selection) {
-
-		case 1:
-			System.out.println("You chose to transfer out of Checking Account.\n" + " Enter transfer amount: ");
-			transfer = sc.nextDouble();
-			System.out.println(
-					"Transfer complete. \n Updated Checking Account balance: \n Updated Savings Account balance: ");
-			break;
-		case 2:
-			System.out.println("You chose to transfer out of Savings Account.\n Enter transfer amount: ");
-			transfer = sc.nextDouble();
-			System.out.println(
-					"Transfer complete. \n Updated Savings Account balance: \n Updated Checking Account balance: ");
-			break;
-		case 3:
-			System.out.println("Transaction canceled..");
-			break;
-
 		default:
 			System.out.println(invalid);
 		}
-		transferMenu(currentUser);
+		depositMenu(currentUser, selectedAccount);
 	}
+
+//	public static void transferMenu(User currentUser) {
+//
+//		double transfer;
+//
+//		System.out.println("Please choose the Account to transfer out of: "
+//				+ "\n 1. Checking Account \n 2. Savings Account \n 3. Cancel ");
+//		System.out.println("Please enter number:");
+//		selection = sc.nextInt();
+//		switch (selection) {
+//
+//		case 1:
+//			System.out.println("You chose to transfer out of Checking Account.\n" + " Enter transfer amount: ");
+//			transfer = sc.nextDouble();
+//			System.out.println(
+//					"Transfer complete. \n Updated Checking Account balance: \n Updated Savings Account balance: ");
+//			break;
+//		case 2:
+//			System.out.println("You chose to transfer out of Savings Account.\n Enter transfer amount: ");
+//			transfer = sc.nextDouble();
+//			System.out.println(
+//					"Transfer complete. \n Updated Savings Account balance: \n Updated Checking Account balance: ");
+//			break;
+//		case 3:
+//			System.out.println("Transaction canceled..");
+//			displayMainMenu(currentUser);
+//			break;
+//
+//		default:
+//			System.out.println(invalid);
+//		}
+//		transferMenu(currentUser);
+//	}
 }

@@ -77,7 +77,7 @@ select * from users right join roles
 on users.uname=roles.uname;
 */
 
---sequence for account id's
+--sequence for account id's *is running already
 create sequence my_bank_seq
 	increment by -7
 	start with 10101101

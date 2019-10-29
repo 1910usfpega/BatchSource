@@ -28,9 +28,10 @@ public class UserDaoImpl implements UserDao {
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select user_id , user_name from " + "user_table;");
+			ResultSet rs = stmt.executeQuery("select user_id , user_name from " 
+					+ "user_table;");
 			User a = null;
-		
+
 			while (rs.next()) {
 				a = new User(rs.getInt(1), rs.getString(2));
 				userList.add(a);
@@ -83,7 +84,8 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void createNewUser(User u, int role) {
-		sql = "insert into user_table(" + "user_name, legal_name, address, email, contact_num,user_role) "
+		sql = "insert into user_table(user_name, legal_name, address, "
+				+ "email, contact_num,user_role) "
 				+ "values(?,?,?,?,?,?)";
 		PreparedStatement ps;
 		try {
@@ -102,6 +104,27 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
+	@Override
+	public User getUser(User u) {
+		sql = "Select * from user_table where user_id=?";
+		PreparedStatement ps;
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, u.getUserId());
+			ResultSet rs =ps.executeQuery();
+			while(rs.next()) {
+				u = new User(rs.getInt(1), rs.getString(2),rs.getString(3),
+						rs.getString(4),rs.getString(5),rs.getString(6),rs.getInt(7));
+
+
+			}
+
+		} catch(SQLException e) {
+			System.out.println("Unable to find user by that id");
+			e.printStackTrace();
+		}
+		return u;
+	}
 	@Override
 	public void deleteUser(User u) {
 		// delete from registered_user where user_name='test';

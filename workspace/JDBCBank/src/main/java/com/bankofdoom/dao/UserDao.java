@@ -13,6 +13,7 @@ public interface UserDao {
 	public List<String> getRoles(User u)  throws SQLException;
 	void createLogin(User u) throws SQLException;
 	void updateLogin(User u) throws SQLException;
+	public User getUser(User u) throws SQLException;
 	
 	
 }
