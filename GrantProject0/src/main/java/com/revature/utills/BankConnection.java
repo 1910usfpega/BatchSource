@@ -10,45 +10,46 @@ import java.util.Properties;
 
 public class BankConnection {
 
-		//Singleton Factory
-		//private static instance of self
-		private static BankConnection cf = new BankConnection();
-		//private no args constructor
-		private BankConnection() {
-			super();
-		}
-		//public static synchronized "getter" method
-		public static synchronized BankConnection getInstance() {
-			if(cf==null) {
-				cf= new BankConnection();
-			}
-			return cf;
-		}
-		//Methods that do stuff
-		public Connection getConnection() {
-			Connection conn = null;
-			Properties prop = new Properties();
-			try {
-				try {
-					prop.load(new FileReader("database.properties"));
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-					conn=DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("user"),prop.getProperty("password"));
-			} catch (SQLException e) {
-				System.out.println("Failed to create connection");
-				e.printStackTrace();
-			}
+    //Singleton Factory
+    //private static instance of self
+    private static BankConnection cf = new BankConnection();
+    //private no args constructor
+    private BankConnection() {
+        super();
+    }
+    //public static synchronized "getter" method
+    public static synchronized BankConnection getInstance() {
+        if (cf == null) {
+            cf = new BankConnection();
+        }
+        return cf;
+    }
 
-			return conn;
+    //Methods that do stuff
+    public Connection getConnection() {
+        Connection conn = null;
+        Properties prop = new Properties();
+        try {
+            try {
+                prop.load(new FileReader("database.properties"));
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
+        } catch (SQLException e) {
+            System.out.println("Failed to create connection");
+            e.printStackTrace();
+        }
 
-		}
+        return conn;
 
-	}
+    }
+
+}
 	
 	
 	
