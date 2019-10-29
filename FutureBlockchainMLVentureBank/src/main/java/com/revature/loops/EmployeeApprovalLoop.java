@@ -3,10 +3,10 @@ package com.revature.loops;
 import java.util.List;
 import java.util.Scanner;
 
-import com.revature.beans.AccountInfo;
 import com.revature.beans.BankAccount;
 import com.revature.beans.Customer;
 import com.revature.daoimpl.AccountDaoImpl;
+import com.revature.util.AccountInfo;
 import com.revature.util.GlobalStorageSingletone;
 
 public class EmployeeApprovalLoop {

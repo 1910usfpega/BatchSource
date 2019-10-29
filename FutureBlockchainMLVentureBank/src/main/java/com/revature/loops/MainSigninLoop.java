@@ -12,7 +12,7 @@ public class MainSigninLoop {
 	public static String getLoginFromSC(){
 		String contents;
 		System.out.println("Input your username:");
-		contents = sc.nextLine();
+		contents = sc.nextLine().toLowerCase();
 		return contents;
 		
 	}

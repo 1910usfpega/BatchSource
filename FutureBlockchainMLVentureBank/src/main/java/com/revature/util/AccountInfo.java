@@ -1,4 +1,7 @@
-package com.revature.beans;
+package com.revature.util;
+
+import com.revature.beans.BankAccount;
+import com.revature.beans.Customer;
 
 public class AccountInfo {
 	private BankAccount bankAccount= null;

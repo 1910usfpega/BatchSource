@@ -8,10 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.beans.AccountInfo;
 import com.revature.beans.BankAccount;
 import com.revature.beans.Customer;
 import com.revature.dao.BankAccountsDao;
+import com.revature.util.AccountInfo;
 import com.revature.util.ConnFactory;
 
 public class AccountDaoImpl implements BankAccountsDao {

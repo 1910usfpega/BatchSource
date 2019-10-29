@@ -3,8 +3,8 @@ package com.revature.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.revature.beans.AccountInfo;
 import com.revature.beans.BankAccount;
+import com.revature.util.AccountInfo;
 
 public interface BankAccountsDao {
 	public void cancelAccount(Integer accountNumber);

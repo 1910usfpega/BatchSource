@@ -12,6 +12,7 @@ import com.revature.beans.Customer;
 import com.revature.beans.Employee;
 import com.revature.beans.User;
 import com.revature.dao.UsersDao;
+import com.revature.exceptions.UsernameAlreadyExistsException;
 import com.revature.util.ConnFactory;
 
 public class UserDaoImpl implements UsersDao{
@@ -86,6 +87,48 @@ public class UserDaoImpl implements UsersDao{
 		}
 		
 		return customers;
+	}
+
+	@Override
+	public Customer createNewCustomer(String username, String password, String firstName, String lastName ) throws UsernameAlreadyExistsException {
+		Connection conn = cf.getConnection();
+		String sql = "SELECT * FROM create_new_user(?, ?, ?, ?);";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ps.setString(3, firstName);
+			ps.setString(4, lastName);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int newCustomerId =rs.getInt(1);
+				if (newCustomerId==0) {
+					throw new UsernameAlreadyExistsException("Username already exists");
+				} else {
+					String sql2 = "SELECT * FROM bank_user WHERE user_id=?;";
+					PreparedStatement ps2 = conn.prepareStatement(sql2);
+					ps2.setInt(1, newCustomerId);
+					ResultSet rs2 = ps2.executeQuery();
+					while (rs2.next()) {
+						Customer customer = new Customer(
+								rs2.getInt("user_id"), 
+								rs2.getString("user_name"), 
+								rs2.getString("user_type"), 
+								rs2.getString("user_firstname"), 
+								rs2.getString("user_lastname"), 
+								rs2.getBoolean("user_status")
+								);
+						return customer;
+					}
+					
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return null;
 	}
 
 }
