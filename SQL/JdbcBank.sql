@@ -37,28 +37,11 @@ create table people_account (
 	primary key (user_ID, bank_account_ID)
 );
 
---∆∆2nd creating a new table to be referenced by
---people.user_type //////kinda like this.field in java
-CREATE table user_type (
-	usr_type integer primary key,
-	description varchar(30)
-);
+----------1st
 
 
 
---Sequence
-CREATE SEQUENCE bank_account_ID_sequence
-START WITH 1,
---default is increment by one
-INCREMENT BY 1
-owned by people_account.bank_account_ID;
-
-create SEQUENCE user_account_ID_sequence
-	START with 1
-	owned by people_account.user_ID;
-
-
-
+---------2nd-------
 --created relationships to enable usage of tables
 alter table people_account
 add constraint fk_user_ID
@@ -79,19 +62,7 @@ foreign key (user_uname) references login(user_name)
 on update cascade
 on delete cascade;
 
---∆∆1st adding a column for table people
---to specify different users customer/admin
-alter table people
-add column usr_type integer;
-
---∆∆3rd adding a constraint to the table people of column user_type
---to give the column a fkey
-alter table People
-add constraint fk_usr_type
-foreign key (usr_type) references user_type(usr_type)
- on
-
-
+---Sequences default
 alter table people_account alter column bank_account_ID
 --a function
 set default nextVal('bank_account_ID_sequence');
@@ -113,9 +84,61 @@ CREATE or Replace function get_all_users()
 	)
 	AS $$
 	Begin
+	--a way to view everything in the account
 		Return Query select * From people;
 	End; $$
 	Language 'plpgsql';
 
 	--call it like a table
 select get_all_users()
+
+--∆∆1st adding a column for table people
+--to specify different users customer/admin
+alter table people
+add column usr_type integer;
+
+--∆∆2nd creating a new table to be referenced by
+--people.user_type //////kinda like this.field in java
+CREATE table user_type (
+	usr_type integer primary key,
+	description varchar(30)
+);
+
+
+
+--Sequence
+CREATE SEQUENCE bank_account_ID_sequence
+START WITH 1,
+--default is increment by one
+INCREMENT BY 1
+owned by people_account.bank_account_ID;
+
+create SEQUENCE user_account_ID_sequence
+	START with 1
+	owned by people_account.user_ID;
+
+
+--∆∆3rd adding a constraint to the table people of column user_type
+--to give the column a fkey
+alter table People
+add constraint fk_usr_type
+foreign key (usr_type) references user_type(usr_type);
+
+
+
+
+--∆∆4th creating a sequence for the description
+--specify the role
+create sequence user_type_sequence
+	start with 1
+	owned by user_type.usr_type;
+
+	alter table user_type
+	alter column usr_type
+	set default nextVal('user_type_sequence');
+
+INSERT into user_type (usr_type, description)
+values (default, 'admin');
+
+INSERT into user_type (usr_type, description)
+values (default, 'customer');
