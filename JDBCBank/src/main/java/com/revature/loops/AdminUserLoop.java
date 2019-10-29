@@ -34,6 +34,7 @@ public class AdminUserLoop {
 			String content = sc.nextLine().toLowerCase();
 			switch (content) {
 			case "1":
+				AdminUpdateUserLoop.start(currentUser);
 				break;
 				
 			case "2":

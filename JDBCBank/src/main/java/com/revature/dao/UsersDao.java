@@ -14,5 +14,8 @@ public interface UsersDao {
 	public List<User> getAllUsers();
 	public User getUserById(int userId);
 	public void deleteUserById(int userId);
+	public boolean usernameExists(String username);
+	public boolean usernameExists(User user);
+	public void updateUser(int userId, String newUsername, String newFirstName, String newLastName, String newUserType);
 	
 }

@@ -214,4 +214,59 @@ public class UserDaoImpl implements UsersDao{
 		}
 	}
 
+	@Override
+	public boolean usernameExists(String username) {
+		boolean result = true;
+		Connection conn = cf.getConnection();
+		String sql = "SELECT count(user_id) FROM bank_user WHERE user_name = ?;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int i = rs.getInt(1);
+				if (i == 0) {
+					System.out.println("NO SUCH USERS");
+					result = false;
+				} else {
+					System.out.println("There is USERS");
+					result = true;
+				}
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	@Override
+	public boolean usernameExists(User user) {
+		return usernameExists(user.getUsername());
+	}
+
+	@Override
+	public void updateUser(int userId, String newUsername, String newFirstName, String newLastName,
+			String newUserType) {
+		Connection conn = cf.getConnection();
+		String sql = "UPDATE bank_user \n" + 
+				"SET user_name = ?, user_firstname = ?, user_lastname = ?, user_type=? \n" + 
+				"WHERE user_id = ?;";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, newUsername);
+			ps.setString(2, newFirstName);
+			ps.setString(3, newLastName);
+			ps.setString(4, newUserType);
+			
+			ps.setInt(5, userId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }
