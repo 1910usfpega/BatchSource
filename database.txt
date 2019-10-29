@@ -1,0 +1,37 @@
+CREATE TABLE public.bankaccount (
+	accountnumber int NOT NULL,
+	amount double precision NOT NULL
+);
+
+CREATE TABLE public.employee (
+	lname varchar(25) NOT NULL,
+	fname varchar NOT NULL,
+	username varchar NOT NULL,
+	pass varchar NOT NULL
+);
+
+CREATE TABLE public.customer (
+	id int UNIQUE,
+	fname varchar(25) NOT NULL,
+	lname varchar(30) NOT NULL,
+	username varchar(30) NOT NULL,
+	pass varchar(30) NOT NULL,
+	CONSTRAINT customer_pk PRIMARY KEY (username)
+);
+CREATE TABLE public."owners" (
+	username varchar(30) NOT NULL,
+	accountnumber int NOT NULL,
+CONSTRAINT owner_pk PRIMARY KEY (accountnumber)
+);
+
+CREATE SEQUENCE newcustomerID
+START WITH 100
+OWNED BY customer.id; 
+
+CREATE SEQUENCE newbankaccountID
+START WITH 100
+OWNED by bankaccount.accountnumber;
+
+
+alter table public.owners add constraint fk_owners foreign key  (username) references customer(username);
+alter table public.owners add constraint fk_ownerss foreign key  (accountnumber) references bankaccount (accountnumber);
