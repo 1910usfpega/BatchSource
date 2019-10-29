@@ -24,7 +24,7 @@ public class AdminController {
 	
 	
 
-	public static void adminSession(Scanner scan) throws SQLException {
+	public static void adminSession(Scanner in) throws SQLException {
 		// generate date and current time
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
@@ -46,10 +46,10 @@ public class AdminController {
 		String adminUsername, adminPassword;
 
 		System.out.println("Enter your username: ");
-		adminUsername = scan.nextLine();
+		adminUsername = in.nextLine();
 
 		Properties pro = new Properties();
-
+		int adminChoice;
 		try {
 			pro.load(new FileReader("admin.properties"));
 			
@@ -62,7 +62,7 @@ public class AdminController {
 		if (adminUsername.equals(pro.getProperty("adminUsername"))) {
 			System.out.println("Enter your password: ");
 
-			adminPassword = scan.nextLine();
+			adminPassword = in.nextLine();
 
 			if (adminPassword.equals(pro.getProperty("adminPassword"))) {
 				System.out.println("welcome Admin: ");
@@ -81,10 +81,12 @@ public class AdminController {
 		System.out.println("3.) to delete users");
 		System.out.println("4.) to update users");
 		System.out.println("5.)  to Log Out");
+		
+		do {
+		System.out.println("enter a choice: ");
+		adminChoice = in.nextInt();
 
-		int choice = scan.nextInt();
-
-		switch (choice) {
+		switch (adminChoice) {
 
 		case 1:
 			try {
@@ -97,29 +99,33 @@ public class AdminController {
 			break;
 
 		case 2:
+			Scanner input = new Scanner(System.in);
 			String user_username, user_password, firstName, lastName;
-
+			
 			System.out.println("enter a username: ");
-			user_username = scan.nextLine();
-
+			user_username = input.nextLine();
+/*
 			while (udi.doesUsernameMatch(user_username)) {
 				System.out.println("username already in use, try again: ");
-				user_username = scan.nextLine();
+				user_username = in.nextLine();
 			}
 			
-			User user = new User();
+			*/
 
-			user.setUsername(user_username);
 
 			System.out.println("Enter your secret password: ");
-			user_password = scan.nextLine();
-			user.setPassword(user_password);
-
+			user_password = input.nextLine();
+			
 			System.out.println("Enter your first name: ");
-			firstName = scan.nextLine();
-			user.setFirstName(firstName);
+			firstName = input.nextLine();
+		
 			System.out.println("Enter your last name: ");
-			lastName = scan.nextLine();
+			lastName = input.nextLine();
+			
+			User user = new User();
+			user.setUsername(user_username);
+			user.setPassword(user_password);
+			user.setFirstName(firstName);
 			user.setLastName(lastName);
 
 			udi.createUser(user);
@@ -130,7 +136,7 @@ public class AdminController {
 
 		case 3:
 			System.out.println("Enter the username for the account you wish to delete: ");
-			String usernameToDelete = scan.nextLine();
+			String usernameToDelete = in.nextLine();
 			User u = udi.getUserByUsername(usernameToDelete);
 			udi.deleteUser(u);
 			System.out.println("User deleted");
@@ -138,45 +144,45 @@ public class AdminController {
 
 		case 4:
 			System.out.println("enter username for account you wish to update: ");
-			String usernameAcctUpdate = scan.nextLine();
+			String usernameAcctUpdate = in.nextLine();
 			System.out.println(
 					"1.) to update username \n 2.) to update password \n 3.) to update first name \n 4.) to update last name:");
-			int updateChoice = scan.nextInt();
+			int updateChoice = in.nextInt();
 
 			if (updateChoice == 1) {
 				System.out.println("enter a new username: ");
-				String newUsername = scan.nextLine();
+				String newUsername = in.nextLine();
 				u = udi.getUserByUsername(usernameAcctUpdate);
 				udi.updateUsername(newUsername, usernameAcctUpdate);
 				System.out.println(u.toString());
 			} else if (updateChoice == 2) {
 				System.out.println(udi.getUsers().toString() + "\n");
 				System.out.println("enter the username of the user: ");
-				String uname = scan.nextLine();
+				String uname = in.nextLine();
 				u = udi.getUserByUsername(uname);
 				System.out.println("enter a new password: ");
-				String newPassword = scan.nextLine();
+				String newPassword = in.nextLine();
 				udi.updatePassword(newPassword, uname);
 				System.out.println(u.toString());
 			} else if (updateChoice == 3) {
 				System.out.println(udi.getUsers().toString() + "\n");
 				System.out.println("enter the username of an user to update: ");
-				String uname = scan.nextLine();
+				String uname = in.nextLine();
 				u = udi.getUserByUsername(uname);
 				System.out.println("enter a new first name for the user: ");
-				String newFirstName = scan.nextLine();
+				String newFirstName = in.nextLine();
 				udi.updateFirstName(newFirstName, uname);
 				System.out.println(u.toString());
 
 			} else if (updateChoice == 4) {
 				System.out.println(udi.getUsers().toString() + "\n");
 				System.out.println("enter the username of an user to update: ");
-				String uname = scan.nextLine();
+				String uname = in.nextLine();
 				u = udi.getUserByUsername(uname);
 				System.out.println("enter a new last name for the user: ");
-				String newLastName = scan.nextLine();
+				String newLastName = in.nextLine();
 				udi.updateFirstName(newLastName, uname);
-				System.out.println(u.toString());
+
 			}
 			break;
 
@@ -184,6 +190,9 @@ public class AdminController {
 			System.out.println("Thank you for working on behalf of us.");
 			break;
 		}
+		} while(adminChoice != 5); 
+			
+		
 
 	}
 
