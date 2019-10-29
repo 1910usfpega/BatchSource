@@ -133,35 +133,12 @@ public class AccountDaoImpl implements BankAccountsDao {
 	
 	@Override
 	public void cancelAccount(BankAccount account) {
-		Connection conn = cf.getConnection();
-		String sql = "UPDATE bank_account SET account_status='canceled' WHERE account_number=?;";
-		
-		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, account.getAccountNumber());
-			ps.execute();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		cancelAccount(account.getAccountNumber());
 	}
 
 	@Override
 	public void deposit(BankAccount account, Double amountToDeposit) {
-		Connection conn = cf.getConnection();
-		String sql = "UPDATE bank_account SET balance = balance + ? WHERE account_number=?";
-		
-		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setDouble(1, amountToDeposit);
-			ps.setInt(2, account.getAccountNumber());
-			ps.execute();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+		deposit(account.getAccountNumber(), amountToDeposit);
 	}
 
 	@Override
@@ -277,18 +254,7 @@ public class AccountDaoImpl implements BankAccountsDao {
 
 	@Override
 	public void approveAccount(BankAccount account) {
-		Connection conn = cf.getConnection();
-		String sql = "UPDATE bank_account SET account_status='approved' WHERE account_number=?;";
-		
-		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, account.getAccountNumber());
-			ps.execute();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+		approveAccount(account.getAccountNumber());
 	}
 
 	@Override
@@ -310,6 +276,20 @@ public class AccountDaoImpl implements BankAccountsDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void deleteBankAccount(int accountNumber) {
+			Connection conn = cf.getConnection();
+			String sql = "DELETE FROM bank_account WHERE account_number = ?";
+			try {
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setInt(1, accountNumber);
+				ps.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
 	}
 	
 	

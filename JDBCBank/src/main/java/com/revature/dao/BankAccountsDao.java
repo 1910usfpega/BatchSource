@@ -21,4 +21,5 @@ public interface BankAccountsDao {
 	public void approveAccount(Integer accountNumber);
 	public void approveAccount(BankAccount account);
 	public void withdraw(Integer accountNumber, Double amount) throws AccountOverdraftException;
+	public void deleteBankAccount(int accountNumber);
 }
