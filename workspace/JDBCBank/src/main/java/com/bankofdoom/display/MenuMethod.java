@@ -122,7 +122,8 @@ public class MenuMethod {
 			break;
 
 		case 3:
-			System.out.println("Please enter the type of user you wish to" + " create \n 1 for admin and 0 for user: ");
+			System.out.println("Please enter the type of user you wish to" 
+		+ " create \n 1 for admin and 0 for user: ");
 
 			// because even sysadmins are human too
 			if ((selection = sc.nextInt()) < 0 || (selection = sc.nextInt()) > 1) {
@@ -153,7 +154,7 @@ public class MenuMethod {
 	private static void userMainMenu(User currentUser) {
 
 		System.out.println("1. Go to My Account \n" + "2. Create New Account \n"
-				+ "3. Close my account (Balance must be zero) " + "4. Logout");
+				+ "3. Close my account (Balance must be zero) \n" + "4. Logout");
 		selection = sc.nextInt();
 		switch (selection) {
 

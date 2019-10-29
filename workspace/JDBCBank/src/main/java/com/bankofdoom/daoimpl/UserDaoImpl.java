@@ -206,7 +206,7 @@ public class UserDaoImpl implements UserDao {
 			System.out.println("Login error! :( ");
 			e.printStackTrace();
 		}
-		if(ul == null) {
+		if(ul.equals(null)) {
 			System.out.println("OOPs");
 			MenuMethod.displayLoginMenu();
 		} 
