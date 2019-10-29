@@ -23,7 +23,9 @@ public class BankDaoImpl {
 	static Map<Integer, Double> hMap2 = new HashMap<>();
 	static Map<String, ArrayList<Integer>> hMap3 = new HashMap<>();
 	static ArrayList<Integer> id = new ArrayList<Integer>();
-	static Map<Integer, String> hMap4 = new HashMap<>();
+//	static Map<Integer, String> hMap4 = new HashMap<>();
+	static ArrayList<String> UserName = new ArrayList<String>();
+	static ArrayList<Integer> IDs = new ArrayList<Integer>();
 	
 	public static void insertUser(String username, String password) throws SQLException {
 		Connection conn = cb.getConnection();
@@ -33,6 +35,35 @@ public class BankDaoImpl {
 		ps.setString(1, username);
 		ps.setString(2, password);
 		ps.executeUpdate();
+	}
+	
+	public static int tableSize() throws SQLException{
+		Connection conn = cb.getConnection();
+		String sql= "select account_id from accounts";
+		PreparedStatement ps= conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		ResultSet rs = ps.executeQuery();
+		rs.beforeFirst();
+//		rs.afterLast();
+		int size = 0;
+		while(rs.next())
+		{
+			size += 1;
+		}
+
+		return size;
+	}
+	
+	public static ArrayList<Integer> IDs() throws SQLException{
+		Connection conn = cb.getConnection();
+		String sql= "select account_id from accounts";
+		PreparedStatement ps= conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		ResultSet rs = ps.executeQuery();
+		rs.beforeFirst();
+		while(rs.next())
+		{
+			IDs.add(rs.getInt(1));
+		}
+		return IDs;
 	}
 	
 	public static Map<String, String> confirmUser() throws SQLException{
@@ -87,17 +118,17 @@ public class BankDaoImpl {
 		}
 		return hMap3;
 	}
-//	public static Map<Integer, String> hMap4() throws SQLException{
-//		Connection conn = cb.getConnection();
-//		String sql= "select account_id, username from accounts";
-//		PreparedStatement ps= conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-//		ResultSet rs = ps.executeQuery();
-//		rs.beforeFirst();
-//		while (rs.next()){
-//			hMap4.put(rs.getInt(1), rs.getString(2));
-//		}
-//		return hMap4;
-//	}
+	public static ArrayList<String> hMap4() throws SQLException{
+		Connection conn = cb.getConnection();
+		String sql= "select username from accounts";
+		PreparedStatement ps= conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		ResultSet rs = ps.executeQuery();
+		rs.beforeFirst();
+		while (rs.next()){
+			UserName.add(rs.getString(1));
+		}
+		return UserName;
+	}
 	
 	public static void deleteAccount(int user_id) throws SQLException {
 		Connection conn = cb.getConnection();

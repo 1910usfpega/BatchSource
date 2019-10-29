@@ -24,12 +24,16 @@ public class Switch {
 	Map<String, ArrayList<Integer>> hMap3 = new HashMap<>();
 	//ArrayList<Integer> id = new ArrayList<Integer>();
 	hMap3 = bdi.userAccounts();
-	Map<Integer, String> hMap4 = new HashMap<>();
+	ArrayList<String> Identity = new ArrayList<String>();
+	Identity = bdi.hMap4();
+	int TableSize = bdi.tableSize();
+	ArrayList<Integer> IDs = new ArrayList<Integer>();
+	IDs = bdi.IDs();
 
 	do {
 		System.out.println("R- Register, L-Login, Q-Quit: ");
+		//System.out.println(Identity.get(0));
 		Input = sc.nextLine();
-
 		switch (Input) {
 		case "R":
 			System.out.println("Username:");
@@ -163,6 +167,13 @@ public class Switch {
 				String Input1 = "";
 				do {						
 				System.out.println("C - Create an account, R - Remove an account, W- Withdraw, D- Deposit, Q-Quit");
+				//System.out.println(TableSize);
+				//System.out.println(IDs.get(3));
+				for (int i = 0; i < TableSize; i++)
+				{
+					if(Identity.get(i).equals(Username))
+					{System.out.println(IDs.get(i) + " " + hMap2.get(i+1));}
+				}
 				Input1 = sc.nextLine();
 				switch (Input1)
 				{
@@ -174,10 +185,6 @@ public class Switch {
 					break;
 				case "R":
 					System.out.println("Account_id?");
-					System.out.println(hMap2);
-					System.out.println(hMap3.get(Username));
-//					for(int i = 0; i < hMap4.size(); i++)
-
 					User_id = sc.nextInt();
 					if(hMap2.containsKey(User_id) && hMap2.get(User_id) <= 0)
 					{

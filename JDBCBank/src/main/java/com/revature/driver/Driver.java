@@ -12,7 +12,6 @@ public class Driver {
 		
 /*
 		 *if Admin:
-		 *u- update user info
 		 *d- delete user
 		 */
 		
