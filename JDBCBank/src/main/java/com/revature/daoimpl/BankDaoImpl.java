@@ -70,33 +70,34 @@ public class BankDaoImpl {
 		}
 
 	
-//	public static Map<String, ArrayList<Integer>> userAccounts() throws SQLException{
-//		Connection conn = cb.getConnection();
-//		String sql= "select username, account_id from accounts order by username";
-//		PreparedStatement ps= conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-//		ResultSet rs = ps.executeQuery();
-//		
-//		rs.beforeFirst();
-//		while (rs.next()){
-//			id = new ArrayList<Integer>();
-//			id.add(rs.getInt(2));
-//			hMap3.put(rs.getString(1), id);
-////			if(!hMap3.containsKey(rs.getString(1)))
-////			{id.clear();}
-//		}
-//		return hMap3;
-//	}
-	public static Map<Integer, String> hMap4() throws SQLException{
+	public static Map<String, ArrayList<Integer>> userAccounts() throws SQLException{
 		Connection conn = cb.getConnection();
-		String sql= "select account_id, username from accounts";
+		String sql= "select username, account_id from accounts order by username";
 		PreparedStatement ps= conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		ResultSet rs = ps.executeQuery();
+		id = new ArrayList<Integer>();
+		
 		rs.beforeFirst();
 		while (rs.next()){
-			hMap4.put(rs.getInt(1), rs.getString(2));
+			String temp = rs.getString(1);
+			id.add(rs.getInt(2));
+			hMap3.put(rs.getString(1), id);
+			if(rs.getString(1) != temp)
+			{id.clear();}
 		}
-		return hMap4;
+		return hMap3;
 	}
+//	public static Map<Integer, String> hMap4() throws SQLException{
+//		Connection conn = cb.getConnection();
+//		String sql= "select account_id, username from accounts";
+//		PreparedStatement ps= conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//		ResultSet rs = ps.executeQuery();
+//		rs.beforeFirst();
+//		while (rs.next()){
+//			hMap4.put(rs.getInt(1), rs.getString(2));
+//		}
+//		return hMap4;
+//	}
 	
 	public static void deleteAccount(int user_id) throws SQLException {
 		Connection conn = cb.getConnection();
@@ -123,5 +124,12 @@ public class BankDaoImpl {
 		ps.executeUpdate();
 	}
 	
+	public static void deleteUser(String username) throws SQLException {
+		Connection conn = cb.getConnection();
+		String sql= "delete from usernames where username = ?";
+		PreparedStatement ps= conn.prepareStatement(sql);
+		ps.setString(1, username);
+		ps.executeUpdate();
+	}
 	
 }
