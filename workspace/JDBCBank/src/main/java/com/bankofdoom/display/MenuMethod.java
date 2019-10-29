@@ -52,7 +52,7 @@ public class MenuMethod {
 			u.setuName(um.enterUserName(sc));
 			u.setPassword(um.enterUserPassword(sc));
 			u = udi.userLogin(u);
-			if (u != null) {
+			if (!u.equals(null)) {
 				displayMainMenu(u);
 			} else {
 				System.out.println("Invalid Username/Password combination.\n" + "Please try again");
