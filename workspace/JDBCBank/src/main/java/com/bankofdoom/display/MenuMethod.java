@@ -71,7 +71,7 @@ public class MenuMethod {
 
 		}
 
-		sc.close();
+		
 
 	}
 
