@@ -3,20 +3,16 @@ package com.revature.ui;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Scanner;
-
 import com.revature.beans.Account;
-import com.revature.beans.Customer;
 import com.revature.beans.Person;
 import com.revature.daoimpl.AccountDaoImpl;
 import com.revature.daoimpl.PersonDaoImpl;
-import com.revature.storage.MotherLoad;
 
 public class ReturningCustomer {
 	public static  void returningLoop(Scanner in) {
 		String un = "";
 		AccountDaoImpl adi = new AccountDaoImpl();
 		PersonDaoImpl pdi = new PersonDaoImpl();
-
 		Person opCust = new Person();
 		boolean identity = false;
 		while (identity == false) {
@@ -24,30 +20,21 @@ public class ReturningCustomer {
 			un = in.nextLine();
 			System.out.println("Enter Password:");
 			String pw = in.nextLine();
-			if(pdi.checkUser(un, pw)== true	)
-			//	& opCust instanceof Customer
-				{			
+			if(pdi.checkUser(un, pw)== true	){			
 				try {
 					opCust =  pdi.getPersonByUN(un);
-					//opCust.setUserId(userId);
 					 System.out.println("Welcome "+opCust.getFirstName());
-					 //System.out.println(opCust.getUserId());
 						identity = true;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	
-			} else {
-				System.out.println("User Name/Pass word combination is invalid.");
-			}
+			} else {System.out.println("User Name/Pass word combination is invalid.");}
 		} 
 		try {
 			System.out.println(adi.getAccountsbyUID(opCust.getUserId()));
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		} catch (SQLException e1) {e1.printStackTrace();}
+		
 		int putIn=0;
 		boolean loggedIn = true;
 		while (loggedIn == true) {
@@ -169,9 +156,7 @@ public class ReturningCustomer {
 			case 4:
 				boolean close = false;
 				while(close ==false) {
-					
-			
-				
+
 				try {
 					System.out.println("Select an account by ID# to close");
 					int acctId =in.nextInt();
@@ -188,10 +173,7 @@ public class ReturningCustomer {
 						adi.removeAcct(opAcc.getAccountId());
 						System.out.println("Account"+opAcc.getAccountId()+" closed");
 					}else {break;}
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				} catch (SQLException e1) {e1.printStackTrace();}
 				}
 					
 									break;
@@ -199,7 +181,8 @@ public class ReturningCustomer {
 				System.out.println("Logging out, returning to mainscreen");
 				loggedIn = false;
 				return;
-		
+			default: System.out.println("Please enter a valid input.");
+			break;
 		
 		}
 	

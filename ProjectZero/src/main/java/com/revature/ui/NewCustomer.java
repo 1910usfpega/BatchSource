@@ -1,14 +1,18 @@
 package com.revature.ui;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.revature.beans.Customer;
+import com.revature.beans.Person;
+import com.revature.daoimpl.PersonDaoImpl;
 import com.revature.storage.MotherLoad;
 
 public class NewCustomer {
 
-	public static  void newLoop(Scanner in, MotherLoad ml) {
+	public static  void newLoop(Scanner in) {
 		String input;
+		PersonDaoImpl pdi = new PersonDaoImpl();
 		boolean nameFree = false;
 		while(nameFree ==false) {		
 
@@ -19,24 +23,31 @@ public class NewCustomer {
 		switch(putIn) {
 			case 1:
 				//logic for applying for an account 
-				if (nameFree == false) {
+				//if (nameFree == false) {
 				System.out.println("Enter First Name");
 				String fn = in.nextLine();
 				System.out.println("Enter Last Name");
 				String ln = in.nextLine();
 				System.out.println("Enter a potential User Name");
 			String un = in.nextLine();
-			if(ml.userNameAvailability(un)== true) {
+			if(pdi.checkAvailability(un)==true) {
+
 				System.out.println("User Name Available \n Enter a Password");
 				String pw = in.nextLine();
-				Customer newClient = new Customer(fn,ln,un,pw);
-				ml.addLogIn(un, pw);
-				ml.addUser(newClient);
+				Person newClient = new Person(fn,ln,un,pw);
+				try {
+					pdi.insertPerson(newClient);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+//				ml.addLogIn(un, pw);
+//				ml.addUser(newClient);
 				System.out.println("new user added");
 				nameFree = true;
 				} else {System.out.println("That User Name has been taken, please choose another");
 					}
-				}
+				
 				break;
 			case 2:
 				return;
@@ -45,7 +56,10 @@ public class NewCustomer {
 		
 		}
 		}
+		
 	}
-	}
+	
+}
+	
 	
 

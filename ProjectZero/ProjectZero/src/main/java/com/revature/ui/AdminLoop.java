@@ -9,7 +9,7 @@ import com.revature.daoimpl.PersonDaoImpl;
 
 public class AdminLoop {
 public static void adminLoop(Scanner in) {
-	String un = "";
+	String un;
 	AccountDaoImpl adi = new AccountDaoImpl();
 	PersonDaoImpl pdi = new PersonDaoImpl();
 
@@ -71,7 +71,7 @@ public static void adminLoop(Scanner in) {
 
 			System.out.println("User Name Available \n Enter a Password");
 			String pw = in.nextLine();
-			Person newClient = new Person(fn,ln,un,pw);
+			Person newClient = new Person(fn,ln,us,pw);
 			try {
 				pdi.insertPerson(newClient);
 			} catch (SQLException e) {
@@ -88,6 +88,7 @@ public static void adminLoop(Scanner in) {
 			while(deleting ==false) {
 				System.out.println("Press 1 to delete a specific User");
 				System.out.println("Press 2 to delete all Users");
+				System.out.println("Press 3 to return to Admin menu");
 				input = in.nextInt();
 				switch(input) {
 				case 1:
@@ -105,6 +106,8 @@ public static void adminLoop(Scanner in) {
 					}
 					else {break;}
 					break;
+				case 3:
+					return;
 				}
 			}
 			break;
