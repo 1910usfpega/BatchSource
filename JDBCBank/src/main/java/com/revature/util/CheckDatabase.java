@@ -197,5 +197,27 @@ public class CheckDatabase {
 		return false;
 
 	}
+	
+//	public static void checkSeq() {
+//		Connection conn = cf.getConnection();
+//
+//		String str = "select nextval('custseq')";
+//		PreparedStatement ps;
+//		try {
+//			ps = conn.prepareStatement(str);
+//			
+//			ResultSet rs = ps.executeQuery();
+//			while (rs.next()) {
+//				id = rs.getInt(1)
+//				System.out.println(rs.getInt(1));
+//
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
+	
+	
 
 }

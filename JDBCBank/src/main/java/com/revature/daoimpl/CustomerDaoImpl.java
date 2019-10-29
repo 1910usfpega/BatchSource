@@ -63,12 +63,11 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public void addCustomerToDatabase(CustomerBean cust) {
 		Connection conn = cf.getConnection();
-		String str = "insert into bank_customers values (?,?,?)";
+		String str = "insert into bank_customers values (nextval('custseq'),?,?)";
 		try {
 			PreparedStatement ps = conn.prepareStatement(str);
-			ps.setString(1, "nextval('custseq')");
-			ps.setString(2, cust.getUsername());
-			ps.setString(3, cust.getPassword());
+			ps.setString(1, cust.getUsername());
+			ps.setString(2, cust.getPassword());
 			ps.execute();
 			ps=conn.prepareStatement("commit");
 			ps.execute();
@@ -79,6 +78,25 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 	}
 
+	//@Override TODO add this to the customerdao
+	public void removeCustomerFromDatabase(String name) {
+		Connection conn = cf.getConnection();
+		String str1 = "delete from bank_accounts where username = ?";
+		String str2 = "delete from bank_customers where username = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(str1);
+			ps.setString(1, name);
+			ps.execute();
+			ps = conn.prepareStatement(str2);
+			ps.setString(1, name);
+			ps.execute();
+			ps=conn.prepareStatement("commit");
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	
 }

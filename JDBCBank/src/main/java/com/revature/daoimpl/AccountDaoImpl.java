@@ -215,17 +215,17 @@ public class AccountDaoImpl implements AccountDao {
 	@Override
 	public void removeAccountFromDatabase(int acct) {
 		Connection conn = cf.getConnection();
-		String str = "delete from bank_accounts where account_number = ?";
+		String str = "SELECT * FROM delete_account(?)";
 		try {
 			PreparedStatement ps = conn.prepareStatement(str);
 			ps.setInt(1, acct);
 			ps.execute();
+
 			ps=conn.prepareStatement("commit");
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
@@ -265,7 +265,44 @@ public class AccountDaoImpl implements AccountDao {
 		
 	}
 	
+	public void addTransactionHistory(String user, int acct, String type, double amnt, double balance) {
+		Connection conn = cf.getConnection();
+		String str = "insert into trans_history values (nextval('histseq'),?,?,?,?,?)";
+		try {
+			PreparedStatement ps = conn.prepareStatement(str);
+			
+				ps.setString(1, user);
+				ps.setInt(2, acct);
+				ps.setString(3, type);
+				ps.setDouble(4, amnt);
+				ps.setDouble(5, balance);
+				ps.execute();
+			
+			ps=conn.prepareStatement("commit");
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
-	
+	public void viewTransactionHistory(String user) {
+		Connection conn = cf.getConnection();
+		String str = "select * from trans_history where username=?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(str);
+			
+				ps.setString(1, user);
+			ResultSet rs =  ps.executeQuery();
+			while(rs.next()) {
+				System.out.println("Account " + rs.getInt(3) + "  "+ rs.getString(4));
+				System.out.println("     amount ="+rs.getDouble(5)+", new balance="+rs.getDouble(6));
+				System.out.println("-------------------------------------------------");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 }

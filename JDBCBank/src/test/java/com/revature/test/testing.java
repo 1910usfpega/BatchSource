@@ -1,12 +1,12 @@
 package com.revature.test;
 
-import com.revature.util.CheckDatabase;
+import com.revature.daoimpl.AccountDaoImpl;
 
 public class testing {
 
 	public static void main(String[] args) {
-//		AccountDaoImpl adi = new AccountDaoImpl();
-//		CustomerDaoImpl cdi = new CustomerDaoImpl();
+		AccountDaoImpl adi = new AccountDaoImpl();
+		//CustomerDaoImpl cdi = new CustomerDaoImpl();
 //		Bank bank = new Bank();
 //		try {
 //			List<CustomerBean> customers=cdi.getAllCustomers();
@@ -35,7 +35,11 @@ public class testing {
 		//////////////////////////////////
 		
 		//System.out.println(CheckDatabase.acctNumAlreadyUsed(134));
-		System.out.println(CheckDatabase.usernameAlreadyUsed("testguy"));
+		//System.out.println(CheckDatabase.usernameAlreadyUsed("testguy"));
+		
+		//CheckDatabase.checkSeq();
+		
+		//adi.removeAccountFromDatabase(689916652);
 		
 		
 

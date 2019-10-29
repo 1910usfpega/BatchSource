@@ -35,6 +35,8 @@ public class AdminLoop {
 			
 			try {
 				prop.load(new FileReader("database.myproperties"));
+				//username = prop.getProperty("adminusername")
+				//password= prop.getProperty("adminpassword")
 				password=prop.getProperty(ru);
 			}catch (FileNotFoundException e) {
 				System.out.println("Failed to find file");
@@ -342,37 +344,38 @@ public class AdminLoop {
 
 				
 			case "10":
-				// this is the branch to create a new user
+				// this is the branch to delete a user
 				System.out.println("Enter username you want to delete. (Enter \"back\" to go back)");
 				String response = sc.nextLine();
 				if (response.toLowerCase().equals("back")) {
 					return;
-				} else if (CheckDatabase.usernameAlreadyUsed(name).acctNumAlreadyUsed(Integer.parseInt(response))) {
-					adi.removeAccountFromDatabase(Integer.parseInt(response));
-					System.out.println("Account removed");
+				} else if (CheckDatabase.usernameAlreadyUsed(response)) {
+					cdi.removeCustomerFromDatabase(response);
+					System.out.println("User removed");
 				} else {
-					System.out.println("That account number is not in our records.");
+					System.out.println("That name is not in our records.");
 				}
 				break;
 				
 				
 			case "11":
+				// this is the branch to create a new user
 				boolean uniqueName = false;
 				while (uniqueName == false) {
-					String r1;
+					String resp;
 					System.out.println("(Enter \"back\" to go back)");
-					System.out.println("What would you like your username to be?");
-					r1 = sc.nextLine();
-					if (r1.toLowerCase().equals("back")) {
+					System.out.println("What would you like the username to be?");
+					resp = sc.nextLine();
+					if (resp.toLowerCase().equals("back")) {
 						continue;
-					} else if (CheckDatabase.usernameAlreadyUsed(r1) == false) {
-						String r2;
+					} else if (CheckDatabase.usernameAlreadyUsed(resp) == false) {
+						String resp2;
 
-						System.out.println("What would you like your password to be? ");
-						r2 = sc.nextLine();
-						CustomerBean newUser = new CustomerBean(r1, r2);
-						CustomerDaoImpl cdi = new CustomerDaoImpl();
-						cdi.addCustomerToDatabase(newUser);
+						System.out.println("What would you like the password to be? ");
+						resp2 = sc.nextLine();
+						CustomerBean newUser = new CustomerBean(resp, resp2);
+						CustomerDaoImpl cdi1 = new CustomerDaoImpl();
+						cdi1.addCustomerToDatabase(newUser);
 						System.out.println("New user info added.");
 						uniqueName = true;
 					} else {

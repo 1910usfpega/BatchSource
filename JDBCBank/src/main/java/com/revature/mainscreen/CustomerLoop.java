@@ -55,7 +55,8 @@ public class CustomerLoop {
 			System.out.println("Press 3 to transfer");
 			System.out.println("Press 4 to apply for a new account");
 			System.out.println("Press 5 to close an empty account");
-			System.out.println("Press 6 to exit.");
+			System.out.println("Press 6 to view transaction history");
+			System.out.println("Press 7 to exit.");
 			input = sc.nextLine();
 			switch (input) {
 			
@@ -82,6 +83,7 @@ public class CustomerLoop {
 								System.out.println(acct.deposit(amount));
 								adi.updateAccount(acct);
 								System.out.println("Deposit successful.");
+								adi.addTransactionHistory(thisUser.getUsername(), acct.getAccountNumber(), "deposit", amount, acct.getAccountBalance());
 								found=true;
 							}else {
 								System.out.println("That is not a valid number");
@@ -116,6 +118,7 @@ public class CustomerLoop {
 									System.out.println(acct.withdraw(amount));
 									adi.updateAccount(acct);
 									System.out.println("Withdraw successful.");
+									adi.addTransactionHistory(thisUser.getUsername(), acct.getAccountNumber(), "withdraw", amount, acct.getAccountBalance());
 									found=true;
 								} catch (NotEnoughFundsException e) {
 									System.out.println(e.getMessage());
@@ -181,6 +184,8 @@ public class CustomerLoop {
 						adi.updateAccount(acct1);
 						acct2.deposit(amount);
 						adi.updateAccount(acct2);
+						adi.addTransactionHistory(thisUser.getUsername(), acct1.getAccountNumber(), "withdraw", amount, acct1.getAccountBalance());
+						adi.addTransactionHistory(thisUser.getUsername(), acct2.getAccountNumber(), "deposit", amount, acct2.getAccountBalance());
 						System.out.println("Transfer successful.");
 					} catch (NotEnoughFundsException e) {
 						System.out.println(e.getMessage());
@@ -261,6 +266,11 @@ public class CustomerLoop {
 				break;
 				
 			case "6":
+				System.out.println("Your transaction history");
+				adi.viewTransactionHistory(thisUser.getUsername());
+				break;
+				
+			case "7":
 				input="EXIT";
 				break;
 				

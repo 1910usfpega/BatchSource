@@ -7,19 +7,17 @@ import org.junit.jupiter.api.Test;
 
 import com.revature.beans.AccountBean;
 import com.revature.beans.CustomerBean;
-import com.revature.storage.Bank;
+
 
 class UnitTest {
 
-	static Bank testBank;
 	static CustomerBean testCust;
 	static AccountBean testAccount;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		testBank = new Bank();
 		testCust = new CustomerBean("usernm","psswrd");
-		testAccount = new AccountBean(testBank,"Savings",testCust);
+		testAccount = new AccountBean("Savings", testCust.getUsername());
 	}
 
 	@Test
