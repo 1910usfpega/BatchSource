@@ -135,10 +135,35 @@ create sequence user_type_sequence
 
 	alter table user_type
 	alter column usr_type
-	set default nextVal('user_type_sequence');
+	set default nextVal('user_type_sequence');--running
 
 INSERT into user_type (usr_type, description)
 values (default, 'admin');
 
 INSERT into user_type (usr_type, description)
 values (default, 'customer');
+
+
+
+
+--********create
+create SEQUENCE user_account_ID_sequence
+	START with 1
+	owned by people_account.user_ID;
+
+---triggerfunction
+
+create or replace function user_insert()
+returns trigger as $$
+begin
+	if(TG_OP = 'INSERT') then
+	new.user_ID = (select nextval('user_account_ID_sequence'));
+	end if;
+	return new;
+end;
+$$ language plpgsql;
+
+create trigger user_insert
+before insert on Person
+for each row
+execute function user_insert();
