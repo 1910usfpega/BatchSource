@@ -8,4 +8,6 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.revature.beans.Account"/>
 <fullyQualifiedTypeName name="com.revature.beans.User"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.lang.Double"/>
 </qualifiedTypeNameHistroy>
