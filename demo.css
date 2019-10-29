@@ -1,0 +1,16 @@
+p{
+    background-color:springgreen
+}
+
+.c1{font-family:Georgia, 'Times New Roman', Times, serif;
+text-align: center;
+}
+#a{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+p.c1{background-color:pink}
+
+#b{
+    text-align:right;
+    color:purple;
+}
