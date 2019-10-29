@@ -52,9 +52,8 @@ public class Menu extends Input {
 				input.userLogin();
 				break;
 			case 3:
-				Admin admin = new Admin();
-				AdminController adminCon = new AdminController();
-				adminCon.adminSession(scan);
+				
+				com.revature.controller.AdminController.adminSession(scan);
 			case 4:
 				//instead of exiting the program make it return you to intial menu again
 				System.out.println("Thank you and See you soon");
