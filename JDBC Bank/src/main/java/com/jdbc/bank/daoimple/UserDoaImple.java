@@ -11,7 +11,9 @@ import com.jdbc.bank.util.ConnFactory;
 
 public class UserDoaImple implements UserDao {
 		public static ConnFactory cf = ConnFactory.getInstance();
-
+		public static String sql;
+		public static Connection con = cf.getConnection();
+		public static PreparedStatement ps;
 //		@Override
 //		public List<User> getAllAlbums(int id) throws SQLException {
 //			List<User> albumList = new ArrayList<User>();
@@ -31,16 +33,30 @@ public class UserDoaImple implements UserDao {
 //				return albumList;
 //		}
 
-		public static void userCreation(String uName, String pw) throws SQLException {
+	public void createsUser(User user) throws SQLException {
+			int userType;
+			
 			ConnFactory connect = ConnFactory.getInstance();
 			//connected to the DB
-			Connection c = connect.getConnection();
+			Connection con = connect.getConnection();
 			//prepare a statment//buffer a statement
-			String sql = "insert into people values(nextval(\'user_id_seq\'), ?, ?, ? ,?, ?, ?, ?)";	
-			PreparedStatement ps = c.prepareStatement(sql);
-			
-		}
-		
+			String sql = "insert into people(user_id, user_uname, user_full_name, "
+					+ "user_date_of_birth, user_email, user_address, "
+					+ "user_phone_number) "
+					+ "values(101, ?, ?, ? ,?, ?, ?)";	
+			ps = con.prepareStatement(sql);
+//			ps.setInt(1, user.getUserID());
+			ps.setString(1, user.getUName());
+			ps.setString(2, user.getFulltName());
+			ps.setString(3, user.getDateOfBirth().toGMTString());
+			ps.setString(4, user.getEmail());
+			ps.setString(5, user.getAddress());
+			ps.setString(6, user.getPhoneNumber());
+			ps.execute();
+			//not returning anything so no result set
+//			ResultSet rs = stmt.executeQuery("select * from People")
+	}
+
 		
 		@Override
 		public ArrayList<User> getAllUsers() throws SQLException {
@@ -56,7 +72,6 @@ public class UserDoaImple implements UserDao {
 
 		@Override
 		public void createUser(User user) throws SQLException {
-			// TODO Auto-generated method stub
 			
 		}
 
@@ -64,5 +79,12 @@ public class UserDoaImple implements UserDao {
 		public void deleteUser(User user) throws SQLException {
 			// TODO Auto-generated method stub
 			
+		}
+
+
+		@Override
+		public User UserLogin(User user) throws SQLException {
+			// TODO Auto-generated method stub
+			return null;
 		}
 }

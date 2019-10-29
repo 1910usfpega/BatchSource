@@ -1,38 +1,39 @@
 package com.jdbc.bank.bean;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 
 public class User {
 	
 	private String uName;
 	//may change to a String later if this takes to long.
+	private int userID;
 	private double password;
 	private String fullName;
 	private String email;
 	private String address;
 	private String phoneNumber;
-	private DateFormat dateOfBirth = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-
+	private Date dateOfBirth ;
 	
 	public User() {
 		super();
 	}
 
-	public User(String uName, double password, DateFormat dateOfBirth, String firstName, String lastName, String email,
+	public User(int userID, String uName, double password, 
+			Date dateOfBirth, String fullName, String email,
 			String address, String phoneNumber) {
 		super();
 		this.uName = uName;
 		this.password = password;
 		this.dateOfBirth = dateOfBirth;
-		this.fullName = firstName;
+		this.fullName = fullName;
 		this.email = email;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 	}
 
+	public int getUserID() {
+		return userID;
+	}
 	
 	public String getUName() {
 		return uName;
@@ -42,7 +43,7 @@ public class User {
 		return password;
 	}
 
-	public DateFormat getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
@@ -63,6 +64,10 @@ public class User {
 		return phoneNumber;
 	}
 
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+	
 	public void setUName(String uName) {
 		this.uName = uName;
 	}
@@ -71,8 +76,8 @@ public class User {
 		this.password = password;
 	}
 
-	public void setDateOfBirth(DateFormat dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setDateOfBirth() {
+		this.dateOfBirth = null;
 	}
 
 	public void setFullName(String fullName) {
@@ -97,9 +102,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [uName=" + uName + ", password=" + password + ", dateOfBirth=" + dateOfBirth +
-				", fullName=" + fullName + ", email=" + email + ", address=" + address + ", phoneNumber="
-				+ phoneNumber + "]";
+		return "User [uName=" + uName + ", password=" + password 
+				+ ", dateOfBirth=" + dateOfBirth
+				+", fullName=" + fullName + ", email=" + email 
+				+ ", address=" + address + ", phoneNumber=" + phoneNumber + "]";
 	}
 	
 	

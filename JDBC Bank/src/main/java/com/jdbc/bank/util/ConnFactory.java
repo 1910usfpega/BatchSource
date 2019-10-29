@@ -33,7 +33,7 @@ public class ConnFactory {
 		String user = "devazn";
 		String password = "revdevazn";
 		try {
-			prop.load(new FileReader("database.properites"));
+			prop.load(new FileReader("database.properties"));
 			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
 		}catch (SQLException e) {
 			System.out.println("Failed to create connection");

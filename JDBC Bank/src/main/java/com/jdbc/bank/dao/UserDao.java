@@ -16,6 +16,7 @@ public interface UserDao {
 	public void reviseUsers (User user) throws SQLException;
 	public void createUser (User user) throws SQLException;
 	public void deleteUser (User user) throws SQLException;
+	public User UserLogin(User user) throws SQLException;
 	
 	static HashMap<String, String> customerInfo = new HashMap<>();
 	//using list to have more room to adapt to another list if needed
