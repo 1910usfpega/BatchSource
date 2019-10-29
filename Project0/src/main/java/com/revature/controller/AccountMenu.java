@@ -19,19 +19,20 @@ public class AccountMenu extends Input {
 		this.balance = balance;
 	}
 	
-	public void deposit(double amount) {
+	public double deposit(double amount) {
 		if (amount != 0) {
 			balance += amount;
 			lastAmount = amount;
-			
 		}
+		return balance;
 	}
 	
-	public void withdraw( double amount) {
+	public double withdraw( double amount) {
 		if (amount != 0) {
 			balance -= amount;
 			lastAmount = amount;
 		}
+		return balance;
 	}
 	
 	public void accountMenuOtions(String username) throws SQLException {
@@ -39,14 +40,23 @@ public class AccountMenu extends Input {
 		//shows the accounts after login, figure out why double sysout?
 		AccountDaoImpl adi = new AccountDaoImpl();
 		//System.out.println("\n");
-		adi.getAccountsByID(username);
+		if (adi.getAccountsByID(username).isEmpty()) {
+			System.out.println("Create an account with us \n ");
+			createNewBankAccount();
+		}
 		
+		
+		//System.out.println(adi.getAccountsByID(username));
 		//selects an account to deposit or withdraw
 		System.out.println("Enter an account number to access it: ");
 		Scanner scan = new Scanner(System.in);
 		int accountNumber = scan.nextInt();
+		Account a = adi.selectAccount(accountNumber, username);
+		
+		
 		balance = adi.getBalance(accountNumber);
 		
+	
 		int choice;
 		
 		double depositAmount = 0;
@@ -60,9 +70,11 @@ public class AccountMenu extends Input {
 		System.out.println("4.) To create a new account.");
 		System.out.println("5.) To view all your accounts.");
 		System.out.println("6.) To select an account.");
-		System.out.println("7.) To exit the app");
-		
+		System.out.println("7.) To delete an account");
+		System.out.println("8.) To exit the app");
+	
 		do {
+			
 			System.out.println("your selection: ");
 			choice = scan.nextInt();
 			
@@ -71,6 +83,7 @@ public class AccountMenu extends Input {
 				System.out.println("Your account's balance is: " + balance);
 				break;
 			case 2:
+				System.out.println("Account number: " + a.getAccountNumber() + " balance: " + a.getBalance() + " type: " + a.getType());
 				System.out.println("Enter an amount to deposit: ");
 				//if can't be interpreted as a Double 
 				while(!(scan.hasNextDouble())) {
@@ -80,13 +93,20 @@ public class AccountMenu extends Input {
 				depositAmount = scan.nextDouble();
 				// if amount greater than 0 proceed with deposit.
 				if (depositAmount > 0) {
-					deposit(depositAmount);
+				
+					//deposit(depositAmount);
+					a.setBalance(deposit(depositAmount));
+					adi.updateAccount(a);
+					
+					System.out.println("Your account number: " +a.getAccountNumber() + " new balance is: " + a.getBalance());
 				} else {
 					System.out.println("You attemtepted to deposit an invalid amount. Try again.");
 				}
 				break;
-			case 3: 	
+			case 3: 
+				System.out.println("Account number: " + a.getAccountNumber() + " balance: " + a.getBalance() + " type: " + a.getType());
 				System.out.println("Enter an amount to withdraw: ");
+				
 				while(!(scan.hasNextDouble())) {
 					System.out.println("Amount must be a valid number, try again.");
 					scan.next();
@@ -100,7 +120,12 @@ public class AccountMenu extends Input {
 					System.out.println("You attempted to withdraw more than your balance");
 					
 				} else {
-					withdraw(withdrawAmount);
+					
+					a.setBalance(withdraw(withdrawAmount));
+					adi.updateAccount(a);
+					
+					
+					System.out.println("Your account number: " +a.getAccountNumber() + " new balance is: " + a.getBalance());
 				}
 				break;
 			case 4:
@@ -115,17 +140,28 @@ public class AccountMenu extends Input {
 				
 				int acct_number = scan.nextInt();
 				
-				Account account = adi.selectAccount(acct_number);
+				Account account = adi.selectAccount(acct_number, username);
 			
 				adi.updateAccount(account);
 				break;
 			case 7:
+				System.out.println("select an account to delete: ");
+				int number = scan.nextInt();
+				Account accountToDelete = adi.selectAccount(number, username);
+				if (accountToDelete.getBalance() != 0) {
+					System.out.println("Account must have a balance of 0 to be deleted.");
+				} else {
+					adi.deleteAccount(accountToDelete);
+				}
+				
+				break;
+			case 8:
 				System.out.println("Thank you for letting us service you, see you soon.");
 				break;
 			default: 
 				System.out.println("Please enter a valid number ranging from 1-7");
 			}
-		} while (choice != 7);
+		} while (choice != 8);
 			Account account = new Account();
 			account.setId(username);
 			account.setBalance(balance);

@@ -13,10 +13,14 @@ public interface AccountDao {
 
 	public List<Account> getAccountsByID(String acct_id) throws SQLException;
 
+	public Account selectAccount(int acct_number, String username) throws SQLException;
+	
 	public int createAccount(Account account) throws SQLException;
 
-	public int updateAccount(Account account) throws SQLException;
+	public void updateAccount(Account account) throws SQLException;
 
+	public int deleteAccount(Account account) throws SQLException;
+	
 	public double getBalance(int accountNumber) throws SQLException;
 
 }

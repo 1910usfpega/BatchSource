@@ -36,8 +36,7 @@ public class UserDaoImpl extends AccountDaoImpl implements UserDao {
 		return usersList;
 	}
 
-	public List<User> getUserByUsername(String username) throws SQLException {
-		List<User> userList = new ArrayList<User>();
+	public User getUserByUsername(String username) throws SQLException {
 		
 		Connection conn= cf.getConnection();
 		String sql = "SELECT * FROM users WHERE username = ? ";
@@ -49,9 +48,9 @@ public class UserDaoImpl extends AccountDaoImpl implements UserDao {
 		
 		while(rs.next()) {
 			user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
-			userList.add(user);		
+					
 		}
-		return userList;
+		return user;
 	}
 
 	public int createUser(User user) throws SQLException {
@@ -84,10 +83,7 @@ public class UserDaoImpl extends AccountDaoImpl implements UserDao {
 	public int updateUser(User user) throws SQLException {
 		int usersUpdated = 0;
 		
-		String sql = "UPDATE users" 
-					+ " SET firstName = ?," 
-					+ " lastName = ?,"
-					+ " WHERE username = ?";
+		String sql = "UPDATE users SET firstName = ? lastName = ? WHERE username = ?";
 		Connection conn= cf.getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);
 		
@@ -97,6 +93,24 @@ public class UserDaoImpl extends AccountDaoImpl implements UserDao {
 		usersUpdated = ps.executeUpdate();
 		
 		return usersUpdated;
+	}
+	
+	public int deleteUser(User user) throws SQLException {
+		int usersDeleted = 0;
+		Connection conn = cf.getConnection();
+
+		String sql = "DELETE FROM users WHERE username = ? AND first_name = ?";
+		PreparedStatement ps = conn.prepareStatement(sql);
+
+		ps.setString(1, user.getUsername());
+		ps.setString(2, user.getFirstName());
+
+		usersDeleted = ps.executeUpdate();
+		ps = conn.prepareStatement("commit");
+		ps.execute();
+
+		return usersDeleted;
+
 	}
 
 	//we make a conn to the db to select a username if it matches the passed string
@@ -147,5 +161,43 @@ public class UserDaoImpl extends AccountDaoImpl implements UserDao {
 		}		
 	}
 		return match;
+	}
+	
+	public void updateUsername(String newUsername, String oldUsername) throws SQLException{
+		Connection conn = cf.getConnection();
+		
+		String sql = "UPDATE users SET username=? WHERE username=?";
+		PreparedStatement ps= conn.prepareStatement(sql);
+		ps.setString(1, newUsername);
+		ps.setString(2, oldUsername);
+		ps.executeUpdate();
+		
+	}
+	public void updatePassword(String newPassword, String username) throws SQLException{
+		Connection conn = cf.getConnection();
+		
+		String sql = "UPDATE users SET user_password = ? WHERE username = ?";
+		PreparedStatement ps= conn.prepareStatement(sql);
+		ps.setString(1, newPassword);
+		ps.setString(2, username);
+		ps.executeUpdate();
+	}
+	public void updateFirstName(String FirstName, String username) throws SQLException{
+		Connection conn = cf.getConnection();
+		
+		String sql = "UPDATE users SET first_name = ? WHERE username = ?";
+		PreparedStatement ps= conn.prepareStatement(sql);
+		ps.setString(1, FirstName);
+		ps.setString(2, username);
+		ps.executeUpdate();
+	}
+	public void updateLastName(String LastName, String username) throws SQLException{
+		Connection conn = cf.getConnection();
+		
+		String sql = "UPDATE users SET last_name = ? WHERE username = ?";
+		PreparedStatement ps= conn.prepareStatement(sql);
+		ps.setString(1, LastName);
+		ps.setString(2, username);
+		ps.executeUpdate();
 	}
 }

@@ -1,7 +1,11 @@
 package com.revature.controller;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+
+import com.revature.model.Admin;
 
 //this class holds the initial menu to :
 //1. sign up an account 
@@ -13,7 +17,12 @@ public class Menu extends Input {
 		super();
 	}
 	
+	
 	Input input = new Input();
+	
+	SimpleDateFormat formatter= new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm:ss z");
+	Date date = new Date(System.currentTimeMillis());
+	//System.out.println(formatter.format(date));
 	
 	public void initialMenu() throws SQLException {
 		
@@ -21,9 +30,11 @@ public class Menu extends Input {
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Welcome to your Bank");
+		System.out.println("Today's date and time: " + formatter.format(date));
 		System.out.println("1.) To Sign up for a new user account");
 		System.out.println("2.) To Log in to an exisiting account");
-		System.out.println("3.) To exit the program");
+		System.out.println("3.) To access as Administrator");
+		System.out.println("4.) To exit the program");
 		System.out.println("Please make a selection");
 		
 		do {
@@ -41,6 +52,10 @@ public class Menu extends Input {
 				input.userLogin();
 				break;
 			case 3:
+				Admin admin = new Admin();
+				AdminController adminCon = new AdminController();
+				adminCon.adminSession(scan);
+			case 4:
 				//instead of exiting the program make it return you to intial menu again
 				System.out.println("Thank you and See you soon");
 				break;
@@ -48,7 +63,7 @@ public class Menu extends Input {
 			default:
 				System.out.println("enter a choice from 1 to 3");
 			}
-		} while(choice !=3);
+		} while(choice !=4);
 
 
 	}
