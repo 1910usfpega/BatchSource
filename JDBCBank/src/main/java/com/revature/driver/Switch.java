@@ -29,6 +29,7 @@ public class Switch {
 	int TableSize = bdi.tableSize();
 	ArrayList<Integer> IDs = new ArrayList<Integer>();
 	IDs = bdi.IDs();
+	boolean StringTruth = true;
 
 	do {
 		System.out.println("R- Register, L-Login, Q-Quit: ");
@@ -39,8 +40,24 @@ public class Switch {
 			System.out.println("Username:");
 			Username = sc.nextLine();
 			// Checks hMap to see if contains Username.
+			if (Username.length() < 4 || Username.length() > 20)
+			{
+				StringTruth = false;
+			}
+			else if(Username.charAt(0) == '1' || Username.charAt(0) == '2' || Username.charAt(0) == '3' ||
+					Username.charAt(0) == '4' || Username.charAt(0) == '5' || Username.charAt(0) == '6' ||
+					Username.charAt(0) == '7' || Username.charAt(0) == '8' || Username.charAt(0) == '9' ||
+					Username.charAt(0) == '0') {
+				StringTruth = false;
+			}
+			else {
+				StringTruth = true;
+			}
+			if(StringTruth == false)
+			{
+				System.out.println("Must contain 4-20 characters and start with a letter.");
+				break;}
 			if (hMap.containsKey(Username)) {
-			//if (Username.ge)
 				do {
 					System.out.println("Already Exists");
 					Username = sc.nextLine();
