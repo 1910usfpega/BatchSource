@@ -7,15 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import com.revature.bean.bankAccount;
-import com.revature.utils.ConnFactory;
-
+import com.revature.utills.ConnFactory;
 public class BankDaoImpl  {
 	public static ConnFactory cf= ConnFactory.getInstance();
 
 	public static double newBankAccount() throws SQLException {
 		Connection conn= cf.getConnection();
 		Statement stmt= conn.createStatement();
-		 String sql="insert into bankaccount Value(0)";
+		 String sql="insert into bankaccount (amount) Value(0)";
 			PreparedStatement ps= conn.prepareStatement(sql);
 			ResultSet rs= ps.executeQuery();
 			bankAccount a=null;
@@ -78,13 +77,26 @@ public class BankDaoImpl  {
 		return a;
 	}
 
-		public ArrayList<bankAccount> getAllAccounts(String username) throws SQLException {
+	public ArrayList<bankAccount> getAllAccounts(String username) throws SQLException {
 		ArrayList<bankAccount> a=null;
 		Connection conn= cf.getConnection();
 		Statement stmt= conn.createStatement();
-		 String sql="select * from bankaccount where and accountnumber = ?";
+		 String sql="select * from owners where username = ?";
 			PreparedStatement ps= conn.prepareStatement(sql);
 			ps.setString(1,username);
+			ResultSet rs= ps.executeQuery();
+			if(rs!= null) {
+			while(rs.next()) {
+				a.add(new bankAccount(rs.getDouble(1)));
+	}}
+			return a;	
+}
+	public ArrayList<bankAccount> getAllofAccounts() throws SQLException {
+		ArrayList<bankAccount> a=null;
+		Connection conn= cf.getConnection();
+		Statement stmt= conn.createStatement();
+		 String sql="select * from bankaccount ";
+			PreparedStatement ps= conn.prepareStatement(sql);
 			ResultSet rs= ps.executeQuery();
 			while(rs.next()) {
 				a.add(new bankAccount(rs.getInt(2),rs.getDouble(1)));

@@ -20,6 +20,11 @@ public class bankAccount {
 		this.ACCOUNTNUMBER = a;
 
 	}
+	public bankAccount(double b) {
+		this.amount = b;
+		this.ACCOUNTNUMBER = 0;
+
+	}
 	
 	public boolean checkMoney(double money) {
 		if(this.getBalance()>=  money)

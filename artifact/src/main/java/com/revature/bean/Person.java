@@ -1,9 +1,10 @@
 package com.revature.bean;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.revature.daoimpl.Customerdaoimpl;
+import com.revature.daoimpl.EmployeeDaoimpl;
+import com.revature.daoimpl.BankDaoImpl;
 
 public abstract class Person {
 	String name;
@@ -11,7 +12,8 @@ public abstract class Person {
 	String username;
 	String password;
 	static Customerdaoimpl a = new Customerdaoimpl();
-	
+	static  BankDaoImpl b = new BankDaoImpl();
+	static EmployeeDaoimpl e = new EmployeeDaoimpl();
 	public Person(String name, String last, String username, String password) {
 		this.name = name;
 		this.last = last;
@@ -22,7 +24,7 @@ public abstract class Person {
 
 	
 	public static boolean login(String user, String pw) throws SQLException { 
-	if(a.login(user,pw)) 
+	if(a.logIn(user,pw)) 
 		return true;
 		return false;
 	
@@ -30,8 +32,8 @@ public abstract class Person {
 	public  boolean createNewUser(String user, String fName, String lName,String passWord, boolean Employee) throws SQLException {
         if(this.userCheck(user)) {
             if(Employee) {
-                a.createUsers(fName,lName,user,passWord);   
-            Employee aa = new Employee(fName,lName,user,passWord);  
+                a.createUsers(fName,lName,user,passWord);     
+            e.newEmployee(fName,lName,user,passWord);
             return true;
             }
             else {
@@ -42,25 +44,22 @@ public abstract class Person {
         return false;
         
     }
-		
-	public static ArrayList<bankAccount> getBankAccountsForIDCheck(){
-		a.
-		return bankAccounts;
-	}
-	public static boolean userCheck(String user) { // check username aliabilty
-		//select username form user;
-		if(cInfo.containsKey(user) == true)
-			return true;
-		else
-			return false;
+	public static boolean userCheck(String user) throws SQLException { // check username aliabilty
+		ArrayList<Customer> aa = a.getAllCustomer(); 
+		if(! aa.isEmpty()) {
+			for(Customer x: aa) {
+			if(x.getUserName().equals(user))
+				return false;
+			}
+		}
+		else {return true;}
+		return true;
 	}
 	public String getName() {
-		//select name where username = ?
 		return name;
 	}
 
 	public String getLast() {
-		//select name where username = ?
 		return last;
 	}
 
