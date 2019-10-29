@@ -32,9 +32,8 @@ public class CustomerWorkWithAccountMenuLoop {
 			System.out.println("What whoud you like to do?");
 			System.out.println("1. Deposit");
 			System.out.println("2. Withdraw");
-			System.out.println("3. Transfer");
-			System.out.println("4. Back to Main Menu");
-			System.out.println("Input number of action 1-4:");
+			System.out.println("3. Back to Main Menu");
+			System.out.println("Input number of action 1-3:");
 			
 			String content = sc.nextLine();
 			switch (content) {
@@ -42,10 +41,8 @@ public class CustomerWorkWithAccountMenuLoop {
 				CustomerDepositLoop.start(currentAccount);
 				break;
 			case "2":
-				break;
+				CustomerWithdrawLoop.start(currentAccount);
 			case "3":
-				break;
-			case "4":
 				finishWorkWithAccount = true;
 				break;
 			default:

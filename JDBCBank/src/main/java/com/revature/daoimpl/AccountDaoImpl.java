@@ -11,6 +11,7 @@ import java.util.List;
 import com.revature.beans.BankAccount;
 import com.revature.beans.Customer;
 import com.revature.dao.BankAccountsDao;
+import com.revature.exceptions.AccountOverdraftException;
 import com.revature.util.AccountInfo;
 import com.revature.util.ConnFactory;
 
@@ -288,6 +289,27 @@ public class AccountDaoImpl implements BankAccountsDao {
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void withdraw(Integer accountNumber, Double amount) throws AccountOverdraftException {
+		Connection conn = cf.getConnection();
+		String sql = "SELECT * FROM withdraw(?, ?);";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, accountNumber);
+			ps.setDouble(2, amount);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next() ) {
+				if (rs.getInt(1) == 0) {
+					throw new AccountOverdraftException("Not enough money :(");
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

@@ -11,5 +11,8 @@ public interface UsersDao {
 	public List<User> getUserByLoginAndPass(String login, String pass) throws SQLException;
 	public List<Customer> getAllCustomers();
 	public Customer createNewCustomer(String username, String password, String firstName, String lastName ) throws UsernameAlreadyExistsException;
+	public List<User> getAllUsers();
+	public User getUserById(int userId);
+	public void deleteUserById(int userId);
 	
 }

@@ -1,5 +1,7 @@
 package com.revature.daoimpl;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,7 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
+import com.revature.beans.Admin;
 import com.revature.beans.Customer;
 import com.revature.beans.Employee;
 import com.revature.beans.User;
@@ -54,8 +58,21 @@ public class UserDaoImpl implements UsersDao{
 			} else {
 				a = new User(rs.getInt("user_id"), rs.getString("user_name"), rs.getString("user_type"), rs.getString("user_firstname"), rs.getString("user_lastname"));
 			}
-			
+
 			customersList.add(a);
+		}
+		
+		if (a == null) {
+			Properties prop = new Properties();
+			try {
+				prop.load(new FileReader("database.properties"));
+				if (login.equals(prop.getProperty("adminlogin")) && password.equals(prop.getProperty("adminpassword"))) {
+					a = new Admin(prop.getProperty("adminlogin"));
+					customersList.add(a);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return customersList;
@@ -129,6 +146,72 @@ public class UserDaoImpl implements UsersDao{
 		
 		
 		return null;
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		List<User> users = new ArrayList<User>();
+		Connection conn = cf.getConnection();
+		String sql = "SELECT * FROM bank_user";
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next() ) {
+				User user = new User(
+						rs.getInt("user_id"), 
+						rs.getString("user_name"), 
+						rs.getString("user_type"), 
+						rs.getString("user_firstname"), 
+						rs.getString("user_lastname")
+						);
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return users;
+	}
+
+	@Override
+	public User getUserById(int userId) {
+		Connection conn = cf.getConnection();
+		String sql = "SELECT * FROM bank_user WHERE user_id = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, userId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				User customer = new User(
+						rs.getInt("user_id"), 
+						rs.getString("user_name"), 
+						rs.getString("user_type"), 
+						rs.getString("user_firstname"), 
+						rs.getString("user_lastname")
+						);
+				return customer;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public void deleteUserById(int userId) {
+		Connection conn = cf.getConnection();
+		String sql = "DELETE FROM bank_user WHERE user_id = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, userId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
