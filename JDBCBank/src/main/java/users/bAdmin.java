@@ -17,13 +17,13 @@ public class bAdmin extends Person{
 		do {
 			System.out.print("Password: ");
 			uPassword = input.next();
-			if (Person.checkLogin(uName, uPassword)) {
+			if (Person.checkLogin(uName, uPassword)) { //call checklogin method and pass in the username and pw
 				return true;
 			}
 
 			System.out.println("Incorrect Password.");
 			failCounter++;
-			if (failCounter > 3)
+			if (failCounter > 3) //have a fail counter to exit if too many incorrect inputs
 				return false;
 		} while (true);
 	}

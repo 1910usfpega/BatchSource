@@ -1,6 +1,7 @@
 package driver;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import DAOImpl.Implement;
 import options.Options;
@@ -11,6 +12,8 @@ public class Driver {
 
 	private static int s = 0;
 	private static boolean t = true;
+	private static String user;
+	private static Scanner scan = new Scanner(System.in);
 	// private static String c = null;
 
 	public static void main(String[] args) throws SQLException {
@@ -30,9 +33,11 @@ public class Driver {
 						t = true;
 						break;
 					case 2: // call withdraw
+						Implement.withdraw(Customer.uName);
 						t = true;
 						break;
 					case 3: // call deposit
+						Implement.deposit(Customer.uName);
 						t = true;
 						break;
 					case 4: // close account if balance = 0
@@ -52,7 +57,18 @@ public class Driver {
 				if (bAdmin.adminLogin(t)) {
 					switch (Options.aOption(s, bAdmin.uName)) {
 					case 1: // view an account
-
+						System.out.println("\nView which account?");
+						do {
+							System.out.print("Enter: ");
+							user = scan.next();
+							if (!Customer.userAvail(user))
+								t = true;
+							else {
+								System.out.println("That user does not exist.");
+								t = false;
+							}
+						} while (!t);
+						Implement.viewAccount(user);
 						t = true;
 						break;
 					case 2: // open a new account
@@ -60,19 +76,50 @@ public class Driver {
 						t = true;
 						break;
 					case 3: // withdraw from account
-
+						System.out.println("\nWithdraw from which account?");
+						do {
+							System.out.print("Enter: ");
+							user = scan.next();
+							if (!Customer.userAvail(user))
+								t = true;
+							else {
+								System.out.println("That user does not exist.");
+								t = false;
+							}
+						} while (!t);
+						Implement.withdraw(user);
 						t = true;
 						break;
 					case 4: // deposit from account
-
+						System.out.println("\nWithdraw from which account?");
+						do {
+							System.out.print("Enter: ");
+							user = scan.next();
+							if (!Customer.userAvail(user))
+								t = true;
+							else {
+								System.out.println("That user does not exist.");
+								t = false;
+							}
+						} while (!t);
+						Implement.deposit(user);
 						t = true;
 						break;
 					case 5: // terminate an account
-
+						System.out.println("\nWithdraw from which account?");
+						do {
+							System.out.print("Enter: ");
+							user = scan.next();
+							if (!Customer.userAvail(user))
+								t = true;
+							else {
+								System.out.println("That user does not exist.");
+								t = false;
+							}
+						} while (!t);
 						t = false;
 						break;
 					case 6: // exit
-
 						t = false;
 						break;
 					default:

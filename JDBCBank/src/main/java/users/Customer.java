@@ -29,13 +29,13 @@ public class Customer extends Person {
 				do {
 					System.out.print("Re-enter the Password: ");
 					rPassword = input.next();
-					if (uPassword.equals(rPassword)) {
+					if (uPassword.equals(rPassword)) { //Make user re enter the password to see if it matches
 						System.out.print("First name: ");
 						name = input.next();
 						System.out.print("Last name: ");
 						last = input.next();
 						// Enter it to database
-						Implement.insertUser(uName, uPassword, name, last);
+						Implement.insertUser(uName, uPassword, name, last); //Call method and pass the parameters to insert new user
 						System.out.print("\nAccount Created.\n\n");
 					} else {
 						System.out.println("Passwords do not match.");
@@ -45,8 +45,8 @@ public class Customer extends Person {
 							break;
 						}
 					}
-				} while (!(uPassword.equals(rPassword)) || failCounter > 3);
-
+				} while (!(uPassword.equals(rPassword)) || failCounter > 3); //if the password does not match or fail counter
+				//reaches the limit, exit out of loop
 				return false;
 			} else {
 				System.out.print("Username is taken. Select another username.\n");

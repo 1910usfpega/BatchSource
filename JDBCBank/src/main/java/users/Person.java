@@ -18,6 +18,7 @@ public abstract class Person {
 	public static int c, failCounter;
 	
 
+	@SuppressWarnings("static-access")
 	public Person(String name, String last, String username, String password) {
 		this.name = name;
 		this.last = last;
@@ -28,6 +29,7 @@ public abstract class Person {
 		return name;
 	}
 
+	@SuppressWarnings("static-access")
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -36,6 +38,7 @@ public abstract class Person {
 		return last;
 	}
 
+	@SuppressWarnings("static-access")
 	public void setLast(String last) {
 		this.last = last;
 	}
@@ -54,16 +57,15 @@ public abstract class Person {
 		String sql = "select user_name, user_pw, user_type from account;";
 		stmt.executeQuery(sql);
 		ResultSet rs = stmt.getResultSet();
-		while(rs.next()) {
+		while(rs.next()) { //Run through the database and grab the the user and pw pair for each row
 			String rUser = rs.getString(1);
 			String rPassword = rs.getString(2);
-			int uType = rs.getInt(3);
 
-			if(rUser.equals(user) && rPassword.equals(pw)) {
+			if(rUser.equals(user) && rPassword.equals(pw)) { // if input user and pw equals to the one in database return true
 				
 				return true;
 			}
-		}
+		} //else return false; can't log in
 		return false;
 	}
 	

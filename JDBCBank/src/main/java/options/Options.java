@@ -9,7 +9,8 @@ public abstract class Options {
 	public static double amount;
 	public static int valid;
 	public static boolean badInput = true;
-
+	
+	//Start option
 	public static int startOption(int s) {
 
 		do {
@@ -21,7 +22,7 @@ public abstract class Options {
 			System.out.println("4. Exit");
 			System.out.print("Enter: ");
 
-			try {
+			try { //Makes sure the input is an integer and between 0-5
 				uInput = input.next();
 				valid = Integer.parseInt(uInput);
 				if (valid > 0 && valid < 5) {
@@ -36,7 +37,8 @@ public abstract class Options {
 		} while (badInput);
 		return s = Integer.parseInt(uInput);
 	}
-
+	
+	//Option for Customer
 	public static int cOption(int s, String t) {
 		do {
 			System.out.println("\n\nWelcome " + t + "!\nWhat would you like to do?");
@@ -48,7 +50,7 @@ public abstract class Options {
 			System.out.println("5. Exit");
 			System.out.print("Enter: ");
 
-			try {
+			try { //Make sure the input is an integer between 0-6
 				uInput = input.next();
 				valid = Integer.parseInt(uInput);
 				if (valid > 0 && valid < 6) {
@@ -64,6 +66,7 @@ public abstract class Options {
 		return s = Integer.parseInt(uInput);
 	}
 
+	//Option for admin
 	public static int aOption(int s, String t) {
 		
 		do {
@@ -77,7 +80,7 @@ public abstract class Options {
 			System.out.println("6. Exit");
 			System.out.print("Enter: ");
 
-			try {
+			try { //Make sure the input is an integer between 0-7
 				uInput = input.next();
 				valid = Integer.parseInt(uInput);
 				if (valid > 0 && valid < 7) {
