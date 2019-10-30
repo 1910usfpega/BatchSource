@@ -115,7 +115,7 @@ CREATE TABLE JDBC_Bank.Log_In
 /*******************************************************************************
    Create Sequence + Add sequence to tables
 ********************************************************************************/
-
+ 
 CREATE SEQUENCE  JDBC_Bank.seq_userid 
 START WITH  100 
 OWNED BY  JDBC_Bank.User_Info.User_ID;
@@ -185,13 +185,16 @@ ALTER TABLE JDBC_Bank.Account ADD CONSTRAINT FK_Account_typ
     FOREIGN KEY (Acc_Typ) REFERENCES JDBC_Bank.Acc_Type (Acc_Typ) ON DELETE CASCADE ON UPDATE CASCADE;
    
 ALTER TABLE JDBC_Bank.Transaction_info ADD CONSTRAINT FK_Trans_typ
-    FOREIGN KEY (Trans_Typ) REFERENCES JDBC_Bank.Trans_Type (Trans_Typ) ON DELETE CASCADE ON UPDATE CASCADE;   
+    FOREIGN KEY (Trans_Typ) REFERENCES JDBC_Bank.Trans_Type (Trans_Typ) ON DELETE CASCADE ON UPDATE CASCADE; 
+   
+   
+   -- DROP CONSTRAINT IF EXISTS FK_LogInUser_Nme; 
  
 /*******************************************************************************
          Functions
 ********************************************************************************/
 ----Selects
-CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllUsers () 
+CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllUsers() 
    RETURNS TABLE (
       User_ID  INT,
      User_Name  VARCHAR(60),
@@ -216,7 +219,7 @@ END; $$
  
 LANGUAGE 'plpgsql';   
 ----
-CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllAccounts () 
+CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllAccounts() 
    RETURNS TABLE (
       Bank_Acc_ID  INT,
 	 User_ID  INT,
@@ -233,14 +236,13 @@ END; $$
  
 LANGUAGE 'plpgsql';  
 ----  
-CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllTransactions () 
+CREATE OR REPLACE FUNCTION JDBC_Bank.get_AllTransactions() 
    RETURNS TABLE (
       Trans_ID  INT,
 	 User_ID  INT,
      Bank_Acc_ID  INT,
      Trans_Typ  INT,
      Trans_Amt  NUMERIC(10,2) 
-	 
 ) 
 AS $$
 BEGIN
@@ -314,7 +316,7 @@ LANGUAGE 'plpgsql';
 ----
 
 -----Insertions
-CREATE FUNCTION JDBC_Bank.AddUser(uName VARCHAR, utype integer, fname VARCHAR, lname VARCHAR, adds VARCHAR, city VARCHAR, state VARCHAR, ctry VARCHAR, zip VARCHAR, phne integer, eml  VARCHAR)
+CREATE OR REPLACE FUNCTION JDBC_Bank.AddUser(uName VARCHAR, utype integer, fname VARCHAR, lname VARCHAR, adds VARCHAR, city VARCHAR, state VARCHAR, ctry VARCHAR, zip VARCHAR, phne VARCHAR, eml  VARCHAR)
   RETURNS void AS
   $BODY$
       BEGIN
@@ -325,7 +327,7 @@ CREATE FUNCTION JDBC_Bank.AddUser(uName VARCHAR, utype integer, fname VARCHAR, l
   LANGUAGE 'plpgsql';
 ----
 
-CREATE FUNCTION JDBC_Bank.AddAccount( uid integer, acctyp integer, balance numeric)
+CREATE OR REPLACE FUNCTION JDBC_Bank.AddAccount( uid integer, acctyp integer, balance numeric)
   RETURNS void AS
   $BODY$
       BEGIN
@@ -335,7 +337,7 @@ CREATE FUNCTION JDBC_Bank.AddAccount( uid integer, acctyp integer, balance numer
   $BODY$
   LANGUAGE 'plpgsql';
 ----   
-CREATE FUNCTION JDBC_Bank.AddTrans(uid integer, accid integer, transtyp integer, tamt numeric)
+CREATE OR REPLACE FUNCTION JDBC_Bank.AddTrans(uid integer, accid integer, transtyp integer, tamt numeric)
   RETURNS void AS
   $BODY$
       BEGIN
@@ -345,7 +347,7 @@ CREATE FUNCTION JDBC_Bank.AddTrans(uid integer, accid integer, transtyp integer,
   $BODY$
   LANGUAGE 'plpgsql';
 ----
-CREATE FUNCTION JDBC_Bank.AddUType(udesc VARCHAR)
+CREATE OR REPLACE FUNCTION JDBC_Bank.AddUType(udesc VARCHAR)
   RETURNS void AS
   $BODY$
       BEGIN
@@ -355,7 +357,7 @@ CREATE FUNCTION JDBC_Bank.AddUType(udesc VARCHAR)
   $BODY$
   LANGUAGE 'plpgsql';
 ----
-CREATE FUNCTION JDBC_Bank.AddAtype(adesc VARCHAR)
+CREATE OR REPLACE FUNCTION JDBC_Bank.AddAtype(adesc VARCHAR)
   RETURNS void AS
   $BODY$
       BEGIN
@@ -365,7 +367,7 @@ CREATE FUNCTION JDBC_Bank.AddAtype(adesc VARCHAR)
   $BODY$
   LANGUAGE 'plpgsql';
 ----
-CREATE FUNCTION JDBC_Bank.AddTType(tdesc VARCHAR)
+CREATE OR REPLACE FUNCTION JDBC_Bank.AddTType(tdesc VARCHAR)
   RETURNS void AS
   $BODY$
       BEGIN
@@ -375,7 +377,7 @@ CREATE FUNCTION JDBC_Bank.AddTType(tdesc VARCHAR)
   $BODY$
   LANGUAGE 'plpgsql';
 ----
-CREATE FUNCTION JDBC_Bank.AddLogIN(uName VARCHAR, pwd VARCHAR)
+CREATE OR REPLACE FUNCTION JDBC_Bank.AddLogIN(uName VARCHAR, pwd VARCHAR)
   RETURNS void AS
   $BODY$
       BEGIN
@@ -447,6 +449,8 @@ INSERT INTO JDBC_Bank.Acc_Type(Acc_Typ, Description)
         VALUES(DEFAULT, 'Checking');
 INSERT INTO JDBC_Bank.Acc_Type(Acc_Typ, Description)
         VALUES(DEFAULT, 'Savings');
+INSERT INTO JDBC_Bank.Acc_Type(Acc_Typ, Description)
+        VALUES(DEFAULT, 'Pending');
 
 select * from JDBC_Bank.Acc_Type
 ----
@@ -459,13 +463,40 @@ select * from JDBC_Bank.Trans_Type
 ----
 INSERT INTO JDBC_Bank.User_Info(User_ID, User_Name, User_Typ, FirstName, LastName, Address, City, State, Country, PostalCode, Phone, Email)
         VALUES(DEFAULT, 'boss@admin.com',1, 'Boss', 'Man', '111 Runthis Ave', 'Jamrock', 'FL', 'USA', '12345', '212-333-4567', 'boss@admin.com');
+INSERT INTO JDBC_Bank.User_Info(User_ID, User_Name, User_Typ, FirstName, LastName, Address, City, State, Country, PostalCode, Phone, Email)
+        VALUES(DEFAULT, 'chick@gmail.com',2, 'Tara', 'Pinnock', '231 Banded Ave', 'Jamrock', 'TX', 'USA', '12245', '677-333-4567', 'chick@gmail.com');
+INSERT INTO JDBC_Bank.User_Info(User_ID, User_Name, User_Typ, FirstName, LastName, Address, City, State, Country, PostalCode, Phone, Email)
+        VALUES(DEFAULT, 'rasta@msn.com',2, 'Joel', 'Blake', '1321 Handes Rd', 'Jamrock', 'AK', 'USA', '11133', '435-333-4567', 'rasta@msn.com');
        
 select * from JDBC_Bank.User_Info       
 ----
 INSERT INTO JDBC_Bank.Log_In(User_Name, Passwd)
         VALUES('boss@admin.com', 'passwd123');
+INSERT INTO JDBC_Bank.Log_In(User_Name, Passwd)
+        VALUES('chick@gmail.com', 'passwd1');
+INSERT INTO JDBC_Bank.Log_In(User_Name, Passwd)
+        VALUES('rasta@msn.com', 'passwd2');
   
-select * from JDBC_Bank.Log_In       
+select * from JDBC_Bank.Log_In 
+----
+
+select JDBC_Bank.AddAccount( 101, 1, 12345.50);
+select JDBC_Bank.AddAccount( 101, 2, 5345.50);
+
+select JDBC_Bank.AddAccount( 102, 1, 2145.50);
+select JDBC_Bank.AddAccount( 102, 2, 52145.50);
+
+
+select JDBC_Bank.UpdateRec('JDBC_Bank.Account','Balance' , 'Bank_Acc_ID', '12045.50', '1000');
+select JDBC_Bank.UpdateRec('JDBC_Bank.Account','Balance' , 'Bank_Acc_ID', '5645.50', '1001');
+
+select * from JDBC_Bank.Account
+----
+
+select JDBC_Bank.AddTrans(101, 1000, 2, 300);
+select JDBC_Bank.AddTrans(101, 1001, 1, 300);
+
+select * from JDBC_Bank.Transaction_info;
 
 /*******************************************************************************/
 
