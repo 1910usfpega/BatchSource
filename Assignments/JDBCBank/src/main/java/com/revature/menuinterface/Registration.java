@@ -40,7 +40,7 @@ public class Registration {
 				System.out.println("(Enter \"back\" to go back)");
 				System.out.println("Please enter an email as username: ");
 				r1 = sc.nextLine();
-			}while(isEmailValid(r1)==false);
+			}while((isEmailValid(r1)==false) && (!r1.toLowerCase().equals("back")));
 			if (r1.toLowerCase().equals("back")) {
 				return;
 			} else if (AlreadyUsed(r1, ulist) == false) {

@@ -62,7 +62,7 @@ public class LogIn {
 				}
 			}	
 				
-		}while( valid == false);
+		}while(( valid == false)&&(!(r1.toLowerCase().equals("back"))||(r2.toLowerCase().equals("back"))));
 		
 		if(valid)
 		{

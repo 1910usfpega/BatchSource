@@ -194,12 +194,15 @@ public class UserMenu {
 	public void doTrans(UserInfo ui, Scanner sc) {
 		UpdateDaoImpl up = new UpdateDaoImpl();
 		ViewDaoImpl viewI = new ViewDaoImpl();
+		InsertDaoImpl insI = new InsertDaoImpl();
 		
 		Double r1;
 		String r2, r3;
 		Integer r4;
 		String input = "";
 		Account a = new Account();
+		
+		Transaction t = new Transaction();
 		
 		List<Account> aList = new ArrayList<Account>();
 
@@ -240,9 +243,15 @@ public class UserMenu {
 				r4 = sc.nextInt();
 				r3 = r4.toString();
 				
+				t.setBank_Acc_ID(r4);
+				t.setTrans_Typ(1);
+				t.setUser_ID(ui.getUser_ID());
+				t.setTrans_Amt(r1);
+				
 				try {
 					
 						up.UpdateRec("JDBC_Bank.Account", "Balance",  r2, "Acc_Typ", r3);
+						insI.addTransaction(t);
 					
 					
 				} catch (SQLException e) {
@@ -259,10 +268,16 @@ public class UserMenu {
 				r4 = sc.nextInt();
 				r3 = r4.toString();
 				
+				t.setBank_Acc_ID(r4);
+				t.setTrans_Typ(2);
+				t.setUser_ID(ui.getUser_ID());
+				t.setTrans_Amt(r1);
+				
 				try {
 					if(canTransfer(r1, r4))
 					{
 						up.UpdateRec("JDBC_Bank.Account", "Balance",  r2, "Acc_Typ", r3);
+						insI.addTransaction(t);
 					}
 				} catch (SQLException e) {
 					System.out.println("Records was NOT deleted");
