@@ -1,5 +1,7 @@
 package main.java.accounts;
 
+import static org.hamcrest.CoreMatchers.containsString;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,7 +20,6 @@ import java.util.zip.ZipEntry;
 import javax.management.loading.PrivateClassLoader;
 import javax.security.auth.login.AccountLockedException;
 
-import main.java.bean.Account;
 import main.java.bean.User;
 import main.java.dao.AccountDao;
 import main.java.implementations.AccountDaoImpl;
@@ -144,15 +145,18 @@ public class AccountManagement {
 		Scanner scanner = new Scanner(System.in);
 		int numOfAccounts = 0;
 		double dollarAmt = 0.0;
+		int counter = 0;
 		System.out.println("Select account to deposit to.");
 		ArrayList<Double> listAcct = new ArrayList<>();//Stores customers account temperately for functionality.
 		for (int i = 0; i < accountsList.size(); i++) {
-			if (accountsList.get(i).getUsername().contains(username)) {
+			if (accountsList.get(i).getUsername().equals(username)) {
 				listAcct.add(accountsList.get(i).getAccountBalance());
-				System.out.println(i+": "+accountsList.get(i).getAccountType()+": "+accountsList.get(i).getAccountBalance());
+				System.out.println(counter+": "+accountsList.get(i).getAccountType()+": "+accountsList.get(i).getAccountBalance());
+				counter+=1;
 			}
 		}
-		
+			double remainingBal = 0.0;
+			String aType = "";
 			int selectedAcct = scanner.nextInt();
 			System.out.println("how much would you like to deposit?");
 			dollarAmt = scanner.nextDouble();
@@ -160,7 +164,8 @@ public class AccountManagement {
 				for (int i = 0; i < listAcct.size(); i++) {
 						if(accountsList.get(j).getAccountBalance() == listAcct.get(selectedAcct)) {
 							if(dollarAmt >= 0.0) {
-								dao.updateBalance(accountsList.get(selectedAcct).getAccountType(), username, accountsList.get(selectedAcct).getAccountBalance()+dollarAmt);
+								aType = accountsList.get(selectedAcct).getAccountType();
+								remainingBal = accountsList.get(selectedAcct).getAccountBalance()+dollarAmt;
 								System.out.println("Deposit successful!");
 							}else {
 								System.out.println("Something went wrong please try again.");
@@ -168,6 +173,7 @@ public class AccountManagement {
 							}
 						}
 					}
+						dao.updateBalance(aType, username, remainingBal);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -183,21 +189,26 @@ public class AccountManagement {
 		List<Account> accountList = dao.getAllAccounts();
 		System.out.println("Select account to deposit to.");
 		ArrayList<Double> listAcct = new ArrayList<>();//Stores customers account temperately for functionality.
+		int counter = 0;
 		for (int i = 0; i < accountList.size(); i++) {
-			if (accountList.get(i).getUsername().contains(username)) {
+			if (accountList.get(i).getUsername().equals(username)) {
 				listAcct.add(accountList.get(i).getAccountBalance());
-				System.out.println(i+": "+accountList.get(i).getAccountType()+": "+accountList.get(i).getAccountBalance());
+				System.out.println(counter+": "+accountList.get(i).getAccountType()+": "+accountList.get(i).getAccountBalance());
+				counter+=1;
 			}
 		}
 		
 			int selectedAcct = scanner.nextInt();
 			System.out.println("how much would you like to withdraw?");
 			dollarAmt = scanner.nextDouble();
+			String aType = "";
+			double remainingBal = 0.0;
 			for (int j = 0; j < accountList.size(); j++) {
 				for (int i = 0; i < listAcct.size(); i++) {
 						if(accountList.get(j).getAccountBalance() == listAcct.get(selectedAcct)) {
 							if(accountList.get(j).getAccountBalance() >= dollarAmt) {
-								dao.updateBalance(accountList.get(selectedAcct).getAccountType(), username, accountList.get(selectedAcct).getAccountBalance()-dollarAmt);
+								aType = accountList.get(selectedAcct).getAccountType();
+								remainingBal = accountList.get(selectedAcct).getAccountBalance()-dollarAmt;
 								System.out.println("Withdraw successful!");
 							}else {
 								System.out.println("Something went wrong please try again.");
@@ -205,10 +216,12 @@ public class AccountManagement {
 							}
 						}
 					}
+				dao.updateBalance(aType, username, remainingBal);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 		}
 	public static void getAccountsByName(String username) {
 	try {

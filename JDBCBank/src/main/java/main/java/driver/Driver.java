@@ -7,7 +7,6 @@ import main.java.bean.User;
 import main.java.implementations.UserDaoImpl;
 import main.java.programstart.ProgramStart;
 import main.java.users.UserAccountManager;
-import main.java.users.UserAccountManagerTest;
 
 public class Driver {
 	public static void main(String[] args) {

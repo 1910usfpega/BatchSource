@@ -11,7 +11,6 @@ import main.java.bean.User;
 import main.java.implementations.AccountDaoImpl;
 import main.java.implementations.UserDaoImpl;
 import main.java.users.UserAccountManager;
-import main.java.users.UserAccountManagerTest;
 
 public class ProgramStart {
 	
