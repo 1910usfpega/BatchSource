@@ -30,7 +30,7 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
 		this.currentAccount = currentAccount;
 		System.out.println("Welcome " + currentUser + "!");
 		System.out.println("What would you like to do?");
-		System.out.println(" 1. Check Balances\n 2. Withdraw\n 3. Deposit\n 4. Open a New Account\n 5. View Customer Information");
+		System.out.println(" 1. Check Balances\n 2. Withdraw\n 3. Deposit\n 4. Open a New Account\n 5. View Customer Information\n 6. Log Out");
 		System.out.println("(Please enter numerical answers only i.e. 1 or 2)");
 		String answer = input.nextLine();
 		
@@ -119,33 +119,38 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
 		else if (answer.equals("5")) {
 			System.out.println("Please enter the customer's username:");
 			String choice = input.nextLine();
-			Connection conn = jdbc.getConnection();
-			String sql = "select * from \"InformationTable\" where \"USER_ID\" = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, choice);
-			ResultSet rs = ps.executeQuery();
-			User u = null;
-			while(rs.next()) {
-				u = new User(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4));
+			try {
+				Connection conn = jdbc.getConnection();
+				String sql = "select * from \"InformationTable\" where \"USER_ID\" = ?";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setString(1, choice);
+				ResultSet rs = ps.executeQuery();
+				User u = null;
+				rs.next();
+				int checkedAccount = rs.getInt(1);
+				u = new User(checkedAccount,rs.getString(2), rs.getString(3), rs.getString(4));
 				System.out.println(u.toString());
 				checkBalances(rs.getInt(1));
-			}
-			System.out.println("If you want to delete this user, enter \"DELETE\", otherwise enter anything else to continue: ");
-			System.out.println("NOTE: ADMINS! PLEASE DO NOT DELETE EACHOTHER!");
-			String choice1 = input.nextLine();
-			if (choice1.equals("DELETE")) {
-				String sql1 = "delete from \"InformationTable\" where \"BANK_ACCOUNT_ID\" = ?";
-				PreparedStatement ps1 = conn.prepareStatement(sql1);
-				ps1.setInt(1, rs.getInt(1));
-				ps1.executeQuery();
+				System.out.println("If you want to delete this user, enter \"DELETE\", otherwise enter anything else to continue: ");
+				System.out.println("NOTE: ADMINS! PLEASE DO NOT DELETE EACHOTHER!");
+				String choice1 = input.nextLine();
+				if (choice1.equals("DELETE")) {
+					String sql1 = "delete from \"InformationTable\" where \"BANK_ACCOUNT_ID\" = ?";
+					PreparedStatement ps1 = conn.prepareStatement(sql1);
+					ps1.setInt(1, checkedAccount);
+					ps1.execute();	
 				
-				//Comment this section out if you don't want to delete their accounts as well
-				String sql2 = "delete from \"AccountTable\" where \"BANK_ACCOUNT_ID\" = ?";
-				PreparedStatement ps2 = conn.prepareStatement(sql2);
-				ps2.setInt(1, rs.getInt(1));
-				ps2.executeQuery();		
+					//Comment this section out if you don't want to delete their accounts as well
+					String sql2 = "delete from \"AccountTable\" where \"BANK_ACCOUNT_ID\" = ?";
+					PreparedStatement ps2 = conn.prepareStatement(sql2);
+					ps2.setInt(1, checkedAccount);
+					ps2.execute();			
+				}
+//				else {
+//					adminMenu(currentUser,currentAccount);
+//				}
 			}
-			else {
+			finally {
 				adminMenu(currentUser,currentAccount);
 			}
 		}
