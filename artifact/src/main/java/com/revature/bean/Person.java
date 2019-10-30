@@ -41,9 +41,10 @@ public abstract class Person {
 		ArrayList<Customer> aa = a.getAllCustomer(); 
 		if(! aa.isEmpty()) {
 			for(Customer x: aa) {
-			if(x.getUserName().equals(user))
+				if(x.getUsername() != null) {
+			if(x.getUserName() == user)
 				return false;
-			}
+				}	}
 		}
 		else {return true;}
 		return true;

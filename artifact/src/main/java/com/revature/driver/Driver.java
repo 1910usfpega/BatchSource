@@ -13,19 +13,21 @@ public class Driver {
 	static String username;
 	static String password;
 	static boolean login ;
-	static Employee employee ;
+	static Employee employee  = new Employee("","","","");
 	static ArrayList<bankAccount> accounts;
 	static BankDaoImpl b = new BankDaoImpl();
     static Customer loggedInCustomer;
     static Customerdaoimpl a = new Customerdaoimpl();
     public static void main(String[] args) throws SQLException {
-        System.out.println("Welcome");
+    	 boolean is_running = true;
+    	 
+    	while (is_running) {
+    	System.out.println("Welcome");
         System.out.println("1: Sign In");
         System.out.println("2: Employee Sign In");
         System.out.println("3: Sign Up ");
         System.out.println("Choose Option: ");
-        boolean is_running = true;
-        while (is_running) {
+       
             int input = scan.nextInt();
              switch (input) {
                 case 1:
@@ -39,7 +41,7 @@ public class Driver {
                     	boolean logined = true;
                     	while(logined) {
                     	loggedInCustomer = a.getCustomerbyUsername(username);
-                        System.out.println(": Welcome " + loggedInCustomer.getfName()+ " " + loggedInCustomer.getLast());
+                        System.out.println(": Welcome " + loggedInCustomer.getName()+ " " + loggedInCustomer.getLast());
                         System.out.println("----------------------------");
                         System.out.println("1: View Account");
                         System.out.println("2: Get Balance");
@@ -57,7 +59,7 @@ public class Driver {
 							System.out.println("your accounts");
 							accounts = a.getAllUserBankAccounts(loggedInCustomer.getUsername());
 							for(bankAccount number: accounts) {
-								System.out.print(number.getAccountNumber());
+								System.out.println(number.getAccountNumber());			
 							}
 							break;
 						case 2:
@@ -68,10 +70,14 @@ public class Driver {
 							}
 							System.out.println("enter the account number");
 							int accountnumber = scan.nextInt();
-							System.out.println(b.getAccount(accountnumber).getAccountNumber());							
+							System.out.println(b.getAccount(accountnumber).getBalance());							
 							break;
 
 						case 3:
+							System.out.println("your accounts");
+							accounts = a.getAllUserBankAccounts(loggedInCustomer.getUsername());
+							for(bankAccount number: accounts) {
+								System.out.println(number.getAccountNumber());}
 							a.getAllUserBankAccounts(loggedInCustomer.getUsername());
 							System.out.println("enter bankaccount number");
 							int as = scan.nextInt();
@@ -83,6 +89,10 @@ public class Driver {
 						// exit system
 						case 4:
 							//deposit
+							System.out.println("your accounts");
+							accounts = a.getAllUserBankAccounts(loggedInCustomer.getUsername());
+							for(bankAccount number: accounts) {
+								System.out.println(number.getAccountNumber());}
 							a.getAllUserBankAccounts(loggedInCustomer.getUsername());
 							System.out.println("enter your account number");
 							int asa = scan.nextInt();
@@ -105,6 +115,7 @@ public class Driver {
 							System.out.println("You made a new account bank acoount1");
 							break;
 						case 8:
+							login = false;
 							
                         }
 			
@@ -121,7 +132,7 @@ public class Driver {
                  if(a.loginForEmployees(username, password))
                 	    loggedInCustomer = a.getCustomerByName(username);
                       if (loggedInCustomer != null) {
-                        System.out.println(": Welcome " + loggedInCustomer.getfName() + " " + loggedInCustomer.getlName());
+                        System.out.println(": Welcome "+ loggedInCustomer.getlName());
                         System.out.println("----------------------------");
                         System.out.println("1: View User Account");
                         System.out.println("2: Check User's Balance");
@@ -156,7 +167,8 @@ public class Driver {
 							
 						case 5:
 							login = false;
-                        }
+							loggedInCustomer = null;
+							break;}
                     }
                     break;
                 case 3:
@@ -168,19 +180,10 @@ public class Driver {
 					String username = scan.next();
 					System.out.println("5: please enter your password");
 					String password = scan.next();
+							
 					boolean worked = false;
-                     worked = employee.createNewUser(username, fname, lname, password);
-				
-					
-                    while (!worked) {
-                        System.out.print("please enter another username that one was taken");
-                        username = scan.next();
-                        try {
-                            worked = employee.createNewUser(username, fname, lname, password);
-       					}
-       					catch(Exception e) {}
-                    }
-                    System.out.print("you made your new account! you will not reget it!!! ");
+                    worked = employee.createNewUser(username, fname, lname, password);	
+                                 System.out.print("you made your new account! please enjoy!! ");
                     break;
                 default:
             }

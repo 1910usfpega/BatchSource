@@ -27,7 +27,7 @@ public class BankDaoImpl  {
 	public static double ViewAccountStatic(int accountNumber) throws SQLException {
 		Connection conn= cf.getConnection();
 		Statement stmt= conn.createStatement();
-		 String sql="select * from customer where accountnumber = ?";
+		 String sql="select * from bankaccount where accountnumber = ?";
 			PreparedStatement ps= conn.prepareStatement(sql);
 			ps.setInt(1,accountNumber);
 			ResultSet rs= ps.executeQuery();
@@ -71,7 +71,7 @@ public class BankDaoImpl  {
 				ps.setInt(1,accountnumber+1);
 				ResultSet rs= ps.executeQuery();
 				while(rs.next()) {
-					a = new bankAccount(rs.getInt(2),rs.getDouble(1));
+					a = new bankAccount(rs.getInt(1),rs.getDouble(2));
 				}
 			
 		return a;
