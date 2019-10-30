@@ -10,13 +10,13 @@ import com.revature.daoimpl.BankDaoImpl;
 import com.revature.daoimpl.Customerdaoimpl;
 public class Driver {
 	static Scanner scan = new Scanner(System.in);
-	static String username = null;
-	static String password = null;
-	static boolean login = false;
-	static Employee employee = null;
-	static ArrayList<bankAccount> accounts = null;
+	static String username;
+	static String password;
+	static boolean login ;
+	static Employee employee ;
+	static ArrayList<bankAccount> accounts;
 	static BankDaoImpl b = new BankDaoImpl();
-    static Customer loggedInCustomer = null;
+    static Customer loggedInCustomer;
     static Customerdaoimpl a = new Customerdaoimpl();
     public static void main(String[] args) throws SQLException {
         System.out.println("Welcome");
@@ -36,6 +36,8 @@ public class Driver {
                     if( a.logIn(username, password)) 
                     loggedInCustomer = a.getCustomerByName(username);
                     if (loggedInCustomer != null) {
+                    	boolean logined = true;
+                    	while(logined) {
                     	loggedInCustomer = a.getCustomerbyUsername(username);
                         System.out.println(": Welcome " + loggedInCustomer.getfName()+ " " + loggedInCustomer.getLast());
                         System.out.println("----------------------------");
@@ -45,14 +47,18 @@ public class Driver {
                         System.out.println("4: Deposit");
                         System.out.println("5: Delete Account");
                         System.out.println("6: Change Account");
-                        System.out.println("7: Logout");
+                        System.out.println("7: new account");
+                        System.out.println("8: Logout");
                         input = scan.nextInt();
                         loggedInCustomer = a.getCustomerByName(username);
                         switch (input) {
                         
                         case 1:
 							System.out.println("your accounts");
-							a.getAllUserBankAccounts(loggedInCustomer.getUsername());
+							accounts = a.getAllUserBankAccounts(loggedInCustomer.getUsername());
+							for(bankAccount number: accounts) {
+								System.out.print(number.getAccountNumber());
+							}
 							break;
 						case 2:
 							System.out.println("your accounts");
@@ -62,7 +68,7 @@ public class Driver {
 							}
 							System.out.println("enter the account number");
 							int accountnumber = scan.nextInt();
-							System.out.println(b.getAccount(accountnumber));							
+							System.out.println(b.getAccount(accountnumber).getAccountNumber());							
 							break;
 
 						case 3:
@@ -95,8 +101,15 @@ public class Driver {
 						case 6:
 							break;
 						case 7:
-							login = false;					
+							a.createBankAccount(loggedInCustomer.getUsername());
+							System.out.println("You made a new account bank acoount1");
+							break;
+						case 8:
+							
                         }
+			
+                        }
+                        
                     }
                     System.out.print("");
                     break;
@@ -130,13 +143,11 @@ public class Driver {
 							break;
 						// create admin account
 						case 3:
-							
 							System.out.println("what username would you like to delete account from");
 							username = scan.next();
 							System.out.println("what is the account number to be deleted");
 							int asd = scan.nextInt();
 							a.deleteBankAccount(asd, username);
-				
 							break;
 					
 						case 4:
@@ -158,15 +169,14 @@ public class Driver {
 					System.out.println("5: please enter your password");
 					String password = scan.next();
 					boolean worked = false;
-					try {
-                     worked = employee.createNewUser(username, fname, lname, password, false);
-					}
-					catch(Exception e) {}
+                     worked = employee.createNewUser(username, fname, lname, password);
+				
+					
                     while (!worked) {
                         System.out.print("please enter another username that one was taken");
                         username = scan.next();
                         try {
-                            worked = employee.createNewUser(username, fname, lname, password, false);
+                            worked = employee.createNewUser(username, fname, lname, password);
        					}
        					catch(Exception e) {}
                     }

@@ -35,3 +35,23 @@ OWNED by bankaccount.accountnumber;
 
 alter table public.owners add constraint fk_owners foreign key  (username) references customer(username);
 alter table public.owners add constraint fk_ownerss foreign key  (accountnumber) references bankaccount (accountnumber);
+
+
+
+CREATE OR REPLACE FUNCTION public.create_new_user1() returns void
+ 
+AS $function$
+DECLARE
+  newaccountnumber INTEGER :=0;
+  newusername varchar := '';
+BEGIN
+   newaccountnumber := nextval('newcustomerID');
+     select username into newusername from customer where id = (select max(id) from customer);
+	INSERT INTO bankaccount(accountnumber, amount) values(newaccountnumber,  0);
+    INSERT INTO owners (username, accountnumber) VALUES (newusername,newaccountnumber-1);
+END; $function$ LANGUAGE plpgsql
+;
+
+
+CREATE TRIGGER handlebankaccount after INSERT ON customer
+    FOR EACH ROW EXECUTE PROCEDURE create_new_user1();

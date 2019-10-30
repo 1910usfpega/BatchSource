@@ -29,18 +29,11 @@ public abstract class Person {
 		return false;
 	
 	}
-	public  boolean createNewUser(String user, String fName, String lName,String passWord, boolean Employee) throws SQLException {
-        if(this.userCheck(user)) {
-            if(Employee) {
-                a.createUsers(fName,lName,user,passWord);     
-            e.newEmployee(fName,lName,user,passWord);
+	public  boolean createNewUser(String user, String fName, String lName,String passWord) throws SQLException {
+        if(Person.userCheck(user)) {
+                a.createUsers(fName,lName,user,passWord); 
             return true;
             }
-            else {
-                Customer aa = new Customer(fName,lName,user,passWord);  
-                return true;
-            }
-        }
         return false;
         
     }

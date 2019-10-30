@@ -142,7 +142,18 @@ public boolean logIn(String username, String password) throws SQLException {
 		}
 		return CustomerList;
 	}
-
+	public ArrayList<bankAccount> bankAccountsOfUser() throws SQLException {
+		ArrayList<bankAccount> BankApplicationList= new ArrayList<>();
+		Connection conn= cf.getConnection();
+		Statement stmt= conn.createStatement();
+		ResultSet rs= stmt.executeQuery("select * from customer");
+		bankAccount a=null;
+		while(rs.next()) {
+			a= new bankAccount(rs.getInt(1),rs.getDouble(2));
+			BankApplicationList.add(a);
+		}
+		return BankApplicationList;
+}
 	public Customer getCustomerbyUsername(String username) throws SQLException {
 //		Customer customer= null;
 		Connection conn= cf.getConnection();
@@ -165,8 +176,7 @@ public boolean logIn(String username, String password) throws SQLException {
 		PreparedStatement ps= conn.prepareStatement(sql);
 		ps.setString(1,Username);
 		ResultSet rs= ps.executeQuery();
-		// fix
-		
+	
 	return Customer.getfName() + " "+ Customer.getlName();
 		
 	}
@@ -209,39 +219,38 @@ public boolean logIn(String username, String password) throws SQLException {
 	}
 	public boolean createUsers(String name, String last, String username, String password) throws SQLException {
         Connection conn = cf.getConnection();
-        if (a.checkusername(a.getCustomers(), username)) {
-            String sql = "insert into customer (fname,lname,username, pass, customerid) "
-                    + "Values(?,?,?,?, ?)";
-            if (a.checkusername(a.getCustomers(), username)) {
+      
+            String sql = "insert into customer (fname,lname,username, pass) Values(?,?,?,?)";
+            
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, name);
                 ps.setString(2, last);
                 ps.setString(3, username);
                 ps.setString(4, password);
-                ps.setInt(5, 234);
                 try {
                     ps.execute();
+                    return true;
                 } catch (Exception e) {
-                    return false;
+                   
                 }
-                return true;
-            }
-        }
-        return false;
+                return false;
+             
     }
-    public boolean createBankAccount(Integer accountnumber, Float amount, String username) throws SQLException {
+    public boolean createBankAccount(String username) throws SQLException {
         Connection conn = cf.getConnection();
-        String sql = "insert into bankaccount (accountnumber, amount) "
+        String sql = "insert into bankaccount (amount) "
                 + "Values(?,?)";
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, accountnumber);
-        ps.setFloat(2, amount);
+        ps.setFloat(1, 0);
         try {
-            ps.execute();
-             sql = "insert into owners (accountnumber, username) "
-                    + "Values(?,?)";
+        	  ps.execute();
+        	sql = "select accountnumber form bankaccount where accountnumber = (select max(id)from customer;)";
+        	  ps = conn.prepareStatement(sql);
+            ResultSet rs =  ps.executeQuery();
+            	int	newestBankAccount =rs.getInt(1);
+             sql = "insert into owners (accountnumber, username) Values(?,?)";
              ps = conn.prepareStatement(sql);
-            ps.setInt(1, accountnumber);
+            ps.setInt(1, newestBankAccount);
             ps.setString(2, username);
         } catch (Exception e) {
             return false;

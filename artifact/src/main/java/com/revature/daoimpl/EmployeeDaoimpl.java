@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.bean.Customer;
 import com.revature.bean.Employee;
 import com.revature.bean.bankAccount;
 import com.revature.utills.ConnFactory;
@@ -57,7 +56,7 @@ public class EmployeeDaoimpl extends Customerdaoimpl{
 		ArrayList<bankAccount> BankApplicationList= new ArrayList<>();
 		Connection conn= cf.getConnection();
 		Statement stmt= conn.createStatement();
-		ResultSet rs= stmt.executeQuery("select * from customer");
+		ResultSet rs= stmt.executeQuery("select * from acustomer");
 		bankAccount a=null;
 		while(rs.next()) {
 			a= new bankAccount(rs.getInt(1),rs.getDouble(2));
@@ -83,7 +82,8 @@ public class EmployeeDaoimpl extends Customerdaoimpl{
 		 ps.executeQuery();
 	}
 	
-	public void newEmployee(String username, String fname,String lname,String password) throws SQLException {
+	public boolean newEmployee(String username, String fname,String lname,String password) throws SQLException {
+		try {
 		Connection conn= cf.getConnection();
 		String sql="insert into employee (fname,lname,username,pass)"
 				+ "Values(?,?,?,?)";
@@ -93,7 +93,9 @@ public class EmployeeDaoimpl extends Customerdaoimpl{
 		ps.setString(1,username);
 		ps.setString(2,password);
 		 ps.executeQuery();
-		
+		 return true;
+		}
+		catch(Exception e) {return false;}
 	}
 	
 }

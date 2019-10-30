@@ -20,11 +20,7 @@ public class bankAccount {
 		this.ACCOUNTNUMBER = a;
 
 	}
-	public bankAccount(double b) {
-		this.amount = b;
-		this.ACCOUNTNUMBER = 0;
 
-	}
 	
 	public boolean checkMoney(double money) {
 		if(this.getBalance()>=  money)
@@ -44,7 +40,7 @@ public class bankAccount {
 	
 	public void withraw(double amount) throws SQLException {
 		if (this.checkMoney(amount)) {
-			a.withdraw(amount,1);
+			a.withdraw(amount, this.getAccountNumber());
 		}
 	}
 
@@ -53,7 +49,7 @@ public class bankAccount {
 	}
 	
 	public int getAccountNumber() {
-		return this.ACCOUNTNUMBER;// 
+		return this.ACCOUNTNUMBER;
 	}
 	
 	public double getBalance() {

@@ -25,11 +25,23 @@ public class Employee extends Person{
 			System.out.print("Account number: " + x.getAccountNumber() + " " + "Account Balance: " + x.getBalance());
 		}
 	
-	public void deleteUserAccount(int accountNumber,String Username) throws SQLException {
+	public boolean deleteUserAccount(int accountNumber,String Username) throws SQLException {
+		boolean test = false;
+		try {
 		e.deleteBankAccount(accountNumber, Username);
+		test = true;
+		}catch(Exception e) {
+			test = false;
+		}
+		return test;
 	}
-	public void addBankAccount(bankAccount s, String username) throws SQLException {
+	public boolean addBankAccount(bankAccount s, String username) {
+		boolean test = false;
+		try {
 		e.addBankAccount(s, username);
+		test = true;
+		}catch(Exception e) {}
+	return test;
 	}
 	public void newEmployee(String username,String fname,String lname, String password) throws SQLException {
 		e.newEmployee(username, fname, lname, password);

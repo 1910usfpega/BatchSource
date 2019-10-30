@@ -66,9 +66,9 @@ public class BankDaoImpl  {
 		bankAccount a=null;
 			Connection conn= cf.getConnection();
 			Statement stmt= conn.createStatement();
-			 String sql="select * from owner where username = ?";
+			 String sql="select * from bankaccount where accountnumber = ?";
 				PreparedStatement ps= conn.prepareStatement(sql);
-				ps.setInt(1,accountnumber);
+				ps.setInt(1,accountnumber+1);
 				ResultSet rs= ps.executeQuery();
 				while(rs.next()) {
 					a = new bankAccount(rs.getInt(2),rs.getDouble(1));
@@ -78,16 +78,16 @@ public class BankDaoImpl  {
 	}
 
 	public ArrayList<bankAccount> getAllAccounts(String username) throws SQLException {
-		ArrayList<bankAccount> a=null;
+		ArrayList<bankAccount> a= new ArrayList<>();
 		Connection conn= cf.getConnection();
 		Statement stmt= conn.createStatement();
-		 String sql="select * from owners where username = ?";
+		 String sql="select * from bankaccount where accountnumber = (select accountnumber from owners where username = ? )";
 			PreparedStatement ps= conn.prepareStatement(sql);
 			ps.setString(1,username);
 			ResultSet rs= ps.executeQuery();
 			if(rs!= null) {
 			while(rs.next()) {
-				a.add(new bankAccount(rs.getDouble(1)));
+				a.add(new bankAccount(rs.getInt(1),rs.getDouble(2)));
 	}}
 			return a;	
 }
