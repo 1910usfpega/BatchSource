@@ -53,13 +53,7 @@ public class bankAccount {
 	}
 	
 	public double getBalance() {
-	try {
-		return a.ViewAccountStatic(this.getAccountNumber());
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	return -1;	
+		return amount;
 }
 	
 

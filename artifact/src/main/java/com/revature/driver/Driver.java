@@ -14,7 +14,7 @@ public class Driver {
 	static String password;
 	static boolean login ;
 	static Employee employee  = new Employee("","","","");
-	static ArrayList<bankAccount> accounts;
+	static ArrayList<bankAccount> accounts = new ArrayList<>();
 	static BankDaoImpl b = new BankDaoImpl();
     static Customer loggedInCustomer;
     static Customerdaoimpl a = new Customerdaoimpl();
@@ -102,27 +102,35 @@ public class Driver {
 							b.deposit(deposit, tempp.getAccountNumber());
 							
 							break;
-						case 5:							
+						case 5:		// fix					
 							a.getAllUserBankAccounts(loggedInCustomer.getUsername());
 							System.out.println("enter your account number");
 							int d = scan.nextInt();
 							bankAccount temppp =b.getAccount(d);
+							if(temppp.getBalance() == 0) {
 							a.deleteBankAccount(temppp.getAccountNumber(), loggedInCustomer.getUserName());
+							}else {System.out.println("You need to empty your bankaccount to delete it.");}
 						case 6:
+							int temp1 =0;
+							switch(temp1) {
+							case 1:
+							break;
+							}
 							break;
 						case 7:
 							a.createBankAccount(loggedInCustomer.getUsername());
 							System.out.println("You made a new account bank acoount1");
 							break;
 						case 8:
-							login = false;
-							
+							logined = false;
+							loggedInCustomer = null;	
                         }
-			
                         }
                         
                     }
-                    System.out.print("");
+                    else {
+                    	  System.out.print("No user with that inforamtion");
+                    }
                     break;
                 case 2:
                     System.out.println("please enter username");
@@ -150,7 +158,7 @@ public class Driver {
 						case 2:
 							System.out.println("what username to see on-hand cash from");
 							username = scan.next();
-							employee.viewAccount(a.getCustomerByName(username));
+							b.getAllAccounts(a.getCustomerByName(username).getUsername());
 							break;
 						// create admin account
 						case 3:

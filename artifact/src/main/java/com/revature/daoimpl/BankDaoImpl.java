@@ -43,11 +43,11 @@ public class BankDaoImpl  {
 		double temp = aaa.ViewAccountStatic(accountNumber);
 		Connection conn= cf.getConnection();
 		Statement stmt= conn.createStatement();
-		 String sql="update customer set amount =  ? where accountnumber = ?";
+		 String sql="update bankaccount set amount =  ? where accountnumber = ?";
 			PreparedStatement ps= conn.prepareStatement(sql);
 			ps.setDouble(1,amount + temp);
 			ps.setInt(2,accountNumber);
-			ps.executeQuery();
+			ps.execute();
 	}
 
 
@@ -56,11 +56,11 @@ public class BankDaoImpl  {
 		double temp = aaa.ViewAccountStatic(accountNumber);
 		Connection conn= cf.getConnection();
 		Statement stmt= conn.createStatement();
-		 String sql="update customer set amount =  ? where accountnumber = ?";
+		 String sql="update bankaccount set amount =  ? where accountnumber = ?";
 			PreparedStatement ps= conn.prepareStatement(sql);
 			ps.setDouble(1,amount - temp);
 			ps.setInt(2,accountNumber);
-			ps.executeQuery();
+			ps.execute();
 	}
 	public bankAccount getAccount( int accountnumber) throws SQLException {
 		bankAccount a=null;
@@ -68,7 +68,7 @@ public class BankDaoImpl  {
 			Statement stmt= conn.createStatement();
 			 String sql="select * from bankaccount where accountnumber = ?";
 				PreparedStatement ps= conn.prepareStatement(sql);
-				ps.setInt(1,accountnumber+1);
+				ps.setInt(1,accountnumber);
 				ResultSet rs= ps.executeQuery();
 				while(rs.next()) {
 					a = new bankAccount(rs.getInt(1),rs.getDouble(2));
@@ -79,18 +79,30 @@ public class BankDaoImpl  {
 
 	public ArrayList<bankAccount> getAllAccounts(String username) throws SQLException {
 		ArrayList<bankAccount> a= new ArrayList<>();
+		bankAccount aa = null;
 		Connection conn= cf.getConnection();
 		Statement stmt= conn.createStatement();
-		 String sql="select * from bankaccount where accountnumber = (select accountnumber from owners where username = ? )";
+		 String sql="select accountnumber from owners where username = ? ";
 			PreparedStatement ps= conn.prepareStatement(sql);
 			ps.setString(1,username);
 			ResultSet rs= ps.executeQuery();
-			if(rs!= null) {
+			int temp = 0;
+			ResultSet rs2= null;
 			while(rs.next()) {
-				a.add(new bankAccount(rs.getInt(1),rs.getDouble(2)));
-	}}
+				temp = rs.getInt(1);
+				sql=("select * from bankaccount where accountnumber = ?");
+				 ps= conn.prepareStatement(sql);
+					ps.setInt(1,temp);
+				    rs2= ps.executeQuery();
+				    while(rs2.next()) {
+				   aa = new bankAccount(rs2.getInt(1),rs2.getDouble(2));
+					a.add(aa);
+				    }
+			}
 			return a;	
 }
+	
+	
 	public ArrayList<bankAccount> getAllofAccounts() throws SQLException {
 		ArrayList<bankAccount> a=null;
 		Connection conn= cf.getConnection();

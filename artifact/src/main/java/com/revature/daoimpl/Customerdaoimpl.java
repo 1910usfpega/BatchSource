@@ -112,12 +112,12 @@ public boolean logIn(String username, String password) throws SQLException {
 
 	public void deleteBankAccount(int accountNumber, String Username) throws SQLException {
 		Connection conn= cf.getConnection();
-		String sql="delete form owners where username = ? and "
-				+ "account_number = ?";
+		String sql="delete from owners where username = ? and "
+				+ "accountnumber = ?";
 		PreparedStatement ps= conn.prepareStatement(sql);
 		ps.setString(1,Username);
-		ps.setInt(1,accountNumber);
-	    ps.executeQuery();
+		ps.setInt(2,accountNumber);
+	    ps.execute();
 	}
 
 	
@@ -238,20 +238,14 @@ public boolean logIn(String username, String password) throws SQLException {
     }
     public boolean createBankAccount(String username) throws SQLException {
         Connection conn = cf.getConnection();
-        String sql = "insert into bankaccount (amount) "
-                + "Values(?,?)";
+        String sql = "insert into bankaccount (amount) Values(?)";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setFloat(1, 0);
         try {
-        	  ps.execute();
-        	sql = "select accountnumber form bankaccount where accountnumber = (select max(id)from customer;)";
-        	  ps = conn.prepareStatement(sql);
-            ResultSet rs =  ps.executeQuery();
-            	int	newestBankAccount =rs.getInt(1);
-             sql = "insert into owners (accountnumber, username) Values(?,?)";
+ 	
+             sql =  "insert into owners (accountnumber, username) Values((select max(accountnumber)from bankaccount),?);";
              ps = conn.prepareStatement(sql);
-            ps.setInt(1, newestBankAccount);
-            ps.setString(2, username);
+            ps.setString(1, username);
         } catch (Exception e) {
             return false;
         }

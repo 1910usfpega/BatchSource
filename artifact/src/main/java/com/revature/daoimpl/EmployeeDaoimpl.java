@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.bean.Customer;
 import com.revature.bean.Employee;
 import com.revature.bean.bankAccount;
 import com.revature.utills.ConnFactory;
@@ -97,5 +98,6 @@ public class EmployeeDaoimpl extends Customerdaoimpl{
 		}
 		catch(Exception e) {return false;}
 	}
+
 	
 }
