@@ -171,6 +171,7 @@ public class MenuMethod {
 
 		case 1:
 			accountMenu(currentUser);
+			break;
 		case 2:
 			System.out.println("Please select what type of new account would you like to open: \n"
 					+ "1. checking account \n" + "2. savings account ");
