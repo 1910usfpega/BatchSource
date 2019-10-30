@@ -39,7 +39,7 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
 			checkBalances(currentAccount);
 			System.out.println();
 			System.out.println("////////////////////\n");
-			adminMenu(currentUser, currentAccount);
+			//adminMenu(currentUser, currentAccount);
 		}
 		
 		//2 Withdraw
@@ -111,7 +111,7 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
 			else {
 				System.out.println("Invalid input.\n");
 				System.out.println("////////////////////\n");
-				adminMenu(currentUser, currentAccount);
+				//adminMenu(currentUser, currentAccount);
 			}
 		}
 		
@@ -131,6 +131,7 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
 				u = new User(checkedAccount,rs.getString(2), rs.getString(3), rs.getString(4));
 				System.out.println(u.toString());
 				checkBalances(rs.getInt(1));
+				System.out.println();
 				System.out.println("If you want to delete this user, enter \"DELETE\", otherwise enter anything else to continue: ");
 				System.out.println("NOTE: ADMINS! PLEASE DO NOT DELETE EACHOTHER!");
 				String choice1 = input.nextLine();
@@ -151,7 +152,8 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
 //				}
 			}
 			finally {
-				adminMenu(currentUser,currentAccount);
+				System.out.println("Input Error");
+				//adminMenu(currentUser,currentAccount);
 			}
 		}
 		//6 WILL LOG OUT
@@ -164,9 +166,9 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
 		
 		//USER INPUTS INVALID RESPONSE, RESTARTS
 		else {
-			System.out.println("Invalid input.\n");
-			System.out.println("////////////////////\n");
-			adminMenu(currentUser, currentAccount);
+			//System.out.println("Invalid input.\n");
+			//System.out.println("////////////////////\n");
+			//adminMenu(currentUser, currentAccount);
 		}
 		adminMenu(currentUser,currentAccount);
 	}
@@ -216,11 +218,11 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
 		finally {
 			if (temp == 0) {
 				System.out.println("There was an error in your inputs; sending back to main menu...");
-				adminMenu(currentUser, currentAccount); 
+				//adminMenu(currentUser, currentAccount); 
 			}
 			else {
 				System.out.println("You successfully deposited $" + depositAmount + ".");
-				adminMenu(currentUser, currentAccount); 
+				//adminMenu(currentUser, currentAccount); 
 			}
 		}
 	}
@@ -259,11 +261,11 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
 		finally { 
 			if (temp == 0) {
 				System.out.println("There was an error in your inputs; sending back to main menu...");
-				adminMenu(currentUser, currentAccount); 
+				//adminMenu(currentUser, currentAccount); 
 			}
 			else {
 				System.out.println("You successfully withdrew $" + withdrawAmount + ".");
-				adminMenu(currentUser, currentAccount); 
+				//adminMenu(currentUser, currentAccount); 
 			}
 		}
 	}
@@ -281,7 +283,7 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
 		System.out.println("Account Successfully Created! Sending Back to Welcome Screen to Login...\n");
 		System.out.println("////////////////////\n");
 		howManyAccounts = 0;
-		adminMenu(currentUser, currentAccount);
+		//adminMenu(currentUser, currentAccount);
 	}
 	
 	public void howManyAccounts(int currentAccount, int currentAccountType) throws SQLException {

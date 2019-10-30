@@ -38,7 +38,7 @@ public class CustomerMenuDaoImpl implements CustomerMenuDao {
 		//1 WILL SEND TO checkBalance() METHOD
 		if (answer.equals("1")) {
 			checkBalances(currentAccount);
-			customerMenu(currentUser, currentAccount);
+			//customerMenu(currentUser, currentAccount);
 		}
 		//2 WILL SEND TO withdraw() METHOD
 		else if (answer.equals("2")) {
@@ -106,7 +106,7 @@ public class CustomerMenuDaoImpl implements CustomerMenuDao {
 			else {
 				System.out.println("Invalid input.\n");
 				System.out.println("////////////////////\n");
-				customerMenu(currentUser, currentAccount);
+				//customerMenu(currentUser, currentAccount);
 			}
 		}
 		//5 WILL LOG OUT
@@ -117,11 +117,11 @@ public class CustomerMenuDaoImpl implements CustomerMenuDao {
 			ldi.welcomeScreen();
 		}
 		//USER INPUTS INVALID RESPONSE, RESTARTS
-		else {
-			System.out.println("Invalid input.\n");
-			System.out.println("////////////////////\n");
-			customerMenu(currentUser, currentAccount);
-		}
+//		else {
+//			System.out.println("Invalid input.\n");
+//			System.out.println("////////////////////\n");
+//			customerMenu(currentUser, currentAccount);
+//		}
 		customerMenu(currentUser,currentAccount);
 	}
 	
@@ -170,11 +170,11 @@ public class CustomerMenuDaoImpl implements CustomerMenuDao {
 		finally { 
 			if (temp == 0) {
 				System.out.println("There was an error in your inputs; sending back to main menu...");
-				customerMenu(currentUser, currentAccount); 
+				//customerMenu(currentUser, currentAccount); 
 			}
 			else {
 				System.out.println("You successfully deposited $" + depositAmount + ".");
-				customerMenu(currentUser, currentAccount); 
+				//customerMenu(currentUser, currentAccount); 
 			}
 		}
 	}
@@ -213,11 +213,11 @@ public class CustomerMenuDaoImpl implements CustomerMenuDao {
 		finally { 
 			if (temp == 0) {
 				System.out.println("There was an error in your inputs; sending back to main menu...");
-				customerMenu(currentUser, currentAccount); 
+				//customerMenu(currentUser, currentAccount); 
 			}
 			else {
 				System.out.println("You successfully withdrew $" + withdrawAmount + ".");
-				customerMenu(currentUser, currentAccount); 
+				//customerMenu(currentUser, currentAccount); 
 			}
 		}
 	}
@@ -234,7 +234,7 @@ public class CustomerMenuDaoImpl implements CustomerMenuDao {
 		System.out.println("Account Successfully Created! Sending Back to Welcome Screen to Login...\n");
 		System.out.println("////////////////////\n");
 		howManyAccounts = 0;
-		customerMenu(currentUser, currentAccount);
+		//customerMenu(currentUser, currentAccount);
 	}
 	
 	public void howManyAccounts(int currentAccount, int currentAccountType) throws SQLException {
