@@ -52,3 +52,15 @@ insert into accounts (accounts_id,
 )values (1000,default,'Checking', 100.00);
 
 select * from users;
+
+--update the column balance where user_id = something.
+--delete this account_id
+
+
+Create Procedure account_id_insert
+    (@accounts_id int, @account_status Varchar(30), @accounts_type Varchar(30), @accounts_balance int)
+As
+Begin
+    Insert Into account_id_insert
+    Values (@accounts_id int, @account_status Varchar(30), @accounts_type Varchar(30), @accounts_balance int)
+End
