@@ -15,32 +15,9 @@ public class UserDoaImple implements UserDao {
 		public static String sql;
 		public static Connection con = cf.getConnection();
 		public static PreparedStatement ps;
-	
-
-	public void createsUser(User user) throws SQLException {
-			int userType;
-			
-			//ConnFactory connect = ConnFactory.getInstance();
-			//controls the connection to the database
-			
-			Connection con = cf.getConnection();
-			//prepare a statment//buffer a statement
-			String sql = "insert into people(user_id, user_uname, user_full_name, user_email, user_address, user_phone_number) values(101, ?, ? ,?, ?, ?)";	
-			
-			
-			//ps = con.prepareStatement(sql);
-///		ps.setInt(1, user.getUserID());
-			PreparedStatement ps = con.prepareStatement(sql);
-			
-			ps.setString(1, user.getUName());
-			ps.setString(2, user.getFulltName());
-			ps.setString(3, user.getEmail());
-			ps.setString(4, user.getAddress());
-			ps.setString(5, user.getPhoneNumber());
-			ps.executeUpdate();
-			//not returning anything so no result set
+						
 //			ResultSet rs = stmt.executeQuery("select * from People")
-	}
+
 
 		
 	//creating a method that will create a connection to the User table
@@ -54,25 +31,61 @@ public class UserDoaImple implements UserDao {
 
 		@Override
 		public void reviseUsers(User user) throws SQLException {
-			// TODO Auto-generated method stub
+			con = cf.getConnection();
+			//prepare a statement//buffer a statement
+			sql = "update people set user_id=?, user_uname=?, user_full_name=?,"
+					+ " user_email=?, user_address=?, user_phone_number=?"
+					+ "where user_id=?";	
 			
+			
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, user.getUName());
+			ps.setString(2, user.getFulltName());
+			ps.setString(3, user.getEmail());
+			ps.setString(4, user.getAddress());
+			ps.setString(5, user.getPhoneNumber());
+			ps.executeUpdate();			
 		}
 
 		@Override
 		public void createUser(User user) throws SQLException {
+			con = cf.getConnection();
+			//prepare a statement//buffer a statement
+			sql = "insert into people(user_id, user_uname, user_full_name, user_email, user_address, user_phone_number) values(101, ?, ? ,?, ?, ?)";	
 			
+			
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, user.getUName());
+			ps.setString(2, user.getFulltName());
+			ps.setString(3, user.getEmail());
+			ps.setString(4, user.getAddress());
+			ps.setString(5, user.getPhoneNumber());
+			ps.executeUpdate();
 		}
 
 		@Override
 		public void deleteUser(User user) throws SQLException {
-			// TODO Auto-generated method stub
+			con = cf.getConnection();
+			//prepare a statement//buffer a statement
+			sql = "delete from people where user_uname = ? ";		
+			ps = con.prepareStatement(sql);
 			
+			ps.setString(1, user.getUName());
+			ps.setString(2, user.getFulltName());
+			ps.setString(3, user.getEmail());
+			ps.setString(4, user.getAddress());
+			ps.setString(5, user.getPhoneNumber());
+			ps.executeUpdate();
 		}
 
 
 		@Override
 		public User UserLogin(User user) throws SQLException {
-			// TODO Auto-generated method stub
+			con = cf.getConnection();
+			sql = "Insert into login(user_name, user_password) values(?,?)";
+			ps = con.prepareStatement(sql);
 			return null;
 		}
 }

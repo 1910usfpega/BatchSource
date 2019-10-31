@@ -45,7 +45,7 @@ public class User {
 		return dateOfBirth;
 	}
 
-	public String getFulltName() {
+	public String getFullName() {
 		return fullName;
 	}
 

@@ -16,7 +16,7 @@ public class Account {
 	}
 
 
-	public Account(boolean accType, double balance, double accID, String fullName) {
+	public Account(double accID, String fullName, boolean accType, double balance) {
 		super();
 		this.accType = accType;
 		this.balance = balance;
@@ -28,7 +28,7 @@ public class Account {
 	static ArrayList <Account> bankAccounts =  new ArrayList<>();
 	
     //   GETTERS   //
-	public boolean isAccType() {
+	public boolean getAccType() {
 		return accType;
 	}
 
