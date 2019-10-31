@@ -164,8 +164,8 @@ public class AccountManagement {
 				for (int i = 0; i < listAcct.size(); i++) {
 						if(accountsList.get(j).getAccountBalance() == listAcct.get(selectedAcct)) {
 							if(dollarAmt >= 0.0) {
-								aType = accountsList.get(selectedAcct).getAccountType();
-								remainingBal = accountsList.get(selectedAcct).getAccountBalance()+dollarAmt;
+								aType = accountsList.get(j).getAccountType();
+								remainingBal = accountsList.get(j).getAccountBalance()+dollarAmt;
 								System.out.println("Deposit successful!");
 							}else {
 								System.out.println("Something went wrong please try again.");
@@ -208,8 +208,8 @@ public class AccountManagement {
 				for (int i = 0; i < listAcct.size(); i++) {
 						if(accountList.get(j).getAccountBalance() == listAcct.get(selectedAcct)) {
 							if(accountList.get(j).getAccountBalance() >= dollarAmt) {
-								aType = accountList.get(selectedAcct).getAccountType();
-								remainingBal = accountList.get(selectedAcct).getAccountBalance()-dollarAmt;
+								aType = accountList.get(j).getAccountType();
+								remainingBal = accountList.get(j).getAccountBalance()-dollarAmt;
 								System.out.println("Withdraw successful!");
 							}else {
 								System.out.println("Something went wrong please try again.");
