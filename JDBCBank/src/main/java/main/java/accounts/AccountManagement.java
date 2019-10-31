@@ -101,9 +101,9 @@ public class AccountManagement {
 				int numOfaccounts = 0;
 				 Double holdTempBalance;//Holds account ballance of current ammount.
 				for (Account account : accountsList) {
-					if(account.getUsername().contains(Username)) {
-						numOfaccounts +=1;
+					if(account.getUsername().equals(Username)) {
 						System.out.println(numOfaccounts+": "+account.getAccountType()+": "+account.getAccountBalance());
+						numOfaccounts +=1;
 					}
 				}
 				int fromAcct = scanner.nextInt();	
@@ -111,8 +111,8 @@ public class AccountManagement {
 					System.out.println("Which account would you like to transfer to?");
 					int counter = 0;
 					for (Account account : accountsList) {
-						counter+=1;
 						System.out.println(counter+": "+account.getAccountType());
+						counter+=1;
 					}
 				}
 					int toAcct = scanner.nextInt();
@@ -139,6 +139,7 @@ public class AccountManagement {
 	
 	//Add funds to account
 	public static void deposit(String username) {
+		double remainingBal = 0.0;
 		AccountDaoImpl dao = new AccountDaoImpl();
 	try {
 		List<Account> accountsList = dao.getAllAccounts();
@@ -155,7 +156,6 @@ public class AccountManagement {
 				counter+=1;
 			}
 		}
-			double remainingBal = 0.0;
 			String aType = "";
 			int selectedAcct = scanner.nextInt();
 			System.out.println("how much would you like to deposit?");
@@ -178,9 +178,11 @@ public class AccountManagement {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+			remainingBal = 0.0;
 	}
 	//Make a withdraw
 	public static void withdraw(String username) {
+		double remainingBal = 0.0;
 		Scanner scanner = new Scanner(System.in);
 		int numOfAccounts = 0;
 		double dollarAmt = 0.0;
@@ -202,7 +204,6 @@ public class AccountManagement {
 			System.out.println("how much would you like to withdraw?");
 			dollarAmt = scanner.nextDouble();
 			String aType = "";
-			double remainingBal = 0.0;
 			for (int j = 0; j < accountList.size(); j++) {
 				for (int i = 0; i < listAcct.size(); i++) {
 						if(accountList.get(j).getAccountBalance() == listAcct.get(selectedAcct)) {
@@ -217,11 +218,11 @@ public class AccountManagement {
 						}
 					}
 				dao.updateBalance(aType, username, remainingBal);
-				}
+			}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+			remainingBal = 0.0;	
 		}
 	public static void getAccountsByName(String username) {
 	try {
