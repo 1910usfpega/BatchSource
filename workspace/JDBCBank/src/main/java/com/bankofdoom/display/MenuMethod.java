@@ -239,11 +239,14 @@ public class MenuMethod {
 		double withdraw;
 
 		
-			System.out.println("You chose Checking Account.\n Enter withdrawal amount: ");
+			System.out.println("Enter withdrawal amount: ");
 			withdraw = sc.nextDouble();
 			selectedAcc = am.withdrawal(selectedAcc, withdraw);
-			System.out.println("Withdrawal complete. Updated Checking Account balance: "+selectedAcc.getBalance());
+			
 			adi.updateAccount(selectedAcc);
+			
+			System.out.println("Withdrawal complete. Updated Checking Account balance: "+selectedAcc.getBalance());
+			
 			displayMainMenu(currUser);
 
 	}
