@@ -279,8 +279,6 @@ public class MenuMethod {
 				System.out.println(i + ". Account " + daList.get(i).getAccountID());
 			}
 			selection = sc.nextInt();
-			System.out.println("Please enter the amount you wish to withdraw: ");
-			double amt = sc.nextDouble();
 			MenuMethod.withdrawalMenu(curUser, daList.get(selection));
 			break;
 
@@ -313,7 +311,7 @@ public class MenuMethod {
 			Account dest = daList.get(to);
 			
 			System.out.println("Please enter the amount you wish to transfer: ");
-			amt = sc.nextDouble();
+			Double amt = sc.nextDouble();
 			
 			tmp = am.transfer(origin, dest, amt);
 			if (tmp!=null) {

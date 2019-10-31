@@ -54,8 +54,8 @@ public class AccountDaoImpl implements AccountDao {
 	public boolean removeAccount(Account closedAccount) {
 
 		if(closedAccount.getBalance() == 0) {
-			sql= "delete * from account_table where"
-					+ "account_id = ?";
+			sql= "delete from account_table where "
+					+ "account_id=?";
 			PreparedStatement ps;
 
 			try {
@@ -72,19 +72,19 @@ public class AccountDaoImpl implements AccountDao {
 
 		return false;
 	}
-
+//update account_table set checking=true, balance=90.00, user_id=13285,
+//approved=true where account_id=101059;
 	@Override
 	public void updateAccount(Account updateAccount){
-		sql= "update user_table set"
-				+ " checking=?, balance=?, user_id=?,"
-				+ " approved=? where account_id=?";
+		sql= "update account_table set"
+				+ "balance=? where account_id=?";
 		try {
 			PreparedStatement ps= conn.prepareStatement(sql);
 
-			ps.setBoolean(1, updateAccount.isCheckingAccount());
-			ps.setDouble(2, updateAccount.getBalance());
-			ps.setInt(3, updateAccount.getUserId());
-			ps.setInt(4, updateAccount.getAccountID());
+
+			ps.setDouble(1, updateAccount.getBalance());
+
+			ps.setInt(2, updateAccount.getAccountID());
 
 		} catch (SQLException e) {
 			System.out.println("Unable to update that account!");
