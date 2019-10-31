@@ -48,7 +48,7 @@ public class UserMenu {
 				deleteAcc(ui, sc);
 				break;
 			case "4":
-				deleteAcc(ui, sc);
+				doTrans(ui, sc);
 				break;
 			case "5":
 				showTrans(ui, sc);

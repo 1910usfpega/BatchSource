@@ -41,7 +41,7 @@ public class AdminMenu {
 				createUser(sc);
 				break;
 			case "3":
-				deleteUser(ui, sc);
+				updateUser(ui, sc);
 				break;
 			case "4":
 				deleteUser(ui,sc);
