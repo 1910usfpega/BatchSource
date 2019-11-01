@@ -1,91 +1,155 @@
 package com.jdbc.bank.daoimple;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.jdbc.bank.bean.User;
 import com.jdbc.bank.dao.UserDao;
 import com.jdbc.bank.util.ConnFactory;
 
 public class UserDoaImple implements UserDao {
+	
 		public static ConnFactory cf = ConnFactory.getInstance();
-		public static String sql;
-		public static Connection con = cf.getConnection();
-		public static PreparedStatement ps;
-						
-//			ResultSet rs = stmt.executeQuery("select * from People")
-
-
 		
-	//creating a method that will create a connection to the User table
-	//through the AWS server. by sending a String in the SQL language the data
-	//enabling to request and receive the database information
+//TODO copy and paste the methods as they will be using the similar logic
+//		*****reminder to not type everything out****
+		
+		
+		//TODO write out my CRUD methods
+		
 		@Override
-		public ArrayList<User> getAllUsers() throws SQLException {
-			// TODO Auto-generated method stub
-			return null;
+		public int createUser(User user) throws SQLException {
+			int userCreated = 0;
+			Connection con = cf.getConnection();
+			//prepare a statement//buffer a statement
+			String sql = "insert into users(user_id, user_uname, user_password, user_first_name, user_last_name) values(nextval (\'usersequence\'), ?, ? , ?, ?)";	
+			
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(1, user.getuName());
+			ps.setString(2, user.getPassword());
+			ps.setString(3, user.getFirstName());
+			ps.setString(4, user.getLastName());
+			
+			ps.executeUpdate();
+			
+			return userCreated;
 		}
-
+		
+		
+		@Override
+		public List<User> getAllUsers() throws SQLException {
+			List<User> userList = new ArrayList<User>();
+			Connection con = cf.getConnection();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+			
+			User u = null;
+			
+			while(rs.next()) {
+				u = new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				userList.add(u);
+			}
+			return userList;
+		}
+				
+		
 		@Override
 		public void reviseUsers(User user) throws SQLException {
-			con = cf.getConnection();
+			Connection con = cf.getConnection();
 			//prepare a statement//buffer a statement
-			sql = "update people set user_id=?, user_uname=?, user_full_name=?,"
-					+ " user_email=?, user_address=?, user_phone_number=?"
-					+ "where user_id=?";	
+			String sql = "update users set user_first_name= ? user_last_name = ?";	
 			
 			
-			ps = con.prepareStatement(sql);
+			PreparedStatement ps = con.prepareStatement(sql);
 			
-			ps.setString(1, user.getUName());
-			ps.setString(2, user.getFulltName());
-			ps.setString(3, user.getEmail());
-			ps.setString(4, user.getAddress());
-			ps.setString(5, user.getPhoneNumber());
+			ps.setString(1, user.getFirstName());
+			ps.setString(2, user.getLastName());
 			ps.executeUpdate();			
 		}
-
-		@Override
-		public void createUser(User user) throws SQLException {
-			con = cf.getConnection();
-			//prepare a statement//buffer a statement
-			sql = "insert into people(user_id, user_uname, user_full_name, user_email, user_address, user_phone_number) values(101, ?, ? ,?, ?, ?)";	
-			
-			
-			ps = con.prepareStatement(sql);
-			
-			ps.setString(1, user.getUName());
-			ps.setString(2, user.getFulltName());
-			ps.setString(3, user.getEmail());
-			ps.setString(4, user.getAddress());
-			ps.setString(5, user.getPhoneNumber());
-			ps.executeUpdate();
-		}
+		
 
 		@Override
 		public void deleteUser(User user) throws SQLException {
-			con = cf.getConnection();
+			Connection con = cf.getConnection();
 			//prepare a statement//buffer a statement
-			sql = "delete from people where user_uname = ? ";		
-			ps = con.prepareStatement(sql);
+			String sql = "DELETE FROM users WHERE user_uname = ?";		
+			PreparedStatement ps = con.prepareStatement(sql);
 			
-			ps.setString(1, user.getUName());
-			ps.setString(2, user.getFulltName());
-			ps.setString(3, user.getEmail());
-			ps.setString(4, user.getAddress());
-			ps.setString(5, user.getPhoneNumber());
+			ps.setString(1, user.getuName());
 			ps.executeUpdate();
 		}
 
 
+		//TODO Write methods that grab the username, compare existing passwords with boolean
+		
 		@Override
-		public User UserLogin(User user) throws SQLException {
-			con = cf.getConnection();
-			sql = "Insert into login(user_name, user_password) values(?,?)";
-			ps = con.prepareStatement(sql);
-			return null;
+		public User getUserUname(String uname) throws SQLException {
+			Connection con = cf.getConnection();
+			String sql = "SELECT * FROM users WHERE user_uname = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(2, uname);
+			ResultSet rs = ps.executeQuery();
+			
+			User user = null;
+			
+			while(rs.next()) {
+				user = new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+			}
+			return user;
+		}
+
+		
+		@Override
+		public boolean passwordMatch(String uname) throws SQLException {
+			boolean match = false;
+			ResultSet rs = null;
+			
+			Connection con = cf.getConnection();
+			String sql = "SELECT * FROM users WHERE user_uname = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(1, uname);
+			
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				match = true;
+			} else {
+				match = false;
+			}
+			
+			return match;
+		}
+		
+		
+		public boolean doesPassMatch(String password, String username) throws SQLException {
+			boolean isMatch = false;
+			ResultSet rs = null;
+			
+			Connection conn= cf.getConnection();
+			String sql = "SELECT * FROM users WHERE user_password = ?"
+						+ " AND user_uname = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, password);
+			ps.setString(2,  username);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				if ((password.equals(rs.getString("user_password")) && username.equals(rs.getString("user_uname")))) {
+					isMatch = true;
+				} else {
+					isMatch = false;
+				}		
+			}
+			return isMatch;
 		}
 }

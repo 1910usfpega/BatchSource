@@ -1,16 +1,11 @@
 package com.jdbc.bank.driver;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.jdbc.bank.bean.Account;
-import com.jdbc.bank.dao.AccountDao;
 import com.jdbc.bank.exception.OverDraftException;
 
 public class AccountDriver {
 	
-	//account of tyoe Account 
+	//account of type Account 
 	static Account account ;
 	
 	
@@ -38,7 +33,9 @@ public class AccountDriver {
 				return account;
 		
 			} else if (wAmount > account.getBalance()) {
-		try {	account.setBalance(account.getBalance() - (wAmount + overDraftFee));
+				
+				account.setBalance(account.getBalance() - (wAmount + overDraftFee));
+				try {
 				}
 			catch (RuntimeException e) {
 				e.printStackTrace();
@@ -54,15 +51,6 @@ public class AccountDriver {
 		}
 	
 	
-	public static List<Account> transfer(Account withdrawAccount, Account depositAccount, double transferAmount) throws OverDraftException {
-		List<Account> account = new ArrayList<Account>();
-		if (transferAmount <= 0) {
-			System.out.println("Transfer amount is invalid");
-		} else if (transferAmount > 0) {
-			account.add(AccountDriver.withdraw(withdrawAccount, transferAmount));
-			account.add(AccountDriver.deposit(depositAccount, transferAmount));
-		}
-				return account;
-	}
+	
 	
 }
