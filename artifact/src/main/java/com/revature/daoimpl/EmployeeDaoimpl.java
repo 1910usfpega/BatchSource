@@ -98,6 +98,33 @@ public class EmployeeDaoimpl extends Customerdaoimpl{
 		}
 		catch(Exception e) {return false;}
 	}
+	public void updateUserFname(String name, String Username) throws SQLException { // check username if has been used
+		Connection conn= cf.getConnection();
+		String sql="update customer set fname = ? where username = ?";
+		PreparedStatement ps= conn.prepareStatement(sql);
+		ps.setString(1,name);
+		ps.setString(2,Username);
+		ps.executeQuery();		
+}
+
+
+public void updateUserLname(String name, String Username) throws SQLException {
+		Connection conn= cf.getConnection();
+		String sql="update customer set lname = ? where username = ?";
+		PreparedStatement ps= conn.prepareStatement(sql);
+		ps.setString(1,name);
+		ps.setString(2,Username);
+		ps.execute();
+}
+public void updateUserPassword(String password, String Username) throws SQLException {
+	Connection conn= cf.getConnection();
+	String sql="update customer set pass = ? where username = ?";
+	PreparedStatement ps= conn.prepareStatement(sql);
+	ps.setString(1,password);
+	ps.setString(2,Username);
+	ps.execute();
+}
+
 
 	
 }

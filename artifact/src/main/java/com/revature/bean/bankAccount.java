@@ -28,10 +28,10 @@ public class bankAccount {
 		return false;
 	}
 	
-	public static bankAccount getBankAccount(int number) throws SQLException {
+	public static bankAccount getBankAccount(int number, String username) throws SQLException {
 		
 		
-		return a.getAccount(number);
+		return a.getAccount(number,username);
 	}		
 	
 	public static ArrayList<bankAccount> getBankAccounts(String username) throws SQLException {

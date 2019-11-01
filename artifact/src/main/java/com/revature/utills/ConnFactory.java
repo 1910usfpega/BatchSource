@@ -26,19 +26,12 @@ public class ConnFactory {
 			return cf;
 		}
 		
-//		method that do stuff
 		public Connection getConnection() {
 			Connection conn = null;
-			
-//			  String url=
-//			  "jdbc:postgresql://grantdb22.cvy92ehtyzzn.us-east-2.rds.amazonaws.com/postgres";
-//			   String user ="grantDB22"; 
-//			    String password ="Grant092291.";
-			 		Properties prop = new Properties();
+			Properties prop = new Properties();
 			
 			try {
 				prop.load(new FileReader("database.properties"));
-//			conn=DriverManager.getConnection(url,user,password);
 				conn=DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("user"),prop.getProperty("password"));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

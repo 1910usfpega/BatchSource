@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import com.revature.bean.Customer;
+import com.revature.bean.Employee;
 import com.revature.bean.bankAccount;
 import com.revature.utills.ConnFactory;
 
@@ -16,87 +17,78 @@ import com.revature.*;
 
 
 public class Customerdaoimpl {
+	public static ConnFactory cf= ConnFactory.getInstance();
+	
 	static Customerdaoimpl a= new Customerdaoimpl();
 	static BankDaoImpl b = new BankDaoImpl();
-		public static ConnFactory cf= ConnFactory.getInstance();
-		
-		public ArrayList<Customer> getAllCustomer() throws SQLException {
-			ArrayList<Customer> CustomerList= new ArrayList<Customer>();
-			Connection conn= cf.getConnection();
-			Statement stmt= conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from customer");
-			Customer a=null;
-			while(rs.next()) {
-				a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
-				CustomerList.add(a);
-			}
-			return CustomerList;
+	
+	public ArrayList<Customer> getAllCustomer() throws SQLException {
+		ArrayList<Customer> CustomerList= new ArrayList<Customer>();
+		Connection conn= cf.getConnection();
+		Statement stmt= conn.createStatement();
+		ResultSet rs= stmt.executeQuery("select * from customer");
+		Customer a=null;
+		while(rs.next()) {
+			a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+			CustomerList.add(a);
 		}
-		public Customer getCustomerByName(String name) throws SQLException {
-			List<Customer> CustomerList= new ArrayList<Customer>();
-			Connection conn= cf.getConnection();
-			String sql="select * from customer where username = ?";
-			PreparedStatement ps= conn.prepareStatement(sql);
-			ps.setString(1, name);
-			ResultSet rs= ps.executeQuery();
-			Customer a=null;
-			while(rs.next()) {
-				a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
-				CustomerList.add(a);
+		return CustomerList;
+	}
+	
+	public Customer getCustomerByName(String name) throws SQLException {
+		List<Customer> CustomerList= new ArrayList<Customer>();
+		Connection conn= cf.getConnection();
+		String sql="select * from customer where username = ?";
+		PreparedStatement ps= conn.prepareStatement(sql);
+		ps.setString(1, name);
+		ResultSet rs= ps.executeQuery();
+		Customer a=null;
+		while(rs.next()) {
+			a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+			CustomerList.add(a);
+		}
+		
+		return a;
+	}
+	
+	public Employee getEmployeebyUsername(String username) throws SQLException {
+		Connection conn= cf.getConnection();
+		String sql="select * from employee where username = ?";
+		PreparedStatement ps= conn.prepareStatement(sql);
+		ps.setString(1,username);
+		ResultSet rs= ps.executeQuery();
+		Employee a=null;
+		while(rs.next()) {
+			a= new Employee(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+		}
+		return a;
+	}
+
+
+	public boolean logIn(String username, String password) throws SQLException {
+		Connection conn= cf.getConnection();
+		String sql="select * from customer where username = ? and pass = ?";
+		PreparedStatement ps;
+		
+			ps = conn.prepareStatement(sql);
+			ps.setString(1,username);
+			ps.setString(2,password);
+			ResultSet rs= null;
+			try {
+			 rs= ps.executeQuery();
 			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			 Customer a=null;
 			
-			return a;
-		}
-
+				while(rs.next()) {
+					a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+					return true;
+			}
+				return false;
 	
-public boolean loginForEmployees(String username, String password) throws SQLException {
-	Connection conn= cf.getConnection();
-	String sql="select * from employee where username = ? and pass = ?";
-	PreparedStatement ps;
-	
-		ps = conn.prepareStatement(sql);
-		ps.setString(1,username);
-		ps.setString(2,password);
-		ResultSet rs= null;
-		try {
-		 rs= ps.executeQuery();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		 Customer a=null;
-		
-			while(rs.next()) {
-				a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
-				return true;
-		}
-			return false;
-
-}
-public boolean logIn(String username, String password) throws SQLException {
-	Connection conn= cf.getConnection();
-	String sql="select * from customer where username = ? and pass = ?";
-	PreparedStatement ps;
-	
-		ps = conn.prepareStatement(sql);
-		ps.setString(1,username);
-		ps.setString(2,password);
-		ResultSet rs= null;
-		try {
-		 rs= ps.executeQuery();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		 Customer a=null;
-		
-			while(rs.next()) {
-				a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
-				return true;
-		}
-			return false;
-
-}
+	}
 	public String viewUser(String Username) throws SQLException {
 		Connection conn= cf.getConnection();
 		String sql="select * from customer where username = ?";
@@ -112,15 +104,39 @@ public boolean logIn(String username, String password) throws SQLException {
 
 	public void deleteBankAccount(int accountNumber, String Username) throws SQLException {
 		Connection conn= cf.getConnection();
-		String sql="delete from owners where username = ? and "
-				+ "accountnumber = ?";
+		String sql="delete from owners where username = ? and accountnumber = ?";
+		
 		PreparedStatement ps= conn.prepareStatement(sql);
 		ps.setString(1,Username);
 		ps.setInt(2,accountNumber);
 	    ps.execute();
 	}
 
-	
+	public boolean loginForEmployees(String username, String password) throws SQLException {
+		Connection conn= cf.getConnection();
+		String sql="select * from employee where username = ? and pass = ?";
+		PreparedStatement ps;
+		
+			ps = conn.prepareStatement(sql);
+			ps.setString(1,username);
+			ps.setString(2,password);
+			ResultSet rs= null;
+			try {
+			 rs= ps.executeQuery();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			 Customer a=null;
+			
+				while(rs.next()) {
+					a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+					return true;
+			}
+				return false;
+
+	}
+
 	public void updateUserPassword(String password, String Username) throws SQLException {
 		Connection conn= cf.getConnection();
 		String sql="update customer set pass = ? where username = ?";
@@ -133,9 +149,9 @@ public boolean logIn(String username, String password) throws SQLException {
 	public ArrayList<Customer> getCustomers() throws SQLException {
 		ArrayList<Customer> CustomerList= new ArrayList<Customer>();
 		Connection conn= cf.getConnection();
+		Customer a;
 		Statement stmt= conn.createStatement();
 		ResultSet rs= stmt.executeQuery("select * from customer");
-		Customer a=null;
 		while(rs.next()) {
 			a= new Customer(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
 			CustomerList.add(a);
@@ -181,26 +197,6 @@ public boolean logIn(String username, String password) throws SQLException {
 		
 	}
 
-	
-		public void updateUserFname(String name, String Username) throws SQLException { // check username if has been used
-			Connection conn= cf.getConnection();
-			String sql="update customer set fname = ? where username = ?";
-			PreparedStatement ps= conn.prepareStatement(sql);
-			ps.setString(1,name);
-			ps.setString(2,Username);
-			ps.executeQuery();		
-	}
-
-	
-	public void updateUserLname(String name, String Username) throws SQLException {
-			Connection conn= cf.getConnection();
-			String sql="update customer set lname = ? where username = ?";
-			PreparedStatement ps= conn.prepareStatement(sql);
-			ps.setString(1,name);
-			ps.setString(2,Username);
-			ResultSet rs= ps.executeQuery();
-	}
-
 	public boolean checkusername(ArrayList <Customer> a, String b) {
 		for(Customer aa: a) {
 			if(aa.getUserName().equals(b)) {
@@ -209,11 +205,11 @@ public boolean logIn(String username, String password) throws SQLException {
 		}
 		return true;
 	}
-	public ArrayList<bankAccount> getAllUserBankAccounts(String username) throws SQLException{
+	public List<bankAccount> getAllUserBankAccounts(String username) throws SQLException{
 		return b.getAllAccounts(username);
 		
 	}
-	public ArrayList<bankAccount> getAllUserBankAccountsforuser() throws SQLException{
+	public List<bankAccount> getAllUserBankAccountsforuser() throws SQLException{
 		return b.getAllofAccounts();
 		
 	}
@@ -238,18 +234,10 @@ public boolean logIn(String username, String password) throws SQLException {
     }
     public boolean createBankAccount(String username) throws SQLException {
         Connection conn = cf.getConnection();
-        String sql = "insert into bankaccount (amount) Values(?)";
+        String sql = "insert into bankaccount (amount) Values(0)";
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setFloat(1, 0);
-        try {
- 	
-             sql =  "insert into owners (accountnumber, username) Values((select max(accountnumber)from bankaccount),?);";
-             ps = conn.prepareStatement(sql);
-            ps.setString(1, username);
-        } catch (Exception e) {
-            return false;
-        }
-        return false;
+        ps.execute();
+  return true;
     }
     
     
