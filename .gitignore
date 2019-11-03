@@ -2,7 +2,7 @@
 *.class
 
 #Properties
-database.properties
+*/database.properties
 
 # Log file
 *.log
