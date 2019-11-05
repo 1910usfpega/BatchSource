@@ -15,7 +15,7 @@ public class VideoGameDaoImpl {
 	//get specific vid game
 	public VideoGame getVGbyID(int id) throws SQLException{
 		VideoGame vg=null;
-		String sql = "select * from videogame where vgid=?";
+		String sql = "select * from public.videogame where vgid=?";
 		Connection conn = why.getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
@@ -28,7 +28,7 @@ public class VideoGameDaoImpl {
 	}
 	//insert row
 	public void instertVG(VideoGame vg)throws SQLException{
-		String sql = "insert into videogame values(?,?,?)";
+		String sql = "insert into public.videogame values(?,?,?)";
 		Connection conn = why.getConnection();
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, vg.getVgID());
