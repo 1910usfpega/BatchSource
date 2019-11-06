@@ -8,7 +8,6 @@ public class VideoGame {
 
 	public VideoGame() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public VideoGame(int vgID, String vgName, int vgMetaScore) {

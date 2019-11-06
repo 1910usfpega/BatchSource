@@ -6,7 +6,7 @@ function loadVG(vg){
 
 function getVG(){
     console.log("inside getVg");
-    let vgID =document.getElementById("vgIDInput").value;
+    let vgid =document.getElementById("vgIDInput").value;
     var xhr= new XMLHttpRequest();
     xhr.onreadystatechange= function(){
         console.log("inside ORSC " + xhr.readyState);
@@ -16,7 +16,7 @@ function getVG(){
             loadVG(vg);
         }
     }
-    xhr.open("GET","http://localhost:8080/JSONDemo/vg?vgid="+vgID, true);
+    xhr.open("GET","http://localhost:8080/JSONDemo/vg?vgid="+vgid, true);
     xhr.send();
 }
 
@@ -34,7 +34,7 @@ xhr.open("POST","http://localhost:8080/JSONDemo/vg", true);
 var payload=jsonBuilder();
 xhr.send(payload);
 }
-function jasonBuilder(){
+function jsonBuilder(){
     var elements=document.getElementById("vgForm").elements;
     var obj={};
     for(var i = 0; i<elements.length-1;i++){

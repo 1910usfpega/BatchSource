@@ -1,50 +1,36 @@
 package com.revature.util;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class ConnFactory {
-	//singleton factory
-	//private static instance of self
-		private static ConnFactory cf = new ConnFactory();
-
-		private ConnFactory() {
-			super();
-
+	private static ConnFactory cf= new ConnFactory();
+	private static final String url="jdbc:postgresql://mypegabatch.cfgmuw0zkwrh.us-east-2.rds.amazonaws.com/postgres";
+	private static final String user="MadScientist626";
+	private static final String password="3eDru-=0FaP8L-tiTh8p";
+	private ConnFactory() {
+		super();
+	}
+	public static synchronized ConnFactory getInstance() {
+		if(cf==null) {
+			cf= new ConnFactory();
 		}
-
-		public static synchronized ConnFactory getInstance() {
-			if (cf == null) {
-				cf = new ConnFactory();
-			}
-			return cf;
-
+		return cf;
+	}
+	public Connection getConnection() {
+		Connection conn=null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			conn= DriverManager.getConnection(url,user,password);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		public Connection getConnection() {
-			Connection conn = null;
-			Properties prop = new Properties();
-			try {
-				prop.load(new FileReader("database.properties"));
-				conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("secret"));
-			} catch (SQLException e) {
-				System.out.println("Failed to create connection");
-				e.printStackTrace();
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				System.out.println("File not Found");
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Oops bad IO");
-				e.printStackTrace();
-			}
-			return conn;
-
-		}
+		return conn;
+	}
+	
 }
