@@ -8,7 +8,11 @@
 				</Pattern>
 			</PatternLayout>
 		</Console>
+<<<<<<< HEAD
 		<File name="File" fileName="C:/Users/Kitten/Desktop/logging.log">
+=======
+		<File name="File" fileName="C:/Users/acdc2/Desktop/logging.log">
+>>>>>>> e819e1ca6e08a61b3406d01e43bc510202531b0b
 			<PatternLayout>
 				<Pattern>
 					[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
