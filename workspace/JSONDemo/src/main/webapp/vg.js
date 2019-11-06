@@ -16,7 +16,7 @@ function getVG(){
             loadVG(vg);
         }
     }
-    xhr.open("GET","http://localhost:8080/JSONDemo/vg?vgid="+vgID,true);
+    xhr.open("GET","http://localhost:8080/JSONDemo/vg?vgid="+vgID, true);
     xhr.send();
 }
 
