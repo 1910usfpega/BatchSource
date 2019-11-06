@@ -49,7 +49,7 @@ function jsonBuilder(){
 }
 window.onload= function(){
     console.log("in onload");
-    //document.getElementById("vgSubmitGet").addEventListener("click",getVG,false);
+    document.getElementById("vgSubmitGet").addEventListener("click",getVG,false);
     document.getElementById("vgFormSubmit").addEventListener("click",postVG,false);
 
 }

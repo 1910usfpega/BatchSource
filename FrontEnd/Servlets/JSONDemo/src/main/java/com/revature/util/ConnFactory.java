@@ -16,7 +16,7 @@ public class ConnFactory {
 	}
 	public Connection getConnection() {
 		Connection conn= null;
-		String url ="jdbc:postgresql://pega1019.ccjzasyyhpja.us-east-2.rds.amazonaws.com:5432/postgres";
+		String url ="jdbc:postgresql://pega1019.ccjzasyyhpja.us-east-2.rds.amazonaws.com/postgres";
 		String user="mrkitten";
 		String password="rolltideroll";
 		try {
