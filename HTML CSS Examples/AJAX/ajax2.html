@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Music is Awesome!!</title>
+        </head>
+    <body>
+        <input type="test" id="msID" placeholder="Enter Music ID"/>
+        <input type="submit" value="Get Music Info" id="musicsubmit"/>
+        <h3 id="name"></h3>
+        <script type="text/javascript" src="ajax.js"></script>
+        <script src="https://sdk.scdn.co/spotify-player.js"></script>
+<script>
+window.onSpotifyWebPlaybackSDKReady = () => {
+  const userAccessToken = "[access token]";
+  const webPlayback = new Spotify.Player({
+    name: "Spotify Web Playback SDK",
+    getOAuthToken: callback => { callback(token)}
+  });
+  webPlayback.connect();
+};
+</script>
+    </body>
+</html>
