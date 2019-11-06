@@ -13,7 +13,7 @@
     <description></description>
     <display-name>VGServlet</display-name>
     <servlet-name>VGServlet</servlet-name>
-    <servlet-class>com.reavture.servlet.VGServlet</servlet-class>
+    <servlet-class>com.revature.servlet.VGServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>

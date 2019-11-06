@@ -1,4 +1,4 @@
-package com.reavture.servlet;
+package com.revature.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
