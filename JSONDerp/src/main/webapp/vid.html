@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Video Game Liberry</title>
+</head>
+<body>
+	<div>
+	<h1>Welcome to the Liberry </h1>
+	</div>
+	<div>
+	<input type="text" id="vgIDInput" placeholder="enter video game id"/>
+	<input type="submit" id="vgSubmitGet" value ="get video game info"/>
+	<h2 id="vgName"></h2>
+	<h3 id="vgID"></h3>
+	<h3 id="vgMetaScore"></h3>
+	</div>
+	<div>
+		<form enctype="application/json" method="POST" id="vgForm">
+		
+			Video Game ID: <input type="text" name="vgID">
+			<br/>
+			Video Game Name: <input type="text" name="vgName">
+			<br/>
+			Video Game MetaScore <input type="text" name="vgMetaScore">
+		
+		  <input type="submit" name="submitme" id="vgFormSubmit">
+		</form>
+	</div>
+	<script type="text/javascript" src="vid.js"></script>
+</body>
+</html>
